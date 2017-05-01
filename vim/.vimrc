@@ -5,6 +5,7 @@ Plug 'https://github.com/Valloric/YouCompleteMe.git'
 Plug 'https://github.com/flazz/vim-colorschemes.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
 "Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 call plug#end()
 set statusline+=%F
@@ -18,6 +19,7 @@ syntax enable " enalbe syntax processing
 set tabstop=4 " number of visual spaces er TAB
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " tabs are spaces
+set shiftwidth=4
 set number " show line numbers
 set relativenumber " show relative line numbers
 set showcmd " show command in bottom bar
@@ -71,6 +73,6 @@ let g:indentline_color_term = 239
 let g:indentline_color_dark = 2
 let g:indentline_leadingspacechar = '-'
 let g:indentline_leadingspaceenabled = 1
-let g:indentline_inabled = 1
-" airline theme
-"let g:airline_theme = "tomorrow"
+let g:indentline_enabled = 1
+" delimitMate
+let delimitMate_expand_cr = 1
