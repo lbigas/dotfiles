@@ -37,7 +37,7 @@ unsetopt caseglob
 #-------- Vim Mode {{{
 #------------------------------------------------------
 # enable vim mode on commmand line
-bindkey -v
+#bindkey -v
 
 # edit command with editor
 # http://stackoverflow.com/a/903973
@@ -55,26 +55,26 @@ KEYTIMEOUT=1
 
 # show vim status
 # http://zshwiki.org/home/examples/zlewidgets
-function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+#function zle-line-init zle-keymap-select {
+#    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+#    RPS2=$RPS1
+#    zle reset-prompt
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
 
 # add missing vim hotkeys
 # fixes backspace deletion issues
 # http://zshwiki.org/home/zle/vi-mode
-bindkey -a u undo
+#bindkey -a u undo
 # bindkey -a '^R' redo	# conflicts with history search hotkey
-bindkey -a '^T' redo
-bindkey '^?' backward-delete-char	#backspace
+#bindkey -a '^T' redo
+#bindkey '^?' backward-delete-char	#backspace
 
 # history search in vim mode
 # http://zshwiki.org./home/zle/bindkeys#why_isn_t_control-r_working_anymore
-bindkey -M viins '^r' history-incremental-search-backward
-bindkey -M vicmd '^r' history-incremental-search-backward
+#bindkey -M viins '^r' history-incremental-search-backward
+#bindkey -M vicmd '^r' history-incremental-search-backward
 
 # use cursor blinker color as indicator of vi mode
 # http://andreasbwagner.tumblr.com/post/804629866/zsh-cursor-color-vi-mode
