@@ -5,7 +5,7 @@ Plug 'https://github.com/Valloric/YouCompleteMe.git'
 Plug 'https://github.com/flazz/vim-colorschemes.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
-Plug 'https://github.com/tpope/vim-fugitive.git'
+"Plug 'https://github.com/tpope/vim-fugitive.git'
 "Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 call plug#end()
 set statusline+=%F
