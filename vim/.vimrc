@@ -1,11 +1,12 @@
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/kien/ctrlp.vim.git'
+Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/Valloric/YouCompleteMe.git'
 Plug 'https://github.com/flazz/vim-colorschemes.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
-"Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
 "Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 call plug#end()
 set statusline+=%F
@@ -13,7 +14,7 @@ set t_Co=256
 set background=dark
 scriptencoding utf-8
 let mapleader=","
-colorscheme molokai
+colorscheme gruvbox 
 "set background=dark
 syntax enable " enalbe syntax processing
 set tabstop=4 " number of visual spaces er TAB
@@ -67,12 +68,19 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 " nove between matching opening and ending cide; { code}
 map <tab> %
+" save sudo
+map <leader>sudo :w !sudo tee % <CR><CR>
 " vim indent guides
-let g:indentline_char = '|'
-let g:indentline_color_term = 239
-let g:indentline_color_dark = 2
+let g:indentline_char = '¦'
+"let g:indentline_color_term = 239
+"let g:indentline_color_dark = 2
 let g:indentline_leadingspacechar = '-'
-let g:indentline_leadingspaceenabled = 1
-let g:indentline_enabled = 1
+"let g:indentline_leadingspaceenabled = 1
+"let g:indentline_enabled = 1
 " delimitMate
 let delimitMate_expand_cr = 1
+
+map - <nop>
+
+" NERDTree
+nnoremap <leader>nt :NERDTreeToggle<CR>
