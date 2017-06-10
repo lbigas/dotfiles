@@ -7,14 +7,18 @@ Plug 'https://github.com/flazz/vim-colorschemes.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/luochen1990/rainbow.git'
+Plug 'https://github.com/farmergreg/vim-lastplace.git'
+"Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 "Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 call plug#end()
+set clipboard=unnamed
 set statusline+=%F
 set t_Co=256
 set background=dark
 scriptencoding utf-8
 let mapleader=","
-colorscheme gruvbox 
+colorscheme gruvbox
 "set background=dark
 syntax enable " enalbe syntax processing
 set tabstop=4 " number of visual spaces er TAB
@@ -79,8 +83,31 @@ let g:indentline_leadingspacechar = '-'
 "let g:indentline_enabled = 1
 " delimitMate
 let delimitMate_expand_cr = 1
-
-map - <nop>
-
 " NERDTree
-nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <F3> :NERDTreeToggle<CR>
+" Remoce trailing wthitescape on save :w
+autocmd BufWritePre * :%s/\s\+$//e
+" Rainbow Parentheses
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+	\	'operators': '_,_',
+	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+	\	'separately': {
+	\		'*': {},
+	\		'tex': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+	\		},
+	\		'lisp': {
+	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+	\		},
+	\		'vim': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+	\		},
+	\		'html': {
+	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+	\		},
+	\		'css': 0,
+	\	}
+	\}
