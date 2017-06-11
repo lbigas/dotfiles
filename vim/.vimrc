@@ -9,6 +9,10 @@ Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
+Plug 'https://github.com/scrooloose/nerdcommenter.git'
+Plug 'https://github.com/mkitt/tabline.vim.git'
+"Plug 'https://github.com/vim-scripts/Conque-Shell.git'
+"Plug 'https://github.com/vim-scripts/Conque-GDB.git'
 "Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 "Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 call plug#end()
@@ -58,6 +62,16 @@ nnoremap tk :tabnext<CR>
 nnoremap tj :tabprev<CR>
 nnoremap th :tabfirst<CR>
 nnoremap tl :tablast<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 10gt
 
 " move vertically by visual line
 nnoremap j gj
@@ -74,6 +88,8 @@ nnoremap N Nzzzv
 map <tab> %
 " save sudo
 map <leader>sudo :w !sudo tee % <CR><CR>
+" Your Complete Me
+set completeopt-=preview
 " vim indent guides
 let g:indentline_char = '¦'
 "let g:indentline_color_term = 239
@@ -87,6 +103,14 @@ let delimitMate_expand_cr = 1
 nnoremap <F3> :NERDTreeToggle<CR>
 " Remoce trailing wthitescape on save :w
 autocmd BufWritePre * :%s/\s\+$//e
+" Tabline
+hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
+hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
+hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
+" Conque-GDB
+"let g:ConqueTerm_Color = 2
+"let g:ConqueTerm_CloseOnEnd = 1
+"let g:ConqueTerm_StartMessages = 0
 " Rainbow Parentheses
 let g:rainbow_active = 1
 let g:rainbow_conf = {
