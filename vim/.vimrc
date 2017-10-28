@@ -2,12 +2,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
-Plug 'https://github.com/Valloric/YouCompleteMe.git'
+"Plug 'https://github.com/Valloric/YouCompleteMe.git'
+Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/flazz/vim-colorschemes.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/luochen1990/rainbow.git'
+"Plug 'https://github.com/luochen1990/rainbow.git'
+Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mkitt/tabline.vim.git'
@@ -15,6 +17,7 @@ Plug 'https://github.com/mkitt/tabline.vim.git'
 "Plug 'https://github.com/vim-scripts/Conque-GDB.git'
 "Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 "Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+
 call plug#end()
 set clipboard=unnamed
 set statusline+=%F
@@ -23,7 +26,7 @@ set background=dark
 scriptencoding utf-8
 let mapleader=","
 colorscheme gruvbox
-"set background=dark
+set background=dark
 syntax enable " enalbe syntax processing
 set tabstop=4 " number of visual spaces er TAB
 set softtabstop=4 " number of spaces in tab when editing
@@ -31,6 +34,7 @@ set expandtab " tabs are spaces
 set shiftwidth=4
 set number " show line numbers
 set relativenumber " show relative line numbers
+set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
 set cursorline " highlight current line
 set cursorcolumn " highlight current column
@@ -55,7 +59,9 @@ set formatoptions=1
 set lbr
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
-
+" color selected text
+"hi Visual term=reverse cterm=reverse guibg=Grey
+highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
 " vim tabs
 nnoremap tn :tabnew<CR>
 nnoremap tk :tabnext<CR>
@@ -88,8 +94,17 @@ nnoremap N Nzzzv
 map <tab> %
 " save sudo
 map <leader>sudo :w !sudo tee % <CR><CR>
+" disable PageUp and PageDown
+nnoremap <PageUp>   <nop>
+inoremap <PageUp>   <nop>
+nnoremap <PageDown> <nop>
+inoremap <PageDown> <nop>
+vnoremap <PageUp>   <nop>
+vnoremap <PageUp>   <nop>
+vnoremap <PageDown> <nop>
+vnoremap <PageDown> <nop>
 " Your Complete Me
-set completeopt-=preview
+"set completeopt-=preview
 " vim indent guides
 let g:indentline_char = '¦'
 "let g:indentline_color_term = 239
@@ -112,26 +127,32 @@ hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 "let g:ConqueTerm_CloseOnEnd = 1
 "let g:ConqueTerm_StartMessages = 0
 " Rainbow Parentheses
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-	\	'operators': '_,_',
-	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\	'separately': {
-	\		'*': {},
-	\		'tex': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-	\		},
-	\		'lisp': {
-	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-	\		},
-	\		'vim': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-	\		},
-	\		'html': {
-	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-	\		},
-	\		'css': 0,
-	\	}
-	\}
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+
+" List of colors that you do not want. ANSI code or #RRGGBB
+let g:rainbow#blacklist = [233, 234]
+"let g:rainbow_active = 1
+"let g:rainbow_conf = {
+"	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+"	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+"	\	'operators': '_,_',
+"	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+"	\	'separately': {
+"	\		'*': {},
+"	\		'tex': {
+"	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+"	\		},
+"	\		'lisp': {
+"	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+"	\		},
+"	\		'vim': {
+"	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+"	\		},
+"	\		'html': {
+"	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+"	\		},
+"	\		'css': 0,
+"	\	}
+"	\}
+"
