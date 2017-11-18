@@ -1,32 +1,11 @@
-call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/kien/ctrlp.vim.git'
-Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'https://github.com/Yggdroot/indentLine.git'
-"Plug 'https://github.com/Valloric/YouCompleteMe.git'
-Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'https://github.com/flazz/vim-colorschemes.git'
-Plug 'https://github.com/vim-airline/vim-airline.git'
-Plug 'https://github.com/Raimondi/delimitMate.git'
-Plug 'https://github.com/tpope/vim-fugitive.git'
-"Plug 'https://github.com/luochen1990/rainbow.git'
-Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
-Plug 'https://github.com/farmergreg/vim-lastplace.git'
-Plug 'https://github.com/scrooloose/nerdcommenter.git'
-Plug 'https://github.com/mkitt/tabline.vim.git'
-"Plug 'https://github.com/vim-scripts/Conque-Shell.git'
-"Plug 'https://github.com/vim-scripts/Conque-GDB.git'
-"Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
-"Plug 'https://github.com/vim-airline/vim-airline-themes.git'
-
-call plug#end()
 set clipboard=unnamed
 set statusline+=%F
 set t_Co=256
-set background=dark
 scriptencoding utf-8
 let mapleader=","
-colorscheme gruvbox
+colorscheme flattened_dark
 set background=dark
+"set background=light
 syntax enable " enalbe syntax processing
 set tabstop=4 " number of visual spaces er TAB
 set softtabstop=4 " number of spaces in tab when editing
@@ -57,6 +36,9 @@ nnoremap <c-j> 5j
 set wrap
 set formatoptions=1
 set lbr
+set nolist "disable linebreak
+" show line warp
+set showbreak=¬
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 " color selected text
@@ -80,13 +62,13 @@ nnoremap <leader>9 9gt
 nnoremap <leader>0 10gt
 
 " move vertically by visual line
-nnoremap j gj
-nnoremap k gk
+"nnoremap j gj
+"nnoremap k gk
 " move to beginning/end of line
 nnoremap H ^
 nnoremap L $
 " more sensible w key
-nnoremap w W
+"nnoremap w W
 " keep search matches in the middle of the window
 nnoremap n nzzzv
 nnoremap N Nzzzv
@@ -122,37 +104,24 @@ autocmd BufWritePre * :%s/\s\+$//e
 hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
-" Conque-GDB
-"let g:ConqueTerm_Color = 2
-"let g:ConqueTerm_CloseOnEnd = 1
-"let g:ConqueTerm_StartMessages = 0
 " Rainbow Parentheses
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
-" List of colors that you do not want. ANSI code or #RRGGBB
-let g:rainbow#blacklist = [233, 234]
-"let g:rainbow_active = 1
-"let g:rainbow_conf = {
-"	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-"	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-"	\	'operators': '_,_',
-"	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-"	\	'separately': {
-"	\		'*': {},
-"	\		'tex': {
-"	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-"	\		},
-"	\		'lisp': {
-"	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-"	\		},
-"	\		'vim': {
-"	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-"	\		},
-"	\		'html': {
-"	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-"	\		},
-"	\		'css': 0,
-"	\	}
-"	\}
-"
+call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'https://github.com/kien/ctrlp.vim.git'
+Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'https://github.com/Yggdroot/indentLine.git'
+"Plug 'https://github.com/Valloric/YouCompleteMe.git'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/flazz/vim-colorschemes.git'
+Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'https://github.com/Raimondi/delimitMate.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
+Plug 'https://github.com/farmergreg/vim-lastplace.git'
+Plug 'https://github.com/scrooloose/nerdcommenter.git'
+Plug 'https://github.com/mkitt/tabline.vim.git'
+"Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+call plug#end()
