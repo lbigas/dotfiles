@@ -1,0 +1,4 @@
+
+folder-hook 'account.com.gmail.bigas96' 'source ~/.mutt/account.com.gmail.bigas96'
+# Default account
+source ~/.mutt/account.com.gmail.bigas96
