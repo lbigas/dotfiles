@@ -1,5 +1,5 @@
 # set vim keybinds
-set -o vi
+#set -o vi
 
 # keybinding
 bind 'set completion-ignore-case on' # ignore case on Tab complition
