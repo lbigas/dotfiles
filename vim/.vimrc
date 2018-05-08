@@ -3,9 +3,8 @@ set statusline+=%F
 set t_Co=256
 scriptencoding utf-8
 let mapleader=","
-colorscheme flattened_dark
 set background=dark
-"set background=light
+colorscheme solarized
 syntax enable " enalbe syntax processing
 set tabstop=4 " number of visual spaces er TAB
 set softtabstop=4 " number of spaces in tab when editing
