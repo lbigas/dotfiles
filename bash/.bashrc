@@ -12,6 +12,10 @@ alias shutdown='shutdown -h now'
 alias suspend='systemctl suspend'
 alias hibernate='systemctl hibernate'
 
+alias ..="cd .."
+alias ....="cd ../.."
+alias ......="cd ../../.."
+
 bind 'set completion-ignore-case on' # ignore case on Tab complition
 
 export PS1='\[\e]0;\w\a\]\[\e[32m\]\u@\h: \[\e[33m\]\w\[\e[0m\]\n\$ '
