@@ -109,6 +109,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
