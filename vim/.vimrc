@@ -1,10 +1,10 @@
-set clipboard=unnamed
 set statusline+=%F
 set t_Co=256
 scriptencoding utf-8
 let mapleader=","
 set background=dark
-colorscheme solarized
+"colorscheme solarized
+colorscheme gruvbox
 syntax enable " enalbe syntax processing
 set tabstop=4 " number of visual spaces er TAB
 set softtabstop=4 " number of spaces in tab when editing
@@ -28,6 +28,7 @@ set mat=2 " blink for 2 sec
 set title " show title in console title bar
 set noerrorbells " disable error sound bell
 set novisualbell " disable error visual bell
+set clipboard+=unnamedplus
 " movement
 nnoremap <c-k> 5k
 nnoremap <c-j> 5j
@@ -59,6 +60,10 @@ nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <leader>0 10gt
+
+"Copy paste comands to work with system clipboard (gvim needed)
+vnoremap <C-y> "+y
+map <C-p> "+p
 
 " move vertically by visual line
 "nnoremap j gj
@@ -104,24 +109,24 @@ hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
 hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 " Rainbow Parentheses
-let g:rainbow#max_level = 16
-let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+"let g:rainbow#max_level = 16
+"let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/ervandew/supertab.git'
-Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
-"Plug 'https://github.com/Valloric/YouCompleteMe.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/flazz/vim-colorschemes.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mkitt/tabline.vim.git'
+"Plug 'https://github.com/kien/ctrlp.vim.git'
+"Plug 'https://github.com/Valloric/YouCompleteMe.git'
+"Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 "Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 call plug#end()
