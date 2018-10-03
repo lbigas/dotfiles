@@ -1,0 +1,74 @@
+# 1 as base index
+set -g base-index 1
+
+# Automaticlly set window title
+set-window-option -g automatic-rename on
+set-option -g set-titles on
+
+# Use Alt-vim keys without prefix key to switch panes
+bind -n M-h select-pane -L
+bind -n M-j select-pane -D
+bind -n M-k select-pane -U
+bind -n M-l select-pane -R
+
+# Use Alt-arrow keys without prefix key to switch panes
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# Shift arrow to switch windows
+bind -n S-Left  previous-window
+bind -n S-Right next-window
+
+# No delay for escape key press
+set -sg escape-time 0
+
+unbind-key C-b
+set-option -g prefix C-a
+
+# no delay with vim
+set-option -sg escape-time 0
+
+# reload tmux config
+bind-key r source-file ~/.tmux.conf \; display-message "Configuration reloaded"
+
+
+# enable 256 color terminal
+set-option -g default-terminal "screen-256color"
+
+#Mouse suport - off to deactivate, on to activate
+#setw -g mode-mouse on
+#setw -g mouse-select-pane on
+#setw -g mouse-resize-pane on
+#setw -g mouse-select-window on
+
+# select panes
+bind-key k select-pane -U
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key l select-pane -R
+
+# recize panes
+bind-key -r J resize-pane -D 1
+bind-key -r K resize-pane -U 1
+bind-key -r H resize-pane -L 1
+bind-key -r L resize-pane -R 1
+
+# kill window/pane
+bind-key & kill-window
+bind-key x kill-pane
+
+# pane split
+bind-key e split-window -h -c "#{pane_current_path}" # vertical split
+bind-key v split-window -v -c "#{pane_current_path}" # horizontal split
+
+# No pached fonts
+#set -g @nord_tmux_no_patched_font "1"
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'arcticicestudio/nord-tmux'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+ run '~/.tmux/plugins/tpm/tpm'
