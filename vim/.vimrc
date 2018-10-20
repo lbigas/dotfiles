@@ -5,8 +5,9 @@ let mapleader=","
 set background=dark
 "colorscheme solarized
 
-colorscheme gruvbox
+"colorscheme gruvbox
 "colorscheme nord
+colorscheme dracula
 "set termguicolors
 "let g:nord_comment_brightness = 20
 "let g:nord_cursor_line_number_background = 1
@@ -36,6 +37,10 @@ set noerrorbells " disable error sound bell
 set novisualbell " disable error visual bell
 set clipboard+=unnamedplus
 
+" Mouse scroll
+set mouse=a
+set ttymouse=xterm
+
 " movement
 nnoremap <c-k> 5k
 nnoremap <c-j> 5j
@@ -48,7 +53,7 @@ set lbr
 set nolist "disable linebreak
 
 " show line warp
-set showbreak=¬¬¬¬
+set showbreak=\ \ \
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -122,23 +127,24 @@ let delimitMate_expand_cr = 1
 nnoremap <F3> :NERDTreeToggle<CR>
 
 " Remoce trailing wthitescape on save :w
-autocmd BufWritePre * :%s/\s\+$//e
-
+command Spaces %s/\s\+$//e
+"nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " Tabline
 "hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
 "hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
 "hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
+"let g:lightline = {
+"    \ 'colorscheme': 'Dracula'
+"\ }
 
 call plug#begin('~/.vim/plugged')
-"Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/tpope/vim-surround.git'
+"Plug 'https://github.com/morhetz/gruvbox.git'
 "Plug 'https://github.com/flazz/vim-colorschemes.git'
 "Plug 'https://github.com/vim-airline/vim-airline.git'
 "Plug 'https://github.com/powerline/powerline.git'
@@ -148,7 +154,9 @@ Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mkitt/tabline.vim.git'
 Plug 'itchyny/lightline.vim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim'
+"Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'arcticicestudio/nord-vim'
 "Plug 'junegunn/seoul256.vim'
 "Plug 'https://github.com/kien/ctrlp.vim.git'
 "Plug 'https://github.com/Valloric/YouCompleteMe.git'
