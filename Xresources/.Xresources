@@ -1,19 +1,21 @@
-URxvt.font: 		xft:hack:size=13
+URxvt.font: 		xft:iosevka-regular:size=14
 URxvt.scrollBar:	false
 URxvt.cursorColor:  white
 
-URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
+URxvt.perl-ext-common: default,resize-font,keyboard-select,url-select
+!matcher,
 URxvt.keyboard-select.clipboard: True 
 
 URxvt.keysym.M-u: perl:url-select_next
 URxvt.url-select.launcher: firefox
-URxvt.url-select.underline: true
+!URxvt.url-select.underline: True
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
 URxvt.resize-font.smaller:	C-Down
 URxvt.resize-font.bigger: C-Up
 
+! Dracula Xresources palette
 *.foreground: #F8F8F2
 *.background: #282A36
 *.color0:     #000000
@@ -32,4 +34,3 @@ URxvt.resize-font.bigger: C-Up
 *.color14:    #9AEDFE
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
-
