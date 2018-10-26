@@ -1,17 +1,21 @@
-set statusline+=%F
+
+set statusline=
+set statusline+=\ %f
+set statusline+=%m\
+set statusline+=%=
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\ [%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\ 
+
 set t_Co=256
 scriptencoding utf-8
 let mapleader=","
-set background=dark
+"set background=dark
 "colorscheme solarized
-
-"colorscheme gruvbox
-"colorscheme nord
-colorscheme dracula
-"set termguicolors
-"let g:nord_comment_brightness = 20
-"let g:nord_cursor_line_number_background = 1
-
+color dracula
 syntax enable " enalbe syntax processing
 set tabstop=4 " number of visual spaces er TAB
 set softtabstop=4 " number of spaces in tab when editing
@@ -134,17 +138,14 @@ command Spaces %s/\s\+$//e
 "hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
 "hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
-"let g:lightline = {
-"    \ 'colorscheme': 'Dracula'
-"\ }
 
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/altercation/vim-colors-solarized.git'
+"Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/tpope/vim-surround.git'
-"Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'https://github.com/morhetz/gruvbox.git'
 "Plug 'https://github.com/flazz/vim-colorschemes.git'
 "Plug 'https://github.com/vim-airline/vim-airline.git'
 "Plug 'https://github.com/powerline/powerline.git'
@@ -153,9 +154,9 @@ Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mkitt/tabline.vim.git'
-Plug 'itchyny/lightline.vim'
-Plug 'dracula/vim'
-"Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'itchyny/lightline.vim'
+"Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'arcticicestudio/nord-vim'
 "Plug 'junegunn/seoul256.vim'
 "Plug 'https://github.com/kien/ctrlp.vim.git'
