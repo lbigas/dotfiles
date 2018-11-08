@@ -1,21 +1,21 @@
 
 set statusline=
 set statusline+=\ %f
-set statusline+=%m\
+set statusline+=%m
 set statusline+=%=
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ [%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
-set statusline+=\ 
+"set statusline+=\ 
 
 set t_Co=256
 scriptencoding utf-8
 let mapleader=","
-"set background=dark
-"colorscheme solarized
-color dracula
+set background=dark
+colorscheme solarized
+"color dracula
 syntax enable " enalbe syntax processing
 set tabstop=4 " number of visual spaces er TAB
 set softtabstop=4 " number of spaces in tab when editing
@@ -82,8 +82,8 @@ nnoremap <leader>9 9gt
 nnoremap <leader>0 10gt
 
 "Copy paste comands to work with system clipboard (gvim needed)
-vnoremap <C-y> "+y
-map <C-p> "+p
+"vnoremap <C-y> "+y
+"map <C-p> "+p
 
 " move vertically by visual line (in case of wrap count the wrap as one line)
 "nnoremap j gj
@@ -159,7 +159,7 @@ Plug 'https://github.com/mkitt/tabline.vim.git'
 Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'arcticicestudio/nord-vim'
 "Plug 'junegunn/seoul256.vim'
-"Plug 'https://github.com/kien/ctrlp.vim.git'
+Plug 'https://github.com/kien/ctrlp.vim.git'
 "Plug 'https://github.com/Valloric/YouCompleteMe.git'
 "Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 "Plug 'https://github.com/vim-airline/vim-airline-themes.git'
