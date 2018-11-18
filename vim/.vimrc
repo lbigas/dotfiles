@@ -8,7 +8,7 @@ set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ [%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
-"set statusline+=\ 
+"set statusline+=\
 
 set t_Co=256
 scriptencoding utf-8
@@ -43,7 +43,9 @@ set clipboard+=unnamedplus
 
 " Mouse scroll
 set mouse=a
-set ttymouse=xterm
+if !has('nvim')
+    set ttymouse=xterm
+endif
 
 " movement
 nnoremap <c-k> 5k
@@ -139,6 +141,19 @@ command Spaces %s/\s\+$//e
 "hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
 
+
+
+
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
+
+
 call plug#begin('~/.vim/plugged')
 "Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/ervandew/supertab.git'
@@ -154,6 +169,7 @@ Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mkitt/tabline.vim.git'
+Plug 'junegunn/vim-easy-align'
 "Plug 'itchyny/lightline.vim'
 "Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
