@@ -1,4 +1,3 @@
-
 set statusline=
 set statusline+=\ %f
 set statusline+=%m
@@ -10,17 +9,22 @@ set statusline+=\ %p%%
 set statusline+=\ %l:%c
 "set statusline+=\
 
+filetype plugin indent on
+set tabstop=4 " number of visual spaces per TAB
+set shiftwidth=4
+set expandtab " tabs are spaces
+set softtabstop=4 " number of spaces in tab when editing
+
 set t_Co=256
+set background=dark
 scriptencoding utf-8
 let mapleader=","
-set background=dark
-colorscheme solarized
+"colorscheme solarized
+"colorscheme gruvbox
+"colorscheme monochrome
 "color dracula
+"colorscheme paramount
 syntax enable " enalbe syntax processing
-set tabstop=4 " number of visual spaces er TAB
-set softtabstop=4 " number of spaces in tab when editing
-set expandtab " tabs are spaces
-set shiftwidth=4
 set number " show line numbers
 set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
@@ -43,9 +47,9 @@ set clipboard+=unnamedplus
 
 " Mouse scroll
 set mouse=a
-if !has('nvim')
-    set ttymouse=xterm
-endif
+"if !has('nvim')
+"    set ttymouse=xterm
+"endif
 
 " movement
 nnoremap <c-k> 5k
@@ -59,7 +63,7 @@ set lbr
 set nolist "disable linebreak
 
 " show line warp
-set showbreak=\ \ \
+set showbreak=\ ↳\  
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -68,8 +72,8 @@ nnoremap <leader><space> :nohlsearch<CR>
 "highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
 " vim tabs
 nnoremap tn :tabnew<CR>
-nnoremap tk :tabnext<CR>
-nnoremap tj :tabprev<CR>
+nnoremap tj :tabnext<CR>
+nnoremap tk :tabprev<CR>
 nnoremap th :tabfirst<CR>
 nnoremap tl :tablast<CR>
 nnoremap <leader>1 1gt
@@ -155,7 +159,7 @@ nmap ga <Plug>(EasyAlign)
 
 
 call plug#begin('~/.vim/plugged')
-"Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
@@ -171,12 +175,18 @@ Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mkitt/tabline.vim.git'
 Plug 'junegunn/vim-easy-align'
 "Plug 'itchyny/lightline.vim'
-"Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'arcticicestudio/nord-vim'
 "Plug 'junegunn/seoul256.vim'
 Plug 'https://github.com/kien/ctrlp.vim.git'
+Plug 'fxn/vim-monochrome'
+Plug 'owickstrom/vim-colors-paramount'
 "Plug 'https://github.com/Valloric/YouCompleteMe.git'
 "Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 "Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
+colorscheme solarized
+"colorscheme gruvbox
+"colorscheme nord

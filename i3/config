@@ -11,10 +11,7 @@
 
 #disable touchpad
 #exec --no-startup-id toff
-exec --no-startup-id ~/.bin/toff
-exec_always --no-startup-id xmodmap -e "clear lock"
-exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
-exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+#exec --no-startup-id ~/.bin/toff
 
 set $mod Mod4
 
@@ -26,6 +23,7 @@ set $mod Mod4
 font pango:monospace 9
 # Font only for window titles
 for_window [class=".*"] title_format "<span font='Monospace 9'> %title</span>"
+new_window pixel 5
 
 # Focus to or to not follow mouse
 focus_follows_mouse no
@@ -45,7 +43,10 @@ focus_follows_mouse no
 floating_modifier $mod
 
 # Wallpaper
-exec --no-startup-id feh --bg-fill ~/Media/arch.png
+#exec --no-startup-id feh --bg-fill ~/Media/arch.png
+#exec --no-startup-id feh --bg-fill ~/Media/ARWeXnn.png
+#exec --no-startup-id feh --bg-fill ~/Media/kek.png
+exec --no-startup-id feh --bg-fill ~/Media/Synthwave.png
 
 # Lock Screen
 #bindsym $mod+Shift+x exec i3lock -e -f -c 000000
