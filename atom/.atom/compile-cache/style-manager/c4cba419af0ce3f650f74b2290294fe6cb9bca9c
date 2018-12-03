@@ -1,1 +1,0 @@
-{"source":"atom-text-editor .highlight-column,\natom-text-editor.editor .highlight-column {\n  height: 100% !important;\n  z-index: 100;\n  position: absolute;\n  top: 0 !important;\n  background-color: #ffa040;\n  visibility: visible;\n  opacity: 0.15;\n}\n"}
