@@ -1,0 +1,68 @@
+#!/bin/bash
+
+print_network(){
+    essid="$(iwgetid --raw)"
+    strength="$(cat /proc/net/wireless | awk 'NR==3 {print  substr($3,1,length($3)-1)  "%" }')"
+    if [ $essid ]
+    then 
+        echo -e "NET:$essid $strength"
+    else
+        echo -e "NET: Off"
+    fi
+}
+
+print_caps(){
+    caps="$(xset q | awk '/Caps Lock/ { print $4 }')"
+    echo -e "CAPS:$caps"
+}
+
+print_volume(){
+    volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+    status="$(amixer get Master | awk '/^\s*Mono/ { print substr($6,2,length($6)-2) }')"
+    if [ $status == "on" ]
+    then
+        echo -e "VOL:$volume"
+    else
+        echo -e "VOL:$status"
+    fi
+}
+
+print_bat(){
+#   charge0="$(cat /sys/class/power_supply/BAT0/capacity)"
+#   charge1="$(cat /sys/class/power_supply/BAT1/capacity)"
+    Bat1="$(acpi -i | awk '/^Battery 1: Discharging/ {print substr($4, 1, length($4)-2) "%" " " substr($5, 1, length($5)-3) }')"
+    Bat0="$(acpi -i | awk '/^Battery 0: Discharging/ {print substr($4, 1, length($4)-2) "%" " " substr($5, 1, length($5)-3) }')"
+
+    if [ -z "$Bat1" ]; then
+        Bat1="$(acpi -i | awk '/^Battery 1: [Charging|Unknown]/ { print substr($4, 1, length($4)-1) "%" }')"
+    fi
+
+    if [ -z "$Bat0" ]; then
+        Bat0="$(acpi -i | awk '/^Battery 0: [Charging|Unknown]/ { print substr($4, 1, length($4)-1) "%" }')"
+    fi
+    
+
+	onl="$(grep "on-line" <(acpi -V))"
+
+	if test -z "$onl"
+    then
+        stateb="Dis"
+    else
+        stateb="Chr"
+    fi
+
+    echo -e "BAT:$Bat1 $stateb $Bat0"
+}
+
+
+print_date(){
+	#date "+%a %m-%d %T%:::z"
+	date "+%a %d-%m %R"
+}
+
+while true
+do
+    xsetroot -name "$(print_network)|$(print_caps)|$(print_volume)|$(print_bat)|$(print_date)"
+
+    sleep 2
+done

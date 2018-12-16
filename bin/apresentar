@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ $1 ]; then
+    case $1 in
+        on) xrandr --output DP2 --auto --right-of eDP1;;
+        off) xrandr --output DP2 --off;;
+        *) echo Error, $1 is not a valid option
+    esac
+elif [ -ne $1 ]; then
+    echo Error, no arguments given
+fi

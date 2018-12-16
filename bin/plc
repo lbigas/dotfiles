@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ $1 ]; then
+    flex $1
+    if [ $2 ]; then
+        gcc lex.yy.c -o $2
+    else
+        gcc lex.yy.c
+    fi
+else
+    echo Error no Imput File
+fi

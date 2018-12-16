@@ -1,4 +1,4 @@
-URxvt.font: 		xft:hack-regular:size=13
+URxvt.font: 		xft:Hack:size=12.5
 URxvt.scrollBar:	false
 URxvt.cursorColor:  white
 
