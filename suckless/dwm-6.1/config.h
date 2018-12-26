@@ -66,9 +66,12 @@ static const char *termcmd[]  = { "urxvt", NULL };
 
 static const char *cmdbrightnessup[]   = { "xbacklight", "-inc", "5", NULL };
 static const char *cmdbrightnessdown[] = { "xbacklight", "-dec", "5", NULL };
-static const char *cmdsoundup[]        = { "amixer", "-q", "sset", "Master", "5%+", NULL };
-static const char *cmdsounddown[]      = { "amixer", "-q", "sset", "Master", "5%-", NULL };
-static const char *cmdsoundtoggle[]    = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+//static const char *cmdsoundup[]        = { "amixer", "-q", "sset", "Master", "5%+", NULL };
+//static const char *cmdsounddown[]      = { "amixer", "-q", "sset", "Master", "5%-", NULL };
+//static const char *cmdsoundtoggle[]    = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+static const char *cmdsoundup[]        = { "pactl", "set-sink-volume", "0", "+5%", NULL };
+static const char *cmdsounddown[]      = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+static const char *cmdsoundtoggle[]    = { "pactl", "set-sink-mute", "0", "toggle", NULL };
 
 static const char *cmdlock[] = { "slock", NULL };
 

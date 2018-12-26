@@ -63,7 +63,7 @@ set lbr
 set nolist "disable linebreak
 
 " show line warp
-set showbreak=\ ↳\  
+set showbreak=\ ↳\
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -166,7 +166,8 @@ Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 "Plug 'https://github.com/flazz/vim-colorschemes.git'
-"Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 "Plug 'https://github.com/powerline/powerline.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -175,20 +176,22 @@ Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mkitt/tabline.vim.git'
 Plug 'junegunn/vim-easy-align'
 "Plug 'itchyny/lightline.vim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'arcticicestudio/nord-vim'
 "Plug 'junegunn/seoul256.vim'
 Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'fxn/vim-monochrome'
 Plug 'owickstrom/vim-colors-paramount'
 "Plug 'https://github.com/Valloric/YouCompleteMe.git'
 "Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
-"Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'sheerun/vim-polyglot'
 Plug 'andymass/vim-matchup'
 "Plug 'https://github.com/raghur/vim-ghost.git'
+"Plug 'https://github.com/pandysong/ghost-text.vim.git'
 call plug#end()
-colorscheme solarized
-"colorscheme gruvbox
+"colorscheme solarized
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
+let g:airline_theme='gruvbox'
+"let g:airline#extensions#whitespace#show_message = 0
+let g:airline#extensions#whitespace#checks = []
 "colorscheme nord
