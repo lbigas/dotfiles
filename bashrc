@@ -26,6 +26,8 @@ alias r=ranger
 
 alias starwars="telnet towel.blinkenlights.nl"
 
+alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
 export PATH=$PATH:$HOME/.bin
 
 bind 'set completion-ignore-case on' # ignore case on Tab complition

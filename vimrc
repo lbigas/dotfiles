@@ -13,7 +13,17 @@ filetype plugin indent on
 set tabstop=4 " number of visual spaces per TAB
 set shiftwidth=4
 set expandtab " tabs are spaces
-set softtabstop=4 " number of spaces in tab when editing
+"set softtabstop=4 " number of spaces in tab when editing
+
+set listchars=space:·,tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+"set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
+
+" show line warp
+set showbreak=\ ↳\
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+"set list lcs=trail:·,tab:»·
+"set list listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 set t_Co=256
 set background=dark
@@ -62,8 +72,6 @@ set formatoptions=1
 set lbr
 set nolist "disable linebreak
 
-" show line warp
-set showbreak=\ ↳\
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -123,10 +131,10 @@ vnoremap <PageDown> <nop>
 vnoremap <PageDown> <nop>
 
 " vim indent guides
-let g:indentline_char = '¦'
-let g:indentline_color_term = 239
+"let g:indentline_char = '¦'
+"let g:indentline_color_term = 239
 "let g:indentline_color_dark = 2
-let g:indentline_leadingspacechar = '-'
+"let g:indentline_leadingspacechar = '-'
 "let g:indentline_leadingspaceenabled = 1
 "let g:indentline_enabled = 1
 
@@ -138,6 +146,9 @@ nnoremap <F3> :NERDTreeToggle<CR>
 
 " Remoce trailing wthitescape on save :w
 command Spaces %s/\s\+$//e
+
+inoremap <S-Tab> <C-v><Tab>
+
 "nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " Tabline
 "hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
@@ -162,12 +173,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'https://github.com/Yggdroot/indentLine.git'
+"Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 "Plug 'https://github.com/flazz/vim-colorschemes.git'
-Plug 'https://github.com/vim-airline/vim-airline.git'
-Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+"Plug 'https://github.com/vim-airline/vim-airline.git'
+"Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 "Plug 'https://github.com/powerline/powerline.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -184,14 +195,14 @@ Plug 'owickstrom/vim-colors-paramount'
 "Plug 'https://github.com/Valloric/YouCompleteMe.git'
 "Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 Plug 'sheerun/vim-polyglot'
-Plug 'andymass/vim-matchup'
+"Plug 'andymass/vim-matchup'
 "Plug 'https://github.com/raghur/vim-ghost.git'
 "Plug 'https://github.com/pandysong/ghost-text.vim.git'
 call plug#end()
 "colorscheme solarized
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
-let g:airline_theme='gruvbox'
+"let g:airline_theme='gruvbox'
 "let g:airline#extensions#whitespace#show_message = 0
-let g:airline#extensions#whitespace#checks = []
+"let g:airline#extensions#whitespace#checks = []
 "colorscheme nord
