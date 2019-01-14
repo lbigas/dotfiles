@@ -1,3 +1,30 @@
+"        _
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+"   \_/ |_|_| |_| |_|_|  \___|
+"
+call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'https://github.com/ervandew/supertab.git'
+Plug 'https://github.com/scrooloose/nerdtree.git'
+"Plug 'https://github.com/Yggdroot/indentLine.git'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'https://github.com/Raimondi/delimitMate.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/farmergreg/vim-lastplace.git'
+Plug 'https://github.com/scrooloose/nerdcommenter.git'
+Plug 'https://github.com/mkitt/tabline.vim.git'
+Plug 'junegunn/vim-easy-align'
+Plug 'https://github.com/kien/ctrlp.vim.git'
+Plug 'fxn/vim-monochrome'
+Plug 'owickstrom/vim-colors-paramount'
+"Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
+Plug 'sheerun/vim-polyglot'
+"Plug 'andymass/vim-matchup'
+call plug#end()
+
 set statusline=
 set statusline+=\ %f
 set statusline+=%m
@@ -169,36 +196,6 @@ nmap ga <Plug>(EasyAlign)
 
 
 
-call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/altercation/vim-colors-solarized.git'
-Plug 'https://github.com/ervandew/supertab.git'
-Plug 'https://github.com/scrooloose/nerdtree.git'
-"Plug 'https://github.com/Yggdroot/indentLine.git'
-Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'https://github.com/morhetz/gruvbox.git'
-"Plug 'https://github.com/flazz/vim-colorschemes.git'
-"Plug 'https://github.com/vim-airline/vim-airline.git'
-"Plug 'https://github.com/vim-airline/vim-airline-themes.git'
-"Plug 'https://github.com/powerline/powerline.git'
-Plug 'https://github.com/Raimondi/delimitMate.git'
-Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/farmergreg/vim-lastplace.git'
-Plug 'https://github.com/scrooloose/nerdcommenter.git'
-Plug 'https://github.com/mkitt/tabline.vim.git'
-Plug 'junegunn/vim-easy-align'
-"Plug 'itchyny/lightline.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'junegunn/seoul256.vim'
-Plug 'https://github.com/kien/ctrlp.vim.git'
-Plug 'fxn/vim-monochrome'
-Plug 'owickstrom/vim-colors-paramount'
-"Plug 'https://github.com/Valloric/YouCompleteMe.git'
-"Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
-Plug 'sheerun/vim-polyglot'
-"Plug 'andymass/vim-matchup'
-"Plug 'https://github.com/raghur/vim-ghost.git'
-"Plug 'https://github.com/pandysong/ghost-text.vim.git'
-call plug#end()
 "colorscheme solarized
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
