@@ -6,32 +6,14 @@
 
 
 set $mod Mod4
-
-# Color defines for zenburn styled i3
-#set $bl    #000000
-#set $bg    #2c2c2e
-#set $fg    #9f9f9f
-#set $hi    #efef8f
-#set $ac    #a0afa0
-#set $tx    #040404
-#set $ia    #8f8f8f
-#set $be    #8faf9f
-#set $yw    #ccdc90
-#set $gn    #88dc90
-#set $rd    #e89393
-#set $wt    #ffffff
-
-# set colors                border  back    text    indicator
-#client.focused              $ia     $ia     $bl     $ac
-#client.unfocused            $ac     $bg     $ia
-#client.focused_inactive     $bg     $bg     $ac
-#client.urgent               $rd     $rd     $tx
-
+set $terminal termite
+set $Locker slock
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # In this case this is only used to the status bar
 #font pango:monospace 7
+# Global font for i3
 font pango:Terminus 11px
 # Font only for window titles
 #for_window [class=".*"] title_format "<span font='Monospace 9'> %title</span>"
@@ -40,21 +22,14 @@ font pango:Terminus 11px
 # Focus to or to not follow mouse
 focus_follows_mouse no
 
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # Wallpaper
 # exec --no-startup-id feh --bg-fill ~/Media/Synthwave.png
 
-
-# Lock Screen
-#bindsym $mod+Shift+x exec i3lock -i ~/Media/calvinlockscreen.png
-bindsym --release $mod+F12 exec --no-startup-id slock
-#bindsym $mod+F12 exec slock
-
 # start a terminal
-bindsym $mod+Shift+Return exec --no-startup-id termite
+bindsym $mod+Shift+Return exec --no-startup-id $terminal
 #bindsym $mod+Shift+Return exec urxvt -e tmux
 
 
@@ -165,10 +140,6 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+p exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-#bindsym $mod+Shift+F11 exec "i3-nagbar -t warning -m 'Do you want to suspend the system?' -b 'Yes, suspend' 'systemctl suspend'"
-
-#bindsym $mod+r mode "resize"
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -183,7 +154,7 @@ bar {
 #        inactive_workspace      $bg     $bg     $ia
 #        urgent_workspace        $rd     $bg     $ac
 #    }
-    position top
+    position bottom
     status_command i3blocks
 }
 
@@ -209,11 +180,32 @@ bindsym $mod+Shift+i exec --no-startup-id "bash ~/.scripts/i3resize up"
 
 bindsym $mod+Shift+o exec --no-startup-id "bash ~/.scripts/i3resize right"
 
-# switch to projector workspace
-bindsym $mod+m workspace 11
-
-bindsym $mod+Shift+m move container to workspace 11
-
 
 # Presentation on workspace 11
 workspace 11 output DP2
+
+# switch to projector workspace
+bindsym $mod+m workspace 11
+
+# Move window to projector workspace
+bindsym $mod+Shift+m move container to workspace 11
+
+
+# i3 mode to Lock, Logout, Suspend, Hibernate, Reboot and Shutdown the system
+bindsym $mod+F12 mode "$mode_system"
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym --release l exec --no-startup-id $Locker && sleep 1, mode "default"
+    bindsym --release e exec --no-startup-id i3-msg exit, mode "default"
+    #bindsym --release s exec --no-startup-id $Locker && sleep 1 && systemctl suspend, mode "default"
+    bindsym --release s exec --no-startup-id systemctl suspend && $Locker, mode "default"
+    #bindsym --release h exec --no-startup-id $Locker && sleep 1 && systemctl hibernate, mode "default"
+    bindsym --release h exec --no-startup-id systemctl hibernate $$ $Locker, mode "default"
+    bindsym --release r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym --release Shift+s exec --no-startup-id  systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}

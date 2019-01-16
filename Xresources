@@ -4,7 +4,7 @@
 ! /  \| | |  __/\__ \ (_) | |_| | | | (_|  __/\__ \
 !/_/\_\_|  \___||___/\___/ \__,_|_|  \___\___||___/
 
-URxvt.font: 		xft:Hack:size=12.5
+URxvt.font: 		xft:Hack:size=12
 URxvt.scrollBar:	false
 URxvt.cursorColor:  white
 
