@@ -4,4 +4,4 @@ if [ "$(tty)" = "/dev/tty1" ]; then
 fi
 
 export EDITOR="vim"
-export TERMINAL="urxvt"
+export TERMINAL="termite"
