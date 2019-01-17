@@ -9,27 +9,6 @@ set $mod Mod4
 set $terminal termite
 set $Locker slock
 
-# Colors
-#set $bg         #282828
-#set $red        #cc241d
-#set $green      #98971a
-#set $yellow     #d79921
-#set $blue       #458588
-#set $purple     #b16286
-#set $aqua       #689d68
-#set $gray       #a89984
-#set $darkgray   #1d2021
-
-#set_from_resource $bg background
-#set_from_resource $red color9
-#set_from_resource $green color2
-#set_from_resource $yellow color3
-#set_from_resource $blue color4
-#set_from_resource $purple color5
-#set_from_resource $aqua color6
-#set_from_resource $gray color7
-#set_from_resource $darkgray background
-#set_from_resource $text foreground
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -169,42 +148,10 @@ bar {
 #	font pango:mono 9
 
 
-#    colors {
-#        separator   $FFFFFF
-#        background  $bg
-#        statusline  $yellow
-##
-##        #                   border      background  text
-#        focused_workspace   $aqua       $aqua       $darkgray
-#        inactive_workspace  $darkgray   $darkgray   $yellow
-#        active_workspace    $blue       $blue       $darkgray
-#        urgent_workspace    $red        $red        $bg
-#    }
-#    colors {
-#        background              $bl
-#        statusline              $wt
-#        separator               $wt
-#        focused_workspace       $ia     $ia     $wt
-#        active_workspace        $gn     $ac     $tx
-#        inactive_workspace      $bg     $bg     $ia
-#        urgent_workspace        $rd     $bg     $ac
-#    }
     position bottom
     status_command i3blocks
 }
 
-# class                 border|backgr|text|indicator|child_border
-#client.focused          $blue $blue $text $blue $blue
-#client.focused_inactive $bg $bg $text $bg $darkgray
-#client.unfocused        $bg $bg $text $bg $darkgray
-#client.urgent $bg $bg $text $bg $darkgray
-
-# Window Colors
-# class                 border      backgr      text        indicator   child_brdr
-#client.focused          $darkgray   $yellow     $darkgray   $purple     $yellow
-#client.focused_inactive $darkgray   $darkgray   $yellow     $purple     $darkgray
-#client.unfocused        $darkgray   $darkgray   $yellow     $purple     $darkgray
-#client.urgent           $red        $red        $white      $red        $red
 
 # Caps lock indicator
 bindsym --release Caps_Lock exec --no-startup-id pkill -SIGRTMIN+11 i3blocks

@@ -18,8 +18,6 @@ Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/mkitt/tabline.vim.git'
 Plug 'junegunn/vim-easy-align'
 Plug 'https://github.com/kien/ctrlp.vim.git'
-Plug 'fxn/vim-monochrome'
-Plug 'owickstrom/vim-colors-paramount'
 "Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 Plug 'sheerun/vim-polyglot'
 "Plug 'andymass/vim-matchup'
@@ -131,11 +129,11 @@ nnoremap <leader>0 10gt
 "nnoremap k gk
 
 " move to beginning/end of line
-nnoremap H ^
-nnoremap L $
+"nnoremap H ^
+"nnoremap L $
 
 " more sensible w key
-"nnoremap w W
+nnoremap w W
 
 " keep search matches in the middle of the window
 nnoremap n nzzzv
@@ -149,12 +147,6 @@ map <leader>sudo :w !sudo tee % <CR><CR>
 
 " disable PageUp and PageDown
 nnoremap <PageUp>   <nop>
-inoremap <PageUp>   <nop>
-nnoremap <PageDown> <nop>
-inoremap <PageDown> <nop>
-vnoremap <PageUp>   <nop>
-vnoremap <PageUp>   <nop>
-vnoremap <PageDown> <nop>
 vnoremap <PageDown> <nop>
 
 " vim indent guides
@@ -171,7 +163,7 @@ let delimitMate_expand_cr = 1
 " NERDTree
 nnoremap <F3> :NERDTreeToggle<CR>
 
-" Remoce trailing wthitescape on save :w
+" Remove trailing wthitescape on save :w
 command Spaces %s/\s\+$//e
 
 inoremap <S-Tab> <C-v><Tab>
@@ -183,10 +175,6 @@ inoremap <S-Tab> <C-v><Tab>
 "hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
 
-
-
-
-
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
@@ -194,12 +182,8 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 
-
-
-"colorscheme solarized
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 "let g:airline_theme='gruvbox'
 "let g:airline#extensions#whitespace#show_message = 0
 "let g:airline#extensions#whitespace#checks = []
-"colorscheme nord
