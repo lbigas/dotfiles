@@ -9,12 +9,34 @@ set $mod Mod4
 set $terminal termite
 set $Locker slock
 
+# Colors
+#set $bg         #282828
+#set $red        #cc241d
+#set $green      #98971a
+#set $yellow     #d79921
+#set $blue       #458588
+#set $purple     #b16286
+#set $aqua       #689d68
+#set $gray       #a89984
+#set $darkgray   #1d2021
+
+#set_from_resource $bg background
+#set_from_resource $red color9
+#set_from_resource $green color2
+#set_from_resource $yellow color3
+#set_from_resource $blue color4
+#set_from_resource $purple color5
+#set_from_resource $aqua color6
+#set_from_resource $gray color7
+#set_from_resource $darkgray background
+#set_from_resource $text foreground
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # In this case this is only used to the status bar
 #font pango:monospace 7
 # Global font for i3
-font pango:Terminus 11px
+font pango:Terminus 12px
 # Font only for window titles
 #for_window [class=".*"] title_format "<span font='Monospace 9'> %title</span>"
 #for_window [class="^.*"] border pixel 2
@@ -143,8 +165,21 @@ bindsym $mod+Shift+p exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    font pango:Terminus 11px
+    font pango:Terminus 12px
 #	font pango:mono 9
+
+
+#    colors {
+#        separator   $FFFFFF
+#        background  $bg
+#        statusline  $yellow
+##
+##        #                   border      background  text
+#        focused_workspace   $aqua       $aqua       $darkgray
+#        inactive_workspace  $darkgray   $darkgray   $yellow
+#        active_workspace    $blue       $blue       $darkgray
+#        urgent_workspace    $red        $red        $bg
+#    }
 #    colors {
 #        background              $bl
 #        statusline              $wt
@@ -157,6 +192,19 @@ bar {
     position bottom
     status_command i3blocks
 }
+
+# class                 border|backgr|text|indicator|child_border
+#client.focused          $blue $blue $text $blue $blue
+#client.focused_inactive $bg $bg $text $bg $darkgray
+#client.unfocused        $bg $bg $text $bg $darkgray
+#client.urgent $bg $bg $text $bg $darkgray
+
+# Window Colors
+# class                 border      backgr      text        indicator   child_brdr
+#client.focused          $darkgray   $yellow     $darkgray   $purple     $yellow
+#client.focused_inactive $darkgray   $darkgray   $yellow     $purple     $darkgray
+#client.unfocused        $darkgray   $darkgray   $yellow     $purple     $darkgray
+#client.urgent           $red        $red        $white      $red        $red
 
 # Caps lock indicator
 bindsym --release Caps_Lock exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
