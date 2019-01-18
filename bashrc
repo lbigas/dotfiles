@@ -29,8 +29,11 @@ alias v=vim
 alias sv="sudo -E vim"
 alias r=ranger
 
+alias ls='ls -hN --color=auto'
 alias la="ls -a"
 alias ll="ls -l"
+#alias grep="grep --color=auto"
+#alias diff="diff --color=auto"
 
 alias starwars="telnet towel.blinkenlights.nl"
 
@@ -46,8 +49,18 @@ Gre='\033[32m';
 Red='\033[31m';
 Blu='\033[34m';
 Yel='\033[33m';
-PS1="${RCol}┌─[\`if [ \$? = 0 ]; then echo "${Gre}"; else echo "${Red}"; fi\`:)\[${Rcol}\] \[${Blu}\]\h@\u\[${RCol}\] \[${Yel}\]\w\[${RCol}\]]\n└─╼ "
-#PS1="${RCol}┌─[\`if [ \$? = 0 ]; then echo "${Gre}"; else echo "${Red}"; fi\`\t\[${Rcol}\] \[${Blu}\]\h\[${RCol}\] \[${Yel}\]\w\[${RCol}\]]\n└─╼ "
+Cyan='\033[0;36m';
+
+smiley()
+{
+  if [ "$?" == "0" ]; then
+    echo -e '\e[0;32m:) '
+  else
+    echo -e '\e[0;31m:( '
+  fi
+}
+
+PS1="${RCol}┌─["'`smiley`'"\[${Cyan}\]\h@\u\[${RCol}\] \[${Yel}\]\w\[${RCol}\]]\n└─╼ "
 
 #PS1='[\u@\h \W]\$ '
 #PS1='\[\e]0;\w\a\]\[\e[32m\]\u@\h: \[\e[33m\]\w\[\e[0m\]\n\$ '
