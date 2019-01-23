@@ -6,7 +6,7 @@
 
 
 set $mod Mod4
-set $terminal termite
+set $terminal urxvt
 set $Locker slock
 
 

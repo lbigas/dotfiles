@@ -6,9 +6,9 @@
 "
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
-Plug 'https://github.com/ervandew/supertab.git'
+"Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
-"Plug 'https://github.com/Yggdroot/indentLine.git'
+Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
@@ -21,6 +21,12 @@ Plug 'https://github.com/kien/ctrlp.vim.git'
 "Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 Plug 'sheerun/vim-polyglot'
 "Plug 'andymass/vim-matchup'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
+
 call plug#end()
 
 set statusline=
@@ -150,7 +156,7 @@ nnoremap <PageUp>   <nop>
 vnoremap <PageDown> <nop>
 
 " vim indent guides
-"let g:indentline_char = '¦'
+"g:indentline_char = 'c'
 "let g:indentline_color_term = 239
 "let g:indentline_color_dark = 2
 "let g:indentline_leadingspacechar = '-'
@@ -187,3 +193,7 @@ let g:gruvbox_contrast_dark = 'hard'
 "let g:airline_theme='gruvbox'
 "let g:airline#extensions#whitespace#show_message = 0
 "let g:airline#extensions#whitespace#checks = []
+"
+let g:deoplete#enable_at_startup = 1
+"let g:deoplete#disable_auto_complee = 1
+"inoremap <tab> <C-n> deoplete#manual_complete()

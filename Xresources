@@ -4,7 +4,8 @@
 ! /  \| | |  __/\__ \ (_) | |_| | | | (_|  __/\__ \
 !/_/\_\_|  \___||___/\___/ \__,_|_|  \___\___||___/
 
-URxvt.font: 		xft:Hack:size=12
+!URxvt.font: 		xft:Hack:size=12
+URxvt.font: 		xft:Inconsolata:size=14
 URxvt.scrollBar:	false
 URxvt.cursorColor:  white
 
@@ -23,13 +24,7 @@ URxvt.resize-font.smaller:	C-Down
 URxvt.resize-font.bigger: C-Up
 
 
-! -----------------------------------------------------------------------------
 ! File: gruvbox-dark.xresources
-! Description: Retro groove colorscheme generalized
-! Author: morhetz <morhetz@gmail.com>
-! Source: https://github.com/morhetz/gruvbox-generalized
-! Last Modified: 6 Sep 2014
-! -----------------------------------------------------------------------------
 
 ! hard contrast: *background: #1d2021
 *background: #282828

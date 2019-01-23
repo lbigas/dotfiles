@@ -27,6 +27,8 @@ alias ......="cd ../../.."
 
 alias v=vim
 alias sv="sudo -E vim"
+#alias v=nvim
+#alias sv="sudo -E nvim"
 alias r=ranger
 
 alias ls='ls -hN --color=auto'
@@ -64,3 +66,5 @@ PS1="${RCol}┌─["'`smiley`'"\[${Cyan}\]\h@\u\[${RCol}\] \[${Yel}\]\w\[${RCol}
 
 #PS1='[\u@\h \W]\$ '
 #PS1='\[\e]0;\w\a\]\[\e[32m\]\u@\h: \[\e[33m\]\w\[\e[0m\]\n\$ '
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
