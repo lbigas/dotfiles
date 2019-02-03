@@ -6,26 +6,29 @@
 "
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
-"Plug 'https://github.com/ervandew/supertab.git'
-Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
-Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
-Plug 'https://github.com/mkitt/tabline.vim.git'
-Plug 'junegunn/vim-easy-align'
 Plug 'https://github.com/kien/ctrlp.vim.git'
-"Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
-Plug 'sheerun/vim-polyglot'
-"Plug 'andymass/vim-matchup'
+Plug 'https://github.com/scrooloose/nerdtree.git'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
+Plug 'sheerun/vim-polyglot'
+"Plug 'andymass/vim-matchup'
+
+Plug 'vimwiki/vimwiki'
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 endif
+
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -46,32 +49,20 @@ set shiftwidth=4
 set expandtab " tabs are spaces
 "set softtabstop=4 " number of spaces in tab when editing
 
-set listchars=space:·,tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
-"set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
-
 " show line warp
 set showbreak=\ ↳\
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
-"set list lcs=trail:·,tab:»·
-"set list listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
-set t_Co=256
 set background=dark
 scriptencoding utf-8
 let mapleader=","
-"colorscheme solarized
-"colorscheme gruvbox
-"colorscheme monochrome
-"color dracula
-"colorscheme paramount
 syntax enable " enalbe syntax processing
 set number " show line numbers
 set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
 set cursorline " highlight current line
-"set cursorcolumn " highlight current column
 set nocompatible " make vim not vi
 set wildmenu " visual autocomplete for comand menu
 set lazyredraw " redraw only when we need to
@@ -86,11 +77,31 @@ set noerrorbells " disable error sound bell
 set novisualbell " disable error visual bell
 set clipboard+=unnamedplus
 
+set autoindent
+set smarttab
+
+if !has('nvim') && &ttimeoutlen == -1
+    set ttimeout
+    set ttimeoutlen=100
+endif
+
+set laststatus=2
+
+"set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+"set list
+
+set autoread " autoreload file when changes are made to it
+set scrolloff=1 " always one line above/below cursor
+
 " Mouse scroll
 set mouse=a
 "if !has('nvim')
 "    set ttymouse=xterm
 "endif
+
+" Vim splits
+set splitright " vertical split to the right
+set splitbelow " horizontal split to the bottom
 
 " movement
 nnoremap <c-k> 5k
@@ -101,14 +112,12 @@ set wrap
 
 set formatoptions=1
 set lbr
-set nolist "disable linebreak
+"set nolist "disable linebreak
 
 
 " turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
-" color selected text
-"hi Visual term=reverse cterm=reverse guibg=Grey
-"highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
+nnoremap <esc> :nohlsearch<CR>
+"
 " vim tabs
 nnoremap tn :tabnew<CR>
 nnoremap tj :tabnext<CR>
@@ -159,12 +168,14 @@ vnoremap <PageDown> <nop>
 "g:indentline_char = 'c'
 "let g:indentline_color_term = 239
 "let g:indentline_color_dark = 2
-"let g:indentline_leadingspacechar = '-'
-"let g:indentline_leadingspaceenabled = 1
-"let g:indentline_enabled = 1
+let g:indentline_leadingspacechar = '-'
+let g:indentline_leadingspaceenabled = 1
+let g:indentline_enabled = 1
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'
 
 " delimitMate
-let delimitMate_expand_cr = 1
+"let delimitMate_expand_cr = 1
 
 " NERDTree
 nnoremap <F3> :NERDTreeToggle<CR>
@@ -174,26 +185,40 @@ command Spaces %s/\s\+$//e
 
 inoremap <S-Tab> <C-v><Tab>
 
-"nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-" Tabline
-"hi TabLine      ctermfg=Black  ctermbg=Green     cterm=NONE
-"hi TabLineFill  ctermfg=Black  ctermbg=Green     cterm=NONE
-"hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE
 
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+"" Start interactive EasyAlign in visual mode (e.g. vipga)
+"xmap ga <Plug>(EasyAlign)
+"
+"" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+"nmap ga <Plug>(EasyAlign)
 
 
 colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
-"let g:airline_theme='gruvbox'
-"let g:airline#extensions#whitespace#show_message = 0
-"let g:airline#extensions#whitespace#checks = []
-"
-let g:deoplete#enable_at_startup = 1
+"let g:gruvbox_contrast_dark = 'hard'
+
+"let g:deoplete#enable_at_startup = 0
 "let g:deoplete#disable_auto_complee = 1
 "inoremap <tab> <C-n> deoplete#manual_complete()
+
+let wiki_1 = {}
+let wiki_1.path = '~/Documents/notes/'
+let wiki_1.syntax = 'markdown'
+let wiki_1.ext = '.md'
+
+let wiki_2 = {}
+let wiki_2.path = '~/Documents/'
+let wiki_2.syntax = 'markdown'
+let wiki_2.ext = '.md'
+
+let g:vimwiki_list = [wiki_1, wiki_2]
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+
+" Markdown Preview
+let g:mkdp_auto_start = 0
+let g:mkdp_command_for_global = 1
+
+" Rainbow Parentheses
+let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+
+" Goyo maping
+map <leader>f :Goyo<CR>

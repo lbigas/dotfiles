@@ -25,10 +25,10 @@ alias ..="cd .."
 alias ....="cd ../.."
 alias ......="cd ../../.."
 
-alias v=vim
-alias sv="sudo -E vim"
-#alias v=nvim
-#alias sv="sudo -E nvim"
+#alias v=vim
+#alias sv="sudo -E vim"
+alias v=nvim
+alias sv="sudo -E nvim"
 alias r=ranger
 
 alias ls='ls -hN --color=auto'
