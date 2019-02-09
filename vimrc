@@ -6,8 +6,9 @@
 "
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'https://github.com/ervandew/supertab.git'
-Plug 'https://github.com/Yggdroot/indentLine.git'
+"Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -194,6 +195,8 @@ inoremap <S-Tab> <C-v><Tab>
 
 
 colorscheme gruvbox
+"syntax on
+"color dracula
 "let g:gruvbox_contrast_dark = 'hard'
 
 "let g:deoplete#enable_at_startup = 0
@@ -222,3 +225,10 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
 " Goyo maping
 map <leader>f :Goyo<CR>
+
+" Spell check
+augroup markdownSpell
+    autocmd!
+    autocmd FileType markdown setlocal spell spelllang=pt
+    autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt
+augroup END
