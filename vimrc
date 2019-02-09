@@ -51,9 +51,9 @@ set expandtab " tabs are spaces
 "set softtabstop=4 " number of spaces in tab when editing
 
 " show line warp
-set showbreak=\ ↳\
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
+set list
+set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
+set showbreak=›››\
 
 set background=dark
 scriptencoding utf-8
@@ -87,9 +87,6 @@ if !has('nvim') && &ttimeoutlen == -1
 endif
 
 set laststatus=2
-
-"set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-"set list
 
 set autoread " autoreload file when changes are made to it
 set scrolloff=1 " always one line above/below cursor
