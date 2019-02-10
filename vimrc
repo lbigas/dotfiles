@@ -31,6 +31,8 @@ endif
 
 Plug 'junegunn/goyo.vim'
 
+Plug 'https://github.com/mbbill/undotree.git'
+
 call plug#end()
 
 set statusline=
@@ -108,7 +110,7 @@ nnoremap <c-j> 5j
 " line warping
 set wrap
 
-set formatoptions=1
+"set formatoptions=1
 set lbr
 "set nolist "disable linebreak
 
@@ -205,12 +207,7 @@ let wiki_1.path = '~/Documents/notes/'
 let wiki_1.syntax = 'markdown'
 let wiki_1.ext = '.md'
 
-let wiki_2 = {}
-let wiki_2.path = '~/Documents/'
-let wiki_2.syntax = 'markdown'
-let wiki_2.ext = '.md'
-
-let g:vimwiki_list = [wiki_1, wiki_2]
+let g:vimwiki_list = [wiki_1]
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 
 " Markdown Preview
@@ -229,3 +226,6 @@ augroup markdownSpell
     autocmd FileType markdown setlocal spell spelllang=pt
     autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt
 augroup END
+
+" Undotree
+nnoremap <F5> :UndotreeToggle<cr>
