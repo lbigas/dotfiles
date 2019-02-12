@@ -22,7 +22,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 "Plug 'andymass/vim-matchup'
 
 Plug 'vimwiki/vimwiki'
@@ -60,9 +60,12 @@ set showbreak=›››\
 
 scriptencoding utf-8
 let mapleader=","
+
+set termguicolors
 set t_Co=256
 set background=dark
 syntax enable " enalbe syntax processing
+
 set number " show line numbers
 set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
@@ -196,9 +199,9 @@ inoremap <S-Tab> <C-v><Tab>
 
 
 "colorscheme gruvbox
-"colorscheme vividchalk
+colorscheme vividchalk
 "syntax on
-colorscheme dracula
+"colorscheme dracula
 "let g:gruvbox_contrast_dark = 'hard'
 
 "let g:deoplete#enable_at_startup = 0
