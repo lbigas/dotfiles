@@ -195,9 +195,10 @@ inoremap <S-Tab> <C-v><Tab>
 "nmap ga <Plug>(EasyAlign)
 
 
-colorscheme gruvbox
+"colorscheme gruvbox
+"colorscheme vividchalk
 "syntax on
-"color dracula
+colorscheme dracula
 "let g:gruvbox_contrast_dark = 'hard'
 
 "let g:deoplete#enable_at_startup = 0
