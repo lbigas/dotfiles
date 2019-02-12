@@ -5,6 +5,7 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
+Plug 'flazz/vim-colorschemes'
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'https://github.com/ervandew/supertab.git'
@@ -57,9 +58,10 @@ set list
 set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
 set showbreak=›››\
 
-set background=dark
 scriptencoding utf-8
 let mapleader=","
+set t_Co=256
+set background=dark
 syntax enable " enalbe syntax processing
 set number " show line numbers
 set relativenumber " show relative line numbers

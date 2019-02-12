@@ -44,38 +44,55 @@ URxvt.resize-font.bigger: C-Up
 !*.color7:     #BFBFBF
 !*.color15:    #E6E6E6
 
-! File: gruvbox-dark.xresources
+!! File: gruvbox-dark.xresources
+!
+!! hard contrast: *background: #1d2021
+!*background: #282828
+!! soft contrast: *background: #32302f
+!*foreground: #ebdbb2
+!! Black + DarkGrey
+!*color0:  #282828
+!*color8:  #928374
+!! DarkRed + Red
+!*color1:  #cc241d
+!*color9:  #fb4934
+!! DarkGreen + Green
+!*color2:  #98971a
+!*color10: #b8bb26
+!! DarkYellow + Yellow
+!*color3:  #d79921
+!*color11: #fabd2f
+!! DarkBlue + Blue
+!*color4:  #458588
+!*color12: #83a598
+!! DarkMagenta + Magenta
+!*color5:  #b16286
+!*color13: #d3869b
+!! DarkCyan + Cyan
+!*color6:  #689d6a
+!*color14: #8ec07c
+!! LightGrey + White
+!*color7:  #a89984
+!*color15: #ebdbb2
 
-! hard contrast: *background: #1d2021
-*background: #282828
-! soft contrast: *background: #32302f
-*foreground: #ebdbb2
-! Black + DarkGrey
-*color0:  #282828
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #fb4934
-! DarkGreen + Green
-*color2:  #98971a
-*color10: #b8bb26
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #fabd2f
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #83a598
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #d3869b
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #8ec07c
-! LightGrey + White
-*color7:  #a89984
-*color15: #ebdbb2
 
-
+*color0:  #000000
+*color1:  #aa0000
+*color2:  #00aa00
+*color3:  #aa5522
+*color4:  #0000ee
+*color5:  #aa00aa
+*color6:  #00aaaa
+*color7:  #aaaaaa
+*color8:  #555555
+*color9:  #ff4444
+*color10: #44ff44
+*color11: #ffff00
+*color12: #5c5cff
+*color13: #ff00ff
+*color14: #00ffff
+*color15: #ffffff
+*colorBD: #ffffff
 
 
 
