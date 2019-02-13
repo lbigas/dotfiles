@@ -54,8 +54,10 @@ set expandtab " tabs are spaces
 "set softtabstop=4 " number of spaces in tab when editing
 
 " show line warp
-set list
-set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
+"set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
+nmap <F6> :set list!<cr>
+set listchars=eol:¬,tab:>\ ,trail:-,extends:>,precedes:<,space:␣
+"set list
 set showbreak=›››\
 
 scriptencoding utf-8
