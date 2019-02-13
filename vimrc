@@ -61,10 +61,6 @@ set showbreak=›››\
 scriptencoding utf-8
 let mapleader=","
 
-set termguicolors
-set t_Co=256
-set background=dark
-syntax enable " enalbe syntax processing
 
 set number " show line numbers
 set relativenumber " show relative line numbers
@@ -96,13 +92,10 @@ endif
 set laststatus=2
 
 set autoread " autoreload file when changes are made to it
-set scrolloff=1 " always one line above/below cursor
+set scrolloff=3 " always one line above/below cursor
 
 " Mouse scroll
 set mouse=a
-"if !has('nvim')
-"    set ttymouse=xterm
-"endif
 
 " Vim splits
 set splitright " vertical split to the right
@@ -159,7 +152,7 @@ nnoremap w W
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" nove between matching opening and ending cide; { code}
+" move between matching opening and ending surrouding brakets { code }
 map <tab> %
 
 " save sudo
@@ -179,23 +172,12 @@ command Spaces %s/\s\+$//e
 " Insert tab in insert mod with Shitft-Tab
 inoremap <S-Tab> <C-v><Tab>
 
-
-"" Start interactive EasyAlign in visual mode (e.g. vipga)
-"xmap ga <Plug>(EasyAlign)
-"
-"" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-"nmap ga <Plug>(EasyAlign)
-
-
-"colorscheme gruvbox
+" Colors
+set termguicolors
+set t_Co=256
+set background=dark
+syntax enable " enalbe syntax processing
 colorscheme vividchalk
-"syntax on
-"colorscheme dracula
-"let g:gruvbox_contrast_dark = 'hard'
-
-"let g:deoplete#enable_at_startup = 0
-"let g:deoplete#disable_auto_complee = 1
-"inoremap <tab> <C-n> deoplete#manual_complete()
 
 let wiki_1 = {}
 let wiki_1.path = '~/Documents/notes/'

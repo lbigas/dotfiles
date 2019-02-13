@@ -31,11 +31,6 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Shift+Return exec --no-startup-id $terminal
-#bindsym $mod+Shift+Return exec urxvt -e tmux
-
-
-# Start ranger file browser
-#bindsym $mod+r exec urxvt -e ranger
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -72,6 +67,11 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
 # split in horizontal orientation
 bindsym $mod+Shift+e split h
 
@@ -80,11 +80,6 @@ bindsym $mod+Shift+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
