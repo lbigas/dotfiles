@@ -79,7 +79,6 @@ set mat=2 " blink for 2 sec
 set title " show title in console title bar
 set noerrorbells " disable error sound bell
 set novisualbell " disable error visual bell
-set clipboard+=unnamedplus
 
 set autoindent
 set smarttab
