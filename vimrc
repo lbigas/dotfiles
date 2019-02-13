@@ -9,7 +9,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'https://github.com/ervandew/supertab.git'
-"Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -22,10 +21,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
-"Plug 'sheerun/vim-polyglot'
-"Plug 'andymass/vim-matchup'
 
 Plug 'vimwiki/vimwiki'
+
 if has('nvim')
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 endif
@@ -171,18 +169,6 @@ map <leader>sudo :w !sudo tee % <CR><CR>
 nnoremap <PageUp>   <nop>
 vnoremap <PageDown> <nop>
 
-" vim indent guides
-"g:indentline_char = 'c'
-"let g:indentline_color_term = 239
-"let g:indentline_color_dark = 2
-let g:indentline_leadingspacechar = '-'
-let g:indentline_leadingspaceenabled = 1
-let g:indentline_enabled = 1
-let g:indentLine_leadingSpaceEnabled = 1
-let g:indentLine_leadingSpaceChar = '·'
-
-" delimitMate
-"let delimitMate_expand_cr = 1
 
 " NERDTree
 nnoremap <F3> :NERDTreeToggle<CR>
@@ -190,6 +176,7 @@ nnoremap <F3> :NERDTreeToggle<CR>
 " Remove trailing wthitescape on save :w
 command Spaces %s/\s\+$//e
 
+" Insert tab in insert mod with Shitft-Tab
 inoremap <S-Tab> <C-v><Tab>
 
 
