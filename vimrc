@@ -54,7 +54,7 @@ set expandtab " tabs are spaces
 " show line warp
 "set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
 nmap <F6> :set list!<cr>
-set listchars=eol:¬,tab:>\ ,trail:-,extends:>,precedes:<,space:␣
+set listchars=eol:$,tab:>\ ,trail:-,extends:>,precedes:<,space:_
 "set list
 set showbreak=›››\
 
@@ -67,6 +67,7 @@ set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
 set cursorline " highlight current line
+set cursorcolumn
 set nocompatible " make vim not vi
 set wildmenu " visual autocomplete for comand menu
 set lazyredraw " redraw only when we need to
