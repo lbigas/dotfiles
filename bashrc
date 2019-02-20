@@ -67,4 +67,4 @@ PS1="${RCol}┌─["'`smiley`'"\[${Cyan}\]\h@\u\[${RCol}\] \[${Yel}\]\w\[${RCol}
 #PS1='[\u@\h \W]\$ '
 #PS1='\[\e]0;\w\a\]\[\e[32m\]\u@\h: \[\e[33m\]\w\[\e[0m\]\n\$ '
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
