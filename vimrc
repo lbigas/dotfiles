@@ -24,9 +24,9 @@ Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 
 Plug 'vimwiki/vimwiki'
 
-if has('nvim')
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-endif
+"if has('nvim')
+"    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+"endif
 
 Plug 'junegunn/goyo.vim'
 
@@ -67,7 +67,7 @@ set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
 set cursorline " highlight current line
-set cursorcolumn
+"set cursorcolumn
 set nocompatible " make vim not vi
 set wildmenu " visual autocomplete for comand menu
 set lazyredraw " redraw only when we need to
@@ -173,11 +173,12 @@ command Spaces %s/\s\+$//e
 inoremap <S-Tab> <C-v><Tab>
 
 " Colors
-set termguicolors
+"set termguicolors
 set t_Co=256
 set background=dark
 syntax enable " enalbe syntax processing
 colorscheme vividchalk
+"colorscheme dracula
 
 "let wiki_1 = {}
 "let wiki_1.path = '~/Documents/notes/'
