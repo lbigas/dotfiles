@@ -19,7 +19,7 @@ print_caps(){
 print_volume(){
     volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
     status="$(amixer get Master | awk '/^\s*Mono/ { print substr($6,2,length($6)-2) }')"
-    if [ $status == "on" ]
+    if [ "$status" == "on" ]
     then
         echo -e "VOL:$volume"
     else
