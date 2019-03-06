@@ -6,7 +6,7 @@
 
 
 set $mod Mod4
-set $terminal termite
+set $terminal st
 set $Locker slock
 
 
@@ -14,14 +14,13 @@ set $Locker slock
 # is used in the bar {} block below.
 # In this case this is only used to the status bar
 #font pango:monospace 7
+
 # Global font for i3
 font pango:Terminus 12px
-# Font only for window titles
-#for_window [class=".*"] title_format "<span font='Monospace 9'> %title</span>"
-#for_window [class="^.*"] border pixel 2
+new_window normal 3
 
 # Focus to or to not follow mouse
-focus_follows_mouse no
+focus_follows_mouse yes
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -32,15 +31,18 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Shift+Return exec --no-startup-id $terminal
 
+# start terminal with ranger
+bindsym $mod+Shift+f exec --no-startup-id $terminal -e ranger
+
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+grave exec --no-startup-id i3-dmenu-desktop
 
 # Start NetworkManager applet
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 # exec --no-startup-id wicd-client --tray
 
 # change focus
@@ -73,10 +75,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # split in horizontal orientation
-bindsym $mod+Shift+e split h
+bindsym $mod+g split h
 
 # split in vertical orientation
-bindsym $mod+Shift+v split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -94,17 +96,17 @@ bindsym $mod+a focus parent
 bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-set $ws11 "11"
+set $ws1 "I"
+set $ws2 "II"
+set $ws3 "III"
+set $ws4 "IV"
+set $ws5 "V"
+set $ws6 "VI"
+set $ws7 "VII"
+set $ws8 "VIII"
+set $ws9 "IX"
+set $ws10 "X"
+set $ws11 "XI"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -117,7 +119,7 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-
+bindsym $mod+m workspace $ws11
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -129,16 +131,14 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+m move container to workspace $ws11
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+q reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+p exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
     font pango:Terminus 12px
 #	font pango:mono 9
@@ -150,14 +150,13 @@ bar {
 
 
 # Caps lock indicator
-bindsym --release Caps_Lock exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
 
 # Volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
-#pkill  -RTMIN+1 i3block
 # Brightness
 bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 5
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
@@ -176,10 +175,10 @@ bindsym $mod+Shift+o exec --no-startup-id "bash ~/.scripts/i3resize right"
 workspace 11 output DP2
 
 # switch to projector workspace
-bindsym $mod+m workspace 11
+#bindsym $mod+m workspace 11
 
 # Move window to projector workspace
-bindsym $mod+Shift+m move container to workspace 11
+#bindsym $mod+Shift+m move container to workspace 11
 
 
 # i3 mode to Lock, Logout, Suspend, Hibernate, Reboot and Shutdown the system
@@ -189,9 +188,7 @@ set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) re
 mode "$mode_system" {
     bindsym --release l exec --no-startup-id $Locker && sleep 1, mode "default"
     bindsym --release e exec --no-startup-id i3-msg exit, mode "default"
-    #bindsym --release s exec --no-startup-id $Locker && sleep 1 && systemctl suspend, mode "default"
     bindsym --release s exec --no-startup-id systemctl suspend && $Locker, mode "default"
-    #bindsym --release h exec --no-startup-id $Locker && sleep 1 && systemctl hibernate, mode "default"
     bindsym --release h exec --no-startup-id systemctl hibernate $$ $Locker, mode "default"
     bindsym --release r exec --no-startup-id systemctl reboot, mode "default"
     bindsym --release Shift+s exec --no-startup-id  systemctl poweroff -i, mode "default"
