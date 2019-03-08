@@ -26,7 +26,7 @@ focus_follows_mouse yes
 floating_modifier $mod
 
 # Wallpaper
-# exec --no-startup-id feh --bg-fill ~/Media/Synthwave.png
+exec --no-startup-id feh --bg-fill ~/Pictures/space.jpg
 
 # start a terminal
 bindsym $mod+Shift+Return exec --no-startup-id $terminal
@@ -96,17 +96,17 @@ bindsym $mod+a focus parent
 bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
-set $ws1 "I"
-set $ws2 "II"
-set $ws3 "III"
-set $ws4 "IV"
-set $ws5 "V"
-set $ws6 "VI"
-set $ws7 "VII"
-set $ws8 "VIII"
-set $ws9 "IX"
-set $ws10 "X"
-set $ws11 "XI"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws11 "11"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
