@@ -13,7 +13,8 @@ Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
-Plug 'https://github.com/scrooloose/nerdcommenter.git'
+Plug 'https://github.com/tpope/vim-commentary.git'
+"Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 
@@ -66,7 +67,7 @@ set number " show line numbers
 set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
-set cursorline " highlight current line
+"set cursorline " highlight current line
 "set cursorcolumn
 set nocompatible " make vim not vi
 set wildmenu " visual autocomplete for comand menu
@@ -198,6 +199,19 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 " Goyo maping
 map <leader>f :Goyo<CR>
 
+"" higlight column right after max textwidth
+"set colorcolumn=+1
+"
+"set colorcolumn=80
+"highlight ColorColumn ctermbg=234 guibg=lightgrey
+
+""hi ColorColumn gui=reverse cterm=reverse
+
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
+set cursorline
+"hi CursorLine term=bold cterm=bold
+"hi CursorLine term=bold cterm=bold guibg=Grey40
 " Spell check
 augroup markdownSpell
     autocmd!
