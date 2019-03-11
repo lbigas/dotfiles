@@ -209,7 +209,7 @@ map <leader>f :Goyo<CR>
 
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 "match OverLength /\%81v.\+/
-set cursorline
+"set cursorline
 "hi CursorLine term=bold cterm=bold
 "hi CursorLine term=bold cterm=bold guibg=Grey40
 " Spell check
