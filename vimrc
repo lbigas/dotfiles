@@ -6,32 +6,38 @@
 "
 call plug#begin('~/.vim/plugged')
 Plug 'flazz/vim-colorschemes'
-Plug 'https://github.com/altercation/vim-colors-solarized.git'
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'https://github.com/altercation/vim-colors-solarized.git'
+" Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'https://github.com/morhetz/gruvbox.git'
+" Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 "Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'sheerun/vim-polyglot'
+" Plug 'https://github.com/majutsushi/tagbar.git'
+" Plug 'https://github.com/xolox/vim-easytags.git'
+" Plug 'https://github.com/xolox/vim-misc.git'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 
 Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 
 "if has('nvim')
 "    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 "endif
 
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/goyo.vim'
 
 Plug 'https://github.com/mbbill/undotree.git'
+
+Plug 'https://github.com/godlygeek/tabular.git'
 
 call plug#end()
 
@@ -50,14 +56,14 @@ filetype plugin indent on
 set tabstop=4 " number of visual spaces per TAB
 set shiftwidth=4
 set expandtab " tabs are spaces
-"set softtabstop=4 " number of spaces in tab when editing
+set softtabstop=4 " number of spaces in tab when editing
 
 " show line warp
 "set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
 nmap <F6> :set list!<cr>
 set listchars=eol:$,tab:>\ ,trail:-,extends:>,precedes:<,space:_
 "set list
-set showbreak=›››\
+set showbreak=›››\ 
 
 scriptencoding utf-8
 let mapleader=","
@@ -93,14 +99,10 @@ endif
 set laststatus=2
 
 set autoread " autoreload file when changes are made to it
-set scrolloff=3 " always one line above/below cursor
+" set scrolloff=1 " always one line above/below cursor
 
 " Mouse scroll
 set mouse=a
-
-" Vim splits
-set splitright " vertical split to the right
-set splitbelow " horizontal split to the bottom
 
 " movement
 nnoremap <c-k> 5k
@@ -116,7 +118,16 @@ set lbr
 
 " turn off search highlight
 nnoremap <esc> :nohlsearch<CR>
-"
+
+" Vim splits
+set splitright " vertical split to the right
+set splitbelow " horizontal split to the bottom
+
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
 " vim tabs
 nnoremap tn :tabnew<CR>
 nnoremap tj :tabnext<CR>
@@ -133,6 +144,7 @@ nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <leader>0 10gt
+
 
 "Copy paste comands to work with system clipboard (gvim needed)
 "vnoremap <C-y> "+y
@@ -181,6 +193,10 @@ syntax enable " enalbe syntax processing
 colorscheme vividchalk
 "colorscheme dracula
 
+" UNDO SETTINGS
+set undofile " Maintain undo history between sessions
+set undodir=~/.vim/undodir
+
 "let wiki_1 = {}
 "let wiki_1.path = '~/Documents/notes/'
 "let wiki_1.syntax = 'markdown'
@@ -190,14 +206,14 @@ colorscheme vividchalk
 "let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 
 " Markdown Preview
-let g:mkdp_auto_start = 0
-let g:mkdp_command_for_global = 1
+" let g:mkdp_auto_start = 0
+" let g:mkdp_command_for_global = 1
 
 " Rainbow Parentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
 " Goyo maping
-map <leader>f :Goyo<CR>
+" map <leader>f :Goyo<CR>
 
 "" higlight column right after max textwidth
 "set colorcolumn=+1
@@ -213,11 +229,24 @@ map <leader>f :Goyo<CR>
 "hi CursorLine term=bold cterm=bold
 "hi CursorLine term=bold cterm=bold guibg=Grey40
 " Spell check
-augroup markdownSpell
-    autocmd!
-    autocmd FileType markdown setlocal spell spelllang=pt
-    autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt
-augroup END
+" augroup markdownSpell
+"     autocmd!
+"     autocmd FileType markdown setlocal spell spelllang=pt
+"     autocmd BufRead,BufNewFile *.md setlocal spell spelllang=pt
+" augroup END
 
 " Undotree
-nnoremap <F5> :UndotreeToggle<cr>
+nnoremap <F5> :UndotreeToggle<CR>
+
+" vim-commentary comments style
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
+" Ctags
+set tags+=tags;
+
+" CtrlP
+" search ctags
+nnoremap <leader>. :CtrlPTag<cr>
+
+" TagBar
+" nmap <F8> :Tagbar<CR>
