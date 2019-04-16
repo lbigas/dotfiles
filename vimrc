@@ -60,7 +60,7 @@ set softtabstop=4 " number of spaces in tab when editing
 
 " show line warp
 "set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
-nmap <F6> :set list!<cr>
+nmap <F6> :set list!<CR>
 set listchars=eol:$,tab:>\ ,trail:-,extends:>,precedes:<,space:_
 "set list
 set showbreak=›››\ 
@@ -105,8 +105,8 @@ set autoread " autoreload file when changes are made to it
 set mouse=a
 
 " movement
-nnoremap <c-k> 5k
-nnoremap <c-j> 5j
+" nnoremap <c-k> 5k
+" nnoremap <c-j> 5j
 
 " line warping
 set wrap
@@ -169,11 +169,11 @@ nnoremap N Nzzzv
 map <tab> %
 
 " save sudo
-map <leader>sudo :w !sudo tee % <CR><CR>
+nmap <leader>sudo :w !sudo tee % <CR><CR>
 
 " disable PageUp and PageDown
 nnoremap <PageUp>   <nop>
-vnoremap <PageDown> <nop>
+nnoremap <PageDown> <nop>
 
 
 " NERDTree
@@ -245,8 +245,15 @@ autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 set tags+=tags;
 
 " CtrlP
-" search ctags
-nnoremap <leader>. :CtrlPTag<cr>
+let g:ctrlp_map='<leader><leader>'
+nnoremap <leader>f :CtrlPMRUFiles<CR>
+nnoremap <leader>t :CtrlPTag<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+
+" Buffers
+nnoremap <c-p> :bnext<CR>
+nnoremap <c-n> :bprev<CR>
+nnoremap <leader>. :ls<CR>:b<space>
 
 " TagBar
 " nmap <F8> :Tagbar<CR>
