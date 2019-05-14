@@ -1,0 +1,1190 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+<C-h>	config/nvim/init.vim	/^nmap <C-h> <C-w>h$/;"	m
+<C-j>	config/nvim/init.vim	/^nmap <C-j> <C-w>j$/;"	m
+<C-k>	config/nvim/init.vim	/^nmap <C-k> <C-w>k$/;"	m
+<C-l>	config/nvim/init.vim	/^nmap <C-l> <C-w>l$/;"	m
+<C-q>	config/nvim/init.vim	/^nnoremap <C-q> :bd<CR>$/;"	m
+<C-s>	config/nvim/init.vim	/^nnoremap <C-s> :w<CR>$/;"	m
+<F3>	config/nvim/init.vim	/^nnoremap <F3> :NERDTreeToggle<CR>$/;"	m
+<F5>	config/nvim/init.vim	/^nnoremap <F5> :UndotreeToggle<CR>$/;"	m
+<F6>	config/nvim/init.vim	/^nmap <F6> :set list!<CR>$/;"	m
+<PageDown>	config/nvim/init.vim	/^nnoremap <PageDown> <nop>$/;"	m
+<PageUp>	config/nvim/init.vim	/^nnoremap <PageUp>   <nop>$/;"	m
+<S-Tab>	config/nvim/init.vim	/^inoremap <S-Tab> <C-v><Tab>$/;"	m
+<c-n>	config/nvim/init.vim	/^nnoremap <c-n> :bnext<CR>$/;"	m
+<c-p>	config/nvim/init.vim	/^nnoremap <c-p> :bprev<CR>$/;"	m
+<esc>	config/nvim/init.vim	/^nnoremap <esc> :nohlsearch<CR>$/;"	m
+<leader>.	config/nvim/init.vim	/^nnoremap <leader>. :CtrlPBuffer<CR>$/;"	m
+<leader>0	config/nvim/init.vim	/^nnoremap <leader>0 10gt$/;"	m
+<leader>1	config/nvim/init.vim	/^nnoremap <leader>1 1gt$/;"	m
+<leader>2	config/nvim/init.vim	/^nnoremap <leader>2 2gt$/;"	m
+<leader>3	config/nvim/init.vim	/^nnoremap <leader>3 3gt$/;"	m
+<leader>4	config/nvim/init.vim	/^nnoremap <leader>4 4gt$/;"	m
+<leader>5	config/nvim/init.vim	/^nnoremap <leader>5 5gt$/;"	m
+<leader>6	config/nvim/init.vim	/^nnoremap <leader>6 6gt$/;"	m
+<leader>7	config/nvim/init.vim	/^nnoremap <leader>7 7gt$/;"	m
+<leader>8	config/nvim/init.vim	/^nnoremap <leader>8 8gt$/;"	m
+<leader>9	config/nvim/init.vim	/^nnoremap <leader>9 9gt$/;"	m
+<leader>b	config/nvim/init.vim	/^nnoremap <leader>b :ls<CR>:b<space>$/;"	m
+<leader>f	config/nvim/init.vim	/^nnoremap <leader>f :CtrlPMRUFiles<CR>$/;"	m
+<leader>sudo	config/nvim/init.vim	/^nmap <leader>sudo :w !sudo tee % <CR><CR>$/;"	m
+<leader>t	config/nvim/init.vim	/^nnoremap <leader>t :CtrlPTag<CR>$/;"	m
+<tab>	config/nvim/init.vim	/^map <tab> %$/;"	m
+ARGBEGIN	suckless/slstatus/arg.h	8;"	d
+ARGBEGIN	suckless/st-0.8.2/arg.h	12;"	d
+ARGC	suckless/slstatus/arg.h	27;"	d
+ARGC	suckless/st-0.8.2/arg.h	36;"	d
+ARGEND	suckless/slstatus/arg.h	17;"	d
+ARGEND	suckless/st-0.8.2/arg.h	33;"	d
+ARGF	suckless/slstatus/arg.h	31;"	d
+ARGF	suckless/st-0.8.2/arg.h	44;"	d
+ARGF_	suckless/slstatus/arg.h	28;"	d
+ARG_H	suckless/slstatus/arg.h	3;"	d
+ARG_H__	suckless/st-0.8.2/arg.h	7;"	d
+ATTRCMP	suckless/st-0.8.2/st.h	14;"	d
+ATTR_BLINK	suckless/st-0.8.2/st.h	/^	ATTR_BLINK      = 1 << 4,$/;"	e	enum:glyph_attribute
+ATTR_BOLD	suckless/st-0.8.2/st.h	/^	ATTR_BOLD       = 1 << 0,$/;"	e	enum:glyph_attribute
+ATTR_BOLD_FAINT	suckless/st-0.8.2/st.h	/^	ATTR_BOLD_FAINT = ATTR_BOLD | ATTR_FAINT,$/;"	e	enum:glyph_attribute
+ATTR_FAINT	suckless/st-0.8.2/st.h	/^	ATTR_FAINT      = 1 << 1,$/;"	e	enum:glyph_attribute
+ATTR_INVISIBLE	suckless/st-0.8.2/st.h	/^	ATTR_INVISIBLE  = 1 << 6,$/;"	e	enum:glyph_attribute
+ATTR_ITALIC	suckless/st-0.8.2/st.h	/^	ATTR_ITALIC     = 1 << 2,$/;"	e	enum:glyph_attribute
+ATTR_NULL	suckless/st-0.8.2/st.h	/^	ATTR_NULL       = 0,$/;"	e	enum:glyph_attribute
+ATTR_REVERSE	suckless/st-0.8.2/st.h	/^	ATTR_REVERSE    = 1 << 5,$/;"	e	enum:glyph_attribute
+ATTR_STRUCK	suckless/st-0.8.2/st.h	/^	ATTR_STRUCK     = 1 << 7,$/;"	e	enum:glyph_attribute
+ATTR_UNDERLINE	suckless/st-0.8.2/st.h	/^	ATTR_UNDERLINE  = 1 << 3,$/;"	e	enum:glyph_attribute
+ATTR_WDUMMY	suckless/st-0.8.2/st.h	/^	ATTR_WDUMMY     = 1 << 10,$/;"	e	enum:glyph_attribute
+ATTR_WIDE	suckless/st-0.8.2/st.h	/^	ATTR_WIDE       = 1 << 9,$/;"	e	enum:glyph_attribute
+ATTR_WRAP	suckless/st-0.8.2/st.h	/^	ATTR_WRAP       = 1 << 8,$/;"	e	enum:glyph_attribute
+Arg	suckless/dwm-6.1/dwm.c	/^} Arg;$/;"	t	typeref:union:__anon6	file:
+Arg	suckless/st-0.8.2/st.h	/^} Arg;$/;"	t	typeref:union:__anon28
+BETWEEN	suckless/dwm-6.1/util.h	5;"	d
+BETWEEN	suckless/st-0.8.2/st.h	10;"	d
+BUTTONMASK	suckless/dwm-6.1/dwm.c	48;"	d	file:
+Button	suckless/dwm-6.1/dwm.c	/^} Button;$/;"	t	typeref:struct:__anon7	file:
+CC	suckless/dwm-6.1/config.mk	/^CC = cc$/;"	m
+CC	suckless/slstatus/config.mk	/^CC = cc$/;"	m
+CFLAGS	suckless/dwm-6.1/config.mk	/^CFLAGS   = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os ${INCS} ${CPPFLAGS}$/;"	m
+CFLAGS	suckless/slstatus/config.mk	/^CFLAGS   = -std=c99 -pedantic -Wall -Wextra -Os$/;"	m
+CLEANMASK	suckless/dwm-6.1/dwm.c	49;"	d	file:
+COM	suckless/slstatus/Makefile	/^COM =\\$/;"	m
+CPPFLAGS	suckless/dwm-6.1/config.mk	/^CPPFLAGS = -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 -DVERSION=\\"${VERSION}\\" ${XINERAMAFLAGS}$/;"	m
+CPPFLAGS	suckless/slstatus/config.mk	/^CPPFLAGS = -I$(X11INC) -D_DEFAULT_SOURCE$/;"	m
+CSIEscape	suckless/st-0.8.2/st.c	/^} CSIEscape;$/;"	t	typeref:struct:__anon34	file:
+CS_FIN	suckless/st-0.8.2/st.c	/^	CS_FIN$/;"	e	enum:charset	file:
+CS_GER	suckless/st-0.8.2/st.c	/^	CS_GER,$/;"	e	enum:charset	file:
+CS_GRAPHIC0	suckless/st-0.8.2/st.c	/^	CS_GRAPHIC0,$/;"	e	enum:charset	file:
+CS_GRAPHIC1	suckless/st-0.8.2/st.c	/^	CS_GRAPHIC1,$/;"	e	enum:charset	file:
+CS_MULTI	suckless/st-0.8.2/st.c	/^	CS_MULTI,$/;"	e	enum:charset	file:
+CS_UK	suckless/st-0.8.2/st.c	/^	CS_UK,$/;"	e	enum:charset	file:
+CS_USA	suckless/st-0.8.2/st.c	/^	CS_USA,$/;"	e	enum:charset	file:
+CURSOR_DEFAULT	suckless/st-0.8.2/st.c	/^	CURSOR_DEFAULT  = 0,$/;"	e	enum:cursor_state	file:
+CURSOR_LOAD	suckless/st-0.8.2/st.c	/^	CURSOR_LOAD$/;"	e	enum:cursor_movement	file:
+CURSOR_ORIGIN	suckless/st-0.8.2/st.c	/^	CURSOR_ORIGIN   = 2$/;"	e	enum:cursor_state	file:
+CURSOR_SAVE	suckless/st-0.8.2/st.c	/^	CURSOR_SAVE,$/;"	e	enum:cursor_movement	file:
+CURSOR_WRAPNEXT	suckless/st-0.8.2/st.c	/^	CURSOR_WRAPNEXT = 1,$/;"	e	enum:cursor_state	file:
+Client	suckless/dwm-6.1/dwm.c	/^struct Client {$/;"	s	file:
+Client	suckless/dwm-6.1/dwm.c	/^typedef struct Client Client;$/;"	t	typeref:struct:Client	file:
+ClkClientWin	suckless/dwm-6.1/dwm.c	/^       ClkClientWin, ClkRootWin, ClkLast }; \/* clicks *\/$/;"	e	enum:__anon5	file:
+ClkLast	suckless/dwm-6.1/dwm.c	/^       ClkClientWin, ClkRootWin, ClkLast }; \/* clicks *\/$/;"	e	enum:__anon5	file:
+ClkLtSymbol	suckless/dwm-6.1/dwm.c	/^enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,$/;"	e	enum:__anon5	file:
+ClkRootWin	suckless/dwm-6.1/dwm.c	/^       ClkClientWin, ClkRootWin, ClkLast }; \/* clicks *\/$/;"	e	enum:__anon5	file:
+ClkStatusText	suckless/dwm-6.1/dwm.c	/^enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,$/;"	e	enum:__anon5	file:
+ClkTagBar	suckless/dwm-6.1/dwm.c	/^enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,$/;"	e	enum:__anon5	file:
+ClkWinTitle	suckless/dwm-6.1/dwm.c	/^enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,$/;"	e	enum:__anon5	file:
+Clr	suckless/dwm-6.1/drw.h	/^} Clr;$/;"	t	typeref:struct:__anon11
+ClrScheme	suckless/dwm-6.1/drw.h	/^} ClrScheme;$/;"	t	typeref:struct:__anon14
+Color	suckless/st-0.8.2/x.c	/^typedef XftColor Color;$/;"	t	file:
+Cur	suckless/dwm-6.1/drw.h	/^} Cur;$/;"	t	typeref:struct:__anon12
+CurLast	suckless/dwm-6.1/dwm.c	/^enum { CurNormal, CurResize, CurMove, CurLast }; \/* cursor *\/$/;"	e	enum:__anon1	file:
+CurMove	suckless/dwm-6.1/dwm.c	/^enum { CurNormal, CurResize, CurMove, CurLast }; \/* cursor *\/$/;"	e	enum:__anon1	file:
+CurNormal	suckless/dwm-6.1/dwm.c	/^enum { CurNormal, CurResize, CurMove, CurLast }; \/* cursor *\/$/;"	e	enum:__anon1	file:
+CurResize	suckless/dwm-6.1/dwm.c	/^enum { CurNormal, CurResize, CurMove, CurLast }; \/* cursor *\/$/;"	e	enum:__anon1	file:
+DC	suckless/st-0.8.2/x.c	/^} DC;$/;"	t	typeref:struct:__anon24	file:
+DEFAULT	suckless/st-0.8.2/st.h	12;"	d
+DIVCEIL	suckless/st-0.8.2/st.h	11;"	d
+DRW_FONT_CACHE_SIZE	suckless/dwm-6.1/drw.h	2;"	d
+Draw	suckless/st-0.8.2/x.c	/^typedef XftDraw *Draw;$/;"	t	file:
+Drw	suckless/dwm-6.1/drw.h	/^} Drw;$/;"	t	typeref:struct:__anon15
+EARGF	suckless/slstatus/arg.h	30;"	d
+EARGF	suckless/st-0.8.2/arg.h	38;"	d
+ESC_ALTCHARSET	suckless/st-0.8.2/st.c	/^	ESC_ALTCHARSET = 8,$/;"	e	enum:escape_state	file:
+ESC_ARG_SIZ	suckless/st-0.8.2/st.c	35;"	d	file:
+ESC_BUF_SIZ	suckless/st-0.8.2/st.c	34;"	d	file:
+ESC_CSI	suckless/st-0.8.2/st.c	/^	ESC_CSI        = 2,$/;"	e	enum:escape_state	file:
+ESC_DCS	suckless/st-0.8.2/st.c	/^	ESC_DCS        =128,$/;"	e	enum:escape_state	file:
+ESC_START	suckless/st-0.8.2/st.c	/^	ESC_START      = 1,$/;"	e	enum:escape_state	file:
+ESC_STR	suckless/st-0.8.2/st.c	/^	ESC_STR        = 4,  \/* OSC, PM, APC *\/$/;"	e	enum:escape_state	file:
+ESC_STR_END	suckless/st-0.8.2/st.c	/^	ESC_STR_END    = 16, \/* a final string was encountered *\/$/;"	e	enum:escape_state	file:
+ESC_TEST	suckless/st-0.8.2/st.c	/^	ESC_TEST       = 32, \/* Enter in test mode *\/$/;"	e	enum:escape_state	file:
+ESC_UTF8	suckless/st-0.8.2/st.c	/^	ESC_UTF8       = 64,$/;"	e	enum:escape_state	file:
+Extnts	suckless/dwm-6.1/drw.h	/^} Extnts;$/;"	t	typeref:struct:__anon16
+FRC_BOLD	suckless/st-0.8.2/x.c	/^	FRC_BOLD,$/;"	e	enum:__anon25	file:
+FRC_ITALIC	suckless/st-0.8.2/x.c	/^	FRC_ITALIC,$/;"	e	enum:__anon25	file:
+FRC_ITALICBOLD	suckless/st-0.8.2/x.c	/^	FRC_ITALICBOLD$/;"	e	enum:__anon25	file:
+FRC_NORMAL	suckless/st-0.8.2/x.c	/^	FRC_NORMAL,$/;"	e	enum:__anon25	file:
+FREETYPEINC	suckless/dwm-6.1/config.mk	/^FREETYPEINC = \/usr\/include\/freetype2$/;"	m
+FREETYPELIBS	suckless/dwm-6.1/config.mk	/^FREETYPELIBS = -lfontconfig -lXft$/;"	m
+Fnt	suckless/dwm-6.1/drw.h	/^} Fnt;$/;"	t	typeref:struct:__anon13
+Font	suckless/st-0.8.2/x.c	/^} Font;$/;"	t	typeref:struct:__anon23	file:
+Font	suckless/st-0.8.2/x.c	113;"	d	file:
+Fontcache	suckless/st-0.8.2/x.c	/^} Fontcache;$/;"	t	typeref:struct:__anon26	file:
+Glyph	suckless/st-0.8.2/st.h	/^} Glyph;$/;"	t	typeref:struct:__anon27
+Glyph	suckless/st-0.8.2/st.h	62;"	d
+GlyphFontSpec	suckless/st-0.8.2/x.c	/^typedef XftGlyphFontSpec GlyphFontSpec;$/;"	t	file:
+H	config/nvim/init.vim	/^map H ^$/;"	m
+HEIGHT	suckless/dwm-6.1/dwm.c	56;"	d	file:
+HISTSIZE	suckless/st-0.8.2/st.c	38;"	d	file:
+INCS	suckless/dwm-6.1/config.mk	/^INCS = -I${X11INC} -I${FREETYPEINC}$/;"	m
+INCS	suckless/st-0.8.2/config.mk	/^INCS = -I$(X11INC) \\$/;"	m
+INTERSECT	suckless/dwm-6.1/dwm.c	50;"	d	file:
+ISCONTROL	suckless/st-0.8.2/st.c	44;"	d	file:
+ISCONTROLC0	suckless/st-0.8.2/st.c	42;"	d	file:
+ISCONTROLC1	suckless/st-0.8.2/st.c	43;"	d	file:
+ISDELIM	suckless/st-0.8.2/st.c	45;"	d	file:
+ISVISIBLE	suckless/dwm-6.1/dwm.c	52;"	d	file:
+IS_SET	suckless/st-0.8.2/st.c	41;"	d	file:
+IS_SET	suckless/st-0.8.2/x.c	68;"	d	file:
+IS_TRUECOL	suckless/st-0.8.2/st.h	21;"	d
+Key	suckless/dwm-6.1/dwm.c	/^} Key;$/;"	t	typeref:struct:__anon8	file:
+Key	suckless/st-0.8.2/x.c	/^} Key;$/;"	t	typeref:struct:__anon19	file:
+L	config/nvim/init.vim	/^map L \$$/;"	m
+LDFLAGS	suckless/dwm-6.1/config.mk	/^LDFLAGS  = -s ${LIBS}$/;"	m
+LDFLAGS	suckless/slstatus/config.mk	/^LDFLAGS  = -L$(X11LIB) -s$/;"	m
+LDLIBS	suckless/slstatus/config.mk	/^LDLIBS   = -lX11$/;"	m
+LEN	suckless/slstatus/util.h	6;"	d
+LEN	suckless/st-0.8.2/st.h	9;"	d
+LENGTH	suckless/dwm-6.1/dwm.c	53;"	d	file:
+LIBS	suckless/dwm-6.1/config.mk	/^LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS}$/;"	m
+LIBS	suckless/st-0.8.2/config.mk	/^LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \\$/;"	m
+LIMIT	suckless/st-0.8.2/st.h	13;"	d
+LOG1024	suckless/slstatus/components/ram.c	85;"	d	file:
+Layout	suckless/dwm-6.1/dwm.c	/^} Layout;$/;"	t	typeref:struct:__anon9	file:
+Line	suckless/st-0.8.2/st.h	/^typedef Glyph *Line;$/;"	t
+M	vim/colors/vividchalk.vim	/^fun! s:M(a)$/;"	f
+MANPREFIX	suckless/dwm-6.1/config.mk	/^MANPREFIX = ${PREFIX}\/share\/man$/;"	m
+MANPREFIX	suckless/slstatus/config.mk	/^MANPREFIX = $(PREFIX)\/share\/man$/;"	m
+MANPREFIX	suckless/st-0.8.2/config.mk	/^MANPREFIX = $(PREFIX)\/share\/man$/;"	m
+MAX	suckless/dwm-6.1/util.h	3;"	d
+MAX	suckless/st-0.8.2/st.h	8;"	d
+MAXLEN	suckless/slstatus/config.def.h	10;"	d
+MAXLEN	suckless/slstatus/config.h	10;"	d
+MIN	suckless/dwm-6.1/util.h	4;"	d
+MIN	suckless/st-0.8.2/st.h	7;"	d
+MODBIT	suckless/st-0.8.2/st.h	18;"	d
+MODE_8BIT	suckless/st-0.8.2/win.h	/^	MODE_8BIT        = 1 << 10,$/;"	e	enum:win_mode
+MODE_ALTSCREEN	suckless/st-0.8.2/st.c	/^	MODE_ALTSCREEN   = 1 << 2,$/;"	e	enum:term_mode	file:
+MODE_APPCURSOR	suckless/st-0.8.2/win.h	/^	MODE_APPCURSOR   = 1 << 8,$/;"	e	enum:win_mode
+MODE_APPKEYPAD	suckless/st-0.8.2/win.h	/^	MODE_APPKEYPAD   = 1 << 2,$/;"	e	enum:win_mode
+MODE_BLINK	suckless/st-0.8.2/win.h	/^	MODE_BLINK       = 1 << 11,$/;"	e	enum:win_mode
+MODE_BRCKTPASTE	suckless/st-0.8.2/win.h	/^	MODE_BRCKTPASTE  = 1 << 16,$/;"	e	enum:win_mode
+MODE_CRLF	suckless/st-0.8.2/st.c	/^	MODE_CRLF        = 1 << 3,$/;"	e	enum:term_mode	file:
+MODE_ECHO	suckless/st-0.8.2/st.c	/^	MODE_ECHO        = 1 << 4,$/;"	e	enum:term_mode	file:
+MODE_FBLINK	suckless/st-0.8.2/win.h	/^	MODE_FBLINK      = 1 << 12,$/;"	e	enum:win_mode
+MODE_FOCUS	suckless/st-0.8.2/win.h	/^	MODE_FOCUS       = 1 << 13,$/;"	e	enum:win_mode
+MODE_FOCUSED	suckless/st-0.8.2/win.h	/^	MODE_FOCUSED     = 1 << 1,$/;"	e	enum:win_mode
+MODE_HIDE	suckless/st-0.8.2/win.h	/^	MODE_HIDE        = 1 << 7,$/;"	e	enum:win_mode
+MODE_INSERT	suckless/st-0.8.2/st.c	/^	MODE_INSERT      = 1 << 1,$/;"	e	enum:term_mode	file:
+MODE_KBDLOCK	suckless/st-0.8.2/win.h	/^	MODE_KBDLOCK     = 1 << 6,$/;"	e	enum:win_mode
+MODE_MOUSE	suckless/st-0.8.2/win.h	/^	MODE_MOUSE       = MODE_MOUSEBTN|MODE_MOUSEMOTION|MODE_MOUSEX10\\$/;"	e	enum:win_mode
+MODE_MOUSEBTN	suckless/st-0.8.2/win.h	/^	MODE_MOUSEBTN    = 1 << 3,$/;"	e	enum:win_mode
+MODE_MOUSEMANY	suckless/st-0.8.2/win.h	/^	MODE_MOUSEMANY   = 1 << 15,$/;"	e	enum:win_mode
+MODE_MOUSEMOTION	suckless/st-0.8.2/win.h	/^	MODE_MOUSEMOTION = 1 << 4,$/;"	e	enum:win_mode
+MODE_MOUSESGR	suckless/st-0.8.2/win.h	/^	MODE_MOUSESGR    = 1 << 9,$/;"	e	enum:win_mode
+MODE_MOUSEX10	suckless/st-0.8.2/win.h	/^	MODE_MOUSEX10    = 1 << 14,$/;"	e	enum:win_mode
+MODE_NUMLOCK	suckless/st-0.8.2/win.h	/^	MODE_NUMLOCK     = 1 << 17,$/;"	e	enum:win_mode
+MODE_PRINT	suckless/st-0.8.2/st.c	/^	MODE_PRINT       = 1 << 5,$/;"	e	enum:term_mode	file:
+MODE_REVERSE	suckless/st-0.8.2/win.h	/^	MODE_REVERSE     = 1 << 5,$/;"	e	enum:win_mode
+MODE_SIXEL	suckless/st-0.8.2/st.c	/^	MODE_SIXEL       = 1 << 7,$/;"	e	enum:term_mode	file:
+MODE_UTF8	suckless/st-0.8.2/st.c	/^	MODE_UTF8        = 1 << 6,$/;"	e	enum:term_mode	file:
+MODE_VISIBLE	suckless/st-0.8.2/win.h	/^	MODE_VISIBLE     = 1 << 0,$/;"	e	enum:win_mode
+MODE_WRAP	suckless/st-0.8.2/st.c	/^	MODE_WRAP        = 1 << 0,$/;"	e	enum:term_mode	file:
+MODKEY	suckless/dwm-6.1/config.def.h	45;"	d
+MODKEY	suckless/dwm-6.1/config.h	52;"	d
+MODKEY	suckless/st-0.8.2/config.def.h	170;"	d
+MODKEY	suckless/st-0.8.2/config.h	171;"	d
+MOUSEMASK	suckless/dwm-6.1/dwm.c	54;"	d	file:
+Monitor	suckless/dwm-6.1/dwm.c	/^struct Monitor {$/;"	s	file:
+Monitor	suckless/dwm-6.1/dwm.c	/^typedef struct Monitor Monitor;$/;"	t	typeref:struct:Monitor	file:
+MouseKey	suckless/st-0.8.2/st.h	/^} MouseKey;$/;"	t	typeref:struct:__anon29
+MouseShortcut	suckless/st-0.8.2/x.c	/^} MouseShortcut;$/;"	t	typeref:struct:__anon18	file:
+N	config/nvim/init.vim	/^nnoremap N Nzzzv$/;"	m
+NetActiveWindow	suckless/dwm-6.1/dwm.c	/^       NetWMFullscreen, NetActiveWindow, NetWMWindowType,$/;"	e	enum:__anon3	file:
+NetClientList	suckless/dwm-6.1/dwm.c	/^       NetWMWindowTypeDialog, NetClientList, NetLast }; \/* EWMH atoms *\/$/;"	e	enum:__anon3	file:
+NetLast	suckless/dwm-6.1/dwm.c	/^       NetWMWindowTypeDialog, NetClientList, NetLast }; \/* EWMH atoms *\/$/;"	e	enum:__anon3	file:
+NetSupported	suckless/dwm-6.1/dwm.c	/^enum { NetSupported, NetWMName, NetWMState,$/;"	e	enum:__anon3	file:
+NetWMFullscreen	suckless/dwm-6.1/dwm.c	/^       NetWMFullscreen, NetActiveWindow, NetWMWindowType,$/;"	e	enum:__anon3	file:
+NetWMName	suckless/dwm-6.1/dwm.c	/^enum { NetSupported, NetWMName, NetWMState,$/;"	e	enum:__anon3	file:
+NetWMState	suckless/dwm-6.1/dwm.c	/^enum { NetSupported, NetWMName, NetWMState,$/;"	e	enum:__anon3	file:
+NetWMWindowType	suckless/dwm-6.1/dwm.c	/^       NetWMFullscreen, NetActiveWindow, NetWMWindowType,$/;"	e	enum:__anon3	file:
+NetWMWindowTypeDialog	suckless/dwm-6.1/dwm.c	/^       NetWMWindowTypeDialog, NetClientList, NetLast }; \/* EWMH atoms *\/$/;"	e	enum:__anon3	file:
+NumTags	suckless/dwm-6.1/dwm.c	/^struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };$/;"	s	file:
+OBJ	suckless/dwm-6.1/Makefile	/^OBJ = ${SRC:.c=.o}$/;"	m
+OBJ	suckless/st-0.8.2/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+PKG_CONFIG	suckless/st-0.8.2/config.mk	/^PKG_CONFIG = pkg-config$/;"	m
+PREFIX	suckless/dwm-6.1/config.mk	/^PREFIX = \/usr\/local$/;"	m
+PREFIX	suckless/slstatus/config.mk	/^PREFIX = \/usr\/local$/;"	m
+PREFIX	suckless/st-0.8.2/config.mk	/^PREFIX = \/usr\/local$/;"	m
+PaperColor	config/nvim/colors/PaperColor.vim	/^command! -nargs=0 PaperColor :call g:PaperColor()$/;"	c
+PaperColor	config/nvim/colors/PaperColor.vim	/^fun! g:PaperColor()$/;"	f
+Pertag	suckless/dwm-6.1/dwm.c	/^struct Pertag {$/;"	s	file:
+Pertag	suckless/dwm-6.1/dwm.c	/^typedef struct Pertag Pertag;$/;"	t	typeref:struct:Pertag	file:
+REQ	suckless/slstatus/Makefile	/^REQ = util$/;"	m
+RSSI_TO_PERC	suckless/slstatus/components/wifi.c	11;"	d	file:
+Rule	suckless/dwm-6.1/dwm.c	/^} Rule;$/;"	t	typeref:struct:__anon10	file:
+Rune	suckless/st-0.8.2/st.h	/^typedef uint_least32_t Rune;$/;"	t
+SEL_EMPTY	suckless/st-0.8.2/st.h	/^	SEL_EMPTY = 1,$/;"	e	enum:selection_mode
+SEL_IDLE	suckless/st-0.8.2/st.h	/^	SEL_IDLE = 0,$/;"	e	enum:selection_mode
+SEL_READY	suckless/st-0.8.2/st.h	/^	SEL_READY = 2$/;"	e	enum:selection_mode
+SEL_RECTANGULAR	suckless/st-0.8.2/st.h	/^	SEL_RECTANGULAR = 2$/;"	e	enum:selection_type
+SEL_REGULAR	suckless/st-0.8.2/st.h	/^	SEL_REGULAR = 1,$/;"	e	enum:selection_type
+SHCMD	suckless/dwm-6.1/config.def.h	53;"	d
+SHCMD	suckless/dwm-6.1/config.h	60;"	d
+SNAP_LINE	suckless/st-0.8.2/st.h	/^	SNAP_LINE = 2$/;"	e	enum:selection_snap
+SNAP_WORD	suckless/st-0.8.2/st.h	/^	SNAP_WORD = 1,$/;"	e	enum:selection_snap
+SRC	suckless/dwm-6.1/Makefile	/^SRC = drw.c dwm.c util.c$/;"	m
+SRC	suckless/st-0.8.2/Makefile	/^SRC = st.c x.c$/;"	m
+STCFLAGS	suckless/st-0.8.2/config.mk	/^STCFLAGS = $(INCS) $(STCPPFLAGS) $(CPPFLAGS) $(CFLAGS)$/;"	m
+STCPPFLAGS	suckless/st-0.8.2/config.mk	/^STCPPFLAGS = -DVERSION=\\"$(VERSION)\\" -D_XOPEN_SOURCE=600$/;"	m
+STLDFLAGS	suckless/st-0.8.2/config.mk	/^STLDFLAGS = $(LIBS) $(LDFLAGS)$/;"	m
+STREscape	suckless/st-0.8.2/st.c	/^} STREscape;$/;"	t	typeref:struct:__anon35	file:
+STR_ARG_SIZ	suckless/st-0.8.2/st.c	37;"	d	file:
+STR_BUF_SIZ	suckless/st-0.8.2/st.c	36;"	d	file:
+SchemeLast	suckless/dwm-6.1/dwm.c	/^enum { SchemeNorm, SchemeSel, SchemeLast }; \/* color schemes *\/$/;"	e	enum:__anon2	file:
+SchemeNorm	suckless/dwm-6.1/dwm.c	/^enum { SchemeNorm, SchemeSel, SchemeLast }; \/* color schemes *\/$/;"	e	enum:__anon2	file:
+SchemeSel	suckless/dwm-6.1/dwm.c	/^enum { SchemeNorm, SchemeSel, SchemeLast }; \/* color schemes *\/$/;"	e	enum:__anon2	file:
+Selection	suckless/st-0.8.2/st.c	/^} Selection;$/;"	t	typeref:struct:__anon31	file:
+Shortcut	suckless/st-0.8.2/x.c	/^} Shortcut;$/;"	t	typeref:struct:__anon17	file:
+Spaces	config/nvim/init.vim	/^command Spaces %s\/\\s\\+$\/\/e$/;"	c
+TAGKEYS	suckless/dwm-6.1/config.def.h	46;"	d
+TAGKEYS	suckless/dwm-6.1/config.h	53;"	d
+TAGMASK	suckless/dwm-6.1/dwm.c	57;"	d	file:
+TCursor	suckless/st-0.8.2/st.c	/^} TCursor;$/;"	t	typeref:struct:__anon30	file:
+TERMMOD	suckless/st-0.8.2/config.def.h	171;"	d
+TERMMOD	suckless/st-0.8.2/config.h	172;"	d
+TEXTW	suckless/dwm-6.1/dwm.c	58;"	d	file:
+TIMEDIFF	suckless/st-0.8.2/st.h	16;"	d
+TLINE	suckless/st-0.8.2/st.c	46;"	d	file:
+TRUEBLUE	suckless/st-0.8.2/x.c	71;"	d	file:
+TRUECOLOR	suckless/st-0.8.2/st.h	20;"	d
+TRUEGREEN	suckless/st-0.8.2/x.c	70;"	d	file:
+TRUERED	suckless/st-0.8.2/x.c	69;"	d	file:
+Term	suckless/st-0.8.2/st.c	/^} Term;$/;"	t	typeref:struct:__anon33	file:
+TermWindow	suckless/st-0.8.2/x.c	/^} TermWindow;$/;"	t	typeref:struct:__anon20	file:
+UPTIME_FLAG	suckless/slstatus/components/uptime.c	11;"	d	file:
+UPTIME_FLAG	suckless/slstatus/components/uptime.c	13;"	d	file:
+UPTIME_FLAG	suckless/slstatus/components/uptime.c	9;"	d	file:
+UTF_INVALID	suckless/dwm-6.1/drw.c	11;"	d	file:
+UTF_INVALID	suckless/st-0.8.2/st.c	32;"	d	file:
+UTF_SIZ	suckless/dwm-6.1/drw.c	12;"	d	file:
+UTF_SIZ	suckless/st-0.8.2/st.c	33;"	d	file:
+VERSION	suckless/dwm-6.1/config.mk	/^VERSION = 6.1$/;"	m
+VERSION	suckless/slstatus/config.mk	/^VERSION = 0$/;"	m
+VERSION	suckless/st-0.8.2/config.mk	/^VERSION = 0.8.2$/;"	m
+WIDTH	suckless/dwm-6.1/dwm.c	55;"	d	file:
+WMDelete	suckless/dwm-6.1/dwm.c	/^enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; \/* default atoms *\/$/;"	e	enum:__anon4	file:
+WMLast	suckless/dwm-6.1/dwm.c	/^enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; \/* default atoms *\/$/;"	e	enum:__anon4	file:
+WMProtocols	suckless/dwm-6.1/dwm.c	/^enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; \/* default atoms *\/$/;"	e	enum:__anon4	file:
+WMState	suckless/dwm-6.1/dwm.c	/^enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; \/* default atoms *\/$/;"	e	enum:__anon4	file:
+WMTakeFocus	suckless/dwm-6.1/dwm.c	/^enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; \/* default atoms *\/$/;"	e	enum:__anon4	file:
+X	vim/colors/vividchalk.vim	/^fun! s:X(a)$/;"	f
+X11INC	suckless/dwm-6.1/config.mk	/^X11INC = \/usr\/X11R6\/include$/;"	m
+X11INC	suckless/slstatus/config.mk	/^X11INC = \/usr\/X11R6\/include$/;"	m
+X11INC	suckless/st-0.8.2/config.mk	/^X11INC = \/usr\/include\/X11$/;"	m
+X11LIB	suckless/dwm-6.1/config.mk	/^X11LIB = \/usr\/X11R6\/lib$/;"	m
+X11LIB	suckless/slstatus/config.mk	/^X11LIB = \/usr\/X11R6\/lib$/;"	m
+X11LIB	suckless/st-0.8.2/config.mk	/^X11LIB = \/usr\/lib\/X11$/;"	m
+XEMBED_FOCUS_IN	suckless/st-0.8.2/x.c	64;"	d	file:
+XEMBED_FOCUS_OUT	suckless/st-0.8.2/x.c	65;"	d	file:
+XF86AudioLowerVolume	suckless/dwm-6.1/config.h	36;"	d
+XF86AudioMute	suckless/dwm-6.1/config.h	35;"	d
+XF86AudioRaiseVolume	suckless/dwm-6.1/config.h	37;"	d
+XF86MonBrightnessDown	suckless/dwm-6.1/config.h	33;"	d
+XF86MonBrightnessUp	suckless/dwm-6.1/config.h	34;"	d
+XINERAMAFLAGS	suckless/dwm-6.1/config.mk	/^XINERAMAFLAGS = -DXINERAMA$/;"	m
+XINERAMALIBS	suckless/dwm-6.1/config.mk	/^XINERAMALIBS  = -lXinerama$/;"	m
+XK_ANY_MOD	suckless/st-0.8.2/x.c	47;"	d	file:
+XK_NO_MOD	suckless/st-0.8.2/x.c	48;"	d	file:
+XK_SWITCH_MOD	suckless/st-0.8.2/x.c	49;"	d	file:
+XSelection	suckless/st-0.8.2/x.c	/^} XSelection;$/;"	t	typeref:struct:__anon22	file:
+XWindow	suckless/st-0.8.2/x.c	/^} XWindow;$/;"	t	typeref:struct:__anon21	file:
+acquire_theme_data	config/nvim/colors/PaperColor.vim	/^fun! s:acquire_theme_data()$/;"	f
+actionfps	suckless/st-0.8.2/config.def.h	/^static unsigned int actionfps = 30;$/;"	v
+actionfps	suckless/st-0.8.2/config.h	/^static unsigned int actionfps = 30;$/;"	v
+allowaltscreen	suckless/st-0.8.2/config.def.h	/^int allowaltscreen = 1;$/;"	v
+allowaltscreen	suckless/st-0.8.2/config.h	/^int allowaltscreen = 1;$/;"	v
+alt	suckless/st-0.8.2/st.c	/^	Line *alt;    \/* alternate screen *\/$/;"	m	struct:__anon33	file:
+alt	suckless/st-0.8.2/st.c	/^	int alt;$/;"	m	struct:__anon31	file:
+appcursor	suckless/st-0.8.2/x.c	/^	signed char appcursor; \/* application cursor *\/$/;"	m	struct:__anon19	file:
+appkey	suckless/st-0.8.2/x.c	/^	signed char appkey;    \/* application keypad *\/$/;"	m	struct:__anon19	file:
+apply_syntax_highlightings	config/nvim/colors/PaperColor.vim	/^fun! s:apply_syntax_highlightings()$/;"	f
+applyrules	suckless/dwm-6.1/dwm.c	/^applyrules(Client *c)$/;"	f
+applysizehints	suckless/dwm-6.1/dwm.c	/^applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact)$/;"	f
+arg	suckless/dwm-6.1/dwm.c	/^	const Arg arg;$/;"	m	struct:__anon7	file:
+arg	suckless/dwm-6.1/dwm.c	/^	const Arg arg;$/;"	m	struct:__anon8	file:
+arg	suckless/slstatus/slstatus.c	/^struct arg {$/;"	s	file:
+arg	suckless/st-0.8.2/st.c	/^	int arg[ESC_ARG_SIZ];$/;"	m	struct:__anon34	file:
+arg	suckless/st-0.8.2/st.h	/^	const Arg arg;$/;"	m	struct:__anon29
+arg	suckless/st-0.8.2/x.c	/^	const Arg arg;$/;"	m	struct:__anon17	file:
+args	suckless/slstatus/config.def.h	/^static const struct arg args[] = {$/;"	v	typeref:struct:arg
+args	suckless/slstatus/config.h	/^static const struct arg args[] = {$/;"	v	typeref:struct:arg
+args	suckless/slstatus/slstatus.c	/^	const char *args;$/;"	m	struct:arg	file:
+args	suckless/st-0.8.2/st.c	/^	char *args[STR_ARG_SIZ];$/;"	m	struct:__anon35	file:
+argv0	suckless/slstatus/util.c	/^char *argv0;$/;"	v
+argv0	suckless/st-0.8.2/x.c	/^static char *argv0;$/;"	v	file:
+arrange	suckless/dwm-6.1/dwm.c	/^	void (*arrange)(Monitor *);$/;"	m	struct:__anon9	file:
+arrange	suckless/dwm-6.1/dwm.c	/^arrange(Monitor *m)$/;"	f
+arrangemon	suckless/dwm-6.1/dwm.c	/^arrangemon(Monitor *m)$/;"	f
+ascent	suckless/dwm-6.1/drw.h	/^	int ascent;$/;"	m	struct:__anon13
+ascent	suckless/st-0.8.2/x.c	/^	int ascent;$/;"	m	struct:__anon23	file:
+ascii_printable	suckless/st-0.8.2/config.def.h	/^static char ascii_printable[] =$/;"	v
+ascii_printable	suckless/st-0.8.2/config.h	/^static char ascii_printable[] =$/;"	v
+attach	suckless/dwm-6.1/dwm.c	/^attach(Client *c)$/;"	f
+attachstack	suckless/dwm-6.1/dwm.c	/^attachstack(Client *c)$/;"	f
+attr	suckless/st-0.8.2/st.c	/^	Glyph attr; \/* current char attributes *\/$/;"	m	struct:__anon30	file:
+attrs	suckless/st-0.8.2/x.c	/^	XSetWindowAttributes attrs;$/;"	m	struct:__anon21	file:
+b	suckless/st-0.8.2/st.h	/^	uint b;$/;"	m	struct:__anon29
+b	suckless/st-0.8.2/x.c	/^	uint b;$/;"	m	struct:__anon18	file:
+badslant	suckless/st-0.8.2/x.c	/^	int badslant;$/;"	m	struct:__anon23	file:
+badweight	suckless/st-0.8.2/x.c	/^	int badweight;$/;"	m	struct:__anon23	file:
+barwin	suckless/dwm-6.1/dwm.c	/^	Window barwin;$/;"	m	struct:Monitor	file:
+base64_digits	suckless/st-0.8.2/st.c	/^static const char base64_digits[] = {$/;"	v	file:
+base64dec	suckless/st-0.8.2/st.c	/^base64dec(const char *src)$/;"	f
+base64dec_getc	suckless/st-0.8.2/st.c	/^base64dec_getc(const char **src)$/;"	f
+baseh	suckless/dwm-6.1/dwm.c	/^	int basew, baseh, incw, inch, maxw, maxh, minw, minh;$/;"	m	struct:Client	file:
+basew	suckless/dwm-6.1/dwm.c	/^	int basew, baseh, incw, inch, maxw, maxh, minw, minh;$/;"	m	struct:Client	file:
+battery_perc	suckless/slstatus/components/battery.c	/^	battery_perc(const char *bat)$/;"	f
+battery_perc	suckless/slstatus/components/battery.c	/^	battery_perc(const char *unused)$/;"	f
+battery_remaining	suckless/slstatus/components/battery.c	/^	battery_remaining(const char *bat)$/;"	f
+battery_remaining	suckless/slstatus/components/battery.c	/^	battery_remaining(const char *unused)$/;"	f
+battery_state	suckless/slstatus/components/battery.c	/^	battery_state(const char *bat)$/;"	f
+battery_state	suckless/slstatus/components/battery.c	/^	battery_state(const char *unused)$/;"	f
+bellvolume	suckless/st-0.8.2/config.def.h	/^static int bellvolume = 0;$/;"	v
+bellvolume	suckless/st-0.8.2/config.h	/^static int bellvolume = 0;$/;"	v
+bfont	suckless/st-0.8.2/x.c	/^	Font font, bfont, ifont, ibfont;$/;"	m	struct:__anon24	file:
+bg	suckless/dwm-6.1/drw.h	/^	Clr *bg;$/;"	m	struct:__anon14
+bg	suckless/st-0.8.2/st.h	/^	uint32_t bg;      \/* background  *\/$/;"	m	struct:__anon27
+bh	suckless/dwm-6.1/dwm.c	/^static int bh, blw = 0;      \/* bar geometry *\/$/;"	v	file:
+blinktimeout	suckless/st-0.8.2/config.def.h	/^static unsigned int blinktimeout = 800;$/;"	v
+blinktimeout	suckless/st-0.8.2/config.h	/^static unsigned int blinktimeout = 800;$/;"	v
+blw	suckless/dwm-6.1/dwm.c	/^static int bh, blw = 0;      \/* bar geometry *\/$/;"	v	file:
+bmotion	suckless/st-0.8.2/x.c	/^bmotion(XEvent *e)$/;"	f
+border	suckless/dwm-6.1/drw.h	/^	Clr *border;$/;"	m	struct:__anon14
+borderpx	suckless/dwm-6.1/config.def.h	/^static const unsigned int borderpx  = 1;        \/* border pixel of windows *\/$/;"	v
+borderpx	suckless/dwm-6.1/config.h	/^static const unsigned int borderpx  = 3;        \/* border pixel of windows *\/$/;"	v
+borderpx	suckless/st-0.8.2/config.def.h	/^static int borderpx = 2;$/;"	v
+borderpx	suckless/st-0.8.2/config.h	/^static int borderpx = 2;$/;"	v
+bot	suckless/st-0.8.2/st.c	/^	int bot;      \/* bottom scroll limit *\/$/;"	m	struct:__anon33	file:
+bpress	suckless/st-0.8.2/x.c	/^bpress(XEvent *e)$/;"	f
+bprintf	suckless/slstatus/util.c	/^bprintf(const char *fmt, ...)$/;"	f
+brelease	suckless/st-0.8.2/x.c	/^brelease(XEvent *e)$/;"	f
+broken	suckless/dwm-6.1/dwm.c	/^static const char broken[] = "broken";$/;"	v	file:
+buf	suckless/slstatus/slstatus.c	/^char buf[1024];$/;"	v
+buf	suckless/st-0.8.2/st.c	/^	char buf[ESC_BUF_SIZ]; \/* raw string *\/$/;"	m	struct:__anon34	file:
+buf	suckless/st-0.8.2/st.c	/^	char buf[STR_BUF_SIZ]; \/* raw string *\/$/;"	m	struct:__anon35	file:
+buf	suckless/st-0.8.2/x.c	/^	Drawable buf;$/;"	m	struct:__anon21	file:
+button	suckless/dwm-6.1/dwm.c	/^	unsigned int button;$/;"	m	struct:__anon7	file:
+buttonpress	suckless/dwm-6.1/dwm.c	/^buttonpress(XEvent *e)$/;"	f
+buttons	suckless/dwm-6.1/config.def.h	/^static Button buttons[] = {$/;"	v
+buttons	suckless/dwm-6.1/config.h	/^static Button buttons[] = {$/;"	v
+bw	suckless/dwm-6.1/dwm.c	/^	int bw, oldbw;$/;"	m	struct:Client	file:
+by	suckless/dwm-6.1/dwm.c	/^	int by;               \/* bar geometry *\/$/;"	m	struct:Monitor	file:
+c	suckless/st-0.8.2/st.c	/^	TCursor c;    \/* cursor *\/$/;"	m	struct:__anon33	file:
+ch	suckless/st-0.8.2/x.c	/^	int ch; \/* char height *\/$/;"	m	struct:__anon20	file:
+charset	suckless/st-0.8.2/st.c	/^	int charset;  \/* current charset *\/$/;"	m	struct:__anon33	file:
+charset	suckless/st-0.8.2/st.c	/^enum charset {$/;"	g	file:
+checkotherwm	suckless/dwm-6.1/dwm.c	/^checkotherwm(void)$/;"	f
+choose	vim/colors/vividchalk.vim	/^function! s:choose(mediocre,good)$/;"	f
+chscale	suckless/st-0.8.2/config.def.h	/^static float chscale = 1.0;$/;"	v
+chscale	suckless/st-0.8.2/config.h	/^static float chscale = 1.0;$/;"	v
+class	suckless/dwm-6.1/dwm.c	/^	const char *class;$/;"	m	struct:__anon10	file:
+cleanup	suckless/dwm-6.1/dwm.c	/^cleanup(void)$/;"	f
+cleanupmon	suckless/dwm-6.1/dwm.c	/^cleanupmon(Monitor *mon)$/;"	f
+clearurgent	suckless/dwm-6.1/dwm.c	/^clearurgent(Client *c)$/;"	f
+click	suckless/dwm-6.1/dwm.c	/^	unsigned int click;$/;"	m	struct:__anon7	file:
+clientmessage	suckless/dwm-6.1/dwm.c	/^clientmessage(XEvent *e)$/;"	f
+clients	suckless/dwm-6.1/dwm.c	/^	Client *clients;$/;"	m	struct:Monitor	file:
+clipboard	suckless/st-0.8.2/x.c	/^	char *primary, *clipboard;$/;"	m	struct:__anon22	file:
+clipcopy	suckless/st-0.8.2/x.c	/^clipcopy(const Arg *dummy)$/;"	f
+clippaste	suckless/st-0.8.2/x.c	/^clippaste(const Arg *dummy)$/;"	f
+cmap	suckless/st-0.8.2/x.c	/^	Colormap cmap;$/;"	m	struct:__anon21	file:
+cmdbrightnessdown	suckless/dwm-6.1/config.h	/^static const char *cmdbrightnessdown[] = { "xbacklight", "-dec", "5", NULL };$/;"	v
+cmdbrightnessup	suckless/dwm-6.1/config.h	/^static const char *cmdbrightnessup[]   = { "xbacklight", "-inc", "5", NULL };$/;"	v
+cmdfd	suckless/st-0.8.2/st.c	/^static int cmdfd;$/;"	v	file:
+cmdlock	suckless/dwm-6.1/config.h	/^static const char *cmdlock[] = { "slock", NULL };$/;"	v
+cmdsounddown	suckless/dwm-6.1/config.h	/^static const char *cmdsounddown[]      = { "pactl", "set-sink-volume", "0", "-5%", NULL };$/;"	v
+cmdsoundtoggle	suckless/dwm-6.1/config.h	/^static const char *cmdsoundtoggle[]    = { "pactl", "set-sink-mute", "0", "toggle", NULL };$/;"	v
+cmdsoundup	suckless/dwm-6.1/config.h	/^static const char *cmdsoundup[]        = { "pactl", "set-sink-volume", "0", "+5%", NULL };$/;"	v
+cmessage	suckless/st-0.8.2/x.c	/^cmessage(XEvent *e)$/;"	f
+col	suckless/st-0.8.2/st.c	/^	int col;      \/* nb col *\/$/;"	m	struct:__anon33	file:
+col	suckless/st-0.8.2/x.c	/^	Color *col;$/;"	m	struct:__anon24	file:
+collen	suckless/st-0.8.2/x.c	/^	size_t collen;$/;"	m	struct:__anon24	file:
+color00	config/nvim/colors/PaperColor.vim	/^  let color00 = get(s:palette, 'color00')$/;"	v
+color01	config/nvim/colors/PaperColor.vim	/^  let color01 = get(s:palette, 'color01')$/;"	v
+color02	config/nvim/colors/PaperColor.vim	/^  let color02 = get(s:palette, 'color02')$/;"	v
+color03	config/nvim/colors/PaperColor.vim	/^  let color03 = get(s:palette, 'color03')$/;"	v
+color04	config/nvim/colors/PaperColor.vim	/^  let color04 = get(s:palette, 'color04')$/;"	v
+color05	config/nvim/colors/PaperColor.vim	/^  let color05 = get(s:palette, 'color05')$/;"	v
+color06	config/nvim/colors/PaperColor.vim	/^  let color06 = get(s:palette, 'color06')$/;"	v
+color07	config/nvim/colors/PaperColor.vim	/^  let color07 = get(s:palette, 'color07')$/;"	v
+color08	config/nvim/colors/PaperColor.vim	/^  let color08 = get(s:palette, 'color08')$/;"	v
+color09	config/nvim/colors/PaperColor.vim	/^  let color09 = get(s:palette, 'color09')$/;"	v
+color10	config/nvim/colors/PaperColor.vim	/^  let color10 = get(s:palette, 'color10')$/;"	v
+color11	config/nvim/colors/PaperColor.vim	/^  let color11 = get(s:palette, 'color11')$/;"	v
+color12	config/nvim/colors/PaperColor.vim	/^  let color12 = get(s:palette, 'color12')$/;"	v
+color13	config/nvim/colors/PaperColor.vim	/^  let color13 = get(s:palette, 'color13')$/;"	v
+color14	config/nvim/colors/PaperColor.vim	/^  let color14 = get(s:palette, 'color14')$/;"	v
+color15	config/nvim/colors/PaperColor.vim	/^  let color15 = get(s:palette, 'color15')$/;"	v
+colorname	suckless/st-0.8.2/config.def.h	/^static const char *colorname[] = {$/;"	v
+colorname	suckless/st-0.8.2/config.h	/^static const char *colorname[] = {$/;"	v
+colors_name	vim/colors/vividchalk.vim	/^let colors_name = "vividchalk"$/;"	v
+colour	config/nvim/colors/PaperColor.vim	/^  fun! s:colour(r, g, b)$/;"	f
+cols	suckless/st-0.8.2/config.def.h	/^static unsigned int cols = 80;$/;"	v
+cols	suckless/st-0.8.2/config.h	/^static unsigned int cols = 80;$/;"	v
+configure	suckless/dwm-6.1/dwm.c	/^configure(Client *c)$/;"	f
+configurenotify	suckless/dwm-6.1/dwm.c	/^configurenotify(XEvent *e)$/;"	f
+configurerequest	suckless/dwm-6.1/dwm.c	/^configurerequest(XEvent *e)$/;"	f
+convert_colors	config/nvim/colors/PaperColor.vim	/^fun! s:convert_colors()$/;"	f
+cpu_freq	suckless/slstatus/components/cpu.c	/^	cpu_freq(void)$/;"	f
+cpu_perc	suckless/slstatus/components/cpu.c	/^	cpu_perc(void)$/;"	f
+create_color_variables	config/nvim/colors/PaperColor.vim	/^    fun! s:create_color_variables(color_name, rich_color, term_color)$/;"	f
+createmon	suckless/dwm-6.1/dwm.c	/^createmon(void)$/;"	f
+cresize	suckless/st-0.8.2/x.c	/^cresize(int width, int height)$/;"	f
+csidump	suckless/st-0.8.2/st.c	/^csidump(void)$/;"	f
+csiescseq	suckless/st-0.8.2/st.c	/^static CSIEscape csiescseq;$/;"	v	file:
+csihandle	suckless/st-0.8.2/st.c	/^csihandle(void)$/;"	f
+csiparse	suckless/st-0.8.2/st.c	/^csiparse(void)$/;"	f
+csireset	suckless/st-0.8.2/st.c	/^csireset(void)$/;"	f
+cursor	suckless/dwm-6.1/drw.h	/^	Cursor cursor;$/;"	m	struct:__anon12
+cursor	suckless/dwm-6.1/dwm.c	/^static Cur *cursor[CurLast];$/;"	v	file:
+cursor	suckless/st-0.8.2/x.c	/^	int cursor; \/* cursor style *\/$/;"	m	struct:__anon20	file:
+cursor_movement	suckless/st-0.8.2/st.c	/^enum cursor_movement {$/;"	g	file:
+cursor_state	suckless/st-0.8.2/st.c	/^enum cursor_state {$/;"	g	file:
+cursorshape	suckless/st-0.8.2/config.def.h	/^static unsigned int cursorshape = 2;$/;"	v
+cursorshape	suckless/st-0.8.2/config.h	/^static unsigned int cursorshape = 2;$/;"	v
+cursorthickness	suckless/st-0.8.2/config.def.h	/^static unsigned int cursorthickness = 2;$/;"	v
+cursorthickness	suckless/st-0.8.2/config.h	/^static unsigned int cursorthickness = 2;$/;"	v
+curtag	suckless/dwm-6.1/dwm.c	/^	unsigned int curtag, prevtag; \/* current and previous tag *\/$/;"	m	struct:Pertag	file:
+cw	suckless/st-0.8.2/x.c	/^	int cw; \/* char width  *\/$/;"	m	struct:__anon20	file:
+cwscale	suckless/st-0.8.2/config.def.h	/^static float cwscale = 1.0;$/;"	v
+cwscale	suckless/st-0.8.2/config.h	/^static float cwscale = 1.0;$/;"	v
+datetime	suckless/slstatus/components/datetime.c	/^datetime(const char *fmt)$/;"	f
+dc	suckless/st-0.8.2/x.c	/^static DC dc;$/;"	v	file:
+defaultattr	suckless/st-0.8.2/config.def.h	/^static unsigned int defaultattr = 11;$/;"	v
+defaultattr	suckless/st-0.8.2/config.h	/^static unsigned int defaultattr = 11;$/;"	v
+defaultbg	suckless/st-0.8.2/config.def.h	/^unsigned int defaultbg = 0;$/;"	v
+defaultbg	suckless/st-0.8.2/config.h	/^unsigned int defaultbg = 0;$/;"	v
+defaultcs	suckless/st-0.8.2/config.def.h	/^static unsigned int defaultcs = 256;$/;"	v
+defaultcs	suckless/st-0.8.2/config.h	/^static unsigned int defaultcs = 256;$/;"	v
+defaultfg	suckless/st-0.8.2/config.def.h	/^unsigned int defaultfg = 7;$/;"	v
+defaultfg	suckless/st-0.8.2/config.h	/^unsigned int defaultfg = 7;$/;"	v
+defaultfontsize	suckless/st-0.8.2/x.c	/^static double defaultfontsize = 0;$/;"	v	file:
+defaultrcs	suckless/st-0.8.2/config.def.h	/^static unsigned int defaultrcs = 257;$/;"	v
+defaultrcs	suckless/st-0.8.2/config.h	/^static unsigned int defaultrcs = 257;$/;"	v
+descent	suckless/dwm-6.1/drw.h	/^	int descent;$/;"	m	struct:__anon13
+descent	suckless/st-0.8.2/x.c	/^	int descent;$/;"	m	struct:__anon23	file:
+destroynotify	suckless/dwm-6.1/dwm.c	/^destroynotify(XEvent *e)$/;"	f
+detach	suckless/dwm-6.1/dwm.c	/^detach(Client *c)$/;"	f
+detachstack	suckless/dwm-6.1/dwm.c	/^detachstack(Client *c)$/;"	f
+die	suckless/dwm-6.1/util.c	/^die(const char *fmt, ...) {$/;"	f
+die	suckless/slstatus/util.c	/^die(const char *fmt, ...)$/;"	f
+die	suckless/st-0.8.2/st.c	/^die(const char *errstr, ...)$/;"	f
+difftimespec	suckless/slstatus/slstatus.c	/^difftimespec(struct timespec *res, struct timespec *a, struct timespec *b)$/;"	f	file:
+dirtomon	suckless/dwm-6.1/dwm.c	/^dirtomon(int dir)$/;"	f
+dirty	suckless/st-0.8.2/st.c	/^	int *dirty;   \/* dirtyness of lines *\/$/;"	m	struct:__anon33	file:
+disk_free	suckless/slstatus/components/disk.c	/^disk_free(const char *path)$/;"	f
+disk_perc	suckless/slstatus/components/disk.c	/^disk_perc(const char *path)$/;"	f
+disk_total	suckless/slstatus/components/disk.c	/^disk_total(const char *path)$/;"	f
+disk_used	suckless/slstatus/components/disk.c	/^disk_used(const char *path)$/;"	f
+dmenucmd	suckless/dwm-6.1/config.def.h	/^static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };$/;"	v
+dmenucmd	suckless/dwm-6.1/config.h	/^static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };$/;"	v
+dmenufont	suckless/dwm-6.1/config.def.h	/^static const char dmenufont[]       = "monospace:size=10";$/;"	v
+dmenufont	suckless/dwm-6.1/config.h	/^static const char dmenufont[]       = "terminus:size=10";$/;"	v
+dmenumon	suckless/dwm-6.1/config.def.h	/^static char dmenumon[2] = "0"; \/* component of dmenucmd, manipulated in spawn() *\/$/;"	v
+dmenumon	suckless/dwm-6.1/config.h	/^static char dmenumon[2] = "0"; \/* component of dmenucmd, manipulated in spawn() *\/$/;"	v
+done	suckless/slstatus/slstatus.c	/^static int done;$/;"	v	file:
+doubleclicktimeout	suckless/st-0.8.2/config.def.h	/^static unsigned int doubleclicktimeout = 300;$/;"	v
+doubleclicktimeout	suckless/st-0.8.2/config.h	/^static unsigned int doubleclicktimeout = 300;$/;"	v
+dpy	suckless/dwm-6.1/drw.h	/^	Display *dpy;$/;"	m	struct:__anon13
+dpy	suckless/dwm-6.1/drw.h	/^	Display *dpy;$/;"	m	struct:__anon15
+dpy	suckless/dwm-6.1/dwm.c	/^static Display *dpy;$/;"	v	file:
+dpy	suckless/slstatus/slstatus.c	/^static Display *dpy;$/;"	v	file:
+dpy	suckless/st-0.8.2/x.c	/^	Display *dpy;$/;"	m	struct:__anon21	file:
+draw	suckless/st-0.8.2/st.c	/^draw(void)$/;"	f
+draw	suckless/st-0.8.2/x.c	/^	Draw draw;$/;"	m	struct:__anon21	file:
+drawable	suckless/dwm-6.1/drw.h	/^	Drawable drawable;$/;"	m	struct:__anon15
+drawbar	suckless/dwm-6.1/dwm.c	/^drawbar(Monitor *m)$/;"	f
+drawbars	suckless/dwm-6.1/dwm.c	/^drawbars(void)$/;"	f
+drawregion	suckless/st-0.8.2/st.c	/^drawregion(int x1, int y1, int x2, int y2)$/;"	f
+drw	suckless/dwm-6.1/dwm.c	/^static Drw *drw;$/;"	v	file:
+drw_clr_create	suckless/dwm-6.1/drw.c	/^drw_clr_create(Drw *drw, const char *clrname)$/;"	f
+drw_clr_free	suckless/dwm-6.1/drw.c	/^drw_clr_free(Clr *clr)$/;"	f
+drw_create	suckless/dwm-6.1/drw.c	/^drw_create(Display *dpy, int screen, Window root, unsigned int w, unsigned int h)$/;"	f
+drw_cur_create	suckless/dwm-6.1/drw.c	/^drw_cur_create(Drw *drw, int shape)$/;"	f
+drw_cur_free	suckless/dwm-6.1/drw.c	/^drw_cur_free(Drw *drw, Cur *cursor)$/;"	f
+drw_font_create	suckless/dwm-6.1/drw.c	/^drw_font_create(Drw *drw, const char *fontname)$/;"	f
+drw_font_free	suckless/dwm-6.1/drw.c	/^drw_font_free(Fnt *font)$/;"	f
+drw_font_getexts	suckless/dwm-6.1/drw.c	/^drw_font_getexts(Fnt *font, const char *text, unsigned int len, Extnts *tex)$/;"	f
+drw_font_getexts_width	suckless/dwm-6.1/drw.c	/^drw_font_getexts_width(Fnt *font, const char *text, unsigned int len)$/;"	f
+drw_font_xcreate	suckless/dwm-6.1/drw.c	/^drw_font_xcreate(Drw *drw, const char *fontname, FcPattern *fontpattern)$/;"	f	file:
+drw_free	suckless/dwm-6.1/drw.c	/^drw_free(Drw *drw)$/;"	f
+drw_load_fonts	suckless/dwm-6.1/drw.c	/^drw_load_fonts(Drw* drw, const char *fonts[], size_t fontcount)$/;"	f
+drw_map	suckless/dwm-6.1/drw.c	/^drw_map(Drw *drw, Window win, int x, int y, unsigned int w, unsigned int h)$/;"	f
+drw_rect	suckless/dwm-6.1/drw.c	/^drw_rect(Drw *drw, int x, int y, unsigned int w, unsigned int h, int filled, int empty, int invert)$/;"	f
+drw_resize	suckless/dwm-6.1/drw.c	/^drw_resize(Drw *drw, unsigned int w, unsigned int h)$/;"	f
+drw_setscheme	suckless/dwm-6.1/drw.c	/^drw_setscheme(Drw *drw, ClrScheme *scheme)$/;"	f
+drw_text	suckless/dwm-6.1/drw.c	/^drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, const char *text, int invert)$/;"	f
+ecalloc	suckless/dwm-6.1/util.c	/^ecalloc(size_t nmemb, size_t size)$/;"	f
+enternotify	suckless/dwm-6.1/dwm.c	/^enternotify(XEvent *e)$/;"	f
+entropy	suckless/slstatus/components/entropy.c	/^	entropy(void)$/;"	f
+esc	suckless/st-0.8.2/st.c	/^	int esc;      \/* escape state flags *\/$/;"	m	struct:__anon33	file:
+escape_state	suckless/st-0.8.2/st.c	/^enum escape_state {$/;"	g	file:
+eschandle	suckless/st-0.8.2/st.c	/^eschandle(uchar ascii)$/;"	f
+esnprintf	suckless/slstatus/util.c	/^esnprintf(char *str, size_t size, const char *fmt, ...)$/;"	f
+evcol	suckless/st-0.8.2/x.c	/^evcol(XEvent *e)$/;"	f
+evrow	suckless/st-0.8.2/x.c	/^evrow(XEvent *e)$/;"	f
+evsnprintf	suckless/slstatus/util.c	/^evsnprintf(char *str, size_t size, const char *fmt, va_list ap)$/;"	f	file:
+execsh	suckless/st-0.8.2/st.c	/^execsh(char *cmd, char **args)$/;"	f
+expose	suckless/dwm-6.1/dwm.c	/^expose(XEvent *e)$/;"	f
+expose	suckless/st-0.8.2/x.c	/^expose(XEvent *ev)$/;"	f
+f	suckless/dwm-6.1/dwm.c	/^	float f;$/;"	m	union:__anon6	file:
+f	suckless/st-0.8.2/st.h	/^	float f;$/;"	m	union:__anon28
+fg	suckless/dwm-6.1/drw.h	/^	Clr *fg;$/;"	m	struct:__anon14
+fg	suckless/st-0.8.2/st.h	/^	uint32_t fg;      \/* foreground  *\/$/;"	m	struct:__anon27
+flags	suckless/st-0.8.2/x.c	/^	int flags;$/;"	m	struct:__anon26	file:
+fmt	suckless/slstatus/slstatus.c	/^	const char *fmt;$/;"	m	struct:arg	file:
+fmt_human	suckless/slstatus/util.c	/^fmt_human(uintmax_t num, int base)$/;"	f
+focus	suckless/dwm-6.1/dwm.c	/^focus(Client *c)$/;"	f
+focus	suckless/st-0.8.2/x.c	/^focus(XEvent *ev)$/;"	f
+focusin	suckless/dwm-6.1/dwm.c	/^focusin(XEvent *e)$/;"	f
+focusmon	suckless/dwm-6.1/dwm.c	/^focusmon(const Arg *arg)$/;"	f
+focusstack	suckless/dwm-6.1/dwm.c	/^focusstack(const Arg *arg)$/;"	f
+font	suckless/st-0.8.2/config.def.h	/^static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";$/;"	v
+font	suckless/st-0.8.2/config.h	/^static char *font = "Hack,Regular:pixelsize=17:antialias=true:autohint=true";$/;"	v
+font	suckless/st-0.8.2/x.c	/^	Font font, bfont, ifont, ibfont;$/;"	m	struct:__anon24	file:
+font	suckless/st-0.8.2/x.c	/^	XftFont *font;$/;"	m	struct:__anon26	file:
+fontcount	suckless/dwm-6.1/drw.h	/^	size_t fontcount;$/;"	m	struct:__anon15
+fonts	suckless/dwm-6.1/config.def.h	/^static const char *fonts[] = {$/;"	v
+fonts	suckless/dwm-6.1/config.h	/^static const char *fonts[] = {$/;"	v
+fonts	suckless/dwm-6.1/drw.h	/^	Fnt *fonts[DRW_FONT_CACHE_SIZE];$/;"	m	struct:__anon15
+forceselmod	suckless/st-0.8.2/config.def.h	/^static uint forceselmod = ShiftMask;$/;"	v
+forceselmod	suckless/st-0.8.2/config.h	/^static uint forceselmod = ShiftMask;$/;"	v
+frc	suckless/st-0.8.2/x.c	/^static Fontcache frc[16];$/;"	v	file:
+frclen	suckless/st-0.8.2/x.c	/^static int frclen = 0;$/;"	v	file:
+func	suckless/dwm-6.1/dwm.c	/^	void (*func)(const Arg *);$/;"	m	struct:__anon8	file:
+func	suckless/dwm-6.1/dwm.c	/^	void (*func)(const Arg *arg);$/;"	m	struct:__anon7	file:
+func	suckless/slstatus/slstatus.c	/^	const char *(*func)();$/;"	m	struct:arg	file:
+func	suckless/st-0.8.2/st.h	/^	void (*func)(const Arg *);$/;"	m	struct:__anon29
+func	suckless/st-0.8.2/x.c	/^	void (*func)(const Arg *);$/;"	m	struct:__anon17	file:
+g:colors_name	config/nvim/colors/PaperColor.vim	/^let g:colors_name = "PaperColor"$/;"	v
+g:colors_name	config/nvim/colors/tempus_autumn.vim	/^let g:colors_name = "tempus_autumn"$/;"	v
+g:colors_name	config/nvim/colors/tempus_classic.vim	/^let g:colors_name = "tempus_classic"$/;"	v
+g:colors_name	config/nvim/colors/tempus_dawn.vim	/^let g:colors_name = "tempus_dawn"$/;"	v
+g:colors_name	config/nvim/colors/tempus_day.vim	/^let g:colors_name = "tempus_day"$/;"	v
+g:colors_name	config/nvim/colors/tempus_dusk.vim	/^let g:colors_name = "tempus_dusk"$/;"	v
+g:colors_name	config/nvim/colors/tempus_fugit.vim	/^let g:colors_name = "tempus_fugit"$/;"	v
+g:colors_name	config/nvim/colors/tempus_future.vim	/^let g:colors_name = "tempus_future"$/;"	v
+g:colors_name	config/nvim/colors/tempus_night.vim	/^let g:colors_name = "tempus_night"$/;"	v
+g:colors_name	config/nvim/colors/tempus_past.vim	/^let g:colors_name = "tempus_past"$/;"	v
+g:colors_name	config/nvim/colors/tempus_rift.vim	/^let g:colors_name = "tempus_rift"$/;"	v
+g:colors_name	config/nvim/colors/tempus_spring.vim	/^let g:colors_name = "tempus_spring"$/;"	v
+g:colors_name	config/nvim/colors/tempus_summer.vim	/^let g:colors_name = "tempus_summer"$/;"	v
+g:colors_name	config/nvim/colors/tempus_tempest.vim	/^let g:colors_name = "tempus_tempest"$/;"	v
+g:colors_name	config/nvim/colors/tempus_totus.vim	/^let g:colors_name = "tempus_totus"$/;"	v
+g:colors_name	config/nvim/colors/tempus_warp.vim	/^let g:colors_name = "tempus_warp"$/;"	v
+g:colors_name	config/nvim/colors/tempus_winter.vim	/^let g:colors_name = "tempus_winter"$/;"	v
+g:ctrlp_map	config/nvim/init.vim	/^let g:ctrlp_map='<leader><leader>'$/;"	v
+g:rainbow#pairs	config/nvim/init.vim	/^let g:rainbow#pairs = [['(', ')'], ['[', ']']]$/;"	v
+g:terminal_color_0	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_0  = color00[0]$/;"	v
+g:terminal_color_1	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_1  = color01[0]$/;"	v
+g:terminal_color_10	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_10 = color10[0]$/;"	v
+g:terminal_color_11	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_11 = color11[0]$/;"	v
+g:terminal_color_12	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_12 = color12[0]$/;"	v
+g:terminal_color_13	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_13 = color13[0]$/;"	v
+g:terminal_color_14	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_14 = color14[0]$/;"	v
+g:terminal_color_15	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_15 = color15[0]$/;"	v
+g:terminal_color_2	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_2  = color02[0]$/;"	v
+g:terminal_color_3	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_3  = color03[0]$/;"	v
+g:terminal_color_4	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_4  = color04[0]$/;"	v
+g:terminal_color_5	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_5  = color05[0]$/;"	v
+g:terminal_color_6	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_6  = color06[0]$/;"	v
+g:terminal_color_7	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_7  = color07[0]$/;"	v
+g:terminal_color_8	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_8  = color08[0]$/;"	v
+g:terminal_color_9	config/nvim/colors/PaperColor.vim	/^  let g:terminal_color_9  = color09[0]$/;"	v
+gc	suckless/dwm-6.1/drw.h	/^	GC gc;$/;"	m	struct:__anon15
+gc	suckless/st-0.8.2/x.c	/^	GC gc;$/;"	m	struct:__anon24	file:
+generate_language_option_variables	config/nvim/colors/PaperColor.vim	/^fun! s:generate_language_option_variables()$/;"	f
+generate_theme_option_variables	config/nvim/colors/PaperColor.vim	/^fun! s:generate_theme_option_variables()$/;"	f
+get_layout	suckless/slstatus/components/keymap.c	/^get_layout(char *syms, int grp_num)$/;"	f	file:
+get_swap_info	suckless/slstatus/components/swap.c	/^	get_swap_info(long *s_total, long *s_free, long *s_cached)$/;"	f	file:
+getatomprop	suckless/dwm-6.1/dwm.c	/^getatomprop(Client *c, Atom prop)$/;"	f
+getrootptr	suckless/dwm-6.1/dwm.c	/^getrootptr(int *x, int *y)$/;"	f
+getsel	suckless/st-0.8.2/st.c	/^getsel(void)$/;"	f
+getstate	suckless/dwm-6.1/dwm.c	/^getstate(Window w)$/;"	f
+getstats	suckless/slstatus/components/swap.c	/^	getstats(int *total, int *used)$/;"	f	file:
+getswapinfo	suckless/slstatus/components/swap.c	/^	static int getswapinfo(struct kvm_swap *swap_info, size_t size)$/;"	f	file:
+gettextprop	suckless/dwm-6.1/dwm.c	/^gettextprop(Window w, Atom atom, char *text, unsigned int size)$/;"	f
+gid	suckless/slstatus/components/user.c	/^gid(void)$/;"	f
+glyph_attribute	suckless/st-0.8.2/st.h	/^enum glyph_attribute {$/;"	g
+gm	suckless/st-0.8.2/x.c	/^	int gm; \/* geometry mask *\/$/;"	m	struct:__anon21	file:
+grabbuttons	suckless/dwm-6.1/dwm.c	/^grabbuttons(Client *c, int focused)$/;"	f
+grabkeys	suckless/dwm-6.1/dwm.c	/^grabkeys(void)$/;"	f
+grey_colour	config/nvim/colors/PaperColor.vim	/^  fun! s:grey_colour(n)$/;"	f
+grey_level	config/nvim/colors/PaperColor.vim	/^  fun! s:grey_level(n)$/;"	f
+h	suckless/dwm-6.1/drw.h	/^	unsigned int h;$/;"	m	struct:__anon13
+h	suckless/dwm-6.1/drw.h	/^	unsigned int h;$/;"	m	struct:__anon16
+h	suckless/dwm-6.1/drw.h	/^	unsigned int w, h;$/;"	m	struct:__anon15
+h	suckless/dwm-6.1/dwm.c	/^	int x, y, w, h;$/;"	m	struct:Client	file:
+h	suckless/st-0.8.2/x.c	/^	int w, h; \/* window width and height *\/$/;"	m	struct:__anon20	file:
+handler	suckless/dwm-6.1/dwm.c	/^static void (*handler[LASTEvent]) (XEvent *) = {$/;"	v	file:
+handler	suckless/st-0.8.2/x.c	/^static void (*handler[LASTEvent])(XEvent *) = {$/;"	v	file:
+height	suckless/st-0.8.2/x.c	/^	int height;$/;"	m	struct:__anon23	file:
+hibg	vim/colors/vividchalk.vim	/^function! s:hibg(group,guibg,first,second)$/;"	f
+hifg	vim/colors/vividchalk.vim	/^function! s:hifg(group,guifg,first,second,...)$/;"	f
+hist	suckless/st-0.8.2/st.c	/^	Line hist[HISTSIZE]; \/* history buffer *\/$/;"	m	struct:__anon33	file:
+histi	suckless/st-0.8.2/st.c	/^	int histi;    \/* history index *\/$/;"	m	struct:__anon33	file:
+hostname	suckless/slstatus/components/hostname.c	/^hostname(void)$/;"	f
+i	suckless/dwm-6.1/dwm.c	/^	int i;$/;"	m	union:__anon6	file:
+i	suckless/st-0.8.2/st.h	/^	int i;$/;"	m	union:__anon28
+ibfont	suckless/st-0.8.2/x.c	/^	Font font, bfont, ifont, ibfont;$/;"	m	struct:__anon24	file:
+icharset	suckless/st-0.8.2/st.c	/^	int icharset; \/* selected charset for sequence *\/$/;"	m	struct:__anon33	file:
+identify_color_mode	config/nvim/colors/PaperColor.vim	/^fun! s:identify_color_mode()$/;"	f
+ifont	suckless/st-0.8.2/x.c	/^	Font font, bfont, ifont, ibfont;$/;"	m	struct:__anon24	file:
+ignoremod	suckless/st-0.8.2/config.def.h	/^static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;$/;"	v
+ignoremod	suckless/st-0.8.2/config.h	/^static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;$/;"	v
+inch	suckless/dwm-6.1/dwm.c	/^	int basew, baseh, incw, inch, maxw, maxh, minw, minh;$/;"	m	struct:Client	file:
+incnmaster	suckless/dwm-6.1/dwm.c	/^incnmaster(const Arg *arg)$/;"	f
+incw	suckless/dwm-6.1/dwm.c	/^	int basew, baseh, incw, inch, maxw, maxh, minw, minh;$/;"	m	struct:Client	file:
+instance	suckless/dwm-6.1/dwm.c	/^	const char *instance;$/;"	m	struct:__anon10	file:
+interval	suckless/slstatus/config.def.h	/^const unsigned int interval = 1000;$/;"	v
+interval	suckless/slstatus/config.h	/^const unsigned int interval = 1000;$/;"	v
+iofd	suckless/st-0.8.2/st.c	/^static int iofd = 1;$/;"	v	file:
+ip	suckless/slstatus/components/ip.c	/^ip(const char *interface, unsigned short sa_family)$/;"	f	file:
+ipv4	suckless/slstatus/components/ip.c	/^ipv4(const char *interface)$/;"	f
+ipv6	suckless/slstatus/components/ip.c	/^ipv6(const char *interface)$/;"	f
+isfixed	suckless/dwm-6.1/dwm.c	/^	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;$/;"	m	struct:Client	file:
+isfixed	suckless/st-0.8.2/x.c	/^	int isfixed; \/* is fixed geometry? *\/$/;"	m	struct:__anon21	file:
+isfloating	suckless/dwm-6.1/dwm.c	/^	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;$/;"	m	struct:Client	file:
+isfloating	suckless/dwm-6.1/dwm.c	/^	int isfloating;$/;"	m	struct:__anon10	file:
+isfullscreen	suckless/dwm-6.1/dwm.c	/^	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;$/;"	m	struct:Client	file:
+isuniquegeom	suckless/dwm-6.1/dwm.c	/^isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)$/;"	f	file:
+isurgent	suckless/dwm-6.1/dwm.c	/^	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;$/;"	m	struct:Client	file:
+k	suckless/st-0.8.2/x.c	/^	KeySym k;$/;"	m	struct:__anon19	file:
+kernel_release	suckless/slstatus/components/kernel_release.c	/^kernel_release(void)$/;"	f
+key	suckless/st-0.8.2/config.def.h	/^static Key key[] = {$/;"	v
+key	suckless/st-0.8.2/config.h	/^static Key key[] = {$/;"	v
+keyboard_indicators	suckless/slstatus/components/keyboard_indicators.c	/^keyboard_indicators(const char *fmt)$/;"	f
+keymap	suckless/slstatus/components/keymap.c	/^keymap(void)$/;"	f
+keypress	suckless/dwm-6.1/dwm.c	/^keypress(XEvent *e)$/;"	f
+keys	suckless/dwm-6.1/config.def.h	/^static Key keys[] = {$/;"	v
+keys	suckless/dwm-6.1/config.h	/^static Key keys[] = {$/;"	v
+keysym	suckless/dwm-6.1/dwm.c	/^	KeySym keysym;$/;"	m	struct:__anon8	file:
+keysym	suckless/st-0.8.2/x.c	/^	KeySym keysym;$/;"	m	struct:__anon17	file:
+killclient	suckless/dwm-6.1/dwm.c	/^killclient(const Arg *arg)$/;"	f
+kmap	suckless/st-0.8.2/x.c	/^kmap(KeySym k, uint state)$/;"	f
+kpress	suckless/st-0.8.2/x.c	/^kpress(XEvent *ev)$/;"	f
+kscrolldown	suckless/st-0.8.2/st.c	/^kscrolldown(const Arg* a)$/;"	f
+kscrollup	suckless/st-0.8.2/st.c	/^kscrollup(const Arg* a)$/;"	f
+l	suckless/st-0.8.2/x.c	/^	int l, t; \/* left and top offset *\/$/;"	m	struct:__anon21	file:
+layouts	suckless/dwm-6.1/config.def.h	/^static const Layout layouts[] = {$/;"	v
+layouts	suckless/dwm-6.1/config.h	/^static const Layout layouts[] = {$/;"	v
+lbearing	suckless/st-0.8.2/x.c	/^	short lbearing;$/;"	m	struct:__anon23	file:
+len	suckless/st-0.8.2/st.c	/^	int len;               \/* raw string length *\/$/;"	m	struct:__anon34	file:
+len	suckless/st-0.8.2/st.c	/^	int len;               \/* raw string length *\/$/;"	m	struct:__anon35	file:
+limitexceeded	suckless/dwm-6.1/dwm.c	/^struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };$/;"	m	struct:NumTags	file:
+line	suckless/st-0.8.2/st.c	/^	Line *line;   \/* screen *\/$/;"	m	struct:__anon33	file:
+load_256_to_GUI_converter	config/nvim/colors/PaperColor.vim	/^fun! s:load_256_to_GUI_converter()$/;"	f
+load_GUI_to_256_converter	config/nvim/colors/PaperColor.vim	/^fun! s:load_GUI_to_256_converter()$/;"	f
+load_apm_power_info	suckless/slstatus/components/battery.c	/^	load_apm_power_info(struct apm_power_info *apm_info)$/;"	f	file:
+load_avg	suckless/slstatus/components/load_avg.c	/^load_avg(void)$/;"	f
+load_ieee80211_nodereq	suckless/slstatus/components/wifi.c	/^	load_ieee80211_nodereq(const char *interface, struct ieee80211_nodereq *nr)$/;"	f	file:
+load_ieee80211req	suckless/slstatus/components/wifi.c	/^	load_ieee80211req(int sock, const char *interface, void *data, int type, size_t *len)$/;"	f
+load_uvmexp	suckless/slstatus/components/ram.c	/^	load_uvmexp(struct uvmexp *uvmexp)$/;"	f
+lt	suckless/dwm-6.1/dwm.c	/^	const Layout *lt[2];$/;"	m	struct:Monitor	file:
+ltidxs	suckless/dwm-6.1/dwm.c	/^	const Layout *ltidxs[LENGTH(tags) + 1][2]; \/* matrix of tags and layouts indexes  *\/$/;"	m	struct:Pertag	file:
+ltsymbol	suckless/dwm-6.1/dwm.c	/^	char ltsymbol[16];$/;"	m	struct:Monitor	file:
+main	suckless/dwm-6.1/dwm.c	/^main(int argc, char *argv[])$/;"	f
+main	suckless/dwm-6.1/transient.c	/^int main(void) {$/;"	f
+main	suckless/slstatus/slstatus.c	/^main(int argc, char *argv[])$/;"	f
+main	suckless/st-0.8.2/x.c	/^main(int argc, char *argv[])$/;"	f
+manage	suckless/dwm-6.1/dwm.c	/^manage(Window w, XWindowAttributes *wa)$/;"	f
+mapleader	config/nvim/init.vim	/^let mapleader=","$/;"	v
+mappedkeys	suckless/st-0.8.2/config.def.h	/^static KeySym mappedkeys[] = { -1 };$/;"	v
+mappedkeys	suckless/st-0.8.2/config.h	/^static KeySym mappedkeys[] = { -1 };$/;"	v
+mappingnotify	suckless/dwm-6.1/dwm.c	/^mappingnotify(XEvent *e)$/;"	f
+maprequest	suckless/dwm-6.1/dwm.c	/^maprequest(XEvent *e)$/;"	f
+mask	suckless/dwm-6.1/dwm.c	/^	unsigned int mask;$/;"	m	struct:__anon7	file:
+mask	suckless/st-0.8.2/st.h	/^	uint mask;$/;"	m	struct:__anon29
+mask	suckless/st-0.8.2/x.c	/^	uint mask;$/;"	m	struct:__anon18	file:
+mask	suckless/st-0.8.2/x.c	/^	uint mask;$/;"	m	struct:__anon19	file:
+match	suckless/st-0.8.2/x.c	/^	XftFont *match;$/;"	m	struct:__anon23	file:
+match	suckless/st-0.8.2/x.c	/^match(uint mask, uint state)$/;"	f
+maxa	suckless/dwm-6.1/dwm.c	/^	float mina, maxa;$/;"	m	struct:Client	file:
+maxh	suckless/dwm-6.1/dwm.c	/^	int basew, baseh, incw, inch, maxw, maxh, minw, minh;$/;"	m	struct:Client	file:
+maxw	suckless/dwm-6.1/dwm.c	/^	int basew, baseh, incw, inch, maxw, maxh, minw, minh;$/;"	m	struct:Client	file:
+mfact	suckless/dwm-6.1/config.def.h	/^static const float mfact     = 0.55; \/* factor of master area size [0.05..0.95] *\/$/;"	v
+mfact	suckless/dwm-6.1/config.h	/^static const float mfact     = 0.55; \/* factor of master area size [0.05..0.95] *\/$/;"	v
+mfact	suckless/dwm-6.1/dwm.c	/^	float mfact;$/;"	m	struct:Monitor	file:
+mfacts	suckless/dwm-6.1/dwm.c	/^	float mfacts[LENGTH(tags) + 1]; \/* mfacts per tag *\/$/;"	m	struct:Pertag	file:
+mh	suckless/dwm-6.1/dwm.c	/^	int mx, my, mw, mh;   \/* screen size *\/$/;"	m	struct:Monitor	file:
+mina	suckless/dwm-6.1/dwm.c	/^	float mina, maxa;$/;"	m	struct:Client	file:
+minh	suckless/dwm-6.1/dwm.c	/^	int basew, baseh, incw, inch, maxw, maxh, minw, minh;$/;"	m	struct:Client	file:
+minw	suckless/dwm-6.1/dwm.c	/^	int basew, baseh, incw, inch, maxw, maxh, minw, minh;$/;"	m	struct:Client	file:
+mkeys	suckless/st-0.8.2/config.def.h	/^MouseKey mkeys[] = {$/;"	v
+mkeys	suckless/st-0.8.2/config.h	/^MouseKey mkeys[] = {$/;"	v
+mod	suckless/dwm-6.1/dwm.c	/^	unsigned int mod;$/;"	m	struct:__anon8	file:
+mod	suckless/st-0.8.2/x.c	/^	uint mod;$/;"	m	struct:__anon17	file:
+mode	suckless/st-0.8.2/st.c	/^	char mode[2];$/;"	m	struct:__anon34	file:
+mode	suckless/st-0.8.2/st.c	/^	int mode;     \/* terminal mode flags *\/$/;"	m	struct:__anon33	file:
+mode	suckless/st-0.8.2/st.c	/^	int mode;$/;"	m	struct:__anon31	file:
+mode	suckless/st-0.8.2/st.h	/^	ushort mode;      \/* attribute flags *\/$/;"	m	struct:__anon27
+mode	suckless/st-0.8.2/x.c	/^	int mode; \/* window state\/mode flags *\/$/;"	m	struct:__anon20	file:
+mon	suckless/dwm-6.1/dwm.c	/^	Monitor *mon;$/;"	m	struct:Client	file:
+monitor	suckless/dwm-6.1/dwm.c	/^	int monitor;$/;"	m	struct:__anon10	file:
+monocle	suckless/dwm-6.1/dwm.c	/^monocle(Monitor *m)$/;"	f
+mons	suckless/dwm-6.1/dwm.c	/^static Monitor *mons, *selmon;$/;"	v	file:
+motionnotify	suckless/dwm-6.1/dwm.c	/^motionnotify(XEvent *e)$/;"	f
+mousebg	suckless/st-0.8.2/config.def.h	/^static unsigned int mousebg = 0;$/;"	v
+mousebg	suckless/st-0.8.2/config.h	/^static unsigned int mousebg = 0;$/;"	v
+mousefg	suckless/st-0.8.2/config.def.h	/^static unsigned int mousefg = 7;$/;"	v
+mousefg	suckless/st-0.8.2/config.h	/^static unsigned int mousefg = 7;$/;"	v
+mousereport	suckless/st-0.8.2/x.c	/^mousereport(XEvent *e)$/;"	f
+mousesel	suckless/st-0.8.2/x.c	/^mousesel(XEvent *e, int done)$/;"	f
+mouseshape	suckless/st-0.8.2/config.def.h	/^static unsigned int mouseshape = XC_xterm;$/;"	v
+mouseshape	suckless/st-0.8.2/config.h	/^static unsigned int mouseshape = XC_xterm;$/;"	v
+moveChoice	scripts/i3resize	/^function moveChoice {$/;"	f
+movemouse	suckless/dwm-6.1/dwm.c	/^movemouse(const Arg *arg)$/;"	f
+movestack	suckless/dwm-6.1/movestack.c	/^movestack(const Arg *arg) {$/;"	f
+mshortcuts	suckless/st-0.8.2/config.def.h	/^static MouseShortcut mshortcuts[] = {$/;"	v
+mshortcuts	suckless/st-0.8.2/config.h	/^static MouseShortcut mshortcuts[] = {$/;"	v
+mw	suckless/dwm-6.1/dwm.c	/^	int mx, my, mw, mh;   \/* screen size *\/$/;"	m	struct:Monitor	file:
+mx	suckless/dwm-6.1/dwm.c	/^	int mx, my, mw, mh;   \/* screen size *\/$/;"	m	struct:Monitor	file:
+my	suckless/dwm-6.1/dwm.c	/^	int mx, my, mw, mh;   \/* screen size *\/$/;"	m	struct:Monitor	file:
+n	config/nvim/init.vim	/^nnoremap n nzzzv$/;"	m
+name	suckless/dwm-6.1/dwm.c	/^	char name[256];$/;"	m	struct:Client	file:
+narg	suckless/st-0.8.2/st.c	/^	int narg;              \/* nb of args *\/$/;"	m	struct:__anon34	file:
+narg	suckless/st-0.8.2/st.c	/^	int narg;              \/* nb of args *\/$/;"	m	struct:__anon35	file:
+nb	suckless/st-0.8.2/st.c	/^	} nb, ne, ob, oe;$/;"	m	struct:__anon31	typeref:struct:__anon31::__anon32	file:
+ne	suckless/st-0.8.2/st.c	/^	} nb, ne, ob, oe;$/;"	m	struct:__anon31	typeref:struct:__anon31::__anon32	file:
+netatom	suckless/dwm-6.1/dwm.c	/^static Atom wmatom[WMLast], netatom[NetLast];$/;"	v	file:
+netspeed_rx	suckless/slstatus/components/netspeeds.c	/^	netspeed_rx(const char *interface)$/;"	f
+netspeed_tx	suckless/slstatus/components/netspeeds.c	/^	netspeed_tx(const char *interface)$/;"	f
+netwmname	suckless/st-0.8.2/x.c	/^	Atom xembed, wmdeletewin, netwmname, netwmpid;$/;"	m	struct:__anon21	file:
+netwmpid	suckless/st-0.8.2/x.c	/^	Atom xembed, wmdeletewin, netwmname, netwmpid;$/;"	m	struct:__anon21	file:
+neverfocus	suckless/dwm-6.1/dwm.c	/^	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;$/;"	m	struct:Client	file:
+next	suckless/dwm-6.1/dwm.c	/^	Client *next;$/;"	m	struct:Client	file:
+next	suckless/dwm-6.1/dwm.c	/^	Monitor *next;$/;"	m	struct:Monitor	file:
+nexttiled	suckless/dwm-6.1/dwm.c	/^nexttiled(Client *c)$/;"	f
+nmaster	suckless/dwm-6.1/config.def.h	/^static const int nmaster     = 1;    \/* number of clients in master area *\/$/;"	v
+nmaster	suckless/dwm-6.1/config.h	/^static const int nmaster     = 1;    \/* number of clients in master area *\/$/;"	v
+nmaster	suckless/dwm-6.1/dwm.c	/^	int nmaster;$/;"	m	struct:Monitor	file:
+nmasters	suckless/dwm-6.1/dwm.c	/^	int nmasters[LENGTH(tags) + 1]; \/* number of windows in master area *\/$/;"	m	struct:Pertag	file:
+normbgcolor	suckless/dwm-6.1/config.def.h	/^static const char normbgcolor[]     = "#222222";$/;"	v
+normbgcolor	suckless/dwm-6.1/config.h	/^static const char normbgcolor[]     = "#222222";$/;"	v
+normbordercolor	suckless/dwm-6.1/config.def.h	/^static const char normbordercolor[] = "#444444";$/;"	v
+normbordercolor	suckless/dwm-6.1/config.h	/^static const char normbordercolor[] = "#444444";$/;"	v
+normfgcolor	suckless/dwm-6.1/config.def.h	/^static const char normfgcolor[]     = "#bbbbbb";$/;"	v
+normfgcolor	suckless/dwm-6.1/config.h	/^static const char normfgcolor[]     = "#bbbbbb";$/;"	v
+num	suckless/dwm-6.1/dwm.c	/^	int num;$/;"	m	struct:Monitor	file:
+num_files	suckless/slstatus/components/num_files.c	/^num_files(const char *path)$/;"	f
+numlock	suckless/st-0.8.2/x.c	/^numlock(const Arg *dummy)$/;"	f
+numlockmask	suckless/dwm-6.1/dwm.c	/^static unsigned int numlockmask = 0;$/;"	v	file:
+ob	suckless/st-0.8.2/st.c	/^	} nb, ne, ob, oe;$/;"	m	struct:__anon31	typeref:struct:__anon31::__anon32	file:
+ocx	suckless/st-0.8.2/st.c	/^	int ocx;      \/* old cursor col *\/$/;"	m	struct:__anon33	file:
+ocy	suckless/st-0.8.2/st.c	/^	int ocy;      \/* old cursor row *\/$/;"	m	struct:__anon33	file:
+oe	suckless/st-0.8.2/st.c	/^	} nb, ne, ob, oe;$/;"	m	struct:__anon31	typeref:struct:__anon31::__anon32	file:
+oldbutton	suckless/st-0.8.2/x.c	/^static int oldbutton = 3; \/* button event on startup: 3 = release *\/$/;"	v	file:
+oldbw	suckless/dwm-6.1/dwm.c	/^	int bw, oldbw;$/;"	m	struct:Client	file:
+oldh	suckless/dwm-6.1/dwm.c	/^	int oldx, oldy, oldw, oldh;$/;"	m	struct:Client	file:
+oldstate	suckless/dwm-6.1/dwm.c	/^	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;$/;"	m	struct:Client	file:
+oldw	suckless/dwm-6.1/dwm.c	/^	int oldx, oldy, oldw, oldh;$/;"	m	struct:Client	file:
+oldx	suckless/dwm-6.1/dwm.c	/^	int oldx, oldy, oldw, oldh;$/;"	m	struct:Client	file:
+oldy	suckless/dwm-6.1/dwm.c	/^	int oldx, oldy, oldw, oldh;$/;"	m	struct:Client	file:
+opt_class	suckless/st-0.8.2/x.c	/^static char *opt_class = NULL;$/;"	v	file:
+opt_cmd	suckless/st-0.8.2/x.c	/^static char **opt_cmd  = NULL;$/;"	v	file:
+opt_embed	suckless/st-0.8.2/x.c	/^static char *opt_embed = NULL;$/;"	v	file:
+opt_font	suckless/st-0.8.2/x.c	/^static char *opt_font  = NULL;$/;"	v	file:
+opt_io	suckless/st-0.8.2/x.c	/^static char *opt_io    = NULL;$/;"	v	file:
+opt_line	suckless/st-0.8.2/x.c	/^static char *opt_line  = NULL;$/;"	v	file:
+opt_name	suckless/st-0.8.2/x.c	/^static char *opt_name  = NULL;$/;"	v	file:
+opt_title	suckless/st-0.8.2/x.c	/^static char *opt_title = NULL;$/;"	v	file:
+pagetok	suckless/slstatus/components/ram.c	86;"	d	file:
+pattern	suckless/dwm-6.1/drw.h	/^	FcPattern *pattern;$/;"	m	struct:__anon13
+pattern	suckless/st-0.8.2/x.c	/^	FcPattern *pattern;$/;"	m	struct:__anon23	file:
+pertag	suckless/dwm-6.1/dwm.c	/^	Pertag *pertag;$/;"	m	struct:Monitor	file:
+pick	suckless/slstatus/components/battery.c	/^	pick(const char *bat, const char *f1, const char *f2, char *path,$/;"	f	file:
+pid	suckless/st-0.8.2/st.c	/^static pid_t pid;$/;"	v	file:
+pix	suckless/dwm-6.1/drw.h	/^	unsigned long pix;$/;"	m	struct:__anon11
+pop	suckless/dwm-6.1/dwm.c	/^pop(Client *c)$/;"	f
+prevtag	suckless/dwm-6.1/dwm.c	/^	unsigned int curtag, prevtag; \/* current and previous tag *\/$/;"	m	struct:Pertag	file:
+prevzooms	suckless/dwm-6.1/dwm.c	/^	Client *prevzooms[LENGTH(tags) + 1]; \/* store zoom information *\/$/;"	m	struct:Pertag	file:
+primary	suckless/st-0.8.2/x.c	/^	char *primary, *clipboard;$/;"	m	struct:__anon22	file:
+print_bat	bin/dwm_status	/^print_bat(){$/;"	f
+print_caps	bin/dwm_status	/^print_caps(){$/;"	f
+print_date	bin/dwm_status	/^print_date(){$/;"	f
+print_network	bin/dwm_status	/^print_network(){$/;"	f
+print_volume	bin/dwm_status	/^print_volume(){$/;"	f
+printscreen	suckless/st-0.8.2/st.c	/^printscreen(const Arg *arg)$/;"	f
+printsel	suckless/st-0.8.2/st.c	/^printsel(const Arg *arg)$/;"	f
+priv	suckless/st-0.8.2/st.c	/^	char priv;$/;"	m	struct:__anon34	file:
+propertynotify	suckless/dwm-6.1/dwm.c	/^propertynotify(XEvent *e)$/;"	f
+propnotify	suckless/st-0.8.2/x.c	/^propnotify(XEvent *e)$/;"	f
+pscanf	suckless/slstatus/util.c	/^pscanf(const char *path, const char *fmt, ...)$/;"	f
+quit	suckless/dwm-6.1/dwm.c	/^quit(const Arg *arg)$/;"	f
+ram_free	suckless/slstatus/components/ram.c	/^	ram_free(void) {$/;"	f
+ram_free	suckless/slstatus/components/ram.c	/^	ram_free(void)$/;"	f
+ram_perc	suckless/slstatus/components/ram.c	/^	ram_perc(void) {$/;"	f
+ram_perc	suckless/slstatus/components/ram.c	/^	ram_perc(void)$/;"	f
+ram_total	suckless/slstatus/components/ram.c	/^	ram_total(void) {$/;"	f
+ram_total	suckless/slstatus/components/ram.c	/^	ram_total(void)$/;"	f
+ram_used	suckless/slstatus/components/ram.c	/^	ram_used(void) {$/;"	f
+ram_used	suckless/slstatus/components/ram.c	/^	ram_used(void)$/;"	f
+rbearing	suckless/st-0.8.2/x.c	/^	short rbearing;$/;"	m	struct:__anon23	file:
+recttomon	suckless/dwm-6.1/dwm.c	/^recttomon(int x, int y, int w, int h)$/;"	f
+redraw	suckless/st-0.8.2/st.c	/^redraw(void)$/;"	f
+register_default_theme	config/nvim/colors/PaperColor.vim	/^fun! s:register_default_theme()$/;"	f
+resettitle	suckless/st-0.8.2/st.c	/^resettitle(void)$/;"	f
+resize	suckless/dwm-6.1/dwm.c	/^resize(Client *c, int x, int y, int w, int h, int interact)$/;"	f
+resize	suckless/st-0.8.2/x.c	/^resize(XEvent *e)$/;"	f
+resizeclient	suckless/dwm-6.1/dwm.c	/^resizeclient(Client *c, int x, int y, int w, int h)$/;"	f
+resizehints	suckless/dwm-6.1/config.def.h	/^static const int resizehints = 1;    \/* 1 means respect size hints in tiled resizals *\/$/;"	v
+resizehints	suckless/dwm-6.1/config.h	/^static const int resizehints = 0;    \/* 1 means respect size hints in tiled resizals *\/$/;"	v
+resizemouse	suckless/dwm-6.1/dwm.c	/^resizemouse(const Arg *arg)$/;"	f
+restack	suckless/dwm-6.1/dwm.c	/^restack(Monitor *m)$/;"	f
+rgb	suckless/dwm-6.1/drw.h	/^	XftColor rgb;$/;"	m	struct:__anon11
+rgb_colour	config/nvim/colors/PaperColor.vim	/^  fun! s:rgb_colour(x, y, z)$/;"	f
+rgb_level	config/nvim/colors/PaperColor.vim	/^  fun! s:rgb_level(n)$/;"	f
+rgb_number	config/nvim/colors/PaperColor.vim	/^  fun! s:rgb_number(x)$/;"	f
+root	suckless/dwm-6.1/drw.h	/^	Window root;$/;"	m	struct:__anon15
+root	suckless/dwm-6.1/dwm.c	/^static Window root;$/;"	v	file:
+row	suckless/st-0.8.2/st.c	/^	int row;      \/* nb row *\/$/;"	m	struct:__anon33	file:
+rows	suckless/st-0.8.2/config.def.h	/^static unsigned int rows = 24;$/;"	v
+rows	suckless/st-0.8.2/config.h	/^static unsigned int rows = 24;$/;"	v
+rules	suckless/dwm-6.1/config.def.h	/^static const Rule rules[] = {$/;"	v
+rules	suckless/dwm-6.1/config.h	/^static const Rule rules[] = {$/;"	v
+run	suckless/dwm-6.1/dwm.c	/^run(void)$/;"	f
+run	suckless/st-0.8.2/x.c	/^run(void)$/;"	f
+run_command	suckless/slstatus/components/run_command.c	/^run_command(const char *cmd)$/;"	f
+running	suckless/dwm-6.1/dwm.c	/^static int running = 1;$/;"	v	file:
+s	suckless/st-0.8.2/x.c	/^	char *s;$/;"	m	struct:__anon18	file:
+s	suckless/st-0.8.2/x.c	/^	char *s;$/;"	m	struct:__anon19	file:
+s:themes	config/nvim/colors/PaperColor.vim	/^let s:themes = {}$/;"	v
+s:version	config/nvim/colors/PaperColor.vim	/^let s:version = '0.9.x'$/;"	v
+scan	suckless/dwm-6.1/dwm.c	/^scan(void)$/;"	f
+scheme	suckless/dwm-6.1/drw.h	/^	ClrScheme *scheme;$/;"	m	struct:__anon15
+scheme	suckless/dwm-6.1/dwm.c	/^static ClrScheme scheme[SchemeLast];$/;"	v	file:
+scr	suckless/st-0.8.2/st.c	/^	int scr;      \/* scroll back *\/$/;"	m	struct:__anon33	file:
+scr	suckless/st-0.8.2/x.c	/^	int scr;$/;"	m	struct:__anon21	file:
+screen	suckless/dwm-6.1/drw.h	/^	int screen;$/;"	m	struct:__anon15
+screen	suckless/dwm-6.1/dwm.c	/^static int screen;$/;"	v	file:
+sel	suckless/dwm-6.1/dwm.c	/^	Client *sel;$/;"	m	struct:Monitor	file:
+sel	suckless/st-0.8.2/st.c	/^static Selection sel;$/;"	v	file:
+selbgcolor	suckless/dwm-6.1/config.def.h	/^static const char selbgcolor[]      = "#005577";$/;"	v
+selbgcolor	suckless/dwm-6.1/config.h	/^static const char selbgcolor[]      = "#005577";$/;"	v
+selbordercolor	suckless/dwm-6.1/config.def.h	/^static const char selbordercolor[]  = "#005577";$/;"	v
+selbordercolor	suckless/dwm-6.1/config.h	/^static const char selbordercolor[]  = "#005577";$/;"	v
+selclear	suckless/st-0.8.2/st.c	/^selclear(void)$/;"	f
+selclear_	suckless/st-0.8.2/x.c	/^selclear_(XEvent *e)$/;"	f
+selected	suckless/st-0.8.2/st.c	/^selected(int x, int y)$/;"	f
+selection_mode	suckless/st-0.8.2/st.h	/^enum selection_mode {$/;"	g
+selection_snap	suckless/st-0.8.2/st.h	/^enum selection_snap {$/;"	g
+selection_type	suckless/st-0.8.2/st.h	/^enum selection_type {$/;"	g
+selextend	suckless/st-0.8.2/st.c	/^selextend(int col, int row, int type, int done)$/;"	f
+selfgcolor	suckless/dwm-6.1/config.def.h	/^static const char selfgcolor[]      = "#eeeeee";$/;"	v
+selfgcolor	suckless/dwm-6.1/config.h	/^static const char selfgcolor[]      = "#eeeeee";$/;"	v
+selinit	suckless/st-0.8.2/st.c	/^selinit(void)$/;"	f
+sellt	suckless/dwm-6.1/dwm.c	/^	unsigned int sellt;$/;"	m	struct:Monitor	file:
+sellts	suckless/dwm-6.1/dwm.c	/^	unsigned int sellts[LENGTH(tags) + 1]; \/* selected layouts *\/$/;"	m	struct:Pertag	file:
+selmasks	suckless/st-0.8.2/config.def.h	/^static uint selmasks[] = {$/;"	v
+selmasks	suckless/st-0.8.2/config.h	/^static uint selmasks[] = {$/;"	v
+selmon	suckless/dwm-6.1/dwm.c	/^static Monitor *mons, *selmon;$/;"	v	file:
+selnormalize	suckless/st-0.8.2/st.c	/^selnormalize(void)$/;"	f
+selnotify	suckless/st-0.8.2/x.c	/^selnotify(XEvent *e)$/;"	f
+selpaste	suckless/st-0.8.2/x.c	/^selpaste(const Arg *dummy)$/;"	f
+selrequest	suckless/st-0.8.2/x.c	/^selrequest(XEvent *e)$/;"	f
+selscroll	suckless/st-0.8.2/st.c	/^selscroll(int orig, int n)$/;"	f
+selsnap	suckless/st-0.8.2/st.c	/^selsnap(int *x, int *y, int direction)$/;"	f
+selstart	suckless/st-0.8.2/st.c	/^selstart(int col, int row, int snap)$/;"	f
+seltags	suckless/dwm-6.1/dwm.c	/^	unsigned int seltags;$/;"	m	struct:Monitor	file:
+sendbreak	suckless/st-0.8.2/st.c	/^sendbreak(const Arg *arg)$/;"	f
+sendevent	suckless/dwm-6.1/dwm.c	/^sendevent(Client *c, Atom proto)$/;"	f
+sendmon	suckless/dwm-6.1/dwm.c	/^sendmon(Client *c, Monitor *m)$/;"	f
+set	suckless/st-0.8.2/x.c	/^	FcFontSet *set;$/;"	m	struct:__anon23	file:
+set_color_variables	config/nvim/colors/PaperColor.vim	/^fun! s:set_color_variables()$/;"	f
+set_format_attributes	config/nvim/colors/PaperColor.vim	/^fun! s:set_format_attributes()$/;"	f
+set_overriding_colors	config/nvim/colors/PaperColor.vim	/^fun! s:set_overriding_colors()$/;"	f
+setclientstate	suckless/dwm-6.1/dwm.c	/^setclientstate(Client *c, long state)$/;"	f
+setfocus	suckless/dwm-6.1/dwm.c	/^setfocus(Client *c)$/;"	f
+setfullscreen	suckless/dwm-6.1/dwm.c	/^setfullscreen(Client *c, int fullscreen)$/;"	f
+setlayout	suckless/dwm-6.1/dwm.c	/^setlayout(const Arg *arg)$/;"	f
+setmfact	suckless/dwm-6.1/dwm.c	/^setmfact(const Arg *arg)$/;"	f
+setsel	suckless/st-0.8.2/x.c	/^setsel(char *str, Time t)$/;"	f
+setup	suckless/dwm-6.1/dwm.c	/^setup(void)$/;"	f
+sh	suckless/dwm-6.1/dwm.c	/^static int sw, sh;           \/* X display screen geometry width, height *\/$/;"	v	file:
+shell	suckless/st-0.8.2/config.def.h	/^static char *shell = "\/bin\/sh";$/;"	v
+shell	suckless/st-0.8.2/config.h	/^static char *shell = "\/bin\/sh";$/;"	v
+shortcuts	suckless/st-0.8.2/config.def.h	/^static Shortcut shortcuts[] = {$/;"	v
+shortcuts	suckless/st-0.8.2/config.h	/^static Shortcut shortcuts[] = {$/;"	v
+showbar	suckless/dwm-6.1/config.def.h	/^static const int showbar            = 1;        \/* 0 means no bar *\/$/;"	v
+showbar	suckless/dwm-6.1/config.h	/^static const int showbar            = 1;        \/* 0 means no bar *\/$/;"	v
+showbar	suckless/dwm-6.1/dwm.c	/^	int showbar;$/;"	m	struct:Monitor	file:
+showbars	suckless/dwm-6.1/dwm.c	/^	Bool showbars[LENGTH(tags) + 1]; \/* display bar for the current tag *\/$/;"	m	struct:Pertag	file:
+showhide	suckless/dwm-6.1/dwm.c	/^showhide(Client *c)$/;"	f
+sigchld	suckless/dwm-6.1/dwm.c	/^sigchld(int unused)$/;"	f
+sigchld	suckless/st-0.8.2/st.c	/^sigchld(int a)$/;"	f
+sixd_to_16bit	suckless/st-0.8.2/x.c	/^sixd_to_16bit(int x)$/;"	f
+snap	suckless/dwm-6.1/config.def.h	/^static const unsigned int snap      = 32;       \/* snap pixel *\/$/;"	v
+snap	suckless/dwm-6.1/config.h	/^static const unsigned int snap      = 32;       \/* snap pixel *\/$/;"	v
+snap	suckless/st-0.8.2/st.c	/^	int snap;$/;"	m	struct:__anon31	file:
+snext	suckless/dwm-6.1/dwm.c	/^	Client *snext;$/;"	m	struct:Client	file:
+spawn	suckless/dwm-6.1/dwm.c	/^spawn(const Arg *arg)$/;"	f
+specbuf	suckless/st-0.8.2/x.c	/^	GlyphFontSpec *specbuf; \/* font spec buffer used for rendering *\/$/;"	m	struct:__anon21	file:
+stack	suckless/dwm-6.1/dwm.c	/^	Client *stack;$/;"	m	struct:Monitor	file:
+state	suckless/st-0.8.2/st.c	/^	char state;$/;"	m	struct:__anon30	file:
+stext	suckless/dwm-6.1/dwm.c	/^static char stext[256];$/;"	v	file:
+strdump	suckless/st-0.8.2/st.c	/^strdump(void)$/;"	f
+strescseq	suckless/st-0.8.2/st.c	/^static STREscape strescseq;$/;"	v	file:
+strhandle	suckless/st-0.8.2/st.c	/^strhandle(void)$/;"	f
+strparse	suckless/st-0.8.2/st.c	/^strparse(void)$/;"	f
+strreset	suckless/st-0.8.2/st.c	/^strreset(void)$/;"	f
+stty	suckless/st-0.8.2/st.c	/^stty(char **args)$/;"	f
+stty_args	suckless/st-0.8.2/config.def.h	/^char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";$/;"	v
+stty_args	suckless/st-0.8.2/config.h	/^char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";$/;"	v
+sw	suckless/dwm-6.1/dwm.c	/^static int sw, sh;           \/* X display screen geometry width, height *\/$/;"	v	file:
+swap_free	suckless/slstatus/components/swap.c	/^	swap_free(void)$/;"	f
+swap_perc	suckless/slstatus/components/swap.c	/^	swap_perc(void)$/;"	f
+swap_total	suckless/slstatus/components/swap.c	/^	swap_total(void)$/;"	f
+swap_used	suckless/slstatus/components/swap.c	/^	swap_used(void)$/;"	f
+symbol	suckless/dwm-6.1/dwm.c	/^	const char *symbol;$/;"	m	struct:__anon9	file:
+t	suckless/st-0.8.2/x.c	/^	int l, t; \/* left and top offset *\/$/;"	m	struct:__anon21	file:
+tabs	suckless/st-0.8.2/st.c	/^	int *tabs;$/;"	m	struct:__anon33	file:
+tabspaces	suckless/st-0.8.2/config.def.h	/^unsigned int tabspaces = 8;$/;"	v
+tabspaces	suckless/st-0.8.2/config.h	/^unsigned int tabspaces = 8;$/;"	v
+tag	suckless/dwm-6.1/dwm.c	/^tag(const Arg *arg)$/;"	f
+tagmon	suckless/dwm-6.1/dwm.c	/^tagmon(const Arg *arg)$/;"	f
+tags	suckless/dwm-6.1/config.def.h	/^static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };$/;"	v
+tags	suckless/dwm-6.1/config.h	/^static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };$/;"	v
+tags	suckless/dwm-6.1/dwm.c	/^	unsigned int tags;$/;"	m	struct:Client	file:
+tags	suckless/dwm-6.1/dwm.c	/^	unsigned int tags;$/;"	m	struct:__anon10	file:
+tagset	suckless/dwm-6.1/dwm.c	/^	unsigned int tagset[2];$/;"	m	struct:Monitor	file:
+tattrset	suckless/st-0.8.2/st.c	/^tattrset(int attr)$/;"	f
+tclearregion	suckless/st-0.8.2/st.c	/^tclearregion(int x1, int y1, int x2, int y2)$/;"	f
+tclick1	suckless/st-0.8.2/x.c	/^	struct timespec tclick1;$/;"	m	struct:__anon22	typeref:struct:__anon22::timespec	file:
+tclick2	suckless/st-0.8.2/x.c	/^	struct timespec tclick2;$/;"	m	struct:__anon22	typeref:struct:__anon22::timespec	file:
+tcontrolcode	suckless/st-0.8.2/st.c	/^tcontrolcode(uchar ascii)$/;"	f
+tcursor	suckless/st-0.8.2/st.c	/^tcursor(int mode)$/;"	f
+tdectest	suckless/st-0.8.2/st.c	/^tdectest(char c)$/;"	f
+tdefcolor	suckless/st-0.8.2/st.c	/^tdefcolor(int *attr, int *npar, int l)$/;"	f
+tdeftran	suckless/st-0.8.2/st.c	/^tdeftran(char ascii)$/;"	f
+tdefutf8	suckless/st-0.8.2/st.c	/^tdefutf8(char ascii)$/;"	f
+tdeletechar	suckless/st-0.8.2/st.c	/^tdeletechar(int n)$/;"	f
+tdeleteline	suckless/st-0.8.2/st.c	/^tdeleteline(int n)$/;"	f
+tdump	suckless/st-0.8.2/st.c	/^tdump(void)$/;"	f
+tdumpline	suckless/st-0.8.2/st.c	/^tdumpline(int n)$/;"	f
+tdumpsel	suckless/st-0.8.2/st.c	/^tdumpsel(void)$/;"	f
+temp	suckless/slstatus/components/temperature.c	/^	temp(const char *file)$/;"	f
+temp	suckless/slstatus/components/temperature.c	/^	temp(const char *unused)$/;"	f
+temp	suckless/slstatus/components/temperature.c	/^	temp(const char *zone)$/;"	f
+term	suckless/st-0.8.2/st.c	/^static Term term;$/;"	v	file:
+term_mode	suckless/st-0.8.2/st.c	/^enum term_mode {$/;"	g	file:
+termcmd	suckless/dwm-6.1/config.def.h	/^static const char *termcmd[]  = { "st", NULL };$/;"	v
+termcmd	suckless/dwm-6.1/config.h	/^static const char *termcmd[]  = { "st", NULL };$/;"	v
+terminate	suckless/slstatus/slstatus.c	/^terminate(const int signo)$/;"	f	file:
+termname	suckless/st-0.8.2/config.def.h	/^char *termname = "st-256color";$/;"	v
+termname	suckless/st-0.8.2/config.h	/^char *termname = "st-256color";$/;"	v
+tfulldirt	suckless/st-0.8.2/st.c	/^tfulldirt(void)$/;"	f
+th	config/nvim/init.vim	/^nnoremap th :tabfirst<CR>$/;"	m
+th	suckless/st-0.8.2/x.c	/^	int tw, th; \/* tty width and height *\/$/;"	m	struct:__anon20	file:
+theme_has_hint	config/nvim/colors/PaperColor.vim	/^fun! s:theme_has_hint(hint)$/;"	f
+tile	suckless/dwm-6.1/dwm.c	/^tile(Monitor *m)$/;"	f
+tinsertblank	suckless/st-0.8.2/st.c	/^tinsertblank(int n)$/;"	f
+tinsertblankline	suckless/st-0.8.2/st.c	/^tinsertblankline(int n)$/;"	f
+title	suckless/dwm-6.1/dwm.c	/^	const char *title;$/;"	m	struct:__anon10	file:
+tj	config/nvim/init.vim	/^nnoremap tj :tabnext<CR>$/;"	m
+tk	config/nvim/init.vim	/^nnoremap tk :tabprev<CR>$/;"	m
+tl	config/nvim/init.vim	/^nnoremap tl :tablast<CR>$/;"	m
+tlinelen	suckless/st-0.8.2/st.c	/^tlinelen(int y)$/;"	f
+tmoveato	suckless/st-0.8.2/st.c	/^tmoveato(int x, int y)$/;"	f
+tmoveto	suckless/st-0.8.2/st.c	/^tmoveto(int x, int y)$/;"	f
+tn	config/nvim/init.vim	/^nnoremap tn :tabnew<CR>$/;"	m
+tnew	suckless/st-0.8.2/st.c	/^tnew(int col, int row)$/;"	f
+tnewline	suckless/st-0.8.2/st.c	/^tnewline(int first_col)$/;"	f
+to_256	config/nvim/colors/PaperColor.vim	/^  fun! s:to_256(rgb)$/;"	f
+togglebar	suckless/dwm-6.1/dwm.c	/^togglebar(const Arg *arg)$/;"	f
+togglefloating	suckless/dwm-6.1/dwm.c	/^togglefloating(const Arg *arg)$/;"	f
+toggleprinter	suckless/st-0.8.2/st.c	/^toggleprinter(const Arg *arg)$/;"	f
+toggletag	suckless/dwm-6.1/dwm.c	/^toggletag(const Arg *arg)$/;"	f
+toggleview	suckless/dwm-6.1/dwm.c	/^toggleview(const Arg *arg)$/;"	f
+top	suckless/st-0.8.2/st.c	/^	int top;      \/* top    scroll limit *\/$/;"	m	struct:__anon33	file:
+topbar	suckless/dwm-6.1/config.def.h	/^static const int topbar             = 1;        \/* 0 means bottom bar *\/$/;"	v
+topbar	suckless/dwm-6.1/config.h	/^static const int topbar             = 1;        \/* 0 means bottom bar *\/$/;"	v
+topbar	suckless/dwm-6.1/dwm.c	/^	int topbar;$/;"	m	struct:Monitor	file:
+tprinter	suckless/st-0.8.2/st.c	/^tprinter(char *s, size_t len)$/;"	f
+tputc	suckless/st-0.8.2/st.c	/^tputc(Rune u)$/;"	f
+tputtab	suckless/st-0.8.2/st.c	/^tputtab(int n)$/;"	f
+trantbl	suckless/st-0.8.2/st.c	/^	char trantbl[4]; \/* charset table translation *\/$/;"	m	struct:__anon33	file:
+treset	suckless/st-0.8.2/st.c	/^treset(void)$/;"	f
+tresize	suckless/st-0.8.2/st.c	/^tresize(int col, int row)$/;"	f
+tripleclicktimeout	suckless/st-0.8.2/config.def.h	/^static unsigned int tripleclicktimeout = 600;$/;"	v
+tripleclicktimeout	suckless/st-0.8.2/config.h	/^static unsigned int tripleclicktimeout = 600;$/;"	v
+tscrolldown	suckless/st-0.8.2/st.c	/^tscrolldown(int orig, int n, int copyhist)$/;"	f
+tscrollup	suckless/st-0.8.2/st.c	/^tscrollup(int orig, int n, int copyhist)$/;"	f
+tsetattr	suckless/st-0.8.2/st.c	/^tsetattr(int *attr, int l)$/;"	f
+tsetchar	suckless/st-0.8.2/st.c	/^tsetchar(Rune u, Glyph *attr, int x, int y)$/;"	f
+tsetdirt	suckless/st-0.8.2/st.c	/^tsetdirt(int top, int bot)$/;"	f
+tsetdirtattr	suckless/st-0.8.2/st.c	/^tsetdirtattr(int attr)$/;"	f
+tsetmode	suckless/st-0.8.2/st.c	/^tsetmode(int priv, int set, int *args, int narg)$/;"	f
+tsetscroll	suckless/st-0.8.2/st.c	/^tsetscroll(int t, int b)$/;"	f
+tstrsequence	suckless/st-0.8.2/st.c	/^tstrsequence(uchar c)$/;"	f
+tswapscreen	suckless/st-0.8.2/st.c	/^tswapscreen(void)$/;"	f
+ttyhangup	suckless/st-0.8.2/st.c	/^ttyhangup()$/;"	f
+ttynew	suckless/st-0.8.2/st.c	/^ttynew(char *line, char *cmd, char *out, char **args)$/;"	f
+ttyread	suckless/st-0.8.2/st.c	/^ttyread(void)$/;"	f
+ttyresize	suckless/st-0.8.2/st.c	/^ttyresize(int tw, int th)$/;"	f
+ttywrite	suckless/st-0.8.2/st.c	/^ttywrite(const char *s, size_t n, int may_echo)$/;"	f
+ttywriteraw	suckless/st-0.8.2/st.c	/^ttywriteraw(const char *s, size_t n)$/;"	f
+tw	suckless/st-0.8.2/x.c	/^	int tw, th; \/* tty width and height *\/$/;"	m	struct:__anon20	file:
+twrite	suckless/st-0.8.2/st.c	/^twrite(const char *buf, int buflen, int show_ctrl)$/;"	f
+type	suckless/st-0.8.2/st.c	/^	char type;             \/* ESC type ... *\/$/;"	m	struct:__anon35	file:
+type	suckless/st-0.8.2/st.c	/^	int type;$/;"	m	struct:__anon31	file:
+u	suckless/st-0.8.2/st.h	/^	Rune u;           \/* character code *\/$/;"	m	struct:__anon27
+uchar	suckless/st-0.8.2/st.h	/^typedef unsigned char uchar;$/;"	t
+ui	suckless/dwm-6.1/dwm.c	/^	unsigned int ui;$/;"	m	union:__anon6	file:
+ui	suckless/st-0.8.2/st.h	/^	uint ui;$/;"	m	union:__anon28
+uid	suckless/slstatus/components/user.c	/^uid(void)$/;"	f
+uint	suckless/st-0.8.2/st.h	/^typedef unsigned int uint;$/;"	t
+ulong	suckless/st-0.8.2/st.h	/^typedef unsigned long ulong;$/;"	t
+unfocus	suckless/dwm-6.1/dwm.c	/^unfocus(Client *c, int setfocus)$/;"	f
+unicodep	suckless/st-0.8.2/x.c	/^	Rune unicodep;$/;"	m	struct:__anon26	file:
+unknown_str	suckless/slstatus/config.def.h	/^static const char unknown_str[] = "n\/a";$/;"	v
+unknown_str	suckless/slstatus/config.h	/^static const char unknown_str[] = "n\/a";$/;"	v
+unmanage	suckless/dwm-6.1/dwm.c	/^unmanage(Client *c, int destroyed)$/;"	f
+unmap	suckless/st-0.8.2/x.c	/^unmap(XEvent *ev)$/;"	f
+unmapnotify	suckless/dwm-6.1/dwm.c	/^unmapnotify(XEvent *e)$/;"	f
+updatebarpos	suckless/dwm-6.1/dwm.c	/^updatebarpos(Monitor *m)$/;"	f
+updatebars	suckless/dwm-6.1/dwm.c	/^updatebars(void)$/;"	f
+updateclientlist	suckless/dwm-6.1/dwm.c	/^updateclientlist()$/;"	f
+updategeom	suckless/dwm-6.1/dwm.c	/^updategeom(void)$/;"	f
+updatenumlockmask	suckless/dwm-6.1/dwm.c	/^updatenumlockmask(void)$/;"	f
+updatesizehints	suckless/dwm-6.1/dwm.c	/^updatesizehints(Client *c)$/;"	f
+updatestatus	suckless/dwm-6.1/dwm.c	/^updatestatus(void)$/;"	f
+updatetitle	suckless/dwm-6.1/dwm.c	/^updatetitle(Client *c)$/;"	f
+updatewindowtype	suckless/dwm-6.1/dwm.c	/^updatewindowtype(Client *c)$/;"	f
+updatewmhints	suckless/dwm-6.1/dwm.c	/^updatewmhints(Client *c)$/;"	f
+uptime	suckless/slstatus/components/uptime.c	/^uptime(void)$/;"	f
+usage	suckless/slstatus/slstatus.c	/^usage(void)$/;"	f	file:
+usage	suckless/st-0.8.2/x.c	/^usage(void)$/;"	f
+usedfont	suckless/st-0.8.2/x.c	/^static char *usedfont = NULL;$/;"	v	file:
+usedfontsize	suckless/st-0.8.2/x.c	/^static double usedfontsize = 0;$/;"	v	file:
+username	suckless/slstatus/components/user.c	/^username(void)$/;"	f
+ushort	suckless/st-0.8.2/st.h	/^typedef unsigned short ushort;$/;"	t
+utf8decode	suckless/dwm-6.1/drw.c	/^utf8decode(const char *c, long *u, size_t clen)$/;"	f	file:
+utf8decode	suckless/st-0.8.2/st.c	/^utf8decode(const char *c, Rune *u, size_t clen)$/;"	f
+utf8decodebyte	suckless/dwm-6.1/drw.c	/^utf8decodebyte(const char c, size_t *i)$/;"	f	file:
+utf8decodebyte	suckless/st-0.8.2/st.c	/^utf8decodebyte(char c, size_t *i)$/;"	f
+utf8encode	suckless/st-0.8.2/st.c	/^utf8encode(Rune u, char *c)$/;"	f
+utf8encodebyte	suckless/st-0.8.2/st.c	/^utf8encodebyte(Rune u, size_t i)$/;"	f
+utf8strchr	suckless/st-0.8.2/st.c	/^utf8strchr(char *s, Rune u)$/;"	f
+utf8validate	suckless/dwm-6.1/drw.c	/^utf8validate(long *u, size_t i)$/;"	f	file:
+utf8validate	suckless/st-0.8.2/st.c	/^utf8validate(Rune *u, size_t i)$/;"	f
+utfbyte	suckless/dwm-6.1/drw.c	/^static const unsigned char utfbyte[UTF_SIZ + 1] = {0x80,    0, 0xC0, 0xE0, 0xF0};$/;"	v	file:
+utfbyte	suckless/st-0.8.2/st.c	/^static uchar utfbyte[UTF_SIZ + 1] = {0x80,    0, 0xC0, 0xE0, 0xF0};$/;"	v	file:
+utfmask	suckless/dwm-6.1/drw.c	/^static const unsigned char utfmask[UTF_SIZ + 1] = {0xC0, 0x80, 0xE0, 0xF0, 0xF8};$/;"	v	file:
+utfmask	suckless/st-0.8.2/st.c	/^static uchar utfmask[UTF_SIZ + 1] = {0xC0, 0x80, 0xE0, 0xF0, 0xF8};$/;"	v	file:
+utfmax	suckless/dwm-6.1/drw.c	/^static const long utfmax[UTF_SIZ + 1] = {0x10FFFF, 0x7F, 0x7FF, 0xFFFF, 0x10FFFF};$/;"	v	file:
+utfmax	suckless/st-0.8.2/st.c	/^static Rune utfmax[UTF_SIZ + 1] = {0x10FFFF, 0x7F, 0x7FF, 0xFFFF, 0x10FFFF};$/;"	v	file:
+utfmin	suckless/dwm-6.1/drw.c	/^static const long utfmin[UTF_SIZ + 1] = {       0,    0,  0x80,  0x800,  0x10000};$/;"	v	file:
+utfmin	suckless/st-0.8.2/st.c	/^static Rune utfmin[UTF_SIZ + 1] = {       0,    0,  0x80,  0x800,  0x10000};$/;"	v	file:
+utmp	suckless/st-0.8.2/config.def.h	/^char *utmp = NULL;$/;"	v
+utmp	suckless/st-0.8.2/config.h	/^char *utmp = NULL;$/;"	v
+v	suckless/dwm-6.1/dwm.c	/^	const void *v;$/;"	m	union:__anon6	file:
+v	suckless/st-0.8.2/st.h	/^	const void *v;$/;"	m	union:__anon28
+valid_layout_or_variant	suckless/slstatus/components/keymap.c	/^valid_layout_or_variant(char *sym)$/;"	f	file:
+verr	suckless/slstatus/util.c	/^verr(const char *fmt, va_list ap)$/;"	f	file:
+view	suckless/dwm-6.1/dwm.c	/^view(const Arg *arg)$/;"	f
+vis	suckless/st-0.8.2/x.c	/^	Visual *vis;$/;"	m	struct:__anon21	file:
+visibility	suckless/st-0.8.2/x.c	/^visibility(XEvent *ev)$/;"	f
+vol_perc	suckless/slstatus/components/volume.c	/^	vol_perc(const char *card)$/;"	f
+vtiden	suckless/st-0.8.2/config.def.h	/^char *vtiden = "\\033[?6c";$/;"	v
+vtiden	suckless/st-0.8.2/config.h	/^char *vtiden = "\\033[?6c";$/;"	v
+w	suckless/dwm-6.1/drw.h	/^	unsigned int w, h;$/;"	m	struct:__anon15
+w	suckless/dwm-6.1/drw.h	/^	unsigned int w;$/;"	m	struct:__anon16
+w	suckless/dwm-6.1/dwm.c	/^	int x, y, w, h;$/;"	m	struct:Client	file:
+w	suckless/st-0.8.2/x.c	/^	int w, h; \/* window width and height *\/$/;"	m	struct:__anon20	file:
+warn	suckless/slstatus/util.c	/^warn(const char *fmt, ...)$/;"	f
+wh	suckless/dwm-6.1/dwm.c	/^	int wx, wy, ww, wh;   \/* window area  *\/$/;"	m	struct:Monitor	file:
+width	suckless/st-0.8.2/x.c	/^	int width;$/;"	m	struct:__anon23	file:
+wifi_essid	suckless/slstatus/components/wifi.c	/^	wifi_essid(const char *interface)$/;"	f
+wifi_perc	suckless/slstatus/components/wifi.c	/^	wifi_perc(const char *interface)$/;"	f
+win	suckless/dwm-6.1/dwm.c	/^	Window win;$/;"	m	struct:Client	file:
+win	suckless/st-0.8.2/x.c	/^	Window win;$/;"	m	struct:__anon21	file:
+win	suckless/st-0.8.2/x.c	/^static TermWindow win;$/;"	v	file:
+win_mode	suckless/st-0.8.2/win.h	/^enum win_mode {$/;"	g
+wintoclient	suckless/dwm-6.1/dwm.c	/^wintoclient(Window w)$/;"	f
+wintomon	suckless/dwm-6.1/dwm.c	/^wintomon(Window w)$/;"	f
+wmatom	suckless/dwm-6.1/dwm.c	/^static Atom wmatom[WMLast], netatom[NetLast];$/;"	v	file:
+wmdeletewin	suckless/st-0.8.2/x.c	/^	Atom xembed, wmdeletewin, netwmname, netwmpid;$/;"	m	struct:__anon21	file:
+worddelimiters	suckless/st-0.8.2/config.def.h	/^char *worddelimiters = " ";$/;"	v
+worddelimiters	suckless/st-0.8.2/config.h	/^char *worddelimiters = " ";$/;"	v
+ww	suckless/dwm-6.1/dwm.c	/^	int wx, wy, ww, wh;   \/* window area  *\/$/;"	m	struct:Monitor	file:
+wx	suckless/dwm-6.1/dwm.c	/^	int wx, wy, ww, wh;   \/* window area  *\/$/;"	m	struct:Monitor	file:
+wy	suckless/dwm-6.1/dwm.c	/^	int wx, wy, ww, wh;   \/* window area  *\/$/;"	m	struct:Monitor	file:
+x	suckless/dwm-6.1/dwm.c	/^	int x, y, w, h;$/;"	m	struct:Client	file:
+x	suckless/st-0.8.2/st.c	/^		int x, y;$/;"	m	struct:__anon31::__anon32	file:
+x	suckless/st-0.8.2/st.c	/^	int x;$/;"	m	struct:__anon30	file:
+xbell	suckless/st-0.8.2/x.c	/^xbell(void)$/;"	f
+xclear	suckless/st-0.8.2/x.c	/^xclear(int x1, int y1, int x2, int y2)$/;"	f
+xclipcopy	suckless/st-0.8.2/x.c	/^xclipcopy(void)$/;"	f
+xdrawcursor	suckless/st-0.8.2/x.c	/^xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og)$/;"	f
+xdrawglyph	suckless/st-0.8.2/x.c	/^xdrawglyph(Glyph g, int x, int y)$/;"	f
+xdrawglyphfontspecs	suckless/st-0.8.2/x.c	/^xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, int y)$/;"	f
+xdrawline	suckless/st-0.8.2/x.c	/^xdrawline(Line line, int x1, int y1, int x2)$/;"	f
+xembed	suckless/st-0.8.2/x.c	/^	Atom xembed, wmdeletewin, netwmname, netwmpid;$/;"	m	struct:__anon21	file:
+xerror	suckless/dwm-6.1/dwm.c	/^xerror(Display *dpy, XErrorEvent *ee)$/;"	f
+xerrordummy	suckless/dwm-6.1/dwm.c	/^xerrordummy(Display *dpy, XErrorEvent *ee)$/;"	f
+xerrorstart	suckless/dwm-6.1/dwm.c	/^xerrorstart(Display *dpy, XErrorEvent *ee)$/;"	f
+xerrorxlib	suckless/dwm-6.1/dwm.c	/^static int (*xerrorxlib)(Display *, XErrorEvent *);$/;"	v	file:
+xfinishdraw	suckless/st-0.8.2/x.c	/^xfinishdraw(void)$/;"	f
+xfont	suckless/dwm-6.1/drw.h	/^	XftFont *xfont;$/;"	m	struct:__anon13
+xfps	suckless/st-0.8.2/config.def.h	/^static unsigned int xfps = 120;$/;"	v
+xfps	suckless/st-0.8.2/config.h	/^static unsigned int xfps = 120;$/;"	v
+xgeommasktogravity	suckless/st-0.8.2/x.c	/^xgeommasktogravity(int mask)$/;"	f
+xhints	suckless/st-0.8.2/x.c	/^xhints(void)$/;"	f
+xic	suckless/st-0.8.2/x.c	/^	XIC xic;$/;"	m	struct:__anon21	file:
+xim	suckless/st-0.8.2/x.c	/^	XIM xim;$/;"	m	struct:__anon21	file:
+xinit	suckless/st-0.8.2/x.c	/^xinit(int cols, int rows)$/;"	f
+xloadcolor	suckless/st-0.8.2/x.c	/^xloadcolor(int i, const char *name, Color *ncolor)$/;"	f
+xloadcols	suckless/st-0.8.2/x.c	/^xloadcols(void)$/;"	f
+xloadfont	suckless/st-0.8.2/x.c	/^xloadfont(Font *f, FcPattern *pattern)$/;"	f
+xloadfonts	suckless/st-0.8.2/x.c	/^xloadfonts(char *fontstr, double fontsize)$/;"	f
+xmakeglyphfontspecs	suckless/st-0.8.2/x.c	/^xmakeglyphfontspecs(XftGlyphFontSpec *specs, const Glyph *glyphs, int len, int x, int y)$/;"	f
+xmalloc	suckless/st-0.8.2/st.c	/^xmalloc(size_t len)$/;"	f
+xrealloc	suckless/st-0.8.2/st.c	/^xrealloc(void *p, size_t len)$/;"	f
+xresize	suckless/st-0.8.2/x.c	/^xresize(int col, int row)$/;"	f
+xsel	suckless/st-0.8.2/x.c	/^static XSelection xsel;$/;"	v	file:
+xsetcolorname	suckless/st-0.8.2/x.c	/^xsetcolorname(int x, const char *name)$/;"	f
+xsetcursor	suckless/st-0.8.2/x.c	/^xsetcursor(int cursor)$/;"	f
+xsetenv	suckless/st-0.8.2/x.c	/^xsetenv(void)$/;"	f
+xsetmode	suckless/st-0.8.2/x.c	/^xsetmode(int set, unsigned int flags)$/;"	f
+xsetpointermotion	suckless/st-0.8.2/x.c	/^xsetpointermotion(int set)$/;"	f
+xsetsel	suckless/st-0.8.2/x.c	/^xsetsel(char *str)$/;"	f
+xsettitle	suckless/st-0.8.2/x.c	/^xsettitle(char *p)$/;"	f
+xseturgency	suckless/st-0.8.2/x.c	/^xseturgency(int add)$/;"	f
+xstartdraw	suckless/st-0.8.2/x.c	/^xstartdraw(void)$/;"	f
+xstrdup	suckless/st-0.8.2/st.c	/^xstrdup(char *s)$/;"	f
+xtarget	suckless/st-0.8.2/x.c	/^	Atom xtarget;$/;"	m	struct:__anon22	file:
+xunloadfont	suckless/st-0.8.2/x.c	/^xunloadfont(Font *f)$/;"	f
+xunloadfonts	suckless/st-0.8.2/x.c	/^xunloadfonts(void)$/;"	f
+xw	suckless/st-0.8.2/x.c	/^static XWindow xw;$/;"	v	file:
+xwrite	suckless/st-0.8.2/st.c	/^xwrite(int fd, const char *s, size_t len)$/;"	f
+y	suckless/dwm-6.1/dwm.c	/^	int x, y, w, h;$/;"	m	struct:Client	file:
+y	suckless/st-0.8.2/st.c	/^		int x, y;$/;"	m	struct:__anon31::__anon32	file:
+y	suckless/st-0.8.2/st.c	/^	int y;$/;"	m	struct:__anon30	file:
+zoom	suckless/dwm-6.1/dwm.c	/^zoom(const Arg *arg)$/;"	f
+zoom	suckless/st-0.8.2/x.c	/^zoom(const Arg *arg)$/;"	f
+zoomabs	suckless/st-0.8.2/x.c	/^zoomabs(const Arg *arg)$/;"	f
+zoomreset	suckless/st-0.8.2/x.c	/^zoomreset(const Arg *arg)$/;"	f
