@@ -5,46 +5,25 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
-" Plug 'NLKNguyen/papercolor-theme'
-" Plug 'https://github.com/rakr/vim-one.git'
-Plug 'zefei/vim-wintabs'
-Plug 'zefei/vim-wintabs-powerline'
+Plug 'junegunn/seoul256.vim'
+Plug 'https://github.com/lambdalisue/suda.vim.git'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'https://github.com/rafi/awesome-vim-colorschemes.git'
 Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
-" Plug 'flazz/vim-colorschemes'
-" Plug 'https://github.com/altercation/vim-colors-solarized.git'
-" Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'flazz/vim-colorschemes'
+Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/tpope/vim-surround.git'
-" Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
-"Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'https://github.com/majutsushi/tagbar.git'
-" Plug 'https://github.com/xolox/vim-easytags.git'
-" Plug 'https://github.com/xolox/vim-misc.git'
-
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
-
 Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
-
-" Plug 'vimwiki/vimwiki'
-
-"if has('nvim')
-"    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-"endif
-
-" Plug 'junegunn/goyo.vim'
-
 Plug 'https://github.com/mbbill/undotree.git'
-
 Plug 'https://github.com/godlygeek/tabular.git'
-
 call plug#end()
+
 
 set statusline=
 set statusline+=\ %f
@@ -64,12 +43,11 @@ set expandtab " tabs are spaces
 set softtabstop=4 " number of spaces in tab when editing
 
 " show line warp
-"set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
 nmap <F6> :set list!<CR>
-set listchars=eol:$,tab:>\ ,trail:-,extends:>,precedes:<,space:_
+" set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
+" set listchars=eol:$,tab:>\ ,trail:-,extends:>,precedes:<,space:_
 "set list
 set showbreak=›››\ 
-
 scriptencoding utf-8
 let mapleader=","
 
@@ -78,7 +56,7 @@ set number " show line numbers
 set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
-set cursorline " highlight current line
+" set cursorline " highlight current line
 " set cursorcolumn
 set nocompatible " make vim not vi
 set wildmenu " visual autocomplete for comand menu
@@ -165,22 +143,30 @@ nnoremap <C-q> :bd<CR>
 "nnoremap j gj
 "nnoremap k gk
 
+" <C-d> and <C-u> Alternative
+nmap K <C-u>
+nmap J <C-d> 
+
 " move to beginning/end of line
-map H ^
-map L $
+nmap H ^
+nmap L $
+vmap H ^
+vmap L $
+
 
 " more sensible w key
 " nnoremap w W
 
 " keep search matches in the middle of the window
-nnoremap n nzzzv
-nnoremap N Nzzzv
+" nnoremap n nzzzv
+" nnoremap N Nzzzv
 
 " move between matching opening and ending surrouding brakets { code }
 map <tab> %
 
 " save sudo
-nmap <leader>sudo :w !sudo tee % <CR><CR>
+" nmap <leader>sudo :w !sudo tee % <CR><CR>
+nmap <leader>sudo :w suda://%
 
 " disable PageUp and PageDown
 nnoremap <PageUp>   <nop>
@@ -197,49 +183,30 @@ command Spaces %s/\s\+$//e
 inoremap <S-Tab> <C-v><Tab>
 
 " Colors
-"set termguicolors
 set t_Co=256
-" set background=dark
 set background=light
 syntax enable " enalbe syntax processing
-" colorscheme vividchalk
-colorscheme PaperColor
-" colorscheme tempus_totus
-"colorscheme dracula
+colorscheme Tomorrow
 
 " UNDO SETTINGS
 set undofile " Maintain undo history between sessions
 set undodir=~/.vim/undodir
 
-"let wiki_1 = {}
-"let wiki_1.path = '~/Documents/notes/'
-"let wiki_1.syntax = 'markdown'
-"let wiki_1.ext = '.md'
-"
-"let g:vimwiki_list = [wiki_1]
-"let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-
-" Markdown Preview
-" let g:mkdp_auto_start = 0
-" let g:mkdp_command_for_global = 1
-
 " Rainbow Parentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
-" Goyo maping
-" map <leader>f :Goyo<CR>
-
-"" higlight column right after max textwidth
-"
 set colorcolumn=81
-"highlight ColorColumn ctermbg=234 guibg=lightgrey
+" highlight ColorColumn ctermbg=254 guibg=lightGrey
+" highlight ColorColumn ctermbg=235 guibg=lightGrey
+" highlight Visual term=reverse cterm=reverse guibg=Grey
 
 ""hi ColorColumn gui=reverse cterm=reverse
 
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 "match OverLength /\%81v.\+/
-"set cursorline
-hi CursorLine term=bold  cterm=bold
+set cursorline
+" highlight CursorLine ctermbg=254 guibg=lightGrey
+" hi CursorLine term=bold  cterm=bold
 " hi CursorLine term=bold cterm=bold guibg=Grey40
 " Spell check
 " augroup markdownSpell
@@ -265,11 +232,13 @@ nnoremap <leader>f :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>. :CtrlPBuffer<CR>
 
-set hidden
+
 " Buffers
-nnoremap <c-n> :bnext<CR>
-nnoremap <c-p> :bprev<CR>
+set hidden
+" imap <c-n> <esc>:bnext<CR>
+" imap <c-p> <esc>:bprev<CR>
+nmap <c-n> :bnext<CR>
+nmap <c-p> :bprev<CR>
 nnoremap <leader>b :ls<CR>:b<space>
 
-" TagBar
-" nmap <F8> :Tagbar<CR>
+set spelllang=pt
