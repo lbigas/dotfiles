@@ -175,6 +175,7 @@ set t_Co=256
 set background=light
 syntax enable " enalbe syntax processing
 colorscheme PaperColor
+" colorscheme tempus_totus
 
 " UNDO SETTINGS
 set undofile " Maintain undo history between sessions

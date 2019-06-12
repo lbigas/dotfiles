@@ -5,10 +5,55 @@
 #|_|____/ 
 
 
-set $mod Mod4
-set $terminal st
-set $Locker slock
+# exec --no-startup-id setxkbmap gb -option 'grp:alt_shift_toggle'
+exec --no-startup-id setxkbmap gb -variant intlextd
 
+set $mod Mod4
+set $terminal xfce4-terminal
+# set $terminal konsole
+# set $Locker slock
+set $Locker $HOME/.bin/i3_lock
+for_window [class="^.*"] border pixel 4
+
+# set_from_resource $colorbg  i3wm.background   #ff00ff
+# set_from_resource $colorfg  i3wm.foreground   #ff00ff
+# set_from_resource $color0  i3wm.color0   #ff00ff
+# set_from_resource $color1  i3wm.color1   #ff00ff
+# set_from_resource $color2  i3wm.color2   #ff00ff
+# set_from_resource $color3  i3wm.color3   #ff00ff
+# set_from_resource $color4  i3wm.color4   #ff00ff
+# set_from_resource $color5  i3wm.color5   #ff00ff
+# set_from_resource $color6  i3wm.color6   #ff00ff
+# set_from_resource $color7  i3wm.color7   #ff00ff
+# set_from_resource $color8  i3wm.color8   #ff00ff
+# set_from_resource $color9  i3wm.color9   #ff00ff
+# set_from_resource $color10 i3wm.color10  #ff00ff
+# set_from_resource $color11 i3wm.color11  #ff00ff
+# set_from_resource $color12 i3wm.color12  #ff00ff
+# set_from_resource $color13 i3wm.color13  #ff00ff
+# set_from_resource $color14 i3wm.color14  #ff00ff
+# set_from_resource $color15 i3wm.color15 #ff00ff
+
+# # class                 border  bground text    indicator child_border
+# client.focused          #D7F7FF #D7F7FF #000000 #D7F7FF   #D7F7FF
+# client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
+# client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+# client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+# client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+# client.background       #FFFFFF
+
+# client.focused           $colorbg  $color8  $colorbg   $colorbg
+# client.focused_inactive  $colorbg  $colorbg  $color15  $colorbg
+# client.unfocused         $colorbg  $colorbg  $color8   $colorbg
+# client.urgent            $colorbg  $colorbg  $color8   $colorbg
+# client.placeholder       $colorbg  $colorbg  $color8   $colorbg
+
+# client.focused           #111111  #000000  #000000
+# client.focused_inactive  #ff00ff  #ff00ff  $color15  #ff00ff
+# client.unfocused         #ff00ff  #ff00ff  $color8   #ff00ff
+# client.urgent            #ff00ff  #ff00ff  $color8   #ff00ff
+# client.placeholder       #ff00ff  #ff00ff  $color8   #ff00ff
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -16,8 +61,12 @@ set $Locker slock
 #font pango:monospace 7
 
 # Global font for i3
-font pango:Terminus 12px
-new_window normal 3
+# font pango 7
+font Terminus 5
+# font pango:mono 0
+# new_window normal 0
+# for_window [class="^.*"] border pixel 3
+# new_window 1pixel
 
 # Focus to or to not follow mouse
 focus_follows_mouse yes
@@ -25,12 +74,20 @@ focus_follows_mouse yes
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Auto-lock
+# exec xautolock -time 1 -locker '$HOME/.bin/i3_lock' &
+
 # Wallpaper
 #exec --no-startup-id feh --bg-fill ~/Pictures/space.jpg
 exec --no-startup-id feh --bg-fill "#000000"
+# exec --no-startup-id feh --bg-fill SwSVePs.jpg
 
 # start a terminal
-bindsym $mod+Shift+Return exec --no-startup-id $terminal
+# bindsym $mod+Shift+Return exec --no-startup-id $terminal
+bindsym $mod+Return exec --no-startup-id $terminal
+
+# start pcmanfm
+bindsym $mod+n exec --no-startup-id pcmanfm
 
 # start terminal with ranger
 bindsym $mod+Shift+f exec --no-startup-id $terminal -e ranger
@@ -40,7 +97,9 @@ bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
+# bindsym $mod+grave exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+grave exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+p exec --no-startup-id rofi -show run
 
 # Start NetworkManager applet
 exec --no-startup-id nm-applet
@@ -76,10 +135,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # split in horizontal orientation
-bindsym $mod+g split h
+bindsym $mod+v split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+g split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -141,8 +200,8 @@ bindsym $mod+Shift+r restart
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 bar {
-    font pango:Terminus 12px
-#	font pango:mono 9
+    font pango:Terminus 8
+	# font pango:mono 7
 
 
     position bottom
@@ -165,14 +224,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 
-# Resize bindings (y u i o)
-bindsym $mod+Shift+y exec --no-startup-id "bash ~/.scripts/i3resize left"
-
-bindsym $mod+Shift+u exec --no-startup-id "bash ~/.scripts/i3resize down"
-
-bindsym $mod+Shift+i exec --no-startup-id "bash ~/.scripts/i3resize up"
-
-bindsym $mod+Shift+o exec --no-startup-id "bash ~/.scripts/i3resize right"
 
 
 # Presentation on workspace 11
@@ -201,3 +252,37 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+# Resize bindings (y u i o)
+bindsym $mod+Shift+y exec --no-startup-id "bash ~/.scripts/i3resize left"
+
+bindsym $mod+Shift+u exec --no-startup-id "bash ~/.scripts/i3resize down"
+
+bindsym $mod+Shift+i exec --no-startup-id "bash ~/.scripts/i3resize up"
+
+bindsym $mod+Shift+o exec --no-startup-id "bash ~/.scripts/i3resize right"
+
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 2 px or 2 ppt
+        bindsym j resize grow height 2 px or 2 ppt
+        bindsym k resize shrink height 2 px or 2 ppt
+        bindsym l resize grow width 2 px or 2 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 2 px or 2 ppt
+        bindsym Down resize grow height 2 px or 2 ppt
+        bindsym Up resize shrink height 2 px or 2 ppt
+        bindsym Right resize grow width 2 px or 2 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
