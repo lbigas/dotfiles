@@ -5,7 +5,7 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/Yggdroot/indentLine.git'
+" Plug 'https://github.com/Yggdroot/indentLine.git'
  Plug 'itchyny/lightline.vim'
 Plug 'zefei/vim-wintabs'
 Plug 'zefei/vim-wintabs-powerline'

@@ -241,9 +241,11 @@ bindsym $mod+F12 mode "$mode_system"
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym --release l exec --no-startup-id $Locker && sleep 1, mode "default"
+    # bindsym --release l exec --no-startup-id $Locker && sleep 1, mode "default"
+    bindsym --release l exec --no-startup-id $Locker, mode "default"
     bindsym --release e exec --no-startup-id i3-msg exit, mode "default"
     bindsym --release s exec --no-startup-id systemctl suspend && $Locker, mode "default"
+    # bindsym --release s exec --no-startup-id systemctl $Locker && suspend, mode "default"
     bindsym --release h exec --no-startup-id systemctl hibernate $$ $Locker, mode "default"
     bindsym --release r exec --no-startup-id systemctl reboot, mode "default"
     bindsym --release Shift+s exec --no-startup-id  systemctl poweroff -i, mode "default"
