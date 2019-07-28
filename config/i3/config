@@ -7,13 +7,13 @@
 
 # exec --no-startup-id setxkbmap gb -option 'grp:alt_shift_toggle'
 # exec --no-startup-id setxkbmap gb -variant intlextd
-exec --no-startup-id setxkbmap gb
+# exec --no-startup-id setxkbmap gb
 
 set $mod Mod4
 set $terminal xfce4-terminal
 # set $terminal konsole
-# set $Locker slock
-set $Locker $HOME/.bin/i3_lock
+set $Locker slock
+# set $Locker $HOME/.bin/i3_lock
 for_window [class="^.*"] border pixel 4
 
 # set_from_resource $colorbg  i3wm.background   #ff00ff
@@ -93,17 +93,20 @@ bindsym $mod+n exec --no-startup-id pcmanfm
 # start terminal with ranger
 bindsym $mod+Shift+f exec --no-startup-id $terminal -e ranger
 
+# start cmst - connman gui
+bindsym $mod+Shift+n exec --no-startup-id cmst
+
 # kill focused window
 bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
+bindsym $mod+p exec dmenu_run
 # bindsym $mod+grave exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+grave exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+p exec --no-startup-id rofi -show run
+# bindsym $mod+grave exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+grave exec --no-startup-id rofi -show run
 
 # Start NetworkManager applet
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 # exec --no-startup-id cmst -m
 #exec --no-startup-id wicd-client --tray
 
@@ -247,7 +250,7 @@ mode "$mode_system" {
     bindsym --release l exec --no-startup-id $Locker, mode "default"
     bindsym --release e exec --no-startup-id i3-msg exit, mode "default"
     # bindsym --release s exec --no-startup-id systemctl suspend && $Locker, mode "default"
-    bindsym --release s exec --no-startup-id sudo zzz, mode "default"
+    bindsym --release s exec --no-startup-id sudo zzz && $Locker, mode "default"
     # bindsym --release s exec --no-startup-id systemctl $Locker && suspend, mode "default"
     bindsym --release h exec --no-startup-id systemctl hibernate $$ $Locker, mode "default"
     # bindsym --release r exec --no-startup-id systemctl reboot, mode "default"

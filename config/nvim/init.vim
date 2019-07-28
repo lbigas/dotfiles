@@ -5,15 +5,19 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
-" Plug 'https://github.com/Yggdroot/indentLine.git'
- Plug 'itchyny/lightline.vim'
-Plug 'zefei/vim-wintabs'
-Plug 'zefei/vim-wintabs-powerline'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'kaicataldo/material.vim'
+Plug 'cormacrelf/vim-colors-github'
+Plug 'https://github.com/reedes/vim-colors-pencil.git'
+Plug 'https://github.com/morhetz/gruvbox.git'
+" Plug 'https://github.com/junegunn/seoul256.vim.git'
+Plug 'https://github.com/romainl/Apprentice.git'
+Plug 'https://github.com/jonathanfilip/vim-lucius.git'
+" Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'https://github.com/lambdalisue/suda.vim.git'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'https://github.com/rakr/vim-one.git'
-Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+" Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
@@ -25,6 +29,17 @@ Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 call plug#end()
 
+" Colors
+set t_Co=256
+set background=light
+" set background=dark
+syntax enable " enalbe syntax processing
+" colorscheme PaperColor
+" colorscheme onehalflight
+" colorscheme material
+colorscheme github
+" colorscheme apprentice
+
 set statusline=
 set statusline+=\ %f
 set statusline+=%m
@@ -34,9 +49,6 @@ set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ [%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
-
-let g:lightline = { 'colorscheme': 'PaperColor' }
-set noshowmode
 
 filetype plugin indent on
 set tabstop=4 " number of visual spaces per TAB
@@ -61,7 +73,7 @@ set number " show line numbers
 set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
-" set cursorline " highlight current line
+set cursorline " highlight current line
 " set cursorcolumn
 set nocompatible " make vim not vi
 set wildmenu " visual autocomplete for comand menu
@@ -100,18 +112,16 @@ set autoread " autoreload file when changes are made to it
 
 " line warping
 set wrap
-
 "set formatoptions=1
 set lbr
 "set nolist "disable linebreak
 
-
-" turn off search highlight
-nnoremap <esc> :nohlsearch<CR>
-
 " Vim splits
 set splitright " vertical split to the right
 set splitbelow " horizontal split to the bottom
+"
+" turn off search highlight
+nnoremap <esc> :nohlsearch<CR>
 
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
@@ -170,31 +180,25 @@ command Spaces %s/\s\+$//e
 " Insert tab in insert mod with Shitft-Tab
 inoremap <S-Tab> <C-v><Tab>
 
-" Colors
-set t_Co=256
-set background=light
-syntax enable " enalbe syntax processing
-colorscheme PaperColor
-" colorscheme tempus_totus
-
 " UNDO SETTINGS
 set undofile " Maintain undo history between sessions
-set undodir=~/.vim/undodir " Undo file directory
+" set undodir=~/.vim/undodir " Undo file directory
+set undodir=~/.config/nvim/undodir " Undo file directory
 
 " Rainbow Parentheses
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
 "" higlight column right after max textwidth
-set colorcolumn=81
+" set colorcolumn=81
 " highlight ColorColumn ctermbg=254 guibg=lightGrey
 " highlight ColorColumn ctermbg=235 guibg=lightGrey
 " highlight Visual term=reverse cterm=reverse guibg=Grey
 
 ""hi ColorColumn gui=reverse cterm=reverse
 
-set cursorline
-" highlight CursorLine ctermbg=254 guibg=lightGrey
+" set cursorline
 " hi CursorLine term=bold  cterm=bold
+" highlight CursorLine ctermbg=255 guibg=lightGrey
 " hi CursorLine term=bold cterm=bold guibg=Grey40
 
 " Undotree
@@ -206,7 +210,6 @@ autocmd FileType lhaskell setlocal commentstring=--\ %s
 
 " Ctags
 set tags+=tags;
-
 
 " CtrlP
 let g:ctrlp_map='<leader><leader>'
