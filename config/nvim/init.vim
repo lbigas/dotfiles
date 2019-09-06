@@ -29,6 +29,13 @@ Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 call plug#end()
 
+vmap <leader>y :w! /tmp/vitmp<CR>                                   
+nmap <leader>p :r! cat /tmp/vitmp<CR>
+
+
+" Clipboard with "+y 
+set clipboard=unnamedplus
+
 " Colors
 set t_Co=256
 set background=light
@@ -73,13 +80,13 @@ set number " show line numbers
 set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
-set cursorline " highlight current line
+" set cursorline " highlight current line
 " set cursorcolumn
 set nocompatible " make vim not vi
 set wildmenu " visual autocomplete for comand menu
 set wildmode=longest:full,full
 set wildignore+=*.class,*.ctxt,*.bluej
-set lazyredraw " redraw only when we need to
+" set lazyredraw " redraw only when we need to
 set showmatch " highlight matching brackets
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
@@ -121,7 +128,8 @@ set splitright " vertical split to the right
 set splitbelow " horizontal split to the bottom
 "
 " turn off search highlight
-nnoremap <esc> :nohlsearch<CR>
+" nnoremap <esc> :nohlsearch<CR>
+nnoremap <leader><space> :nohlsearch<CR>
 
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
