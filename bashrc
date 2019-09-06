@@ -62,7 +62,8 @@ smiley()
   fi
 }
 
-PS1="${RCol}┌─["'`smiley`'"\[${Cyan}\]\h@\u\[${RCol}\] \[${Yel}\]\w\[${RCol}\]]\n└─╼ "
+# PS1="${RCol}┌─["'`smiley`'"\[${Cyan}\]\h@\u\[${RCol}\] \[${Yel}\]\w\[${RCol}\]]\n└─╼ "
+PS1="${RCol}┌─[\[${Cyan}\]\h@\u\[${RCol}\] \[${Yel}\]\w\[${RCol}\]]\n└─╼ "
 
 #PS1='[\u@\h \W]\$ '
 #PS1='\[\e]0;\w\a\]\[\e[32m\]\u@\h: \[\e[33m\]\w\[\e[0m\]\n\$ '
