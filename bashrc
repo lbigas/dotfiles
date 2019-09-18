@@ -17,6 +17,8 @@ alias grep='grep --color=auto'
 # enter a directory without needing to write cd
 shopt -s autocd
 
+bind 'set completion-ignore-case on' # ignore case on Tab complition
+
 alias shutdown='shutdown -h now'
 alias suspend='systemctl suspend'
 alias hibernate='systemctl hibernate'
@@ -25,8 +27,6 @@ alias ..="cd .."
 alias ....="cd ../.."
 alias ......="cd ../../.."
 
-#alias v=vim
-#alias sv="sudo -E vim"
 alias v=nvim
 alias sv="sudo -E nvim"
 alias r=ranger
@@ -34,8 +34,6 @@ alias r=ranger
 alias ls='ls -hN --color=auto'
 alias la="ls -a"
 alias ll="ls -l"
-#alias grep="grep --color=auto"
-#alias diff="diff --color=auto"
 
 alias starwars="telnet towel.blinkenlights.nl"
 
@@ -43,7 +41,6 @@ alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cres
 
 export PATH=$PATH:$HOME/.bin
 
-bind 'set completion-ignore-case on' # ignore case on Tab complition
 
 
 RCol='\033[0m';
