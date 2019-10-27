@@ -9,12 +9,17 @@
 # exec --no-startup-id setxkbmap gb -variant intlextd
 # exec --no-startup-id setxkbmap gb
 
+# set wallpaper
+exec --no-startup-id xsetroot -solid "#333333"
+
 set $mod Mod4
 set $terminal xfce4-terminal
 # set $terminal konsole
-set $Locker slock
+# set $Locker slock
 # set $Locker $HOME/.bin/i3_lock
-for_window [class="^.*"] border pixel 4
+set $Locker i3lock -c 7600ad
+set $filemanager pcmanfm
+# for_window [class="^.*"] border pixel 4
 
 # set_from_resource $colorbg  i3wm.background   #ff00ff
 # set_from_resource $colorfg  i3wm.foreground   #ff00ff
@@ -59,14 +64,17 @@ for_window [class="^.*"] border pixel 4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # In this case this is only used to the status bar
-#font pango:monospace 7
+
 
 # Global font for i3
-# font pango 7
-font Terminus 5
-# font pango:mono 0
-# new_window normal 0
-# for_window [class="^.*"] border pixel 3
+# font pango:Terminus 7
+font pango:Gohu 7
+# font pango:Terminus 0
+# font pango:monospace 8
+
+# for_window [class=".*"] title_format "%title"
+
+# for_window [class="^.*"] border pixel 4
 # new_window 1pixel
 
 # Focus to or to not follow mouse
@@ -90,23 +98,29 @@ bindsym $mod+Return exec --no-startup-id $terminal
 # start pcmanfm
 bindsym $mod+n exec --no-startup-id pcmanfm
 
-# start terminal with ranger
-bindsym $mod+Shift+f exec --no-startup-id $terminal -e ranger
+# start file manager
+# bindsym $mod+Shift+f exec --no-startup-id $terminal -e ranger
+bindsym $mod+Shift+f exec --no-startup-id $filemanager
 
 # start cmst - connman gui
-bindsym $mod+Shift+n exec --no-startup-id cmst
+# bindsym $mod+Shift+n exec --no-startup-id cmst
+
+# bindsym $mod+Shift+n exec --nostartup-id xfce4-popup-whiskermenu
 
 # kill focused window
 bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec dmenu_run
+bindsym $mod+p exec --no-startup-id dmenu_run
+bindsym $mod+grave exec --no-startup-id dmenu_run
+
+# bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+grave exec --no-startup-id i3-dmenu-desktop
 # bindsym $mod+grave exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+grave exec --no-startup-id rofi -show run
+# bindsym $mod+grave exec --no-startup-id rofi -show run
 
 # Start NetworkManager applet
-# exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 # exec --no-startup-id cmst -m
 #exec --no-startup-id wicd-client --tray
 
@@ -205,12 +219,14 @@ bindsym $mod+Shift+r restart
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 bar {
-    font pango:Terminus 8
-	# font pango:mono 7
+    # font pango:Terminus 8
+    font pango:Gohu 8
+	# font pango:mono 8
 
 
     position bottom
     status_command i3blocks
+    # status_command py3status
 }
 
 
@@ -223,11 +239,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Brightness
-bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 5
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+# bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 2
+# bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 2
 
-# bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
-# bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 2
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 2
 
 
 
@@ -249,14 +265,14 @@ mode "$mode_system" {
     # bindsym --release l exec --no-startup-id $Locker && sleep 1, mode "default"
     bindsym --release l exec --no-startup-id $Locker, mode "default"
     bindsym --release e exec --no-startup-id i3-msg exit, mode "default"
-    # bindsym --release s exec --no-startup-id systemctl suspend && $Locker, mode "default"
-    bindsym --release s exec --no-startup-id sudo zzz && $Locker, mode "default"
+    bindsym --release s exec --no-startup-id systemctl suspend && $Locker, mode "default"
+    # bindsym --release s exec --no-startup-id sudo zzz && $Locker, mode "default"
     # bindsym --release s exec --no-startup-id systemctl $Locker && suspend, mode "default"
     bindsym --release h exec --no-startup-id systemctl hibernate $$ $Locker, mode "default"
-    # bindsym --release r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym --release r exec --no-startup-id sudo reboot, mode "default"
-    # bindsym --release Shift+s exec --no-startup-id  systemctl poweroff -i, mode "default"
-    bindsym --release Shift+s exec --no-startup-id  sudo poweroff, mode "default"
+    bindsym --release r exec --no-startup-id systemctl reboot, mode "default"
+    # bindsym --release r exec --no-startup-id sudo reboot, mode "default"
+    bindsym --release Shift+s exec --no-startup-id  systemctl poweroff -i, mode "default"
+    # bindsym --release Shift+s exec --no-startup-id  sudo poweroff, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

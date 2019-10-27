@@ -5,6 +5,8 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/andbar-ru/vim-unicon.git'
+" Plug 'plasticboy/vim-markdown'
 Plug 'kaicataldo/material.vim'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'https://github.com/reedes/vim-colors-pencil.git'
@@ -38,13 +40,18 @@ set clipboard=unnamedplus
 
 " Colors
 set t_Co=256
+set termguicolors
 set background=light
 " set background=dark
 syntax enable " enalbe syntax processing
 " colorscheme PaperColor
+" colorscheme one
+" colorscheme lucius
+colorscheme unicon
 " colorscheme onehalflight
+" colorscheme onehalfdark
 " colorscheme material
-colorscheme github
+" colorscheme github
 " colorscheme apprentice
 
 set statusline=
@@ -80,7 +87,7 @@ set number " show line numbers
 set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
-" set cursorline " highlight current line
+set cursorline " highlight current line
 " set cursorcolumn
 set nocompatible " make vim not vi
 set wildmenu " visual autocomplete for comand menu
@@ -215,6 +222,8 @@ nnoremap <F5> :UndotreeToggle<CR>
 " vim-commentary comments style
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 autocmd FileType lhaskell setlocal commentstring=--\ %s
+autocmd Filetype markdown setlocal commentstring=<!---\ %s\ --->
+autocmd Filetype markdown setlocal complete+=kspell
 
 " Ctags
 set tags+=tags;
@@ -243,3 +252,11 @@ let g:indentLine_char = '│'
 let g:indentLine_color_term = 250
 
 set spelllang=pt
+
+" Disable line numbers in markdown
+autocmd FileType markdown setlocal norelativenumber
+
+autocmd FileType markdown setlocal spell
+
+" Vim markdown settings
+let g:vim_markdown_folding_disabled = 1
