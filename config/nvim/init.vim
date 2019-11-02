@@ -189,7 +189,7 @@ nnoremap <PageDown> <nop>
 " NERDTree
 nnoremap <F3> :NERDTreeToggle<CR>
 
-" Remove trailing wthitescape with comand :Spaces
+" Remove trailing whitescape with comand :Spaces
 command Spaces %s/\s\+$//e
 
 " Insert tab in insert mod with Shitft-Tab
