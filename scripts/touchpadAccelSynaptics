@@ -1,0 +1,5 @@
+#!/bin/bash
+
+synclient AccelFactor=0.0
+synclient VertScrollDelta=180
+synclient HorizScrollDelta=180
