@@ -1,0 +1,10 @@
+[Scheme]
+Name=Tempus Totus
+ColorForeground=#4a484d
+ColorBackground=#ffffff
+ColorCursor=#4a484d
+ColorBold=#4a484d
+ColorPalette=#4a484d;#a80000;#005f26;#714900;#1d3fcf;#882a7a;#185870;#f3f1f3;#5f4d4f;#9b2230;#4a5700;#8b3800;#2d48b0;#7310cb;#005589;#ffffff
+TabActivityColor=#005f26
+ColorSelectionBackground=#4a484d
+ColorSelection=#ffffff

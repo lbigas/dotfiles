@@ -1,0 +1,10 @@
+[Scheme]
+Name=Tempus Rift
+ColorForeground=#bbbcbc
+ColorBackground=#162c22
+ColorCursor=#bbbcbc
+ColorBold=#bbbcbc
+ColorPalette=#162c22;#c19904;#34b534;#7fad00;#30aeb0;#c8954c;#5fad8f;#ab9aa9;#283431;#d2a634;#6ac134;#82bd00;#56bdad;#cca0ba;#10c480;#bbbcbc
+TabActivityColor=#34b534
+ColorSelectionBackground=#bbbcbc
+ColorSelection=#162c22

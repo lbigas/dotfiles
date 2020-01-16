@@ -3,3 +3,4 @@
 synclient AccelFactor=0.0
 synclient VertScrollDelta=180
 synclient HorizScrollDelta=180
+synclient MinSpeed=1.9

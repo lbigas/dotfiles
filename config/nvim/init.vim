@@ -5,6 +5,15 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
+Plug 'hzchirs/vim-material'
+Plug 'arcticicestudio/nord-vim'
+Plug 'https://github.com/wimstefan/vim-artesanal.git'
+Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
+Plug 'https://github.com/ap/vim-buftabline.git'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" Plug 'https://github.com/rakr/vim-two-firewatch.git'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/andbar-ru/vim-unicon.git'
 " Plug 'plasticboy/vim-markdown'
 Plug 'kaicataldo/material.vim'
@@ -24,30 +33,37 @@ Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
-Plug 'https://github.com/kien/ctrlp.vim.git'
+" Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 call plug#end()
 
-vmap <leader>y :w! /tmp/vitmp<CR>                                   
-nmap <leader>p :r! cat /tmp/vitmp<CR>
+" vmap <leader>y :w! /tmp/vitmp<CR>
+" nmap <leader>p :r! cat /tmp/vitmp<CR>
 
 
-" Clipboard with "+y 
+" Clipboard with "+y
 set clipboard=unnamedplus
 
 " Colors
 set t_Co=256
-set termguicolors
+" set termguicolors
 set background=light
 " set background=dark
 syntax enable " enalbe syntax processing
 " colorscheme PaperColor
 " colorscheme one
-" colorscheme lucius
-colorscheme unicon
+colorscheme lucius
+LuciusWhite
+" colorscheme two-firewatch
+" colorscheme unicon
+" colorscheme material
+" colorscheme artesanal
+" colorscheme nord
+" colorscheme sprinkles
+" colorscheme tempus_past
 " colorscheme onehalflight
 " colorscheme onehalfdark
 " colorscheme material
@@ -77,7 +93,7 @@ set listchars=tab:›\ ,eol:¬,trail:⋅
 "set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
 nmap <F6> :set list!<CR>
 " set listchars=eol:$,tab:>\ ,trail:-,extends:>,precedes:<,space:_
-set showbreak=›››\ 
+set showbreak=›››\
 
 scriptencoding utf-8
 let mapleader=","
@@ -118,7 +134,7 @@ set autoread " autoreload file when changes are made to it
 " set scrolloff=1 " always one line above/below cursor
 
 " Mouse scroll
-" set mouse=a
+set mouse=a
 
 " movement
 " nnoremap <c-k> 5k
@@ -144,21 +160,21 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
 " vim tabs
-nnoremap tn :tabnew<CR>
-nnoremap tj :tabnext<CR>
-nnoremap tk :tabprev<CR>
-nnoremap th :tabfirst<CR>
-nnoremap tl :tablast<CR>
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
-nnoremap <leader>0 10gt
+" nnoremap tn :tabnew<CR>
+" nnoremap tj :tabnext<CR>
+" nnoremap tk :tabprev<CR>
+" nnoremap th :tabfirst<CR>
+" nnoremap tl :tablast<CR>
+" nnoremap <leader>1 1gt
+" nnoremap <leader>2 2gt
+" nnoremap <leader>3 3gt
+" nnoremap <leader>4 4gt
+" nnoremap <leader>5 5gt
+" nnoremap <leader>6 6gt
+" nnoremap <leader>7 7gt
+" nnoremap <leader>8 8gt
+" nnoremap <leader>9 9gt
+" nnoremap <leader>0 10gt
 
 " move vertically by visual line (in case of wrap count the wrap as one line)
 "nnoremap j gj
@@ -166,7 +182,7 @@ nnoremap <leader>0 10gt
 
 " <C-d> and <C-u> Alternative
 nmap K <C-u>
-nmap J <C-d> 
+nmap J <C-d>
 
 " move to beginning/end of line
 nmap H ^
@@ -228,11 +244,30 @@ autocmd Filetype markdown setlocal complete+=kspell
 " Ctags
 set tags+=tags;
 
+" FZF
+nmap <Leader>f :GFiles<CR>
+nmap <Leader>F :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap ; :Buffers<CR>
+nmap <Leader>h :History<CR>
+nmap <Leader>t :BTags<CR>
+nmap <Leader>T :Tags<CR>
+nmap <Leader>l :BLines<CR>
+nmap <Leader>L :Lines<CR>
+nmap <Leader>' :Marks<CR>
+" nmap <Leader>/ :Ag<Space>
+" nmap <Leader>/ :Rg<Space>
+nmap <Leader>H :Helptags!<CR>
+nmap <Leader>C :Commands<CR>
+nmap <Leader>: :History:<CR>
+nmap <Leader>M :Maps<CR>
+nmap <Leader>s :Filetypes<CR>
+
 " CtrlP
-let g:ctrlp_map='<leader><leader>'
-nnoremap <leader>f :CtrlPMRUFiles<CR>
-nnoremap <leader>t :CtrlPTag<CR>
-nnoremap <leader>. :CtrlPBuffer<CR>
+" let g:ctrlp_map='<leader><leader>'
+" nnoremap <leader>f :CtrlPMRUFiles<CR>
+" nnoremap <leader>t :CtrlPTag<CR>
+" nnoremap <leader>. :CtrlPBuffer<CR>
 
 set hidden " Allows to change current buffer without saving it
 
@@ -242,7 +277,7 @@ nnoremap <C-s> :w<CR>
 nnoremap <C-q> :bd<CR>
 nmap <c-n> :bnext<CR>
 nmap <c-p> :bprev<CR>
-nnoremap <leader>b :ls<CR>:b<space>
+" nnoremap <leader>b :ls<CR>:b<space>
 
 " IndentLine
 " let g:indentLine_leadingSpaceEnabled = 1
@@ -254,9 +289,10 @@ let g:indentLine_color_term = 250
 set spelllang=pt
 
 " Disable line numbers in markdown
-autocmd FileType markdown setlocal norelativenumber
+" autocmd FileType markdown setlocal norelativenumber
 
 autocmd FileType markdown setlocal spell
+autocmd FileType tex setlocal spell
 
 " Vim markdown settings
 let g:vim_markdown_folding_disabled = 1

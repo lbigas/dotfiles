@@ -1,0 +1,10 @@
+[Scheme]
+Name=Tempus Autumn
+ColorForeground=#a9a2a6
+ColorBackground=#302420
+ColorCursor=#a9a2a6
+ColorBold=#a9a2a6
+ColorPalette=#302420;#f16c50;#80a100;#ac9440;#7897c2;#dd758e;#52a485;#a5918a;#312e2a;#e07a3d;#43a770;#ba9000;#908ed4;#c57bc4;#2aa4ad;#a9a2a6
+TabActivityColor=#80a100
+ColorSelectionBackground=#a9a2a6
+ColorSelection=#302420
