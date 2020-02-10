@@ -5,11 +5,12 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hzchirs/vim-material'
 Plug 'arcticicestudio/nord-vim'
 Plug 'https://github.com/wimstefan/vim-artesanal.git'
 Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
-Plug 'https://github.com/ap/vim-buftabline.git'
+" Plug 'https://github.com/ap/vim-buftabline.git'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'https://github.com/rakr/vim-two-firewatch.git'
@@ -93,7 +94,7 @@ set listchars=tab:›\ ,eol:¬,trail:⋅
 "set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
 nmap <F6> :set list!<CR>
 " set listchars=eol:$,tab:>\ ,trail:-,extends:>,precedes:<,space:_
-set showbreak=›››\
+" set showbreak=›››\
 
 scriptencoding utf-8
 let mapleader=","
@@ -181,8 +182,8 @@ nmap <C-l> <C-w>l
 "nnoremap k gk
 
 " <C-d> and <C-u> Alternative
-nmap K <C-u>
-nmap J <C-d>
+" nmap K <C-u>
+" nmap J <C-d>
 
 " move to beginning/end of line
 nmap H ^
@@ -270,6 +271,50 @@ nmap <Leader>s :Filetypes<CR>
 " nnoremap <leader>. :CtrlPBuffer<CR>
 
 set hidden " Allows to change current buffer without saving it
+set nobackup
+set nowritebackup
+set updatetime=300
+" set shortmess+=c
+" set signcolumn=yes
+
+" COC configs
+
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+" " Use <c-space> to trigger completion.
+" inoremap <silent><expr> <c-space> coc#refresh()
+
+
+" " Use `[g` and `]g` to navigate diagnostics
+" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" " Remap keys for gotos
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+
+" " Use K to show documentation in preview window
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
+
 
 " Buffers
 " Saving/Closing Buffer
@@ -281,10 +326,10 @@ nmap <c-p> :bprev<CR>
 
 " IndentLine
 " let g:indentLine_leadingSpaceEnabled = 1
-let g:indentLine_leadingSpaceChar = '·'
-" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_char = '│'
-let g:indentLine_color_term = 250
+" let g:indentLine_leadingSpaceChar = '·'
+" " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+" let g:indentLine_char = '│'
+" let g:indentLine_color_term = 250
 
 set spelllang=pt
 

@@ -7,16 +7,15 @@
 # Variables
 set $mod Mod4
 set $terminal xfce4-terminal
-set $Locker i3lock -c 7600ad
-set $filemanager pcmanfm
+# set $Locker i3lock -c 7600ad
+set $Locker slock
+set $filemanager thunar
 
 # Auto Start
 
 # Keyboard
 # exec --no-startup-id setxkbmap gb -variant intlextd -option 'caps:swapescape,altwin:prtsc_rwin'
 exec --no-startup-id setxkbmap gb -variant intlextd -option 'altwin:prtsc_rwin'
-bindsym Mod1+Shift+t exec --no-startup-id setxkbmap gb -variant intlextd -option 'altwin:prtsc_rwin'
-bindsym Mod1+Shift+d exec --no-startup-id setxkbmap us -variant dvorak
 # exec --no-startup-id setxkbmap gb -variant intlextd
 
 # set wallpaper
@@ -54,7 +53,8 @@ bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+p exec --no-startup-id dmenu_run
-bindsym $mod+p exec rofi -run-command "/bin/bash -i -c '{cmd}'" -show run  -display-window "window: " -display-ssh "ssh: "
+# bindsym $mod+p exec rofi -run-command "/bin/bash -i -c '{cmd}'" -show run  -display-window "window: " -display-ssh "ssh: "
+bindsym $mod+p exec rofi -show drun
 bindsym $mod+grave exec --no-startup-id dmenu_run
 
 # Start NetworkManager applet
@@ -178,11 +178,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% &&
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+11 i3blocks
 
 # Brightness
-# bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 2
-# bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 2
+bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 2
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 2
 
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && pkill -RTMIN+12 i3blocks
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && pkill -RTMIN+12 i3blocks
+# bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && pkill -RTMIN+12 i3blocks
+# bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && pkill -RTMIN+12 i3blocks
 
 
 
