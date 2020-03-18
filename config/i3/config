@@ -7,8 +7,8 @@
 # Variables
 set $mod Mod4
 set $terminal xfce4-terminal
-# set $Locker i3lock -c 7600ad
-set $Locker slock
+set $Locker i3lock -c 7600ad
+# set $Locker slock
 set $filemanager thunar
 
 # Auto Start
@@ -17,10 +17,12 @@ set $filemanager thunar
 # exec --no-startup-id setxkbmap gb -variant intlextd -option 'caps:swapescape,altwin:prtsc_rwin'
 exec --no-startup-id setxkbmap gb -variant intlextd -option 'altwin:prtsc_rwin'
 # exec --no-startup-id setxkbmap gb -variant intlextd
+exec --no-startup-id xinput set-prop "TPPS/2 IBM TrackPoint" "Coordinate Transformation Matrix" 0 0 0 0 0 0 0 0 1
 
 # set wallpaper
 # exec --no-startup-id xsetroot -solid "#333333"
-exec --no-startup-id xsetroot -solid "#9b9b9b"
+# exec --no-startup-id xsetroot -solid "#9b9b9b"
+exec --no-startup-id xsetroot -solid "#008080"
 
 # Touchpad settings
 exec --no-startup-id $HOME/.scripts/touchpadAccelSynaptics 
@@ -54,7 +56,8 @@ bindsym $mod+Shift+c kill
 # start dmenu (a program launcher)
 # bindsym $mod+p exec --no-startup-id dmenu_run
 # bindsym $mod+p exec rofi -run-command "/bin/bash -i -c '{cmd}'" -show run  -display-window "window: " -display-ssh "ssh: "
-bindsym $mod+p exec rofi -show drun
+bindsym $mod+p exec rofi -show drun -show-icons
+# bindsym $mod+p exec rofi -show drun
 bindsym $mod+grave exec --no-startup-id dmenu_run
 
 # Start NetworkManager applet
@@ -247,8 +250,10 @@ bindsym $mod+F10 mode "$volume"
 
 set $brightness Brightness: (k) +, (j) -
 mode "$brightness" {
-    bindsym k exec --no-startup-id light -A 5 && pkill -RTMIN+12 i3blocks
-    bindsym j exec --no-startup-id light -U 5 && pkill -RTMIN+12 i3blocks
+    bindsym k exec --no-startup-id xbacklight -inc 2 && pkill -RTMIN+12 i3blocks
+    bindsym j exec --no-startup-id xbacklight -dec 2 && pkill -RTMIN+12 i3blocks
+    # bindsym k exec --no-startup-id light -A 5 && pkill -RTMIN+12 i3blocks
+    # bindsym j exec --no-startup-id light -U 5 && pkill -RTMIN+12 i3blocks
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

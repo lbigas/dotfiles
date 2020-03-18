@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'hzchirs/vim-material'
 Plug 'arcticicestudio/nord-vim'
 Plug 'https://github.com/wimstefan/vim-artesanal.git'
+Plug 'cormacrelf/vim-colors-github'
 Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 " Plug 'https://github.com/ap/vim-buftabline.git'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -18,7 +19,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/andbar-ru/vim-unicon.git'
 " Plug 'plasticboy/vim-markdown'
 Plug 'kaicataldo/material.vim'
-Plug 'cormacrelf/vim-colors-github'
 Plug 'https://github.com/reedes/vim-colors-pencil.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 " Plug 'https://github.com/junegunn/seoul256.vim.git'
@@ -54,10 +54,10 @@ set t_Co=256
 set background=light
 " set background=dark
 syntax enable " enalbe syntax processing
+" colorscheme lucius
+" LuciusWhite
 " colorscheme PaperColor
 " colorscheme one
-colorscheme lucius
-LuciusWhite
 " colorscheme two-firewatch
 " colorscheme unicon
 " colorscheme material
@@ -68,7 +68,7 @@ LuciusWhite
 " colorscheme onehalflight
 " colorscheme onehalfdark
 " colorscheme material
-" colorscheme github
+colorscheme github
 " colorscheme apprentice
 
 set statusline=
@@ -182,8 +182,8 @@ nmap <C-l> <C-w>l
 "nnoremap k gk
 
 " <C-d> and <C-u> Alternative
-" nmap K <C-u>
-" nmap J <C-d>
+nmap <C-k> <C-u>
+nmap <C-j> <C-d>
 
 " move to beginning/end of line
 nmap H ^
