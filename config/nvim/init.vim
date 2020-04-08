@@ -5,36 +5,30 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'https://github.com/tpope/vim-vividchalk.git'
+Plug 'https://github.com/JaySandhu/xcode-vim.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'hzchirs/vim-material'
 Plug 'arcticicestudio/nord-vim'
 Plug 'https://github.com/wimstefan/vim-artesanal.git'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
-" Plug 'https://github.com/ap/vim-buftabline.git'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'https://github.com/rakr/vim-two-firewatch.git'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/andbar-ru/vim-unicon.git'
-" Plug 'plasticboy/vim-markdown'
 Plug 'kaicataldo/material.vim'
 Plug 'https://github.com/reedes/vim-colors-pencil.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
-" Plug 'https://github.com/junegunn/seoul256.vim.git'
 Plug 'https://github.com/romainl/Apprentice.git'
 Plug 'https://github.com/jonathanfilip/vim-lucius.git'
-" Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'https://github.com/lambdalisue/suda.vim.git'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'https://github.com/rakr/vim-one.git'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
-" Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
-Plug 'https://github.com/ervandew/supertab.git'
+Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
-" Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 Plug 'https://github.com/mbbill/undotree.git'
@@ -44,16 +38,20 @@ call plug#end()
 " vmap <leader>y :w! /tmp/vitmp<CR>
 " nmap <leader>p :r! cat /tmp/vitmp<CR>
 
+" vim-mucomplete
+" set completeopt+=menuone
 
 " Clipboard with "+y
 set clipboard=unnamedplus
 
 " Colors
 set t_Co=256
-" set termguicolors
-set background=light
-" set background=dark
+set termguicolors
+" set background=light
+set background=dark
 syntax enable " enalbe syntax processing
+" colorscheme github
+colorscheme vividchalk
 " colorscheme lucius
 " LuciusWhite
 " colorscheme PaperColor
@@ -68,7 +66,6 @@ syntax enable " enalbe syntax processing
 " colorscheme onehalflight
 " colorscheme onehalfdark
 " colorscheme material
-colorscheme github
 " colorscheme apprentice
 
 set statusline=
@@ -80,6 +77,7 @@ set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ [%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
+" set statusline+=%{gutentags#statusline()}
 
 filetype plugin indent on
 set tabstop=4 " number of visual spaces per TAB
@@ -100,7 +98,7 @@ scriptencoding utf-8
 let mapleader=","
 
 
-set number " show line numbers
+" set number " show line numbers
 set relativenumber " show relative line numbers
 set cmdheight=1 " space between statusbar and bottom of therminal window
 set showcmd " show command in bottom bar
@@ -192,7 +190,7 @@ vmap H ^
 vmap L $
 
 " move between matching opening and ending surrouding brakets { code }
-map <tab> %
+" map <tab> %
 
 " save sudo
 " nmap <leader>sudo :w !sudo tee % <CR><CR>
@@ -210,7 +208,7 @@ nnoremap <F3> :NERDTreeToggle<CR>
 command Spaces %s/\s\+$//e
 
 " Insert tab in insert mod with Shitft-Tab
-inoremap <S-Tab> <C-v><Tab>
+" inoremap <S-Tab> <C-v><Tab>
 
 " UNDO SETTINGS
 set undofile " Maintain undo history between sessions
@@ -240,10 +238,12 @@ nnoremap <F5> :UndotreeToggle<CR>
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 autocmd FileType lhaskell setlocal commentstring=--\ %s
 autocmd Filetype markdown setlocal commentstring=<!---\ %s\ --->
-autocmd Filetype markdown setlocal complete+=kspell
+" autocmd Filetype markdown setlocal complete+=kspell
+
+set complete+=kspell
 
 " Ctags
-set tags+=tags;
+" set tags+=tags;
 
 " FZF
 nmap <Leader>f :GFiles<CR>
