@@ -64,14 +64,17 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          argument */
     { keyboard_indicators, "C:(%1s) ", "c?" },
+    { run_command, "V:%7s ", "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 " " $4}'" },
+// amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }'
+ // * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
 //	{ run_command, "V:%4s | ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
-    { wifi_perc, "[W:%3s%% on ", "wlp3s0" },
-    { wifi_essid, "%s]", "wlp3s0" },
 	{ battery_state, "[B1:%s ", "BAT1" },
 	{ battery_perc, "%3s%%", "BAT1" },
     { battery_remaining, " %s | ", "BAT1" },
 	{ battery_state, "B2:%s ", "BAT0" },
 	{ battery_perc, "%3s%%", "BAT0" },
     { battery_remaining, " %s] ", "BAT0" },
+    { wifi_perc, "[W:%3s%% on ", "wlp3s0" },
+    { wifi_essid, "%s] ", "wlp3s0" },
     { datetime, "%s", "%a %d/%m %R" },
 };

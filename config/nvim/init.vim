@@ -5,35 +5,62 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
+" Plug 'https://github.com/airblade/vim-gitgutter.git'
+Plug 'https://github.com/jnurmine/Zenburn.git'
+Plug 'https://github.com/neovimhaskell/haskell-vim.git'
+Plug 'https://github.com/tpope/vim-obsession.git'
+Plug 'dhruvasagar/vim-prosession', {'depends': 'tpope/vim-obsession'}
+Plug 'https://github.com/sjl/badwolf.git'
+Plug 'arcticicestudio/nord-vim'
+Plug 'https://github.com/nanotech/jellybeans.vim.git'
+Plug 'https://github.com/tpope/vim-eunuch.git'
+Plug 'https://github.com/jreybert/vimagit.git'
+Plug 'https://github.com/arzg/vim-colors-xcode.git'
+Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'https://github.com/tpope/vim-vividchalk.git'
 Plug 'https://github.com/JaySandhu/xcode-vim.git'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'hzchirs/vim-material'
 Plug 'arcticicestudio/nord-vim'
 Plug 'https://github.com/wimstefan/vim-artesanal.git'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'https://github.com/ap/vim-buftabline.git'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+" Plug 'https://github.com/rakr/vim-two-firewatch.git'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/andbar-ru/vim-unicon.git'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'https://github.com/flazz/vim-colorschemes.git'
 Plug 'kaicataldo/material.vim'
 Plug 'https://github.com/reedes/vim-colors-pencil.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
+" Plug 'https://github.com/junegunn/seoul256.vim.git'
 Plug 'https://github.com/romainl/Apprentice.git'
 Plug 'https://github.com/jonathanfilip/vim-lucius.git'
+" Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'https://github.com/lambdalisue/suda.vim.git'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'https://github.com/rakr/vim-one.git'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
-Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
+" Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
+" Plug 'https://github.com/ervandew/supertab.git'
+" Plug 'https://github.com/lifepillar/vim-mucomplete.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
+Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 call plug#end()
+
+if has('nvim')
+    set guicursor=
+endif
 
 " vmap <leader>y :w! /tmp/vitmp<CR>
 " nmap <leader>p :r! cat /tmp/vitmp<CR>
@@ -51,10 +78,16 @@ set termguicolors
 set background=dark
 syntax enable " enalbe syntax processing
 " colorscheme github
-colorscheme vividchalk
-" colorscheme lucius
-" LuciusWhite
+" colorscheme vividchalk
+colorscheme apprentice
+" colorscheme badwolf
+" colorscheme gruvbox
+" colorscheme jellybeans
 " colorscheme PaperColor
+" colorscheme nord
+" colorscheme lucius
+" LuciusBlack
+" LuciusWhite
 " colorscheme one
 " colorscheme two-firewatch
 " colorscheme unicon
@@ -68,16 +101,34 @@ colorscheme vividchalk
 " colorscheme material
 " colorscheme apprentice
 
+set laststatus=2
 set statusline=
-set statusline+=\ %f
+set statusline+=%f
+set statusline+=\ 
 set statusline+=%m
+set statusline+=%r
 set statusline+=%=
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\ [%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-" set statusline+=%{gutentags#statusline()}
+set statusline+=%y
+set statusline+=\ 
+set statusline+=%{strlen(&fenc)?&fenc:'none'}
+set statusline+=\ 
+set statusline+=[
+set statusline+=%{strlen(&fenc)?&fenc:'none'}
+set statusline+=]
+set statusline+=\ 
+set statusline+=%l
+set statusline+=:
+set statusline+=%c
+
+" set statusline=
+" set statusline+=\ %f
+" set statusline+=%m
+" set statusline+=%=
+" set statusline+=\ %y
+" set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+" set statusline+=\ [%{&fileformat}\]
+" set statusline+=\ %p%%
+" set statusline+=\ %l:%c
 
 filetype plugin indent on
 set tabstop=4 " number of visual spaces per TAB
@@ -105,10 +156,12 @@ set showcmd " show command in bottom bar
 set cursorline " highlight current line
 " set cursorcolumn
 set nocompatible " make vim not vi
-set wildmenu " visual autocomplete for comand menu
+" set wildmenu " visual autocomplete for comand menu
 set wildmode=longest:full,full
+" A opcao seginte adiciona um bug estranho quando se usa tab em comand mode
+" set wildmode=longest,list,full
 set wildignore+=*.class,*.ctxt,*.bluej
-" set lazyredraw " redraw only when we need to
+set lazyredraw " redraw only when we need to
 set showmatch " highlight matching brackets
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
@@ -130,7 +183,7 @@ endif
 set laststatus=2
 
 set autoread " autoreload file when changes are made to it
-" set scrolloff=1 " always one line above/below cursor
+set scrolloff=1 " always one line above/below cursor
 
 " Mouse scroll
 set mouse=a
@@ -148,7 +201,17 @@ set lbr
 " Vim splits
 set splitright " vertical split to the right
 set splitbelow " horizontal split to the bottom
-"
+
+" Change split size
+noremap <C-Right> :vertical resize +2<CR>
+noremap <C-Left> :vertical resize -2<CR>
+noremap <C-Up> :resize +2<CR>
+noremap <C-Down> :resize -2<CR>
+
+" Change 2 split windows from vert/horz
+map <leader>th <C-w>t<C-w>H
+map <leader>tk <C-w>t<C-w>K
+
 " turn off search highlight
 " nnoremap <esc> :nohlsearch<CR>
 nnoremap <leader><space> :nohlsearch<CR>
@@ -180,19 +243,21 @@ nmap <C-l> <C-w>l
 "nnoremap k gk
 
 " <C-d> and <C-u> Alternative
-nmap <C-k> <C-u>
-nmap <C-j> <C-d>
+" nmap <C-k> <C-u>
+" nmap <C-j> <C-d>
 
 " move to beginning/end of line
-nmap H ^
-nmap L $
-vmap H ^
-vmap L $
+" nnoremap gl $
+" nnoremap gh 0
+" nnoremap gk H
+" nnoremap gj L
+" nmap H ^
+" nmap L $
+" vmap H ^
+" vmap L $
 
-" move between matching opening and ending surrouding brakets { code }
-" map <tab> %
 
-" save sudo
+" save sudo not working in neovim
 " nmap <leader>sudo :w !sudo tee % <CR><CR>
 nmap <leader>sudo :w suda://%
 
@@ -245,76 +310,102 @@ set complete+=kspell
 " Ctags
 " set tags+=tags;
 
+
 " FZF
-nmap <Leader>f :GFiles<CR>
-nmap <Leader>F :Files<CR>
-nmap <Leader>b :Buffers<CR>
-nmap ; :Buffers<CR>
-nmap <Leader>h :History<CR>
-nmap <Leader>t :BTags<CR>
-nmap <Leader>T :Tags<CR>
-nmap <Leader>l :BLines<CR>
-nmap <Leader>L :Lines<CR>
-nmap <Leader>' :Marks<CR>
-" nmap <Leader>/ :Ag<Space>
-" nmap <Leader>/ :Rg<Space>
-nmap <Leader>H :Helptags!<CR>
-nmap <Leader>C :Commands<CR>
-nmap <Leader>: :History:<CR>
-nmap <Leader>M :Maps<CR>
-nmap <Leader>s :Filetypes<CR>
+" nmap <Leader>f :GFiles<CR>
+" nmap <Leader>F :Files<CR>
+" nmap <Leader>b :Buffers<CR>
+" nmap ; :Buffers<CR>
+" nmap <Leader>h :History<CR>
+" nmap <Leader>t :BTags<CR>
+" nmap <Leader>T :Tags<CR>
+" nmap <Leader>l :BLines<CR>
+" nmap <Leader>L :Lines<CR>
+" nmap <Leader>' :Marks<CR>
+" " nmap <Leader>/ :Ag<Space>
+" " nmap <Leader>/ :Rg<Space>
+" nmap <Leader>H :Helptags!<CR>
+" nmap <Leader>C :Commands<CR>
+" nmap <Leader>: :History:<CR>
+" nmap <Leader>M :Maps<CR>
+" nmap <Leader>s :Filetypes<CR>
 
 " CtrlP
 " let g:ctrlp_map='<leader><leader>'
 " nnoremap <leader>f :CtrlPMRUFiles<CR>
 " nnoremap <leader>t :CtrlPTag<CR>
 " nnoremap <leader>. :CtrlPBuffer<CR>
+nnoremap <leader>f :CtrlP .<CR>
+nnoremap ; :CtrlPBuffer<CR>
+nnoremap <leader>t :CtrlPTag<cr>
+
+" when opening multiple files open then in hidden buffers
+let g:ctrlp_open_multiple_files = 'ir'
+let g:ctrlp_map = '<Nop>'
+let g:ctrlp_match_window = 'min:4,max:999'
 
 set hidden " Allows to change current buffer without saving it
 set nobackup
 set nowritebackup
 set updatetime=300
-" set shortmess+=c
+set shortmess+=c
 " set signcolumn=yes
 
 " COC configs
 
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " " Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" else
+"   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
-" " Use `[g` and `]g` to navigate diagnostics
-" nmap <silent> [g <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" " Remap keys for gotos
+" Remap keys for gotos
 " nmap <silent> gd <Plug>(coc-definition)
 " nmap <silent> gy <Plug>(coc-type-definition)
 " nmap <silent> gi <Plug>(coc-implementation)
 " nmap <silent> gr <Plug>(coc-references)
 
-" " Use K to show documentation in preview window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
+
+" Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+" nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 " Buffers
 " Saving/Closing Buffer
