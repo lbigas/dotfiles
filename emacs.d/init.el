@@ -20,9 +20,12 @@
   :config (which-key-mode))
 
 (use-package expand-region
-  :ensure t)
+  :ensure t
+  :config
+  (global-set-key (kbd "C-=") 'er/expand-region)
+  )
 
-(global-set-key (kbd "C-=") 'er/expand-region)
+;; (global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; solarized colorscheme
 (use-package solarized-theme
@@ -70,18 +73,30 @@
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
     ))
 
+(use-package magit
+  :ensure t)
+
+(use-package parchment-theme
+  :ensure t)
+
 (setq inhibit-startup-message t)
 
 ;; Disable gui stuff
 (toggle-scroll-bar -1) 
-(tool-bar-mode -1) 
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; Set Line numbers
 (when (version<= "26.0.50" emacs-version )
   (global-display-line-numbers-mode))
 
-;; (load-theme 'solarized-light-high-contrast t)
-(load-theme 'adwaita t)
+;; Show Matching Parenthesis
+(show-paren-mode 1)
+(setq show-paren-delay 0)
+
+
+
+(load-theme 'parchment t)
 
 ;; Buffers
 (setq ido-enable-flex-matching t)
@@ -93,16 +108,12 @@
 ;; windows
 (windmove-default-keybindings)
 
-(defun insert-line-above ()
-  "Insert an empty line above the current line."
-  (interactive)
-  (save-excursion
-    (move-beginning-of-line 1)
-    (newline)))
 
-(global-set-key (kbd "C-S-o")
-		'insert-line-above)
-
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -116,7 +127,7 @@
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
    (quote
-    (expand-region solarized-theme which-key try use-package)))
+    (parchment-theme magit expand-region solarized-theme which-key try use-package)))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
