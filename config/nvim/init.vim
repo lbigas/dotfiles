@@ -5,20 +5,29 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
+Plug 'vim/killersheep'
+Plug 'https://github.com/nbardiuk/vim-gol.git'
+Plug 'https://github.com/justinmk/vim-dirvish.git'
+Plug 'https://github.com/robertmeta/nofrils.git'
+" Plug 'DrCracket/painless-digraph'
+Plug 'justinmk/vim-sneak'
+" Plug 'unblevable/quick-scope'
+Plug 'https://github.com/axvr/photon.vim.git'
+Plug 'https://github.com/YorickPeterse/happy_hacking.vim.git'
 " Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/jnurmine/Zenburn.git'
 Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 Plug 'https://github.com/tpope/vim-obsession.git'
-Plug 'dhruvasagar/vim-prosession', {'depends': 'tpope/vim-obsession'}
+" Plug 'dhruvasagar/vim-prosession', {'depends': 'tpope/vim-obsession'}
 Plug 'https://github.com/sjl/badwolf.git'
 Plug 'arcticicestudio/nord-vim'
 Plug 'https://github.com/nanotech/jellybeans.vim.git'
 Plug 'https://github.com/tpope/vim-eunuch.git'
 Plug 'https://github.com/jreybert/vimagit.git'
 Plug 'https://github.com/arzg/vim-colors-xcode.git'
-Plug 'https://github.com/tpope/vim-vinegar.git'
+" Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'https://github.com/tpope/vim-vividchalk.git'
-Plug 'https://github.com/JaySandhu/xcode-vim.git'
+" Plug 'https://github.com/JaySandhu/xcode-vim.git'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'hzchirs/vim-material'
@@ -49,7 +58,7 @@ Plug 'sonph/onehalf', {'rtp': 'vim/'}
 " Plug 'https://github.com/ervandew/supertab.git'
 " Plug 'https://github.com/lifepillar/vim-mucomplete.git'
 Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'https://github.com/farmergreg/vim-lastplace.git'
+" Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/kien/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
@@ -58,15 +67,21 @@ Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 call plug#end()
 
-if has('nvim')
-    set guicursor=
-endif
+" if has('nvim')
+"     set guicursor=
+" endif
+
 
 " vmap <leader>y :w! /tmp/vitmp<CR>
 " nmap <leader>p :r! cat /tmp/vitmp<CR>
 
 " vim-mucomplete
 " set completeopt+=menuone
+
+
+
+" color chars on colmn 81
+" call matchadd('ColorColumn',  '\%81v', 100)
 
 " Clipboard with "+y
 set clipboard=unnamedplus
@@ -79,15 +94,20 @@ set background=dark
 syntax enable " enalbe syntax processing
 " colorscheme github
 " colorscheme vividchalk
-colorscheme apprentice
+" colorscheme apprentice
+let g:nofrils_heavylinenumbers=1
+let g:nofrils_strbackgrounds=1
+let g:nofrils_heavycomments=1
+" colorscheme nofrils-light
+" colorscheme xcodelight
 " colorscheme badwolf
 " colorscheme gruvbox
 " colorscheme jellybeans
 " colorscheme PaperColor
 " colorscheme nord
-" colorscheme lucius
+colorscheme lucius
 " LuciusBlack
-" LuciusWhite
+LuciusWhite
 " colorscheme one
 " colorscheme two-firewatch
 " colorscheme unicon
@@ -137,16 +157,18 @@ set expandtab " tabs are spaces
 set softtabstop=4 " number of spaces in tab when editing
 
 " set list
-set listchars=tab:›\ ,eol:¬,trail:⋅
+" set listchars=tab:›~,nbsp:_,eol:¬,trail:⋅
+" set listchars=tab:\uBB\uBB,trail:\uB7
+" set listchars=tab:~,eol:¬,trail:.
 
 " show line warp
 "set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
 nmap <F6> :set list!<CR>
 " set listchars=eol:$,tab:>\ ,trail:-,extends:>,precedes:<,space:_
-" set showbreak=›››\
+set showbreak=↳\ 
 
 scriptencoding utf-8
-let mapleader=","
+let mapleader=" "
 
 
 " set number " show line numbers
@@ -189,14 +211,39 @@ set scrolloff=1 " always one line above/below cursor
 set mouse=a
 
 " movement
+noremap 0 ^
+noremap ^ 0
 " nnoremap <c-k> 5k
 " nnoremap <c-j> 5j
 
 " line warping
+" set formatoptions=1
+" set nolist "disable linebreak
+" fdkjaslfdassssssssssssssssssssssssssssssssssssssssssssss fd safdsaaaaaaaaaaaaaaaaaaaaaaaaaa
+" set textwidth=0
+" set columns=80
+
 set wrap
-"set formatoptions=1
+set linebreak
 set lbr
-"set nolist "disable linebreak
+" set columns=80
+" set textwidth=0
+" set wrapmargin=0
+" set formatoptions-=t
+" set textwidth=79
+" set formatoptions+=t
+" set fo+=t
+" set cursorcolumn 79
+
+" fdaaa  afdsa   aaaaadfsajlfjadkaaaaaaafdasaaaaaal;ajsdlfjsa;ldjfjdsalkfjsa;ljfjdsa;   lkfjds;lkjf;lksjdaf;lkjsa;lkfjds;lkjf;lksajf;lkdsajfjdsf
+" set wrapmargin=0
+" set wrap
+" set linebreak " (optional - breaks by word rather than character)
+" set columns=80
+" set formatoptions+=t
+" set colorcolumn=81
+" highlight ColorColumn ctermbg=7
+" highlight ColorColumn guibg=Black
 
 " Vim splits
 set splitright " vertical split to the right
@@ -273,7 +320,7 @@ nnoremap <F3> :NERDTreeToggle<CR>
 command Spaces %s/\s\+$//e
 
 " Insert tab in insert mod with Shitft-Tab
-" inoremap <S-Tab> <C-v><Tab>
+inoremap <S-Tab> <C-v><Tab>
 
 " UNDO SETTINGS
 set undofile " Maintain undo history between sessions
@@ -336,7 +383,7 @@ set complete+=kspell
 " nnoremap <leader>t :CtrlPTag<CR>
 " nnoremap <leader>. :CtrlPBuffer<CR>
 nnoremap <leader>f :CtrlP .<CR>
-nnoremap ; :CtrlPBuffer<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>t :CtrlPTag<cr>
 
 " when opening multiple files open then in hidden buffers
@@ -357,7 +404,7 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -432,3 +479,11 @@ autocmd FileType tex setlocal spell
 
 " Vim markdown settings
 let g:vim_markdown_folding_disabled = 1
+
+
+" Quick Scope Plugin
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Sneak plugin
+let g:sneak#label = 1
