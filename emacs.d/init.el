@@ -2,118 +2,15 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
-
 (package-initialize)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+;; Bootstrap `use-package`
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; try a package without installing
-(use-package try
-  :ensure t)
-
-;; show key options after using C-x
-(use-package which-key
-  :ensure t
-  :config (which-key-mode))
-
-(use-package expand-region
-  :ensure t
-  :config
-  (global-set-key (kbd "C-=") 'er/expand-region)
-  )
-
-;; (global-set-key (kbd "C-=") 'er/expand-region)
-
-;; solarized colorscheme
-(use-package solarized-theme
-  :ensure t)
-
-;; select window with numbers after C-o
-(use-package ace-window
-  :ensure t
-  :init
-  (progn
-    (global-set-key [remap other-window] 'ace-window)
-    (custom-set-faces
-     '(aw-leading-char-face
-       ((t (:inherit ace-jump-face-foreground :height 3.0)))))
-    ))
-
-(use-package counsel
-  :ensure t
-  )
-
-;; better serch
-(use-package swiper
-  :ensure try
-  :config
-  (progn
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq enable-recursive-minibuffers t)
-    (global-set-key "\C-s" 'swiper)
-    (global-set-key (kbd "C-c C-r") 'ivy-resume)
-    (global-set-key (kbd "<f6>") 'ivy-resume)
-    (global-set-key (kbd "M-x") 'counsel-M-x)
-    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-    (global-set-key (kbd "<f1> o") 'counsel-describe-symbol)
-    (global-set-key (kbd "<f1> l") 'counsel-find-library)
-    (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-    (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-    (global-set-key (kbd "C-c g") 'counsel-git)
-    (global-set-key (kbd "C-c j") 'counsel-git-grep)
-    (global-set-key (kbd "C-c k") 'counsel-ag)
-    (global-set-key (kbd "C-x l") 'counsel-locate)
-    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-    ))
-
-(use-package magit
-  :ensure t)
-
-(use-package parchment-theme
-  :ensure t)
-
-(setq inhibit-startup-message t)
-
-;; Disable gui stuff
-(toggle-scroll-bar -1) 
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-
-;; Set Line numbers
-(when (version<= "26.0.50" emacs-version )
-  (global-display-line-numbers-mode))
-
-;; Show Matching Parenthesis
-(show-paren-mode 1)
-(setq show-paren-delay 0)
-
-
-
-(load-theme 'parchment t)
-
-;; Buffers
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-
-(defalias 'list-buffers 'ibuffer)
-
-;; windows
-(windmove-default-keybindings)
-
-
-(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
-(setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
+(org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -123,16 +20,15 @@
  '(blink-cursor-mode nil)
  '(custom-safe-themes
    (quote
-    ("00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" default)))
+    ("5f4ef1481b4c885100f9dc5cf2bca5fe5dd453f7f9e87c454d8d49d7dacd402b" "f9861250530c47121451096ec6598e2bbe118c337d2de609ca6ca1ac1bc4e8c2" "30289fa8d502f71a392f40a0941a83842152a68c54ad69e0638ef52f04777a4c" "00445e6f15d31e9afaa23ed0d765850e9cd5e929be5e8e63b114a3346236c44c" default)))
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
    (quote
-    (parchment-theme magit expand-region solarized-theme which-key try use-package)))
+    (modus-vivendi-theme modus-operandi-theme parchment-theme magit expand-region solarized-theme which-key try use-package)))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Inconsolata" :foundry "PfEd" :slant normal :weight normal :height 128 :width normal))))
  '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
