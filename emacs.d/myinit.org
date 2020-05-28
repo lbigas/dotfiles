@@ -70,7 +70,7 @@ Ivy/Consel replaces ido or helm
 
 (use-package swiper
   :ensure try
-  :bind(("C-s" . swiper-iserach)
+  :bind(("C-s" . swiper-isearch)
 	("C-r" . swiper-isearch)
 	("C-c C-r" . ivy-resume)
 	("M-x" . counsel-M-x)
@@ -101,13 +101,14 @@ Ivy/Consel replaces ido or helm
 #+END_SRC
 ** Javascript
 #+BEGIN_SRC emacs-lisp
-(use-package ac-js2
-  :ensure t
-  :config
-  (setq ac-js2-evaluate-calls t)
-  (add-hook 'js2-mode-hook 'ac-js2-mode))
+  (use-package ac-js2
+    :ensure t
+    :config
+    (setq ac-js2-evaluate-calls t)
+    (add-to-list 'company-backends 'ac-js2-company))
+    ;; (add-hook 'js2-mode-hook 'ac-js2-mode))
 
-(add-to-list 'company-backends 'ac-js2-company)
+  ;; (add-to-list 'company-backends 'ac-js2-company)
 #+END_SRC
 * Magit
 #+BEGIN_SRC emacs-lisp
