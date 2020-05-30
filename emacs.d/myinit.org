@@ -1,12 +1,15 @@
 * Interface Tweaks
-
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; Set Line numbers
 (global-display-line-numbers-mode)
-
+(setq redisplay-dont-pause t
+  scroll-margin 1
+  scroll-step 1
+  scroll-conservatively 10000
+  scroll-preserve-screen-position 1)
 #+END_SRC
 * Themes
 #+BEGIN_SRC emacs-lisp
@@ -25,7 +28,6 @@
 (use-package try
   :ensure t)
 #+END_SRC
-
 * which key
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
@@ -45,7 +47,6 @@ Easy window switching
        ((t (:inherit ace-jump-face-foreground :height 3.0)))))
     ))
 #+END_SRC
-
 * Swiper / Ivy / Consel
 Swiper for incremental search/regual expressions
 Ivy/Consel replaces ido or helm
@@ -82,7 +83,6 @@ Ivy/Consel replaces ido or helm
     (setq enable-recursive-minibuffers t)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     ))
-
 #+END_SRC
 * Avy - navigation by charecter seach and jump
 #+BEGIN_SRC emacs-lisp
@@ -105,10 +105,21 @@ Ivy/Consel replaces ido or helm
     :ensure t
     :config
     (setq ac-js2-evaluate-calls t)
-    (add-to-list 'company-backends 'ac-js2-company))
-    ;; (add-hook 'js2-mode-hook 'ac-js2-mode))
+    (add-to-list 'company-backends 'ac-js2-company)
+    (add-hook 'js2-mode-hook 'ac-js2-mode)
+    :bind
+    ("M-TAB" . company-complete-common))
 
   ;; (add-to-list 'company-backends 'ac-js2-company)
+#+END_SRC
+** Java
+#+BEGIN_SRC emacs-lisp
+  (use-package eclim
+    :ensure t)
+  (use-package company-emacs-eclim
+    :ensure t)
+  (company-emacs-eclim-setup)
+  (setq company-emacs-eclim-ignore-case t)
 #+END_SRC
 * Magit
 #+BEGIN_SRC emacs-lisp
@@ -128,7 +139,7 @@ Ivy/Consel replaces ido or helm
 (use-package projectile
   :ensure t
   :config
-  (global-set-key (kbd "C-c f") 'projectile-find-file)
+  (global-set-key (kbd "C-x p") 'projectile-find-file)
   (projectile-global-mode)
   )
 #+END_SRC
@@ -140,6 +151,22 @@ Ivy/Consel replaces ido or helm
   kept-old-versions 2
   version-control t)
 #+END_SRC
+* Floobits
+
+#+BEGIN_SRC emacs-lisp
+(use-package floobits
+:ensure t)
+#+END_SRC
+* Treemacs
+#+BEGIN_SRC emacs-lisp
+  (use-package treemacs
+    :ensure t)
+#+END_SRC
+* All-the-icons
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons
+    :ensure t)
+#+END_SRC
 * Misc
 #+BEGIN_SRC emacs-lisp
 ;; Show Matching Parenthesis
@@ -150,5 +177,4 @@ Ivy/Consel replaces ido or helm
 
 ;; windows
 (windmove-default-keybindings)
-
 #+END_SRC  
