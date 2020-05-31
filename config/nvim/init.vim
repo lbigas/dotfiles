@@ -5,122 +5,64 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 call plug#begin('~/.vim/plugged')
-Plug 'vim/killersheep'
+Plug 'https://github.com/romainl/flattened.git'
+Plug 'leissa/vim-acme'
+Plug 'https://github.com/vim-syntastic/syntastic.git'
 Plug 'https://github.com/nbardiuk/vim-gol.git'
 Plug 'https://github.com/justinmk/vim-dirvish.git'
 Plug 'https://github.com/robertmeta/nofrils.git'
-" Plug 'DrCracket/painless-digraph'
 Plug 'justinmk/vim-sneak'
-" Plug 'unblevable/quick-scope'
-Plug 'https://github.com/axvr/photon.vim.git'
-Plug 'https://github.com/YorickPeterse/happy_hacking.vim.git'
-" Plug 'https://github.com/airblade/vim-gitgutter.git'
-Plug 'https://github.com/jnurmine/Zenburn.git'
-Plug 'https://github.com/neovimhaskell/haskell-vim.git'
-Plug 'https://github.com/tpope/vim-obsession.git'
-" Plug 'dhruvasagar/vim-prosession', {'depends': 'tpope/vim-obsession'}
-Plug 'https://github.com/sjl/badwolf.git'
-Plug 'arcticicestudio/nord-vim'
-Plug 'https://github.com/nanotech/jellybeans.vim.git'
+" " Plug 'unblevable/quick-scope'
+" " Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/tpope/vim-eunuch.git'
-Plug 'https://github.com/jreybert/vimagit.git'
 Plug 'https://github.com/arzg/vim-colors-xcode.git'
-" Plug 'https://github.com/tpope/vim-vinegar.git'
-Plug 'https://github.com/tpope/vim-vividchalk.git'
-" Plug 'https://github.com/JaySandhu/xcode-vim.git'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" " Plug 'https://github.com/tpope/vim-vinegar.git'
+" Plug 'https://github.com/tpope/vim-vividchalk.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'hzchirs/vim-material'
-Plug 'arcticicestudio/nord-vim'
-Plug 'https://github.com/wimstefan/vim-artesanal.git'
 Plug 'cormacrelf/vim-colors-github'
-Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
-" Plug 'https://github.com/ap/vim-buftabline.git'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
-" Plug 'https://github.com/rakr/vim-two-firewatch.git'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'https://github.com/andbar-ru/vim-unicon.git'
-" Plug 'plasticboy/vim-markdown'
-" Plug 'https://github.com/flazz/vim-colorschemes.git'
-Plug 'kaicataldo/material.vim'
-Plug 'https://github.com/reedes/vim-colors-pencil.git'
-Plug 'https://github.com/morhetz/gruvbox.git'
-" Plug 'https://github.com/junegunn/seoul256.vim.git'
+" Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
+Plug 'https://github.com/rakr/vim-two-firewatch.git'
 Plug 'https://github.com/romainl/Apprentice.git'
 Plug 'https://github.com/jonathanfilip/vim-lucius.git'
-" Plug 'sonph/onehalf', {'rtp': 'vim/'}
-Plug 'https://github.com/lambdalisue/suda.vim.git'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'https://github.com/rakr/vim-one.git'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
-" Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
-" Plug 'https://github.com/ervandew/supertab.git'
-" Plug 'https://github.com/lifepillar/vim-mucomplete.git'
+" " Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
 Plug 'https://github.com/tpope/vim-surround.git'
-" Plug 'https://github.com/farmergreg/vim-lastplace.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/kien/ctrlp.vim.git'
-Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 call plug#end()
 
-" if has('nvim')
-"     set guicursor=
-" endif
+if has('gui')
+    set guifont=Inconsolata\ 14
+    set guicursor=i-n-v-c:block-Cursor
+    set guicursor+=i-n-v-c:blinkon0
+    set guioptions-=m  "menu bar
+    set guioptions-=T  "toolbar
+    set guioptions-=r  "scrollbar
+end
 
+" Basic configs
+scriptencoding utf-8
+let mapleader="\<space>"
+set nocompatible " make vim not vi
 
-" vmap <leader>y :w! /tmp/vitmp<CR>
-" nmap <leader>p :r! cat /tmp/vitmp<CR>
-
-" vim-mucomplete
-" set completeopt+=menuone
-
-
-
-" color chars on colmn 81
-" call matchadd('ColorColumn',  '\%81v', 100)
-
-" Clipboard with "+y
+" Clipboard
 set clipboard=unnamedplus
 
-" Colors
-set t_Co=256
-set termguicolors
-" set background=light
-set background=dark
+" Syntax highlighting
+" set t_Co=256
+" set termguicolors
+set background=light
 syntax enable " enalbe syntax processing
 " colorscheme github
-" colorscheme vividchalk
-" colorscheme apprentice
+" colorscheme nofrils-acme
+colorscheme flattened_light
 let g:nofrils_heavylinenumbers=1
 let g:nofrils_strbackgrounds=1
 let g:nofrils_heavycomments=1
-" colorscheme nofrils-light
-" colorscheme xcodelight
-" colorscheme badwolf
-" colorscheme gruvbox
-" colorscheme jellybeans
-" colorscheme PaperColor
-" colorscheme nord
-colorscheme lucius
-" LuciusBlack
-LuciusWhite
-" colorscheme one
-" colorscheme two-firewatch
-" colorscheme unicon
-" colorscheme material
-" colorscheme artesanal
-" colorscheme nord
-" colorscheme sprinkles
-" colorscheme tempus_past
-" colorscheme onehalflight
-" colorscheme onehalfdark
-" colorscheme material
-" colorscheme apprentice
 
+" Statusline
 set laststatus=2
 set statusline=
 set statusline+=%f
@@ -140,69 +82,45 @@ set statusline+=%l
 set statusline+=:
 set statusline+=%c
 
-" set statusline=
-" set statusline+=\ %f
-" set statusline+=%m
-" set statusline+=%=
-" set statusline+=\ %y
-" set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-" set statusline+=\ [%{&fileformat}\]
-" set statusline+=\ %p%%
-" set statusline+=\ %l:%c
-
+" Completion
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
+set completeopt+=menuone,preview
+
+
+" Indentation
 set tabstop=4 " number of visual spaces per TAB
 set shiftwidth=4
 set expandtab " tabs are spaces
 set softtabstop=4 " number of spaces in tab when editing
-
-" set list
-" set listchars=tab:›~,nbsp:_,eol:¬,trail:⋅
-" set listchars=tab:\uBB\uBB,trail:\uB7
-" set listchars=tab:~,eol:¬,trail:.
-
-" show line warp
-"set list listchars=tab:>-,nbsp:.,trail:.,extends:>,precedes:<
-nmap <F6> :set list!<CR>
-" set listchars=eol:$,tab:>\ ,trail:-,extends:>,precedes:<,space:_
-set showbreak=↳\ 
-
-scriptencoding utf-8
-let mapleader=" "
-
-
-" set number " show line numbers
-set relativenumber " show relative line numbers
-set cmdheight=1 " space between statusbar and bottom of therminal window
-set showcmd " show command in bottom bar
-set cursorline " highlight current line
-" set cursorcolumn
-set nocompatible " make vim not vi
-" set wildmenu " visual autocomplete for comand menu
-set wildmode=longest:full,full
-" A opcao seginte adiciona um bug estranho quando se usa tab em comand mode
-" set wildmode=longest,list,full
-set wildignore+=*.class,*.ctxt,*.bluej
-set lazyredraw " redraw only when we need to
-set showmatch " highlight matching brackets
-set incsearch " search as characters are entered
-set hlsearch " highlight matches
-set ignorecase " ignore case when searching
-set ls=2 " display filename statusbar
-set mat=2 " blink for 2 sec
-set title " show title in console title bar
-set noerrorbells " disable error sound bell
-set novisualbell " disable error visual bell
-
 set autoindent
 set smarttab
 
-if !has('nvim') && &ttimeoutlen == -1
-    set ttimeout
-    set ttimeoutlen=100
-endif
+" Line wraping
+set showbreak=↳\ 
+set wrap
+set linebreak
+set lbr
 
-set laststatus=2
+" Visual guides
+set relativenumber " show relative line numbers
+" set cursorline " highlight current line
+set showmatch " highlight matching brackets
+
+" Vim search
+set incsearch " search as characters are entered
+set hlsearch " highlight matches
+set ignorecase " ignore case when searching
+
+set wildmode=longest:full,full
+set wildignore+=*.class,*.ctxt,*.bluej
+set noerrorbells " disable error sound bell
+set novisualbell " disable error visual bell
+" set lazyredraw " redraw only when we need to
+
+" Vim splits
+set splitright " vertical split to the right
+set splitbelow " horizontal split to the bottom
 
 set autoread " autoreload file when changes are made to it
 set scrolloff=1 " always one line above/below cursor
@@ -213,47 +131,13 @@ set mouse=a
 " movement
 noremap 0 ^
 noremap ^ 0
-" nnoremap <c-k> 5k
-" nnoremap <c-j> 5j
 
-" line warping
-" set formatoptions=1
-" set nolist "disable linebreak
-" fdkjaslfdassssssssssssssssssssssssssssssssssssssssssssss fd safdsaaaaaaaaaaaaaaaaaaaaaaaaaa
-" set textwidth=0
-" set columns=80
-
-set wrap
-set linebreak
-set lbr
-" set columns=80
-" set textwidth=0
-" set wrapmargin=0
-" set formatoptions-=t
-" set textwidth=79
-" set formatoptions+=t
-" set fo+=t
-" set cursorcolumn 79
-
-" fdaaa  afdsa   aaaaadfsajlfjadkaaaaaaafdasaaaaaal;ajsdlfjsa;ldjfjdsalkfjsa;ljfjdsa;   lkfjds;lkjf;lksjdaf;lkjsa;lkfjds;lkjf;lksajf;lkdsajfjdsf
-" set wrapmargin=0
-" set wrap
-" set linebreak " (optional - breaks by word rather than character)
-" set columns=80
-" set formatoptions+=t
-" set colorcolumn=81
-" highlight ColorColumn ctermbg=7
-" highlight ColorColumn guibg=Black
-
-" Vim splits
-set splitright " vertical split to the right
-set splitbelow " horizontal split to the bottom
 
 " Change split size
-noremap <C-Right> :vertical resize +2<CR>
-noremap <C-Left> :vertical resize -2<CR>
-noremap <C-Up> :resize +2<CR>
-noremap <C-Down> :resize -2<CR>
+nnoremap <silent> <C-Right> :vertical resize +2<CR>
+nnoremap <silent> <C-Left> :vertical resize -2<CR>
+nnoremap <silent> <C-Up> :resize +2<CR>
+nnoremap <silent> <C-Down> :resize -2<CR>
 
 " Change 2 split windows from vert/horz
 map <leader>th <C-w>t<C-w>H
@@ -263,58 +147,13 @@ map <leader>tk <C-w>t<C-w>K
 " nnoremap <esc> :nohlsearch<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-
-" vim tabs
-" nnoremap tn :tabnew<CR>
-" nnoremap tj :tabnext<CR>
-" nnoremap tk :tabprev<CR>
-" nnoremap th :tabfirst<CR>
-" nnoremap tl :tablast<CR>
-" nnoremap <leader>1 1gt
-" nnoremap <leader>2 2gt
-" nnoremap <leader>3 3gt
-" nnoremap <leader>4 4gt
-" nnoremap <leader>5 5gt
-" nnoremap <leader>6 6gt
-" nnoremap <leader>7 7gt
-" nnoremap <leader>8 8gt
-" nnoremap <leader>9 9gt
-" nnoremap <leader>0 10gt
-
-" move vertically by visual line (in case of wrap count the wrap as one line)
-"nnoremap j gj
-"nnoremap k gk
-
-" <C-d> and <C-u> Alternative
-" nmap <C-k> <C-u>
-" nmap <C-j> <C-d>
-
-" move to beginning/end of line
-" nnoremap gl $
-" nnoremap gh 0
-" nnoremap gk H
-" nnoremap gj L
-" nmap H ^
-" nmap L $
-" vmap H ^
-" vmap L $
-
-
 " save sudo not working in neovim
-" nmap <leader>sudo :w !sudo tee % <CR><CR>
-nmap <leader>sudo :w suda://%
+nmap <leader>sudo :w !sudo tee % <CR><CR>
+" nmap <leader>sudo :w suda://%
 
 " disable PageUp and PageDown
 nnoremap <PageUp>   <nop>
 nnoremap <PageDown> <nop>
-
-
-" NERDTree
-nnoremap <F3> :NERDTreeToggle<CR>
 
 " Remove trailing whitescape with comand :Spaces
 command Spaces %s/\s\+$//e
@@ -322,26 +161,11 @@ command Spaces %s/\s\+$//e
 " Insert tab in insert mod with Shitft-Tab
 inoremap <S-Tab> <C-v><Tab>
 
+
 " UNDO SETTINGS
 set undofile " Maintain undo history between sessions
 " set undodir=~/.vim/undodir " Undo file directory
 set undodir=~/.config/nvim/undodir " Undo file directory
-
-" Rainbow Parentheses
-let g:rainbow#pairs = [['(', ')'], ['[', ']']]
-
-"" higlight column right after max textwidth
-" set colorcolumn=81
-" highlight ColorColumn ctermbg=254 guibg=lightGrey
-" highlight ColorColumn ctermbg=235 guibg=lightGrey
-" highlight Visual term=reverse cterm=reverse guibg=Grey
-
-""hi ColorColumn gui=reverse cterm=reverse
-
-" set cursorline
-" hi CursorLine term=bold  cterm=bold
-" highlight CursorLine ctermbg=255 guibg=lightGrey
-" hi CursorLine term=bold cterm=bold guibg=Grey40
 
 " Undotree
 nnoremap <F5> :UndotreeToggle<CR>
@@ -354,28 +178,6 @@ autocmd Filetype markdown setlocal commentstring=<!---\ %s\ --->
 
 set complete+=kspell
 
-" Ctags
-" set tags+=tags;
-
-
-" FZF
-" nmap <Leader>f :GFiles<CR>
-" nmap <Leader>F :Files<CR>
-" nmap <Leader>b :Buffers<CR>
-" nmap ; :Buffers<CR>
-" nmap <Leader>h :History<CR>
-" nmap <Leader>t :BTags<CR>
-" nmap <Leader>T :Tags<CR>
-" nmap <Leader>l :BLines<CR>
-" nmap <Leader>L :Lines<CR>
-" nmap <Leader>' :Marks<CR>
-" " nmap <Leader>/ :Ag<Space>
-" " nmap <Leader>/ :Rg<Space>
-" nmap <Leader>H :Helptags!<CR>
-" nmap <Leader>C :Commands<CR>
-" nmap <Leader>: :History:<CR>
-" nmap <Leader>M :Maps<CR>
-" nmap <Leader>s :Filetypes<CR>
 
 " CtrlP
 " let g:ctrlp_map='<leader><leader>'
@@ -396,63 +198,6 @@ set nobackup
 set nowritebackup
 set updatetime=300
 set shortmess+=c
-" set signcolumn=yes
-
-" COC configs
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-" else
-"   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-
-" Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-" nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
 
 " Buffers
 " Saving/Closing Buffer
@@ -462,28 +207,9 @@ nmap <c-n> :bnext<CR>
 nmap <c-p> :bprev<CR>
 " nnoremap <leader>b :ls<CR>:b<space>
 
-" IndentLine
-" let g:indentLine_leadingSpaceEnabled = 1
-" let g:indentLine_leadingSpaceChar = '·'
-" " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-" let g:indentLine_char = '│'
-" let g:indentLine_color_term = 250
-
 set spelllang=pt
 
-" Disable line numbers in markdown
-" autocmd FileType markdown setlocal norelativenumber
-
-autocmd FileType markdown setlocal spell
-autocmd FileType tex setlocal spell
-
-" Vim markdown settings
-let g:vim_markdown_folding_disabled = 1
-
-
-" Quick Scope Plugin
-" Trigger a highlight in the appropriate direction when pressing these keys:
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-" Sneak plugin
-let g:sneak#label = 1
+hi clear SpellBad
+hi SpellBad cterm=underline
+" Set style for gVim
+hi SpellBad gui=undercurl
