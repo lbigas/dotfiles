@@ -1,5 +1,6 @@
-exec cmst -m &
-exec xbacklight -set 25 &
-exec i3
-# exec awesome
-# exec dwm
+wmname LG3D
+export AWT_TOOLKIT=MToolkit
+export _JAVA_AWT_WM_NONREPARENTING=1
+unclutter &
+slstatus &
+exec dwm
