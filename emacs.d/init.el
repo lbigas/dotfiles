@@ -1,7 +1,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+             '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
@@ -17,7 +17,7 @@
 
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
-(toggle-scroll-bar -1) 
+(toggle-scroll-bar -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; Set Line numbers
 (global-display-line-numbers-mode)
@@ -29,14 +29,20 @@
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 
+;; Indentation, Tabs to Spaces
+(setq-default indent-tabs-mode nil)
 
+
+;; Set Backup files to one directory
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
 (setq delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
 
+;; Do not create lock files
 (setq create-lockfiles nil)
+
 
 (show-paren-mode 1)
 (setq show-paren-delay 0)
@@ -88,10 +94,10 @@
 (use-package swiper
   :ensure try
   :bind(("C-s" . swiper-isearch)
-	("C-r" . swiper-isearch)
-	("C-c C-r" . ivy-resume)
-	("M-x" . counsel-M-x)
-	("C-x C-f" . counsel-find-file))
+        ("C-r" . swiper-isearch)
+        ("C-c C-r" . ivy-resume)
+        ("M-x" . counsel-M-x)
+        ("C-x C-f" . counsel-find-file))
   :config
   (progn
     (ivy-mode 1)
@@ -103,8 +109,8 @@
 (use-package avy
   :ensure t
   :bind(
-	("M-s" . avy-goto-word-1)
-	("M-g f" . 'avy-goto-line)))
+        ("M-s" . avy-goto-word-1)
+        ("M-g f" . 'avy-goto-line)))
 
 (use-package company
   :ensure t
@@ -151,18 +157,16 @@
   :ensure t)
 
 (defhydra hydra-projectile (:color teal
-			    :columns 4)
+                            :columns 4)
   "Projectile"
   ("f"   projectile-find-file                "Find File")
   ("r"   projectile-recentf                  "Recent Files")
   ("z"   projectile-cache-current-file       "Cache Current File")
   ("x"   projectile-remove-known-project     "Remove Known Project")
-  
   ("d"   projectile-find-dir                 "Find Directory")
   ("b"   projectile-switch-to-buffer         "Switch to Buffer")
   ("c"   projectile-invalidate-cache         "Clear Cache")
   ("X"   projectile-cleanup-known-projects   "Cleanup Known Projects")
-  
   ("o"   projectile-multi-occur              "Multi Occur")
   ("s"   projectile-switch-project           "Switch Project")
   ("k"   projectile-kill-buffers             "Kill Buffers")
@@ -186,4 +190,3 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Inconsolata" :foundry "PfEd" :slant normal :weight normal :height 128 :width normal))))
  '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
-
