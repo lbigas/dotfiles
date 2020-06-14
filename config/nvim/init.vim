@@ -55,9 +55,9 @@ set clipboard=unnamedplus
 " set termguicolors
 set background=light
 syntax enable " enalbe syntax processing
-" colorscheme github
+colorscheme github
 " colorscheme nofrils-acme
-colorscheme flattened_light
+" colorscheme flattened_light
 let g:nofrils_heavylinenumbers=1
 let g:nofrils_strbackgrounds=1
 let g:nofrils_heavycomments=1
