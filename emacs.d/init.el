@@ -51,10 +51,15 @@
 
 (windmove-default-keybindings)
 
-(use-package faff-theme
+(use-package modus-operandi-theme
   :ensure t)
 
-(load-theme 'faff t)
+;; (use-package faff-theme
+;;   :ensure t)
+
+;; (load-theme 'faff t)
+
+(load-theme 'modus-operandi t)
 
 (use-package try
   :ensure t)
@@ -63,15 +68,15 @@
   :ensure t
   :config (which-key-mode))
 
-(use-package ace-window
-  :ensure t
-  :init
-  (progn
-    (global-set-key [remap other-window] 'ace-window)
-    (custom-set-faces
-     '(aw-leading-char-face
-       ((t (:inherit ace-jump-face-foreground :height 3.0)))))
-    ))
+;; (use-package ace-window
+;;   :ensure t
+;;   :init
+;;   (progn
+;;     (global-set-key [remap other-window] 'ace-window)
+;;     (custom-set-faces
+;;      '(aw-leading-char-face
+;;        ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+;;     ))
 
 (use-package counsel
   :ensure t
@@ -112,25 +117,6 @@
         ("M-s" . avy-goto-word-1)
         ("M-g f" . 'avy-goto-line)))
 
-(use-package company
-  :ensure t
-  :config
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 3)
-  (global-company-mode t))
-
-(use-package ac-js2
-  :ensure t
-  :config
-  (setq ac-js2-evaluate-calls t)
-  (add-to-list 'company-backends 'ac-js2-company)
-  (add-hook 'js2-mode-hook 'ac-js2-mode)
-  :bind
-  ("M-TAB" . company-complete-common))
-
-(use-package haskell-mode
-  :ensure t)
-
 (use-package magit
   :ensure t
   :config
@@ -150,7 +136,31 @@
   (projectile-global-mode)
   )
 
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode))
+
 (use-package pdf-tools
+  :ensure t)
+
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
+  (global-company-mode t))
+
+(use-package ac-js2
+  :ensure t
+  :config
+  (setq ac-js2-evaluate-calls t)
+  (add-to-list 'company-backends 'ac-js2-company)
+  (add-hook 'js2-mode-hook 'ac-js2-mode)
+  :bind
+  ("M-TAB" . company-complete-common))
+
+(use-package haskell-mode
   :ensure t)
 
 (use-package hydra
@@ -174,13 +184,38 @@
 
 (global-set-key (kbd "C-c p") 'hydra-projectile/body)
 
+(defhydra hydra-avy (:exit t :hint nil)
+  "
+ Line^^       Region^^        Goto
+----------------------------------------------------------
+ [_y_] yank   [_Y_] yank      [_c_] timed char  [_C_] char
+ [_m_] move   [_M_] move      [_w_] word        [_W_] any word
+ [_k_] kill   [_K_] kill      [_l_] line        [_L_] end of line"
+  ("c" avy-goto-char-timer)
+  ("C" avy-goto-char)
+  ("w" avy-goto-word-1)
+  ("W" avy-goto-word-0)
+  ("l" avy-goto-line)
+  ("L" avy-goto-end-of-line)
+  ("m" avy-move-line)
+  ("M" avy-move-region)
+  ("k" avy-kill-whole-line)
+  ("K" avy-kill-region)
+  ("y" avy-copy-line)
+  ("Y" avy-copy-region))
+
+(global-set-key (kbd "C-c c") 'hydra-avy/body)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
- '(package-selected-packages (quote (magit expand-region which-key try use-package)))
+ '(global-display-line-numbers-mode t)
+ '(package-selected-packages
+   (quote
+    (undo-tree magit expand-region which-key try use-package)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -188,5 +223,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Inconsolata" :foundry "PfEd" :slant normal :weight normal :height 128 :width normal))))
+ '(default ((t (:family "Inconsolata" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal))))
  '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
