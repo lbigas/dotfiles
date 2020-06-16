@@ -19,7 +19,9 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 (fset 'yes-or-no-p 'y-or-n-p)
+
 ;; Set Line numbers
+;; (global-linum-mode t)
 (global-display-line-numbers-mode)
 
 ;; Scroll fix
@@ -144,24 +146,25 @@
 (use-package pdf-tools
   :ensure t)
 
+(use-package haskell-mode
+  :ensure t)
+
 (use-package company
   :ensure t
   :config
   (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 3)
-  (global-company-mode t))
+  (setq company-minimum-prefix-length 2)
+  (global-company-mode t)
+  :bind
+  ("C-;" . company-complete-common))
 
 (use-package ac-js2
   :ensure t
+  :defer t
   :config
   (setq ac-js2-evaluate-calls t)
   (add-to-list 'company-backends 'ac-js2-company)
-  (add-hook 'js2-mode-hook 'ac-js2-mode)
-  :bind
-  ("M-TAB" . company-complete-common))
-
-(use-package haskell-mode
-  :ensure t)
+  (add-hook 'js2-mode-hook 'ac-js2-mode))
 
 (use-package hydra
   :ensure t)
@@ -212,7 +215,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
- '(global-display-line-numbers-mode t)
  '(package-selected-packages
    (quote
     (undo-tree magit expand-region which-key try use-package)))
