@@ -30,7 +30,7 @@
 (setq column-number-mode t)
 
 ;; Set Line numbers
-(add-hook 'prog-mode-hook 'linum-mode)
+;; (add-hook 'prog-mode-hook 'linum-mode)
 ;; (setq linum-format "%4d \u2502 ")
 ;; (global-display-line-numbers-mode)
 
@@ -131,6 +131,14 @@
   :bind(
         ("M-s" . avy-goto-word-1)
         ("M-g f" . 'avy-goto-line)))
+
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (global-aggressive-indent-mode 1)
+  (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'latex-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'shell-mode))
 
 (use-package expand-region
   :ensure t
