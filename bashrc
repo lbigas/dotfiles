@@ -8,24 +8,15 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-
 # enter a directory without needing to write cd
 shopt -s autocd
 
 bind 'set completion-ignore-case on' # ignore case on Tab complition
 
-alias shutdown='shutdown -h now'
-alias suspend='systemctl suspend'
-alias hibernate='systemctl hibernate'
-
 alias ..="cd .."
-alias ....="cd ../.."
-alias ......="cd ../../.."
+alias 2..="cd ../.."
+alias 3..="cd ../../.."
+alias 4..="cd ../../../.."
 
 alias v=nvim
 alias sv="sudo -E nvim"
@@ -33,16 +24,7 @@ alias r=ranger
 
 alias ls='ls -hN --color=auto'
 alias la="ls -a"
-alias ll="ls -l"
-
-alias starwars="telnet towel.blinkenlights.nl"
-
-alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-
-export PATH=$PATH:$HOME/.bin
-
-
-
+alias ll="ls -
 RCol='\033[0m';
 Gre='\033[32m';
 Red='\033[31m';
@@ -64,5 +46,3 @@ PS1="${RCol}┌─[\[${Cyan}\]\h@\u\[${RCol}\] \[${Yel}\]\w\[${RCol}\]]\n└─�
 
 #PS1='[\u@\h \W]\$ '
 #PS1='\[\e]0;\w\a\]\[\e[32m\]\u@\h: \[\e[33m\]\w\[\e[0m\]\n\$ '
-
-#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
