@@ -2,6 +2,8 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
 ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TBS1.3")
 
@@ -11,6 +13,9 @@
   (package-install 'use-package))
 
 ;; (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
+
+;; line numbers on programming file types
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 
 ;; ispell
@@ -65,16 +70,25 @@
 ;; Move between frames with Shift+arrow
 (windmove-default-keybindings)
 
+(use-package org
+  :ensure t
+  :pin org)
+
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;   :ensure t)
 
 ;; (use-package modus-operandi-theme
 ;;   :ensure t)
 
-(use-package faff-theme
+(use-package solarized-theme
   :ensure t)
 
-(load-theme 'faff t)
+;; (use-package faff-theme
+;;  :ensure t)
+
+(load-theme 'solarized-light t)
+
+;; (load-theme 'faff t)
 
 ;; (load-theme 'modus-operandi t)
 
@@ -295,85 +309,21 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   (vector "#ffffff" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#4d4d4c"))
- '(beacon-color "#c82829")
- '(blink-cursor-mode nil)
- '(custom-enabled-themes (quote (faff)))
- '(custom-safe-themes
-   (quote
-    ("b54dc0500ff61167e1201b0dba6925f354a267f51b4d4b15e338c2d67d92fbda" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)))
- '(fci-rule-color "#d6d6d6")
- '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
- '(flymake-error-bitmap
-   (quote
-    (flymake-double-exclamation-mark modus-theme-fringe-red)))
- '(flymake-note-bitmap (quote (exclamation-mark modus-theme-fringe-cyan)))
- '(flymake-warning-bitmap (quote (exclamation-mark modus-theme-fringe-yellow)))
- '(frame-background-mode (quote light))
- '(hl-todo-keyword-faces
-   (quote
-    (("HOLD" . "#70480f")
-     ("TODO" . "#721045")
-     ("NEXT" . "#5317ac")
-     ("THEM" . "#8f0075")
-     ("PROG" . "#00538b")
-     ("OKAY" . "#30517f")
-     ("DONT" . "#315b00")
-     ("FAIL" . "#a60000")
-     ("DONE" . "#005e00")
-     ("NOTE" . "#863927")
-     ("KLUDGE" . "#813e00")
-     ("HACK" . "#813e00")
-     ("TEMP" . "#4d0006")
-     ("FIXME" . "#a0132f")
-     ("XXX+" . "#972500")
-     ("REVIEW" . "#005a5f")
-     ("DEPRECATED" . "#001170"))))
- '(ibuffer-deletion-face (quote dired-flagged))
- '(ibuffer-filter-group-name-face (quote dired-mark))
- '(ibuffer-marked-face (quote dired-marked))
- '(ibuffer-title-face (quote dired-header))
+ '(column-number-mode t)
  '(package-selected-packages
-   (quote
-    (faff-theme undo-tree magit expand-region which-key try use-package)))
+   '(org-bullets hydra ac-js2 haskell-mode company pdf-tools undo-tree projectile wrap-region expand-region aggressive-indent avy counsel magit which-key try solarized-theme use-package))
  '(show-paren-mode t)
- '(tool-bar-mode nil)
- '(vc-annotate-background nil)
- '(vc-annotate-background-mode nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#c82829")
-     (40 . "#f5871f")
-     (60 . "#eab700")
-     (80 . "#718c00")
-     (100 . "#3e999f")
-     (120 . "#4271ae")
-     (140 . "#8959a8")
-     (160 . "#c82829")
-     (180 . "#f5871f")
-     (200 . "#eab700")
-     (220 . "#718c00")
-     (240 . "#3e999f")
-     (260 . "#4271ae")
-     (280 . "#8959a8")
-     (300 . "#c82829")
-     (320 . "#f5871f")
-     (340 . "#eab700")
-     (360 . "#718c00"))))
- '(vc-annotate-very-old-color nil)
- '(window-divider-mode nil))
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Inconsolata" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal))))
- '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+ '(default ((t (:family "Inconsolata" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
