@@ -1,0 +1,18 @@
+# required by sys-kernel/genkernel-4.1.2-r3::gentoo[firmware]
+# required by sys-kernel/genkernel (argument)
+>=sys-kernel/linux-firmware-20200918 linux-fw-redistributable no-source-code
+# required by x11-base/xorg-x11-7.4-r3::gentoo[fonts]
+# required by x11-base/xorg-x11 (argument)
+>=media-fonts/font-bh-ttf-1.0.3-r2 bh-luxi
+# required by x11-base/xorg-x11-7.4-r3::gentoo[fonts]
+# required by x11-base/xorg-x11 (argument)
+>=media-fonts/font-bh-type1-1.0.3-r2 bh-luxi
+# required by games-util/steam-launcher (argument)
+>=games-util/steam-launcher-1.0.0.66 ValveSteamLicense
+# required by games-fps/urbanterror-4.3.4_p20200519::gentoo
+# required by games-fps/urbanterror (argument)
+>=games-fps/urbanterror-data-4.3.4 Q3AEULA-20000111 urbanterror-4.2-maps
+# required by net-im/skypeforlinux (argument)
+>=net-im/skypeforlinux-8.65.0.76 Skype-TOS
+# required by net-im/discord-bin (argument)
+>=net-im/discord-bin-0.0.12 all-rights-reserved
