@@ -2,8 +2,6 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives
-             '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
 ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TBS1.3")
 
@@ -11,8 +9,6 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-
-;; (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
 
 ;; line numbers on programming file types
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -70,23 +66,16 @@
 ;; Move between frames with Shift+arrow
 (windmove-default-keybindings)
 
-(use-package org
-  :ensure t
-  :pin org)
-
-;; (use-package color-theme-sanityinc-tomorrow
-;;   :ensure t)
-
 ;; (use-package modus-operandi-theme
 ;;   :ensure t)
 
 (use-package solarized-theme
   :ensure t)
 
+(load-theme 'solarized-light t)
+
 ;; (use-package faff-theme
 ;;  :ensure t)
-
-(load-theme 'solarized-light t)
 
 ;; (load-theme 'faff t)
 
@@ -308,9 +297,6 @@
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -318,7 +304,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(package-selected-packages
-   '(org-bullets hydra ac-js2 haskell-mode company pdf-tools undo-tree projectile wrap-region expand-region aggressive-indent avy counsel magit which-key try solarized-theme use-package))
+   '(undo-tree wrap-region which-key use-package try projectile pdf-tools org-bullets moe-theme magit hydra haskell-mode expand-region counsel company avy aggressive-indent ac-js2))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -326,4 +312,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Inconsolata" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
+ '(default ((t (:family "Inconsolata" :foundry "CYRE" :slant normal :weight semi-bold :height 113 :width normal)))))
