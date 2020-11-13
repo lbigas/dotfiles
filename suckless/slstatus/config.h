@@ -64,7 +64,8 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          argument */
     { keyboard_indicators, "C:(%1s) ", "c?" },
-    { run_command, "V:%7s ", "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 " " $4}'" },
+    { run_command, "V:%7s ", "pamixer --get-volume" },
+    //{ run_command, "V:%7s ", "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 " " $4}'" },
 // amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }'
  // * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
 //	{ run_command, "V:%4s | ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
