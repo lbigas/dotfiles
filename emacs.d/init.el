@@ -44,6 +44,8 @@
 
 ;; Indentation, Tabs to Spaces
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq-default c-basic-offset 4)
 
 
 ;; Set Backup files to one directory
@@ -66,20 +68,20 @@
 ;; Move between frames with Shift+arrow
 (windmove-default-keybindings)
 
-;; (use-package modus-operandi-theme
-;;   :ensure t)
-
-(use-package solarized-theme
+(use-package modus-operandi-theme
   :ensure t)
 
-(load-theme 'solarized-light t)
+;; (use-package solarized-theme
+;;   :ensure t)
+
+;; (load-theme 'solarized-light t)
 
 ;; (use-package faff-theme
 ;;  :ensure t)
 
 ;; (load-theme 'faff t)
 
-;; (load-theme 'modus-operandi t)
+(load-theme 'modus-operandi t)
 
 ;; try a package without installing
 (use-package try
