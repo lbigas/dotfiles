@@ -82,9 +82,13 @@ Should add more detailed information, (too see later)
 * Color Theme
 
 #+begin_src emacs-lisp
-  (use-package material-theme
-    :defer t
-    :init (load-theme 'material-light t))
+  ;; (use-package material-theme
+  ;;   :defer t
+  ;;   :init (load-theme 'material-light t))
+
+  (use-package kaolin-themes
+    :config
+    (load-theme 'kaolin-light t))
 #+end_src
 * Hydra
   #+begin_src emacs-lisp
@@ -243,6 +247,13 @@ Ivy-rich: Addion of better description of commands while using Counsel
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 #+end_src
 
+* Pdf-Tools
+  #+begin_src emacs-lisp
+    (use-package pdf-tools
+      :config (pdf-tools-install))
+      ;; :bind 
+      ;; (:map pdf-view-mode-map ("C-s" . isearch-forward)))
+  #+end_src
 * Misc
 ** Helpful
 #+begin_src emacs-lisp
