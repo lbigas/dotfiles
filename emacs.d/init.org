@@ -66,6 +66,8 @@ Consigure basic Emacs UI
        kept-new-versions 5   ; how many of the newest versions to keep
        kept-old-versions 5    ; and how many of the old
        )
+
+     (defalias 'yes-or-no-p 'y-or-n-p)
    #+end_src
 * Indentation
 #+begin_src emacs-lisp
@@ -145,6 +147,26 @@ Ivy-rich: Addion of better description of commands while using Counsel
   (use-package magit
     :bind ("C-x g" . magit-status))
 #+end_src
+
+* Projectile
+  #+begin_src emacs-lisp
+    (use-package projectile
+      :init
+      (projectile-mode 1)
+      :bind
+      (:map projectile-mode-map ("C-c p" . projectile-command-map)))
+
+    ;; (use-package counsel-projectile
+    ;;   :after projectile
+    ;;   :init
+    ;;   (counsel-projectile-mode))
+  #+end_src
+
+* Commenting Lines
+  #+begin_src emacs-lisp
+    (use-package evil-nerd-commenter
+      :bind ("M-/" . evilnc-comment-or-uncomment-lines))
+  #+end_src
 
 * Spell Cheking
   #+begin_src emacs-lisp
