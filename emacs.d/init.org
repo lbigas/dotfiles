@@ -84,13 +84,27 @@ Should add more detailed information, (too see later)
 * Color Theme
 
 #+begin_src emacs-lisp
-  ;; (use-package material-theme
-  ;;   :defer t
-  ;;   :init (load-theme 'material-light t))
+  (use-package material-theme)
 
-  (use-package kaolin-themes
-    :config
-    (load-theme 'kaolin-light t))
+  (use-package faff-theme)
+
+  (use-package ample-theme)
+
+  (use-package tao-theme)
+
+  (use-package cloud-theme)
+
+  (use-package modus-operandi-theme)
+
+  (use-package kaolin-themes)
+
+  (use-package solarized-theme)
+
+  (use-package zenburn-theme)
+
+  (use-package moe-theme)
+
+  (load-theme 'solarized-light-high-contrast t)
 #+end_src
 * Hydra
   #+begin_src emacs-lisp
@@ -276,8 +290,11 @@ Ivy-rich: Addion of better description of commands while using Counsel
       ;; :bind 
       ;; (:map pdf-view-mode-map ("C-s" . isearch-forward)))
   #+end_src
+
 * Misc
+
 ** Helpful
+
 #+begin_src emacs-lisp
   (use-package helpful
     :custom
