@@ -170,10 +170,10 @@ Ivy-rich: Addion of better description of commands while using Counsel
       :bind
       (:map projectile-mode-map ("C-c p" . projectile-command-map)))
 
-    ;; (use-package counsel-projectile
-    ;;   :after projectile
-    ;;   :init
-    ;;   (counsel-projectile-mode))
+    (use-package counsel-projectile
+      :after (projectile, counsel)
+      :init
+      (counsel-projectile-mode))
   #+end_src
 
 * Commenting Lines
