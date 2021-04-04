@@ -57,6 +57,14 @@ Consigure basic Emacs UI
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 * General Emacs Settings
+** Windmove
+   Swap window possitions
+   #+begin_src emacs-lisp
+     (global-set-key (kbd "C-c <left>")    'windmove-swap-states-left)
+     (global-set-key (kbd "C-c <right>")    'windmove-swap-states-right)
+     (global-set-key (kbd "C-c <up>")    'windmove-swap-states-up)
+     (global-set-key (kbd "C-c <down>")    'windmove-swap-states-down)
+   #+end_src
 ** Emacs backup files
    #+begin_src emacs-lisp
      (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
@@ -104,7 +112,13 @@ Should add more detailed information, (too see later)
 
   (use-package moe-theme)
 
-  (load-theme 'kaolin-light t)
+  (use-package espresso-theme)
+
+  (use-package tango-plus-theme)
+
+  (use-package color-theme-sanityinc-tomorrow)
+
+  (load-theme 'material-light t)
 #+end_src
 * Hydra
   #+begin_src emacs-lisp
