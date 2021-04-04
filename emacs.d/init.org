@@ -94,7 +94,7 @@ Should add more detailed information, (too see later)
 
   (use-package cloud-theme)
 
-  (use-package modus-operandi-theme)
+  (use-package modus-themes)
 
   (use-package kaolin-themes)
 
@@ -104,7 +104,7 @@ Should add more detailed information, (too see later)
 
   (use-package moe-theme)
 
-  (load-theme 'solarized-light-high-contrast t)
+  (load-theme 'kaolin-light t)
 #+end_src
 * Hydra
   #+begin_src emacs-lisp
@@ -236,6 +236,9 @@ Ivy-rich: Addion of better description of commands while using Counsel
     (use-package haskell-mode)
   #+end_src
 
+  To intall haskell language server:
+  install haskell-language-server package
+
   #+begin_src emacs-lisp
     (use-package lsp-haskell
       :after lsp-mode)
@@ -246,7 +249,6 @@ Ivy-rich: Addion of better description of commands while using Counsel
       :custom
       (python-shell-interpreter "python3"))
   #+end_src
-** Python Jedi-language-server
 
    To install the language server on the machine:
    pip install --user python-language-server[all]
