@@ -3,6 +3,8 @@
 
 To compile and use the configuration, use org-babel-tangle function from this file.
 
+To prevent a block of code to be tangled, use: #+begin_src emacs-lisp :tangle no
+
 * Package System Setup
 
 Setup package sources and use-package setup
@@ -64,6 +66,11 @@ Consigure basic Emacs UI
      (global-set-key (kbd "C-c <right>")    'windmove-swap-states-right)
      (global-set-key (kbd "C-c <up>")    'windmove-swap-states-up)
      (global-set-key (kbd "C-c <down>")    'windmove-swap-states-down)
+
+     (global-set-key (kbd "C-c C-<left>")    'windmove-left)
+     (global-set-key (kbd "C-c C-<right>")    'windmove-right)
+     (global-set-key (kbd "C-c C-<up>")    'windmove-up)
+     (global-set-key (kbd "C-c C-<down>")    'windmove-down)
    #+end_src
 ** Emacs backup files
    #+begin_src emacs-lisp
@@ -118,7 +125,13 @@ Should add more detailed information, (too see later)
 
   (use-package color-theme-sanityinc-tomorrow)
 
-  (load-theme 'material-light t)
+  (use-package flatui-theme)
+
+  (use-package alect-themes)
+
+  (use-package gruvbox-theme)
+
+  (load-theme 'solarized-light t)
 #+end_src
 * Hydra
   #+begin_src emacs-lisp
@@ -135,6 +148,16 @@ Should add more detailed information, (too see later)
    #+begin_src emacs-lisp
      (use-package evil-nerd-commenter
        :bind ("M-/" . evilnc-comment-or-uncomment-lines))
+   #+end_src
+** Undo Tree
+   #+begin_src emacs-lisp
+     (use-package undo-tree
+       :delight
+       :hook (after-init . global-undo-tree-mode)
+       :bind (("C-x u" . undo-tree-visualize)
+              ("C-_" . undo-tree-undo)
+              ("M-_" . undo-tree-redo)))
+
    #+end_src
 * Ivy, Counsel, Swiper
 
@@ -169,6 +192,11 @@ Ivy-rich: Addion of better description of commands while using Counsel
     :config
     (ivy-rich-mode))
 #+end_src
+* Avy
+  #+begin_src emacs-lisp
+    (use-package avy
+      :bind (("C-:" . avy-goto-word-1)))
+  #+end_src
 
 * Magit
 #+begin_src emacs-lisp
@@ -190,8 +218,10 @@ Ivy-rich: Addion of better description of commands while using Counsel
       (counsel-projectile-mode))
   #+end_src
 
+*  
+
 * Commenting Lines
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package evil-nerd-commenter
       :bind ("M-/" . evilnc-comment-or-uncomment-lines))
   #+end_src
@@ -300,7 +330,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 #+end_src
 
 * Pdf-Tools
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package pdf-tools
       :config (pdf-tools-install))
       ;; :bind 
@@ -345,3 +375,74 @@ Which-key is usefull for remembering some keybinds, after pressing a prefix like
          (exec-path-from-shell-initialize))
    #+end_src
 
+* Window Management
+  #+begin_src emacs-lisp :tangle no
+    (defun efs/exwm-update-class ()
+      (exwm-workspace-rename-buffer exwm-class-name))
+
+    (use-package exwm
+      :config
+      ;; Set the default number of workspaces
+      (setq exwm-workspace-number 5)
+
+      ;; When window "class" updates, use it to set the buffer name
+      (add-hook 'exwm-update-class-hook #'efs/exwm-update-class)
+
+      ;; Rebind CapsLock to Ctrl
+      (start-process-shell-command "xmodmap" nil "xmodmap ~/.emacs.d/exwm/Xmodmap")
+
+      ;; Set the screen resolution (update this to be the correct resolution for your screen!)
+      (require 'exwm-randr)
+      (exwm-randr-enable)
+      ;; (start-process-shell-command "xrandr" nil "xrandr --output Virtual-1 --primary --mode 2048x1152 --pos 0x0 --rotate normal")
+
+      ;; Load the system tray before exwm-init
+      (require 'exwm-systemtray)
+      (exwm-systemtray-enable)
+
+      ;; These keys should always pass through to Emacs
+      (setq exwm-input-prefix-keys
+        '(?\C-x
+          ?\C-u
+          ?\C-h
+          ?\M-x
+          ?\M-`
+          ?\M-&
+          ?\M-:
+          ?\C-\M-j  ;; Buffer list
+          ?\C-\ ))  ;; Ctrl+Space
+
+      ;; Ctrl+Q will enable the next key to be sent directly
+      (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+
+      ;; Set up global key bindings.  These always work, no matter the input state!
+      ;; Keep in mind that changing this list after EXWM initializes has no effect.
+      (setq exwm-input-global-keys
+            `(
+              ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
+              ([?\s-r] . exwm-reset)
+
+              ;; Move between windows
+              ([s-left] . windmove-left)
+              ([s-right] . windmove-right)
+              ([s-up] . windmove-up)
+              ([s-down] . windmove-down)
+
+              ;; Launch applications via shell command
+              ([?\s-&] . (lambda (command)
+                           (interactive (list (read-shell-command "$ ")))
+                           (start-process-shell-command command nil command)))
+
+              ;; Switch workspace
+              ([?\s-w] . exwm-workspace-switch)
+              ([?\s-`] . (lambda () (interactive) (exwm-workspace-switch-create 0)))
+
+              ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
+              ,@(mapcar (lambda (i)
+                          `(,(kbd (format "s-%d" i)) .
+                            (lambda ()
+                              (interactive)
+                              (exwm-workspace-switch-create ,i))))
+                        (number-sequence 0 9))))
+      (exwm-enable))
+  #+end_src
