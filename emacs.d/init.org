@@ -337,6 +337,49 @@ Ivy-rich: Addion of better description of commands while using Counsel
       ;; (:map pdf-view-mode-map ("C-s" . isearch-forward)))
   #+end_src
 
+  
+* All The Icons
+  #+begin_src emacs-lisp
+    (use-package all-the-icons)
+  #+end_src
+* Doom Modeline
+  #+begin_src emacs-lisp :tangle no
+    ;; (use-package doom-modeline
+    ;;   :after (eshell all-the-icons)     ;; Make sure it gets hooked after eshell
+    ;;   ;; :init (doom-modeline-mode 1)
+    ;;   ;; :hook (window-setup . doom.modeline-mode)
+    ;;   :hook (after-init . doom-modeline-mode)
+    ;;   :custom-face
+    ;;   (mode-line ((t (:height 0.85))))
+    ;;   (mode-line-inactive ((t (:height 0.85))))
+    ;;   :custom
+    ;;   (doom-modeline-height 15)
+    ;;   (doom-modeline-bar-width 6)
+    ;;   (doom-modeline-lsp t)
+    ;;   (doom-modeline-github nil)
+    ;;   (doom-modeline-mu4e nil)
+    ;;   (doom-modeline-irc nil)
+    ;;   (doom-modeline-minor-modes t)
+    ;;   (doom-modeline-persp-name nil)
+    ;;   (doom-modeline-buffer-file-name-style 'truncate-except-project)
+    ;;   (doom-modeline-major-mode-icon nil))
+
+    (use-package doom-modeline
+      ;; :hook (after-init . doom-modeline-mode))
+      :hook (window-setup . doom-modeline-mode))
+      ;; :custom
+      ;; (doom-modeline-height 15)
+      ;; (doom-modeline-bar-width 6)
+      ;; (doom-modeline-lsp t)
+      ;; (doom-modeline-github nil)
+      ;; (doom-modeline-mu4e nil)
+      ;; (doom-modeline-irc nil)
+      ;; (doom-modeline-minor-modes t)
+      ;; (doom-modeline-persp-name nil)
+      ;; (doom-modeline-buffer-file-name-style 'truncate-except-project)
+      ;; (doom-modeline-major-mode-icon nil))
+  #+end_src
+
 * Misc
 
 ** Helpful
@@ -376,24 +419,27 @@ Which-key is usefull for remembering some keybinds, after pressing a prefix like
    #+end_src
 
 * Window Management
-  #+begin_src emacs-lisp :tangle no
+  #+begin_src emacs-lisp
     (defun efs/exwm-update-class ()
       (exwm-workspace-rename-buffer exwm-class-name))
 
     (use-package exwm
       :config
+      ;; Do not replace window manager if already running one
+      (setq exwm-replace nil)
+      ;; (set-frame-font "Inconsolata 1" nil t)
       ;; Set the default number of workspaces
-      (setq exwm-workspace-number 5)
+      (setq exwm-workspace-number 10)
 
       ;; When window "class" updates, use it to set the buffer name
       (add-hook 'exwm-update-class-hook #'efs/exwm-update-class)
 
       ;; Rebind CapsLock to Ctrl
-      (start-process-shell-command "xmodmap" nil "xmodmap ~/.emacs.d/exwm/Xmodmap")
+      ;; (start-process-shell-command "xmodmap" nil "xmodmap ~/.emacs.d/exwm/Xmodmap")
 
       ;; Set the screen resolution (update this to be the correct resolution for your screen!)
-      (require 'exwm-randr)
-      (exwm-randr-enable)
+      ;; (require 'exwm-randr)
+      ;; (exwm-randr-enable)
       ;; (start-process-shell-command "xrandr" nil "xrandr --output Virtual-1 --primary --mode 2048x1152 --pos 0x0 --rotate normal")
 
       ;; Load the system tray before exwm-init
@@ -432,6 +478,7 @@ Which-key is usefull for remembering some keybinds, after pressing a prefix like
               ([?\s-&] . (lambda (command)
                            (interactive (list (read-shell-command "$ ")))
                            (start-process-shell-command command nil command)))
+              ([?\s-p] . counsel-linux-app)
 
               ;; Switch workspace
               ([?\s-w] . exwm-workspace-switch)
