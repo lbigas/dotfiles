@@ -96,42 +96,46 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   (set-frame-font "Inconsolata 12" nil t)
 #+end_src
+* Diminish
+  #+begin_src emacs-lisp
+  (use-package diminish)
+  #+end_src
 * Color Theme
 
 #+begin_src emacs-lisp
-  (use-package material-theme)
+    (use-package material-theme)
 
-  (use-package faff-theme)
+    (use-package faff-theme)
 
-  (use-package ample-theme)
+    (use-package ample-theme)
 
-  (use-package tao-theme)
+    (use-package tao-theme)
 
-  (use-package cloud-theme)
+    (use-package cloud-theme)
 
-  (use-package modus-themes)
+    (use-package modus-themes)
 
-  (use-package kaolin-themes)
+    (use-package kaolin-themes)
 
-  (use-package solarized-theme)
+    (use-package solarized-theme)
 
-  (use-package zenburn-theme)
+    (use-package zenburn-theme)
 
-  (use-package moe-theme)
+    (use-package moe-theme)
 
-  (use-package espresso-theme)
+    (use-package espresso-theme)
 
-  (use-package tango-plus-theme)
+    (use-package tango-plus-theme)
 
-  (use-package color-theme-sanityinc-tomorrow)
+    (use-package color-theme-sanityinc-tomorrow)
 
-  (use-package flatui-theme)
+    (use-package flatui-theme)
 
-  (use-package alect-themes)
+    (use-package alect-themes)
 
-  (use-package gruvbox-theme)
+    (use-package gruvbox-theme)
 
-  (load-theme 'solarized-light t)
+    (load-theme 'solarized-light t)
 #+end_src
 * Hydra
   #+begin_src emacs-lisp
@@ -152,7 +156,7 @@ Should add more detailed information, (too see later)
 ** Undo Tree
    #+begin_src emacs-lisp
      (use-package undo-tree
-       :delight
+       :diminish
        :hook (after-init . global-undo-tree-mode)
        :bind (("C-x u" . undo-tree-visualize)
               ("C-_" . undo-tree-undo)
@@ -168,6 +172,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 
 #+begin_src emacs-lisp
   (use-package ivy
+    :diminish
     :init
     (ivy-mode 1)
     :config
@@ -175,6 +180,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
     (setq ivy-count-format "(%d/%d) "))
 
   (use-package counsel
+    :diminish
     :bind (("M-x" . counsel-M-x)
            ("C-x C-f" . counsel-find-file)
            ("C-x b" . counsel-ibuffer))
@@ -182,6 +188,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
     (counsel-mode 1))
 
   (use-package swiper
+    :diminish
     :bind ("C-s" . swiper))
            ;; ("C-s" . swiper-isearch)
            ;; ("C-r" . swiper-isearch-backward)
@@ -195,6 +202,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 * Avy
   #+begin_src emacs-lisp
     (use-package avy
+      :diminish
       :bind (("C-:" . avy-goto-word-1)))
   #+end_src
 
@@ -218,7 +226,12 @@ Ivy-rich: Addion of better description of commands while using Counsel
       (counsel-projectile-mode))
   #+end_src
 
-*  
+*  VTerm
+  #+begin_src emacs-lisp
+    (use-package vterm)
+
+    (use-package multi-vterm)
+  #+end_src
 
 * Commenting Lines
   #+begin_src emacs-lisp :tangle no
@@ -330,7 +343,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 #+end_src
 
 * Pdf-Tools
-  #+begin_src emacs-lisp :tangle no
+  #+begin_src emacs-lisp
     (use-package pdf-tools
       :config (pdf-tools-install))
       ;; :bind 
@@ -419,28 +432,85 @@ Which-key is usefull for remembering some keybinds, after pressing a prefix like
    #+end_src
 
 * Window Management
+  
+** EXWM
   #+begin_src emacs-lisp
-    (defun efs/exwm-update-class ()
+    (defun my/run-in-background (command)
+      (let ((command-parts (split-string command "[ ]+")))
+        (apply #'call-process `(,(car command-parts) nil 0 nil ,@(cdr command-parts)))))
+
+    (defun my/exwm-init-hook ()
+      ;; switch to workspace 1
+      (exwm-workspace-switch-create 1)
+
+      (setq window-divider-default-right-width 1)
+      (window-divider-mode)
+
+      ;; Show battery in modeline
+      (display-battery-mode 1)
+
+      ;; Show the time and date in modeline
+      (setq display-time-day-and-date t)
+      (setq display-time-24hr-format t)
+      (display-time-mode 1))
+
+    (defun my/exwm-update-class ()
       (exwm-workspace-rename-buffer exwm-class-name))
+
+    (defun my/exwm-update-title ()
+      (pcase exwm-class-name
+        ("Firefox" (exwm-workspace-rename-buffer (format "Firefox: %s" exwm-title)))))
+
+    (defun my/update-displays ()
+      (my/run-in-background "autorandr --change --force")
+      (message "Display config: %s"
+               (string-trim (shell-command-to-string "autorandr --current"))))
+
 
     (use-package exwm
       :config
-      ;; Do not replace window manager if already running one
-      (setq exwm-replace nil)
-      ;; (set-frame-font "Inconsolata 1" nil t)
       ;; Set the default number of workspaces
       (setq exwm-workspace-number 10)
 
+      ;; Do not replace window manager if already running one
+      (setq exwm-replace nil)
+      ;; (set-frame-font "Inconsolata 1" nil t)
+
+
       ;; When window "class" updates, use it to set the buffer name
-      (add-hook 'exwm-update-class-hook #'efs/exwm-update-class)
+      (add-hook 'exwm-update-class-hook #'my/exwm-update-class)
+
+
+      ;; Extra EXWM config at startup
+      (add-hook 'exwm-init-hook #'my/exwm-init-hook)
+
+      ;; (setq exwm-randr-workspace-output-plist '(1 "eDP1"))
+      ;; (add-hook 'exwm-randr-screen-change-hook
+      ;;           (lambda ()
+      ;;             (start-process-shell-command
+      ;;                  ;; on) xrandr --output DP2 --auto --right-of eDP1;;
+      ;;              "xrandr" nil "xrandr --output DP2 --auto --right-of eDP1")))
 
       ;; Rebind CapsLock to Ctrl
       ;; (start-process-shell-command "xmodmap" nil "xmodmap ~/.emacs.d/exwm/Xmodmap")
 
       ;; Set the screen resolution (update this to be the correct resolution for your screen!)
-      ;; (require 'exwm-randr)
-      ;; (exwm-randr-enable)
-      ;; (start-process-shell-command "xrandr" nil "xrandr --output Virtual-1 --primary --mode 2048x1152 --pos 0x0 --rotate normal")
+      (require 'exwm-randr)
+      (exwm-randr-enable)
+      ;; (start-process-shell-command "autorandr --
+      ;; (start-process-shell-command "xrandr" nil "xrandr --output eDP1 --auto")
+      ;; (start-process-shell-command "xrandr" nil "xrandr --output eDP1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP1 --off --output DP2 --mode 1680x1050 --pos 1366x0 --rotate normal --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --off")
+
+      (add-hook 'exwm-randr-screen-change-hook #'my/update-displays)
+      ;; (my/update-displays)
+
+      (setq exwm-randr-workspace-monitor-plist '(5 "DP2" 6 "DP2" 7 "DP2"))
+
+      (setq exwm-workspace-warp-cursor t)
+      (setq mouse-autoselect-window t
+            focus-follows-mouse t)
+
+
 
       ;; Load the system tray before exwm-init
       (require 'exwm-systemtray)
@@ -454,9 +524,9 @@ Which-key is usefull for remembering some keybinds, after pressing a prefix like
           ?\M-x
           ?\M-`
           ?\M-&
-          ?\M-:
-          ?\C-\M-j  ;; Buffer list
-          ?\C-\ ))  ;; Ctrl+Space
+          ?\M-:))
+          ;; ?\C-\M-j  ;; Buffer list
+          ;; ?\C-\ ))  ;; Ctrl+Space
 
       ;; Ctrl+Q will enable the next key to be sent directly
       (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
@@ -484,12 +554,130 @@ Which-key is usefull for remembering some keybinds, after pressing a prefix like
               ([?\s-w] . exwm-workspace-switch)
               ([?\s-`] . (lambda () (interactive) (exwm-workspace-switch-create 0)))
 
+
               ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
               ,@(mapcar (lambda (i)
                           `(,(kbd (format "s-%d" i)) .
                             (lambda ()
                               (interactive)
                               (exwm-workspace-switch-create ,i))))
-                        (number-sequence 0 9))))
+                        (number-sequence 0 9)))
+            )
       (exwm-enable))
+
+    (exwm-input-set-key (kbd "<s-return>") 'vterm)
+    (exwm-input-set-key (kbd "C-s-<return>") 'multi-vterm)
+    (exwm-input-set-key (kbd "C-c t") 'hydra-multi-vterm/body)
+    (exwm-input-set-key (kbd "C-c b") 'hydra-xbacklight-control/body)
+    ;; (exwm-input-set-key (kdb "C-x b") 'persp-ivy-switch-buffer)
+
+    (defhydra hydra-multi-vterm (:hint nil)
+      "Multi Vterm"
+      ("n" 'multi-vterm-next "Next Term")
+      ("p" 'multi-vterm-prev "Prev Term")
+      ("q" nil "quit"))
+
+
+  #+end_src
+
+** Perspective
+   #+begin_src emacs-lisp :tangle no
+     (use-package perspective
+       :bind (("C-x b" . persp-ivy-switch-buffer)
+              ("C-x C-b" . persp-ibuffer)
+              ("C-x k" . persp-kill-buffer*))
+       :config
+       (persp-mode))
+
+   #+end_src
+
+** Desktop-Enviroment
+   #+begin_src emacs-lisp
+     ;; (use-package desktop-environment
+     ;;   :after exwm
+     ;;   :config (desktop-environment-mode)
+     ;;   :custom
+   #+end_src
+
+** PulseAudio
+   #+begin_src emacs-lisp
+     (use-package pulseaudio-control
+       :bind (("C-c v" . hydra-pulseaudio-control/body))
+       ;;:bind-keymap ("C-c v" . pulseaudio-control-map)
+       :config
+       ;; XXX: Maybe -set-volume (1-9 keys sets 10%, 20% etc)?
+       ;;      Maybe show selected sink and volume
+       (require 'hydra)
+       (defhydra hydra-pulseaudio-control (:hint nil)
+         "Pulseaudio Control"
+         ("+" pulseaudio-control-increase-volume "Increase Volume")
+         ("i" pulseaudio-control-increase-volume "Increase Volume")
+         ("-" pulseaudio-control-decrease-volume "Decrease Volume")
+         ("d" pulseaudio-control-decrease-volume "Decrease Volume")
+         ("m" pulseaudio-control-toggle-current-sink-mute "Toggle Mute")
+         ("s" pulseaudio-control-select-sink-by-name "Select Sink")
+         ("q" nil "quit"))
+       (setq pulseaudio-control-volume-step "5%"))
+
+
+     ;; (use-package pulseaudio-control
+     ;;   :bind (
+     ;;          ("<XF86AudioRaiseVolume>" . pulseaudio-control-increase-voLume)
+     ;;          ("<XF86AudioLowerVolume>" . pulseaudio-control-decrease-volume)
+     ;;          ("<XF86AudioMute>" . pulseaudio-control-toggle-current-sink-mute)
+     ;;          ("C-c v" . hydra-pulseaudio-control/body)
+     ;;          :map exwm-mode-map
+     ;;          ("<XF86AudioRaiseVolume>" . pulseaudio-control-increase-volume)
+     ;;          ("<XF86AudioLowerVolume>" . pulseaudio-control-decrease-volume)
+     ;;          ("<XF86AudioMute>" . pulseaudio-control-toggle-current-sink-mute)
+     ;;          ("C-c v" . hydra-pulseaudio-control/body))
+     ;;   ;;:bind-keymap ("C-c v" . pulseaudio-control-map)
+     ;;   :config
+     ;;   ;; XXX: Maybe -set-volume (1-9 keys sets 10%, 20% etc)?
+     ;;   ;;      Maybe show selected sink and volume
+     ;;   (require 'hydra)
+     ;;   (defhydra hydra-pulseaudio-control (:hint nil)
+     ;;     "Pulseaudio Control"
+     ;;     ("+" pulseaudio-control-increase-volume "Increase Volume")
+     ;;     ("i" pulseaudio-control-increase-volume "Increase Volume")
+     ;;     ("-" pulseaudio-control-decrease-volume "Decrease Volume")
+     ;;     ("d" pulseaudio-control-decrease-volume "Decrease Volume")
+     ;;     ("m" pulseaudio-control-toggle-current-sink-mute "Toggle Mute")
+     ;;     ("s" pulseaudio-control-select-sink-by-name "Select Sink")
+     ;;     ("q" nil "quit"))
+     ;;   (setq pulseaudio-control-volume-step "5%"))
+
+
+   #+end_src
+
+** xbacklight
+  #+begin_src emacs-lisp
+    (add-to-list 'display-buffer-alist (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
+
+    ;; (defhydra hydra-zoom (global-map "C-c b")
+    ;;   "brightness"
+    ;;   ("+" (async-shell-command "xbacklight -inc 2 &" nil 0)  "Inc")
+    ;;   ("-" (async-shell-command "xbacklight -dec 2 &" nil 0) "Dec"))
+
+    (defhydra hydra-xbacklight-control (:hint nil)
+      "xbacklight control"
+      ("+" (lambda ()
+             (interactive)
+             (start-process "" nil "xbacklight" "-inc" "2")) "Increase Brightness")
+      ("i" (lambda ()
+             (interactive)
+             (start-process "" nil "xbacklight" "-inc" "2")) "Increase Brightness")
+      ("-" (lambda ()
+             (interactive)
+             (start-process "" nil "xbacklight" "-dec" "2")) "Increase Brightness")
+      ("d" (lambda ()
+             (interactive)
+             (start-process "" nil "xbacklight" "-dec" "2")) "Increase Brightness")
+      ("q" nil "quit"))
+
+
+    ;; (global-set-key (kbd "C-c w") 'hydra-xbacklight-control/body)
+    ;; (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
+
+    (global-set-key (kbd "C-c b") 'hydra-xbacklight-control/body)
   #+end_src
