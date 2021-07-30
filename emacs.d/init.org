@@ -101,9 +101,12 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Hack-10")
-  (set-face-attribute 'fixed-pitch nil :font "Hack-10")
-  (set-face-attribute 'variable-pitch nil :font "Hack-10")
+  ;; (set-face-attribute 'default nil :font "Hack-10")
+  ;; (set-face-attribute 'fixed-pitch nil :font "Hack-10")
+  ;; (set-face-attribute 'variable-pitch nil :font "Hack-10")
+  (set-face-attribute 'default nil :font "Inconsolata-11")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
 #+end_src
 * Diminish
   #+begin_src emacs-lisp
@@ -187,7 +190,7 @@ Should add more detailed information, (too see later)
 
    #+end_src
 * Vertico
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package vertico
       :init
       (vertico-mode)
@@ -218,7 +221,7 @@ Counsel: Collection of replacements for basic default Emacs commands
 Swiper: Powerfull search/finding tool
 Ivy-rich: Addion of better description of commands while using Counsel
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
     (use-package ivy
       :diminish
       :init
