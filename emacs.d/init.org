@@ -491,7 +491,12 @@ Ivy-rich: Addion of better description of commands while using Counsel
    #+begin_src emacs-lisp
      (use-package ein)
    #+end_src
-
+* Lisp
+    #+begin_src emacs-lisp
+      (use-package slime
+        :config
+        (setq inferior-lisp-program "sbcl"))
+  #+end_src
 * Org Mode
 
 #+begin_src emacs-lisp
