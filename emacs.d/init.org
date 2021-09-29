@@ -26,7 +26,7 @@ Setup package sources and use-package setup
     (package-install 'use-package))
 
   (require 'use-package)
-  (setq use-package-always-ensure t)
+  ;; (setq use-package-always-ensure t)
 #+end_src
 
 * UI Configuration
@@ -109,49 +109,28 @@ Should add more detailed information, (too see later)
   (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
 #+end_src
 * Diminish
+  Package to enable hiding major and minor modes from the mode line
   #+begin_src emacs-lisp
-  (use-package diminish)
+    (use-package diminish
+      :ensure t)
   #+end_src
 * Color Theme
 
 #+begin_src emacs-lisp
   ;; (use-package material-theme)
 
-  ;; (use-package faff-theme)
-
   ;; (use-package ample-theme)
 
-  ;; (use-package tao-theme)
-
-  ;; (use-package cloud-theme)
-
   (use-package modus-themes
+    :ensure t
     :init
     (modus-themes-load-themes)
     :config
     (modus-themes-load-operandi))
 
-  ;; (use-package kaolin-themes)
-
   ;; (use-package solarized-theme)
 
-  ;; (use-package zenburn-theme)
-
-  ;; (use-package moe-theme)
-
-  ;; (use-package espresso-theme)
-
-  ;; (use-package tango-plus-theme)
-
-  ;; (use-package color-theme-sanityinc-tomorrow)
-
-  ;; (use-package flatui-theme)
-
   ;; (use-package alect-themes)
-
-  ;; (use-package gruvbox-theme)
-
-  ;; (use-package zenburn-theme)
 
   ;; (use-package alect-themes
   ;;   :config
@@ -165,23 +144,27 @@ Should add more detailed information, (too see later)
 #+end_src
 * Hydra
   #+begin_src emacs-lisp
-    (use-package hydra)
+    (use-package hydra
+      :ensure t)
   #+end_src
 * General Editing
 ** Expand Region
 #+begin_src emacs-lisp
   (use-package expand-region
+    :ensure t
     :bind (("C-=" . er/expand-region)
            ("M-=" . er/contract-region)))
 #+end_src
 ** Evil Nerd Commenter
    #+begin_src emacs-lisp
      (use-package evil-nerd-commenter
+       :ensure t
        :bind ("M-/" . evilnc-comment-or-uncomment-lines))
    #+end_src
 ** Undo Tree
    #+begin_src emacs-lisp
      (use-package undo-tree
+       :ensure t
        :diminish
        :hook (after-init . global-undo-tree-mode)
        :bind (("C-x u" . undo-tree-visualize)
@@ -222,39 +205,43 @@ Swiper: Powerfull search/finding tool
 Ivy-rich: Addion of better description of commands while using Counsel
 
 #+begin_src emacs-lisp
-    (use-package ivy
-      :diminish
-      :init
-      (ivy-mode 1)
-      :config
-      (setq ivy-use-virtual-buffers t)
-      (setq ivy-count-format "(%d/%d) "))
+  (use-package ivy
+    :ensure t
+    :diminish
+    :init
+    (ivy-mode 1)
+    :config
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) "))
 
-    (use-package counsel
-      :diminish
-      :bind (("M-x" . counsel-M-x)
-             ("C-x C-f" . counsel-find-file)
-             ("C-x b" . counsel-ibuffer))
-      :config
-      (counsel-mode 1))
+  (use-package counsel
+    :ensure t
+    :diminish
+    :bind (("M-x" . counsel-M-x)
+           ("C-x C-f" . counsel-find-file)
+           ("C-x b" . counsel-ibuffer))
+    :config
+    (counsel-mode 1))
 
-    (use-package swiper
-      :diminish
-      :after counsel
-      :bind  ("C-s" . swiper-isearch)
-             ("C-r" . swiper-isearch-backward)
-             ("C-c C-r" . ivy-resume)
-             ("C-M-s" . counsel-grep)
-             ("C-M-r" . counsel-grep-backward))
+  (use-package swiper
+    :diminish
+    :after counsel
+    :bind  ("C-s" . swiper-isearch)
+           ("C-r" . swiper-isearch-backward)
+           ("C-c C-r" . ivy-resume)
+           ("C-M-s" . counsel-grep)
+           ("C-M-r" . counsel-grep-backward))
 
-    (use-package ivy-rich
-      :after ivy
-      :config
-      (ivy-rich-mode))
+  (use-package ivy-rich
+    :ensure t
+    :after ivy
+    :config
+    (ivy-rich-mode))
 #+end_src
 * Avy
   #+begin_src emacs-lisp
     (use-package avy
+      :ensure t
       :diminish
       :bind (("C-:" . avy-goto-word-1)))
   #+end_src
@@ -263,19 +250,23 @@ Ivy-rich: Addion of better description of commands while using Counsel
 ** Magit
 #+begin_src emacs-lisp
   (use-package magit
+    :ensure t
     :bind ("C-x g" . magit-status))
 #+end_src
 ** Forge magit
    #+begin_src emacs-lisp
-     (use-package forge)
+     (use-package forge
+       :ensure t)
    #+end_src
 
 ** diff-hl
   #+begin_src emacs-lisp
-    (use-package diff-hl)
+    (use-package diff-hl
+      :ensure t)
   #+end_src
   #+begin_src emacs-lisp
     (use-package git-gutter
+      :ensure t
       :init
       (global-git-gutter-mode 1)
       :config
@@ -330,12 +321,14 @@ Ivy-rich: Addion of better description of commands while using Counsel
            (user-error "Not in a version-controlled directory"))))
    #+end_src
    #+begin_src emacs-lisp
-     (use-package ibuffer-vc)
+     (use-package ibuffer-vc
+       :ensure t)
    #+end_src
 
 ** smerge
    #+begin_src emacs-lisp
      (use-package smerge-mode
+       :ensure t
        :after hydra
        :config
        (defhydra my/smerge-hydra
@@ -379,6 +372,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 * Projectile
   #+begin_src emacs-lisp
     (use-package projectile
+      :ensure t
       :init
       (projectile-mode 1)
       :bind
@@ -398,8 +392,9 @@ Ivy-rich: Addion of better description of commands while using Counsel
   #+end_src
 
 * Commenting Lines
-  #+begin_src emacs-lisp :tangle no
+  #+begin_src emacs-lisp
     (use-package evil-nerd-commenter
+      :ensure t
       :bind ("M-/" . evilnc-comment-or-uncomment-lines))
   #+end_src
 
@@ -410,19 +405,22 @@ Ivy-rich: Addion of better description of commands while using Counsel
 
   #+begin_src emacs-lisp
     (use-package flyspell-correct
+      :ensure t
       :after flyspell 
       :bind
       (:map flyspell-mode-map ("C-c ;" . flyspell-correct-wrapper)))
   #+end_src
 
 
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package flyspell-correct-avy-menu
+      :ensure t
       :after (:all flyspell-correct avy))
   #+end_src
 * FlyCheck
   #+begin_src emacs-lisp
     (use-package flycheck
+      :ensure t
       :init
       (global-flycheck-mode))
   #+end_src
@@ -430,6 +428,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 * Company Mode
 #+begin_src emacs-lisp
   (use-package company
+    :ensure t
     :hook
     (prog-mode . company-mode)
     :bind
@@ -441,6 +440,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 * Language Servers
 #+begin_src emacs-lisp
   (use-package lsp-mode
+    :ensure t
     :init
     (setq lsp-keymap-prefix "C-c l")
     :config
@@ -454,7 +454,8 @@ Ivy-rich: Addion of better description of commands while using Counsel
 #+end_src
 * Haskell
   #+begin_src emacs-lisp
-    (use-package haskell-mode)
+    (use-package haskell-mode
+      :ensure t)
   #+end_src
 
   To intall haskell language server:
@@ -462,6 +463,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 
   #+begin_src emacs-lisp
     (use-package lsp-haskell
+      :ensure t
       :after lsp-mode
       :config
       (setq lsp-haskell-hlint-on nil))
@@ -469,6 +471,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 * Python
   #+begin_src emacs-lisp
     (use-package python-mode
+      :ensure t
       :custom
       (python-shell-interpreter "python3"))
   #+end_src
@@ -481,6 +484,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 **  Pyright
    #+begin_src emacs-lisp
      (use-package lsp-pyright
+       :ensure t
        :after lsp-mode
        :custom
        (lsp-pyright-auto-import-completions nil)
@@ -489,22 +493,26 @@ Ivy-rich: Addion of better description of commands while using Counsel
 
 ** EIN - Emacs IPython Notebook
    #+begin_src emacs-lisp
-     (use-package ein)
+     (use-package ein
+       :ensure t)
    #+end_src
 * Lisp
     #+begin_src emacs-lisp
       (use-package slime
+        :ensure t
         :config
         (setq inferior-lisp-program "sbcl"))
   #+end_src
 * Org Mode
 
 #+begin_src emacs-lisp
-  (use-package org)
+  (use-package org
+    :ensure t)
 #+end_src
 
 #+begin_src emacs-lisp
   (use-package org-bullets
+    :ensure t
     :hook (org-mode . org-bullets-mode))
 #+end_src
 
@@ -513,13 +521,66 @@ Ivy-rich: Addion of better description of commands while using Counsel
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
 #+end_src
+* Ispell
+  #+begin_src emacs-lisp
+    (use-package ispell
+      :config
+      (defhydra hydra-flyspell (:color amaranth
+                                       :body-pre
+                                       (progn
+                                         (when mark-active
+                                           (deactivate-mark))
+                                         (when (or (not (mark t))
+                                                   (/= (mark t) (point)))
+                                           (push-mark (point) t)))
+                                       :hint nil)
+        "
+     ^Flyspell^         ^Errors^
+    -------------------------------------
+     _b_ check buffer   _c_ correct
+     _d_ change dict    _n_ goto next
+     _u_ undo           _p_ goto previous
+     _q_ quit
+    "
+        ;;     "
+        ;;  ^Flyspell^         ^Errors^            ^Word^
+        ;; ---------------------------------------------------------
+        ;;  _b_ check buffer   _c_ correct         _s_ save (buffer)
+        ;;  _d_ change dict    _n_ goto next       _l_ lowercase (buffer)
+        ;;  _u_ undo           _p_ goto previous   _a_ accept (session)
+        ;;  _q_ quit
+        ;; "
+        ("b" flyspell-buffer)
+        ("d" ispell-change-dictionary)
+        ("u" undo-tree-undo)
+        ("q" nil :color blue)
+        ("C-/" undo-tree-undo)
 
+        ("c" flyspell-correct-at-point)
+        ("n" flyspell-goto-next-error)
+        ("p" flyspell-goto-previous-error)
+        ;; ("." my/flyspell-correct-at-point-maybe-next)
+        ;; ("SPC" my/flyspell-goto-next-error)
+        ;; ("DEL" my/flyspell-goto-previous-error)
+
+        ;; ("s" my/flyspell-accept-word-buffer)
+        ;; ("l" my/flyspell-accept-lowercased-buffer)
+        ;; ("a" my/flyspell-accept-word)
+
+        ("M->" end-of-buffer)
+        ("M-<" beginning-of-buffer)
+        ("C-v" scroll-up-command)
+        ("M-v" scroll-down-command))
+      :bind (("C-c s" . hydra-flyspell/body))
+      )
+  #+end_src
 * Misc
 
 ** Helpful
 
 #+begin_src emacs-lisp
   (use-package helpful
+    :ensure t
     :custom
     (counsel-describe-function-function #'helpful-callable)
     (counsel-describe-variable-function #'helpful-variable)
@@ -537,6 +598,7 @@ Which-key is usefull for remembering some keybinds, after pressing a prefix like
 
 #+begin_src emacs-lisp
   (use-package which-key
+    :ensure t
     :init (which-key-mode 1)
     :diminish which-key-mode
     :config
@@ -548,6 +610,7 @@ Which-key is usefull for remembering some keybinds, after pressing a prefix like
    Ensure that emacs reads PATH defined in the system
    #+begin_src emacs-lisp
      (use-package exec-path-from-shell
+       :ensure t
        :init
          (exec-path-from-shell-initialize))
    #+end_src
