@@ -173,15 +173,15 @@ Should add more detailed information, (too see later)
 
    #+end_src
 * Vertico
-  #+begin_src emacs-lisp :tangle no
+  #+begin_src emacs-lisp
     (use-package vertico
       :init
-      (vertico-mode)
+      (vertico-mode +1)
       :config
       (setq vertico-cycle t))
 
     (use-package marginalia
-      :init
+      :config
       (marginalia-mode))
 
     (use-package consult
@@ -204,7 +204,7 @@ Counsel: Collection of replacements for basic default Emacs commands
 Swiper: Powerfull search/finding tool
 Ivy-rich: Addion of better description of commands while using Counsel
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package ivy
     :ensure t
     :diminish
