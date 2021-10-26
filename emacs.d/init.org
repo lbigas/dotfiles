@@ -1,4 +1,5 @@
 #+title: Emacs Configuration
+#+STARTUP: overview
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
 
 To compile and use the configuration, use org-babel-tangle function from this file.
@@ -26,7 +27,6 @@ Setup package sources and use-package setup
     (package-install 'use-package))
 
   (require 'use-package)
-  ;; (setq use-package-always-ensure t)
 #+end_src
 
 * UI Configuration
@@ -58,6 +58,7 @@ Consigure basic Emacs UI
   (dolist (mode '(org-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
+
 * General Emacs Settings
 ** Windmove
    Swap window possitions
@@ -72,6 +73,7 @@ Consigure basic Emacs UI
      (global-set-key (kbd "C-c C-<up>")    'windmove-up)
      (global-set-key (kbd "C-c C-<down>")    'windmove-down)
    #+end_src
+
 ** Emacs backup files
    #+begin_src emacs-lisp
      (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
@@ -84,16 +86,24 @@ Consigure basic Emacs UI
 
      (defalias 'yes-or-no-p 'y-or-n-p)
    #+end_src
+
 ** Auto revert mode
    #+begin_src emacs-lisp
      (setq auto-revert-verbose t)
      (add-hook 'after-init-hook #'global-auto-revert-mode)
    #+end_src
+
+** Inhibit startup message
+   #+begin_src emacs-lisp
+     (setq initial-scratch-message nil)
+   #+end_src
+
 * Indentation
 #+begin_src emacs-lisp
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 #+end_src
+
 * Font Config
 
 Should add more detailed information, (too see later)
@@ -101,52 +111,35 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  ;; (set-face-attribute 'default nil :font "Hack-10")
-  ;; (set-face-attribute 'fixed-pitch nil :font "Hack-10")
-  ;; (set-face-attribute 'variable-pitch nil :font "Hack-10")
   (set-face-attribute 'default nil :font "Inconsolata-11")
   (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
   (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
 #+end_src
+
 * Diminish
   Package to enable hiding major and minor modes from the mode line
   #+begin_src emacs-lisp
     (use-package diminish
       :ensure t)
   #+end_src
+
 * Color Theme
 
 #+begin_src emacs-lisp
-  ;; (use-package material-theme)
-
-  ;; (use-package ample-theme)
-
   (use-package modus-themes
     :ensure t
     :init
     (modus-themes-load-themes)
     :config
     (modus-themes-load-operandi))
-
-  ;; (use-package solarized-theme)
-
-  ;; (use-package alect-themes)
-
-  ;; (use-package alect-themes
-  ;;   :config
-  ;;   (load-theme 'alect-light t))
-
-  ;; (use-package acme-theme
-  ;;   :config
-  ;;   (load-theme 'acme t))
-
-  ;; (load-theme 'zenburn t)
 #+end_src
+
 * Hydra
   #+begin_src emacs-lisp
     (use-package hydra
       :ensure t)
   #+end_src
+
 * General Editing
 ** Expand Region
 #+begin_src emacs-lisp
@@ -155,12 +148,14 @@ Should add more detailed information, (too see later)
     :bind (("C-=" . er/expand-region)
            ("M-=" . er/contract-region)))
 #+end_src
+
 ** Evil Nerd Commenter
    #+begin_src emacs-lisp
      (use-package evil-nerd-commenter
        :ensure t
        :bind ("M-/" . evilnc-comment-or-uncomment-lines))
    #+end_src
+
 ** Undo Tree
    #+begin_src emacs-lisp
      (use-package undo-tree
@@ -172,31 +167,38 @@ Should add more detailed information, (too see later)
               ("M-_" . undo-tree-redo)))
 
    #+end_src
+
 * Vertico
   #+begin_src emacs-lisp
     (use-package vertico
+      :ensure t
       :init
       (vertico-mode +1)
       :config
       (setq vertico-cycle t))
 
     (use-package marginalia
+      :ensure t
       :config
       (marginalia-mode))
 
     (use-package consult
-      :bind(("C-s" . consult-line)
-            ("C-M-l" . consult-imenu)
-            ("C-x b" . consult-buffer)
-            :map minibuffer-local-map
-            ("C-r" . consult-history)))
+      :ensure t
+      :bind
+      (("C-s" . consult-line)
+       ("C-M-l" . consult-imenu)
+       ("C-x b" . consult-buffer)
+       :map minibuffer-local-map
+       ("C-r" . consult-history)))
 
     (use-package orderless
+      :ensure t
       :init
       (setq completion-styles '(orderless)
             completion-category-defaults nil
             completion-category-overrides '((file (styles . (partial-completion))))))
   #+end_src
+
 * Ivy, Counsel, Swiper
 
 Ivy: completion framework for Emacs.
@@ -238,6 +240,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
     :config
     (ivy-rich-mode))
 #+end_src
+
 * Avy
   #+begin_src emacs-lisp
     (use-package avy
@@ -253,6 +256,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
     :ensure t
     :bind ("C-x g" . magit-status))
 #+end_src
+
 ** Forge magit
    #+begin_src emacs-lisp
      (use-package forge
@@ -377,20 +381,15 @@ Ivy-rich: Addion of better description of commands while using Counsel
       (projectile-mode 1)
       :bind
       (:map projectile-mode-map ("C-c p" . projectile-command-map)))
-
-    ;; (use-package counsel-projectile
-    ;;   :after (projectile, counsel)
-    ;;   :init
-    ;;   (counsel-projectile-mode))
   #+end_src
 
-*  VTerm
+* VTerm
   #+begin_src emacs-lisp :tangle no
     (use-package vterm)
 
     (use-package multi-vterm)
   #+end_src
-
+  
 * Commenting Lines
   #+begin_src emacs-lisp
     (use-package evil-nerd-commenter
@@ -417,6 +416,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
       :ensure t
       :after (:all flyspell-correct avy))
   #+end_src
+
 * FlyCheck
   #+begin_src emacs-lisp
     (use-package flycheck
@@ -435,10 +435,16 @@ Ivy-rich: Addion of better description of commands while using Counsel
     ("C-;" . company-complete)
     :custom
     (company-minimum-prefix-length 1)
-    (company-idle-delay 0.0))
+    (company-idle-delay 0.5))
 #+end_src
+
 * Language Servers
-#+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
+    (use-package eglot
+      :ensure t)
+  #+end_src
+
+#+begin_src emacs-lisp :tangle no
   (use-package lsp-mode
     :ensure t
     :init
@@ -452,6 +458,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
     :commands
     (lsp lsp-deferred))
 #+end_src
+
 * Haskell
   #+begin_src emacs-lisp
     (use-package haskell-mode
@@ -461,15 +468,16 @@ Ivy-rich: Addion of better description of commands while using Counsel
   To intall haskell language server:
   install haskell-language-server package
 
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package lsp-haskell
       :ensure t
       :after lsp-mode
       :config
       (setq lsp-haskell-hlint-on nil))
   #+end_src
+
 * Python
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package python-mode
       :ensure t
       :custom
@@ -482,7 +490,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
    Ensure that ~/.local/bin is on PATH
 
 **  Pyright
-   #+begin_src emacs-lisp
+   #+begin_src emacs-lisp :tangle no
      (use-package lsp-pyright
        :ensure t
        :after lsp-mode
@@ -496,13 +504,15 @@ Ivy-rich: Addion of better description of commands while using Counsel
      (use-package ein
        :ensure t)
    #+end_src
-* Lisp
+
+* Lisp 
     #+begin_src emacs-lisp
       (use-package slime
         :ensure t
         :config
         (setq inferior-lisp-program "sbcl"))
   #+end_src
+
 * Org Mode
 
 #+begin_src emacs-lisp
@@ -521,7 +531,9 @@ Ivy-rich: Addion of better description of commands while using Counsel
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
 #+end_src
+
 * Ispell
+ 
   #+begin_src emacs-lisp
     (use-package ispell
       :config
@@ -574,8 +586,8 @@ Ivy-rich: Addion of better description of commands while using Counsel
       :bind (("C-c s" . hydra-flyspell/body))
       )
   #+end_src
+ 
 * Misc
-
 ** Helpful
 
 #+begin_src emacs-lisp
@@ -614,3 +626,4 @@ Which-key is usefull for remembering some keybinds, after pressing a prefix like
        :init
          (exec-path-from-shell-initialize))
    #+end_src
+   
