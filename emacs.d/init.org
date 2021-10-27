@@ -439,7 +439,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 #+end_src
 
 * Language Servers
-  #+begin_src emacs-lisp :tangle no
+  #+begin_src emacs-lisp
     (use-package eglot
       :ensure t)
   #+end_src
@@ -511,6 +511,14 @@ Ivy-rich: Addion of better description of commands while using Counsel
         :ensure t
         :config
         (setq inferior-lisp-program "sbcl"))
+  #+end_src
+
+* Markdown
+  #+begin_src emacs-lisp
+    (use-package markdown-mode
+      :ensure t
+      :mode ("README\\.md\\'" . gfm-mode)
+      :init (setq markdown-command "multimarkdown"))
   #+end_src
 
 * Org Mode
