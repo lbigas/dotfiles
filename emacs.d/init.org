@@ -196,12 +196,26 @@ Should add more detailed information, (too see later)
       (vertico-mode +1)
       :config
       (setq vertico-cycle t))
+  #+end_src
 
+* Selectrum
+  #+begin_src emacs-lisp :tangle no
+    (use-package selectrum
+      :ensure t
+      :init
+      (selectrum-mode +1))
+  #+end_src
+  
+* Marginalia
+  #+begin_src emacs-lisp
     (use-package marginalia
       :ensure t
       :config
       (marginalia-mode))
-
+  #+end_src
+  
+* Consult
+  #+begin_src emacs-lisp
     (use-package consult
       :ensure t
       :bind
@@ -210,6 +224,10 @@ Should add more detailed information, (too see later)
        ("C-x b" . consult-buffer)
        :map minibuffer-local-map
        ("C-r" . consult-history)))
+  #+end_src
+  
+* Orderless
+  #+begin_src emacs-lisp
 
     (use-package orderless
       :ensure t
@@ -218,7 +236,7 @@ Should add more detailed information, (too see later)
             completion-category-defaults nil
             completion-category-overrides '((file (styles . (partial-completion))))))
   #+end_src
-
+  
 * Ivy, Counsel, Swiper
 
 Ivy: completion framework for Emacs.
@@ -291,8 +309,8 @@ Ivy-rich: Addion of better description of commands while using Counsel
   #+begin_src emacs-lisp
     (use-package git-gutter
       :ensure t
-      :init
-      (global-git-gutter-mode 1)
+      ;; :init
+      ;; (global-git-gutter-mode 1)
       :config
       (defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
                                             :hint nil)
@@ -324,7 +342,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
   #+end_src
 
 ** ibuffer-vc
-   #+begin_src emacs-lisp
+   #+begin_src emacs-lisp :tangle no
      (defun prot-ibuffer-buffers-vc-root (&optional arg)
        "Select buffers that belong to the version controlled directory.
      With optional prefix ARG (\\[universal-argument]) produce an
@@ -392,7 +410,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
                                         (when smerge-mode
                                           (unpackaged/smerge-hydra/body)))))
    #+end_src
-
+   
 * Projectile
   #+begin_src emacs-lisp
     (use-package projectile
@@ -475,13 +493,14 @@ Ivy-rich: Addion of better description of commands while using Counsel
     :config
     (lsp-enable-which-key-integration t)
     :hook
-    (haskell-mode . lsp)
-    (haskell-literate-mode . lsp)
-    (python-mode . lsp)
-    (java-mode . lsp)
-    (rust-mode .lsp)
+    (haskell-mode . lsp-defered)
+    (haskell-literate-mode . lsp-deferred)
+    (python-mode . lsp-deferred)
+    (java-mode . lsp-deferred)
+    (rust-mode . lsp-deferred)
+    (js-mode . lsp-deferred)
     :commands
-    (lsp))
+    (lsp lsp-deferred))
 #+end_src
 
 ** lsp-ui
@@ -588,6 +607,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
     (add-to-list 'org-structure-template-alist '("py" . "src python"))
     (add-to-list 'org-structure-template-alist '("bash" . "src bash"))
     (add-to-list 'org-structure-template-alist '("toml" . "src toml"))
+    (add-to-list 'org-structure-template-alist '("js" . "src javascript"))
     (add-to-list 'org-structure-template-alist '("rs" . "src rust")))
 #+end_src
 
