@@ -222,6 +222,7 @@ Should add more detailed information, (too see later)
       (("C-s" . consult-line)
        ("C-M-l" . consult-imenu)
        ("C-x b" . consult-buffer)
+       ("C-x C-b" . ibuffer)
        :map minibuffer-local-map
        ("C-r" . consult-history)))
   #+end_src
