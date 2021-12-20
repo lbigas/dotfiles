@@ -288,6 +288,12 @@ Ivy-rich: Addion of better description of commands while using Counsel
       :bind (("C-:" . avy-goto-word-1)))
   #+end_src
 
+* Treemacs
+  #+begin_src emacs-lisp
+    (use-package treemacs
+      :ensure t)
+  #+end_src
+
 * Version Control
 ** Magit
 #+begin_src emacs-lisp
@@ -474,7 +480,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
     ("C-;" . company-complete)
     :custom
     (company-minimum-prefix-length 1)
-    (company-idle-delay 0.5))
+    (company-idle-delay 0))
 #+end_src
 
 * Language Servers
@@ -510,6 +516,14 @@ Ivy-rich: Addion of better description of commands while using Counsel
        :ensure t)
    #+end_src
    
+** lsp-treemacs
+   #+begin_src emacs-lisp
+     (use-package lsp-treemacs
+       :ensure t
+       :after treemacs
+       :config
+       (lsp-treemacs-sync-mode 1))
+   #+end_src
 * Haskell
   #+begin_src emacs-lisp
     (use-package haskell-mode
