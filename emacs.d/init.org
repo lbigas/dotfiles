@@ -13,6 +13,7 @@ Setup package sources and use-package setup
 #+begin_src emacs-lisp
   ;; Initialize package sources
   (require 'package)
+  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
   (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                            ("org" . "https://orgmode.org/elpa/")
@@ -98,6 +99,12 @@ Consigure basic Emacs UI
      (setq initial-scratch-message nil)
    #+end_src
 
+* MacOs
+  #+begin_src emacs-lisp
+    (if (eq system-type 'darwin)
+        (setq mac-command-modifier 'meta))
+  #+end_src
+
 * Indentation
 #+begin_src emacs-lisp
 (setq-default tab-width 4)
@@ -111,9 +118,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-11")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
+  (set-face-attribute 'default nil :font "Inconsolata-16")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
 #+end_src
 
 * Diminish
@@ -524,6 +531,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
        :config
        (lsp-treemacs-sync-mode 1))
    #+end_src
+   
 * Haskell
   #+begin_src emacs-lisp
     (use-package haskell-mode
