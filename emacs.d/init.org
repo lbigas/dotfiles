@@ -133,12 +133,12 @@ Should add more detailed information, (too see later)
 * Color Theme
 
 #+begin_src emacs-lisp
-  (use-package modus-themes
-   :ensure t
-   :init
-   (modus-themes-load-themes)
-   :config
-   (modus-themes-load-operandi))
+  ;; (use-package modus-themes
+  ;;  :ensure t
+  ;;  :init
+  ;;  (modus-themes-load-themes)
+  ;;  :config
+  ;;  (modus-themes-load-operandi))
 
   ;; (use-package leuven-theme
   ;;   :ensure t
@@ -159,6 +159,16 @@ Should add more detailed information, (too see later)
   ;;   :ensure t
   ;;   :config
   ;;   (load-theme 'alect-light t))
+
+  ;; (use-package solarized-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'solarized-light t))
+
+  (use-package zenburn-theme
+    :ensure t
+    :config
+    (load-theme 'zenburn t))
 #+end_src
 
 * Hydra
@@ -323,8 +333,8 @@ Ivy-rich: Addion of better description of commands while using Counsel
   #+begin_src emacs-lisp
     (use-package git-gutter
       :ensure t
-      ;; :init
-      ;; (global-git-gutter-mode 1)
+      :init
+      (global-git-gutter-mode +1)
       :config
       (defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
                                             :hint nil)
