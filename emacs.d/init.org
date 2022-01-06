@@ -150,10 +150,10 @@ Should add more detailed information, (too see later)
   ;;   :config
   ;;   (load-theme 'tango-plus t))
 
-  ;; (use-package faff-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'faff t))
+  (use-package faff-theme
+    :ensure t
+    :config
+    (load-theme 'faff t))
 
   ;; (use-package alect-themes
   ;;   :ensure t
