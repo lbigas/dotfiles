@@ -118,9 +118,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-16")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'default nil :font "Inconsolata-14")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-14")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-14")
 #+end_src
 
 * Diminish
@@ -150,10 +150,10 @@ Should add more detailed information, (too see later)
   ;;   :config
   ;;   (load-theme 'tango-plus t))
 
-  (use-package faff-theme
-    :ensure t
-    :config
-    (load-theme 'faff t))
+  ;; (use-package faff-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'faff t))
 
   ;; (use-package alect-themes
   ;;   :ensure t
