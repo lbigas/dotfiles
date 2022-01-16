@@ -118,9 +118,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-14")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-14")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-14")
+  (set-face-attribute 'default nil :font "Inconsolata-13")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-13")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-13")
 #+end_src
 
 * Diminish
@@ -169,6 +169,11 @@ Should add more detailed information, (too see later)
     :ensure t
     :config
     (load-theme 'zenburn t))
+
+  ;; (use-package doom-themes
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'doom-homage-white t))
 #+end_src
 
 * Hydra
