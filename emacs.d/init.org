@@ -102,7 +102,8 @@ Consigure basic Emacs UI
 * MacOs
   #+begin_src emacs-lisp
     (if (eq system-type 'darwin)
-        (setq mac-command-modifier 'meta))
+        (setq mac-command-modifier 'meta)
+      (setq create-lockfiles nil))
   #+end_src
 
 * Indentation
@@ -118,9 +119,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-13")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-13")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-13")
+  (set-face-attribute 'default nil :font "Inconsolata-16")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
 #+end_src
 
 * Diminish
@@ -547,6 +548,13 @@ Ivy-rich: Addion of better description of commands while using Counsel
        (lsp-treemacs-sync-mode 1))
    #+end_src
    
+* JavaScript
+  #+begin_src emacs-lisp
+    (use-package js2-mode
+      :ensure t
+      :mode
+      (("\\.js\\'" . js2-mode)))
+  #+end_src
 * Haskell
   #+begin_src emacs-lisp
     (use-package haskell-mode
