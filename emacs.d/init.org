@@ -102,8 +102,8 @@ Consigure basic Emacs UI
 * MacOs
   #+begin_src emacs-lisp
     (if (eq system-type 'darwin)
-        (setq mac-command-modifier 'meta)
-      (setq create-lockfiles nil))
+        ((setq mac-command-modifier 'meta)
+         (setq create-lockfiles nil)))
   #+end_src
 
 * Indentation
@@ -119,9 +119,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-16")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'default nil :font "Inconsolata-14")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-14")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-14")
 #+end_src
 
 * Diminish
@@ -209,6 +209,15 @@ Should add more detailed information, (too see later)
               ("C-_" . undo-tree-undo)
               ("M-_" . undo-tree-redo)))
 
+   #+end_src
+
+** Electric Pair Mode
+   #+begin_src emacs-lisp
+     (use-package electric-pair-mode
+       :ensure nil
+       :hook
+       (prog-mode . electric-pair-local-mode)
+       )
    #+end_src
 
 * Vertico
