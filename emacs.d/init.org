@@ -73,6 +73,13 @@ Consigure basic Emacs UI
      (global-set-key (kbd "C-c C-<right>")    'windmove-right)
      (global-set-key (kbd "C-c C-<up>")    'windmove-up)
      (global-set-key (kbd "C-c C-<down>")    'windmove-down)
+
+     (if (eq system-type 'darwin)
+         (global-set-key (kbd "C-c <left>")    'windmove-left)
+       (global-set-key (kbd "C-c <right>")    'windmove-right)
+       (global-set-key (kbd "C-c <up>")    'windmove-up)
+       (global-set-key (kbd "C-c <down>")    'windmove-down)
+       )
    #+end_src
 
 ** Emacs backup files
@@ -99,11 +106,18 @@ Consigure basic Emacs UI
      (setq initial-scratch-message nil)
    #+end_src
 
+** Hl-line Highlight cursor line
+   #+begin_src emacs-lisp
+     (use-package hl-line
+       :init
+       (global-hl-line-mode))
+   #+end_src
+
 * MacOs
   #+begin_src emacs-lisp
     (if (eq system-type 'darwin)
-        ((setq mac-command-modifier 'meta)
-         (setq create-lockfiles nil)))
+        (setq mac-command-modifier 'meta)
+         (setq create-lockfiles nil))
   #+end_src
 
 * Indentation
@@ -119,9 +133,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-14")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-14")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-14")
+  (set-face-attribute 'default nil :font "Inconsolata-16")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
 #+end_src
 
 * Diminish
