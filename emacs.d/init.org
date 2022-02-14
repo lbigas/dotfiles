@@ -133,9 +133,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-16")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'default nil :font "Inconsolata-13")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-13")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-13")
 #+end_src
 
 * Diminish
@@ -180,10 +180,23 @@ Should add more detailed information, (too see later)
   ;;   :config
   ;;   (load-theme 'solarized-light t))
 
-  (use-package zenburn-theme
+  ;; (use-package zenburn-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'zenburn t))
+
+  (use-package gruvbox-theme
     :ensure t
     :config
-    (load-theme 'zenburn t))
+    (load-theme 'gruvbox-dark-medium t))
+
+  ;; (use-package kaolin-themes
+  ;;   :ensure t
+  ;;   :config
+  ;;   ;; (load-theme 'kaolin-dark t))
+  ;;   (load-theme 'kaolin-aurora t))
+    ;; :config
+    ;; (load-theme 'kaolin-au))
 
   ;; (use-package doom-themes
   ;;   :ensure t
@@ -232,6 +245,16 @@ Should add more detailed information, (too see later)
        :hook
        (prog-mode . electric-pair-local-mode)
        )
+   #+end_src
+
+** Ace Window
+   #+begin_src emacs-lisp
+     (use-package ace-window
+       :bind
+       (("M-o" . ace-window))
+       :init
+       (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+       (setq aw-background nil))
    #+end_src
 
 * Vertico
@@ -357,9 +380,12 @@ Ivy-rich: Addion of better description of commands while using Counsel
 ** diff-hl
   #+begin_src emacs-lisp
     (use-package diff-hl
-      :ensure t)
+      :ensure t
+      :config
+      (global-diff-hl-mode)
+      (diff-hl-margin-mode))
   #+end_src
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package git-gutter
       :ensure t
       :init
