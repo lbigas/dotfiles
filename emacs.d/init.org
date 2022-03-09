@@ -126,6 +126,14 @@ Consigure basic Emacs UI
 (setq-default indent-tabs-mode nil)
 #+end_src
 
+** Aggresive Indent
+   #+begin_src emacs-lisp
+     (use-package aggressive-indent
+       :ensure t)
+       ;; :hook
+       ;; (prog-mode . aggressive-indent-mode))
+   #+end_src
+
 * Font Config
 
 Should add more detailed information, (too see later)
@@ -555,6 +563,60 @@ Ivy-rich: Addion of better description of commands while using Counsel
     (company-idle-delay 0))
 #+end_src
 
+* Corfu
+  #+begin_src emacs-lisp :tangle no
+    (use-package corfu
+      :ensure t
+      :init
+      (setq corfu-auto t)
+      ;; Optional customizations
+      :custom
+      (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+      (corfu-auto t)                 ;; Enable auto completion
+      ;; (corfu-separator ?\s)          ;; Orderless field separator
+      ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+      ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+      ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+      ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+      ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+      ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+
+      ;; You may want to enable Corfu only for certain modes.
+      ;; :hook ((prog-mode . corfu-mode)
+      ;;        (shell-mode . corfu-mode)
+      ;;        (eshell-mode . corfu-mode))
+
+      ;; Recommended: Enable Corfu globally.
+      ;; This is recommended since dabbrev can be used globally (M-/).
+      :bind
+      ("C-;" . completion-at-point)
+      :init
+      (corfu-global-mode))
+  #+end_src
+
+  #+begin_src emacs-lisp :tangle no
+    (use-package kind-icon
+      :ensure t
+      :after corfu
+      :custom
+      (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+      :config
+      (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+  #+end_src
+  
+* Corfu-doc
+  #+begin_src emacs-lisp
+    (use-package corfu-doc
+      :after corfu
+      :bind
+      (("M-d" . corfu-doc-toggle)
+       :map corfu-map
+       ("M-n" . corfu-doc-scroll-down)
+       ("M-p" . corfu-doc-scroll-up))
+      :hook
+      (corfu-mode . corfu-doc-mode))
+  #+end_src
+
 * Language Servers
 
 ** eglot
@@ -598,12 +660,14 @@ Ivy-rich: Addion of better description of commands while using Counsel
    #+end_src
    
 * JavaScript
+  
   #+begin_src emacs-lisp
     (use-package js2-mode
       :ensure t
       :mode
       (("\\.js\\'" . js2-mode)))
   #+end_src
+
 * Haskell
   #+begin_src emacs-lisp
     (use-package haskell-mode
