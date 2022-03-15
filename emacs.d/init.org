@@ -163,6 +163,17 @@ Should add more detailed information, (too see later)
   ;;  :config
   ;;  (modus-themes-load-operandi))
 
+
+
+  (use-package modus-themes
+    :ensure t
+    :init
+    (modus-themes-load-themes)
+    :config
+    (modus-themes-load-operandi)
+    :bind ("<f5>" . modus-themes-toggle))
+
+
   ;; (use-package leuven-theme
   ;;   :ensure t
   ;;   :config
@@ -193,10 +204,10 @@ Should add more detailed information, (too see later)
   ;;   :config
   ;;   (load-theme 'zenburn t))
 
-  (use-package gruvbox-theme
-    :ensure t
-    :config
-    (load-theme 'gruvbox-dark-medium t))
+  ;; (use-package gruvbox-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'gruvbox-dark-medium t))
 
   ;; (use-package kaolin-themes
   ;;   :ensure t
