@@ -141,9 +141,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-13")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-13")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-13")
+  (set-face-attribute 'default nil :font "Inconsolata-16")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
 #+end_src
 
 * Diminish
@@ -163,15 +163,18 @@ Should add more detailed information, (too see later)
   ;;  :config
   ;;  (modus-themes-load-operandi))
 
-
-
-  (use-package modus-themes
+  (use-package color-theme-sanityinc-tomorrow
     :ensure t
-    :init
-    (modus-themes-load-themes)
     :config
-    (modus-themes-load-operandi)
-    :bind ("<f5>" . modus-themes-toggle))
+    (load-theme 'sanityinc-tomorrow-bright t))
+
+  ;; (use-package modus-themes
+  ;;   :ensure t
+  ;;   :init
+  ;;   (modus-themes-load-themes)
+  ;;   :config
+  ;;   (modus-themes-load-operandi)
+  ;;   :bind ("<f5>" . modus-themes-toggle))
 
 
   ;; (use-package leuven-theme
@@ -212,8 +215,10 @@ Should add more detailed information, (too see later)
   ;; (use-package kaolin-themes
   ;;   :ensure t
   ;;   :config
-  ;;   ;; (load-theme 'kaolin-dark t))
-  ;;   (load-theme 'kaolin-aurora t))
+  ;;   (load-theme 'kaolin-light t))
+    ;; :config
+    ;; (load-theme 'kaolin-dark t))
+    ;; (load-theme 'kaolin-aurora t))
     ;; :config
     ;; (load-theme 'kaolin-au))
 
