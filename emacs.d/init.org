@@ -163,18 +163,18 @@ Should add more detailed information, (too see later)
   ;;  :config
   ;;  (modus-themes-load-operandi))
 
-  (use-package color-theme-sanityinc-tomorrow
-    :ensure t
-    :config
-    (load-theme 'sanityinc-tomorrow-bright t))
-
-  ;; (use-package modus-themes
+  ;; (use-package color-theme-sanityinc-tomorrow
   ;;   :ensure t
-  ;;   :init
-  ;;   (modus-themes-load-themes)
   ;;   :config
-  ;;   (modus-themes-load-operandi)
-  ;;   :bind ("<f5>" . modus-themes-toggle))
+  ;;   (load-theme 'sanityinc-tomorrow-bright t))
+
+  (use-package modus-themes
+    :ensure t
+    :init
+    (modus-themes-load-themes)
+    :config
+    (modus-themes-load-vivendi)
+    :bind ("<f5>" . modus-themes-toggle))
 
 
   ;; (use-package leuven-theme
@@ -255,6 +255,8 @@ Should add more detailed information, (too see later)
      (use-package undo-tree
        :ensure t
        :diminish
+       :init
+       (setq undo-tree-auto-save-history nil)
        :hook (after-init . global-undo-tree-mode)
        :bind (("C-x u" . undo-tree-visualize)
               ("C-_" . undo-tree-undo)
@@ -282,7 +284,7 @@ Should add more detailed information, (too see later)
    #+end_src
 
 * Vertico
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package vertico
       :ensure t
       :init
@@ -300,7 +302,7 @@ Should add more detailed information, (too see later)
   #+end_src
   
 * Marginalia
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package marginalia
       :ensure t
       :config
@@ -308,7 +310,7 @@ Should add more detailed information, (too see later)
   #+end_src
   
 * Consult
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package consult
       :ensure t
       :bind
@@ -321,7 +323,7 @@ Should add more detailed information, (too see later)
   #+end_src
   
 * Orderless
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
 
     (use-package orderless
       :ensure t
@@ -339,39 +341,64 @@ Swiper: Powerfull search/finding tool
 Ivy-rich: Addion of better description of commands while using Counsel
 
 #+begin_src emacs-lisp :tangle no
-  (use-package ivy
-    :ensure t
-    :diminish
-    :init
-    (ivy-mode 1)
-    :config
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-count-format "(%d/%d) "))
+    (use-package ivy
+      :ensure t
+      :diminish
+      :init
+      (ivy-mode 1)
+      :config
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-count-format "(%d/%d) "))
 
-  (use-package counsel
-    :ensure t
-    :diminish
-    :bind (("M-x" . counsel-M-x)
-           ("C-x C-f" . counsel-find-file)
-           ("C-x b" . counsel-ibuffer))
-    :config
-    (counsel-mode 1))
+    (use-package counsel
+      :ensure t
+      :diminish
+      :bind (("M-x" . counsel-M-x)
+             ("C-x C-f" . counsel-find-file)
+             ("C-x b" . counsel-switch-buffer))
+      :config
+      (counsel-mode 1))
 
-  (use-package swiper
-    :diminish
-    :after counsel
-    :bind  ("C-s" . swiper-isearch)
-           ("C-r" . swiper-isearch-backward)
-           ("C-c C-r" . ivy-resume)
-           ("C-M-s" . counsel-grep)
-           ("C-M-r" . counsel-grep-backward))
+    (use-package swiper
+      :diminish
+      :after counsel
+      :bind  ("C-s" . swiper-isearch)
+             ("C-r" . swiper-isearch-backward)
+             ("C-c C-r" . ivy-resume)
+             ("C-M-s" . counsel-grep)
+             ("C-M-r" . counsel-grep-backward))
 
-  (use-package ivy-rich
-    :ensure t
-    :after ivy
-    :config
-    (ivy-rich-mode))
+  ;  (use-package ivy-rich
+  ;    :ensure t
+  ;    :after ivy
+  ;    :config
+  ;    (ivy-rich-mode))
 #+end_src
+
+* Helm
+  #+begin_src emacs-lisp
+    (use-package helm
+      :ensure t
+      :init
+      (helm-mode 1)
+      :bind
+      ("M-x" . helm-M-x)
+      ("C-x C-f" . helm-find-files)
+      ("C-s" . helm-occur)
+      ("C-x b" . helm-buffers-list)
+      ("M-y" . helm-show-kill-ring)
+      :config
+      (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+            helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+            helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+            helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+            helm-ff-file-name-history-use-recentf t
+            helm-echo-input-in-header-line t)
+
+      (setq helm-autoresize-max-height 0)
+      (setq helm-autoresize-min-height 20)
+      (helm-autoresize-mode 1))
+  #+end_src
 
 * Avy
   #+begin_src emacs-lisp
@@ -575,8 +602,9 @@ Ivy-rich: Addion of better description of commands while using Counsel
     :bind
     ("C-;" . company-complete)
     :custom
-    (company-minimum-prefix-length 1)
-    (company-idle-delay 0))
+    (completion-ignore-case t)
+    ;; (company-minimum-prefix-length 1)
+    (company-idle-delay nil))
 #+end_src
 
 * Corfu
