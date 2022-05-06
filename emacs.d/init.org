@@ -168,13 +168,13 @@ Should add more detailed information, (too see later)
   ;;   :config
   ;;   (load-theme 'sanityinc-tomorrow-bright t))
 
-  (use-package modus-themes
-    :ensure t
-    :init
-    (modus-themes-load-themes)
-    :config
-    (modus-themes-load-vivendi)
-    :bind ("<f5>" . modus-themes-toggle))
+  ;; (use-package modus-themes
+  ;;   :ensure t
+  ;;   :init
+  ;;   (modus-themes-load-themes)
+  ;;   :config
+  ;;   (modus-themes-load-vivendi)
+  ;;   :bind ("<f5>" . modus-themes-toggle))
 
 
   ;; (use-package leuven-theme
@@ -202,10 +202,10 @@ Should add more detailed information, (too see later)
   ;;   :config
   ;;   (load-theme 'solarized-light t))
 
-  ;; (use-package zenburn-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'zenburn t))
+  (use-package zenburn-theme
+    :ensure t
+    :config
+    (load-theme 'zenburn t))
 
   ;; (use-package gruvbox-theme
   ;;   :ensure t
@@ -340,7 +340,7 @@ Counsel: Collection of replacements for basic default Emacs commands
 Swiper: Powerfull search/finding tool
 Ivy-rich: Addion of better description of commands while using Counsel
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
     (use-package ivy
       :ensure t
       :diminish
@@ -376,7 +376,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 #+end_src
 
 * Helm
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package helm
       :ensure t
       :init
