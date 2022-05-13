@@ -202,15 +202,15 @@ Should add more detailed information, (too see later)
   ;;   :config
   ;;   (load-theme 'solarized-light t))
 
-  (use-package zenburn-theme
-    :ensure t
-    :config
-    (load-theme 'zenburn t))
-
-  ;; (use-package gruvbox-theme
+  ;; (use-package zenburn-theme
   ;;   :ensure t
   ;;   :config
-  ;;   (load-theme 'gruvbox-dark-medium t))
+  ;;   (load-theme 'zenburn t))
+
+  (use-package gruvbox-theme
+    :ensure t
+    :config
+    (load-theme 'gruvbox-light-medium t))
 
   ;; (use-package kaolin-themes
   ;;   :ensure t
@@ -348,7 +348,8 @@ Ivy-rich: Addion of better description of commands while using Counsel
       (ivy-mode 1)
       :config
       (setq ivy-use-virtual-buffers t)
-      (setq ivy-count-format "(%d/%d) "))
+      (setq ivy-count-format "(%d/%d) ")
+      (setq ivy-initial-inputs-alist ()))
 
     (use-package counsel
       :ensure t
