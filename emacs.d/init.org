@@ -141,9 +141,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-16")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'default nil :font "Inconsolata-13")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-13")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-13")
 #+end_src
 
 * Diminish
@@ -363,8 +363,8 @@ Ivy-rich: Addion of better description of commands while using Counsel
     (use-package swiper
       :diminish
       :after counsel
-      :bind  ("C-s" . swiper-isearch)
-             ("C-r" . swiper-isearch-backward)
+      :bind  ("C-s" . counsel-grep-or-swiper)
+             ("C-r" . counsel-grep-or-swiper-backwards)
              ("C-c C-r" . ivy-resume)
              ("C-M-s" . counsel-grep)
              ("C-M-r" . counsel-grep-backward))
@@ -650,7 +650,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
   #+end_src
   
 * Corfu-doc
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package corfu-doc
       :after corfu
       :bind
