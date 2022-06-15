@@ -141,9 +141,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-13")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-13")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-13")
+  (set-face-attribute 'default nil :font "Inconsolata-16")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
 #+end_src
 
 * Diminish
@@ -604,8 +604,8 @@ Ivy-rich: Addion of better description of commands while using Counsel
     ("C-;" . company-complete)
     :custom
     (completion-ignore-case t)
-    ;; (company-minimum-prefix-length 1)
-    (company-idle-delay nil))
+    (company-minimum-prefix-length 1)
+    (company-idle-delay 0))
 #+end_src
 
 * Corfu
@@ -665,13 +665,13 @@ Ivy-rich: Addion of better description of commands while using Counsel
 * Language Servers
 
 ** eglot
-  #+begin_src emacs-lisp :tangle no
+  #+begin_src emacs-lisp
     (use-package eglot
       :ensure t)
   #+end_src
 
 ** lsp-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package lsp-mode
     :ensure t
     :init
@@ -690,13 +690,13 @@ Ivy-rich: Addion of better description of commands while using Counsel
 #+end_src
 
 ** lsp-ui
-   #+begin_src emacs-lisp
+   #+begin_src emacs-lisp :tangle no
      (use-package lsp-ui
        :ensure t)
    #+end_src
    
 ** lsp-treemacs
-   #+begin_src emacs-lisp
+   #+begin_src emacs-lisp :tangle no
      (use-package lsp-treemacs
        :ensure t
        :after treemacs
@@ -821,11 +821,33 @@ Ivy-rich: Addion of better description of commands while using Counsel
     :hook (org-mode . org-bullets-mode))
 #+end_src
 
-#+begin_src emacs-lisp :tangle no
-  (require 'org-tempo)
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python"))
+* org roam
+
+#+begin_src emacs-lisp
+  (use-package org-roam
+    :ensure t
+    :init
+    (setq org-roam-v2-ack t)
+    :custom
+    (org-roam-directory "~/RoamNotes")
+    (org-roam-index-file "~/RoamNotes/index.org")
+    (org-roam-completion-everywhere t)
+    :bind (("C-c n l" . org-roam-buffer-toggle)
+           ("C-c n f" . org-roam-node-find)
+           ("C-c n i" . org-roam-node-insert)))
+           ;; :map org-mode-map
+           ;; ("C-M-i"    . completion-at-point))
+#+end_src
+
+* deft
+#+begin_src emacs-lisp
+  (use-package deft
+    :ensure t
+    :bind ("<f8>" . deft)
+    :commands (deft)
+    :config
+    (setq deft-directory "~/RoamNotes"
+          deft-extensions '("md" "org")))
 #+end_src
 
 * Ispell
