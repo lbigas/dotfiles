@@ -156,13 +156,13 @@ Should add more detailed information, (too see later)
 * Color Theme
 
 #+begin_src emacs-lisp
-  (use-package modus-themes
-    :ensure t
-    :init
-    (modus-themes-load-themes)
-    :config
-    (load-theme 'modus-operandi t)
-    :bind ("<f5>" . modus-themes-toggle))
+  ;; (use-package modus-themes
+  ;;   :ensure t
+  ;;   :init
+  ;;   (modus-themes-load-themes)
+  ;;   :config
+  ;;   (load-theme 'modus-operandi t)
+  ;;   :bind ("<f5>" . modus-themes-toggle))
 
    ;; (use-package modus-themes
    ;;  :ensure t
@@ -209,10 +209,10 @@ Should add more detailed information, (too see later)
   ;;   :config
   ;;   (load-theme 'solarized-light t))
 
-  ;; (use-package zenburn-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'zenburn t))
+  (use-package zenburn-theme
+    :ensure t
+    :config
+    (load-theme 'zenburn t))
 
   ;; (use-package gruvbox-theme
   ;;   :ensure t
@@ -289,56 +289,6 @@ Should add more detailed information, (too see later)
        (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
        (setq aw-background nil))
    #+end_src
-
-* Vertico
-  #+begin_src emacs-lisp :tangle no
-    (use-package vertico
-      :ensure t
-      :init
-      (vertico-mode +1)
-      :config
-      (setq vertico-cycle t))
-  #+end_src
-
-* Selectrum
-  #+begin_src emacs-lisp :tangle no
-    (use-package selectrum
-      :ensure t
-      :init
-      (selectrum-mode +1))
-  #+end_src
-  
-* Marginalia
-  #+begin_src emacs-lisp :tangle no
-    (use-package marginalia
-      :ensure t
-      :config
-      (marginalia-mode))
-  #+end_src
-  
-* Consult
-  #+begin_src emacs-lisp :tangle no
-    (use-package consult
-      :ensure t
-      :bind
-      (("C-s" . consult-line)
-       ("C-M-l" . consult-imenu)
-       ("C-x b" . consult-buffer)
-       ("C-x C-b" . ibuffer)
-       :map minibuffer-local-map
-       ("C-r" . consult-history)))
-  #+end_src
-  
-* Orderless
-  #+begin_src emacs-lisp :tangle no
-
-    (use-package orderless
-      :ensure t
-      :init
-      (setq completion-styles '(orderless)
-            completion-category-defaults nil
-            completion-category-overrides '((file (styles . (partial-completion))))))
-  #+end_src
   
 * Ivy, Counsel, Swiper
 
@@ -348,66 +298,47 @@ Swiper: Powerfull search/finding tool
 Ivy-rich: Addion of better description of commands while using Counsel
 
 #+begin_src emacs-lisp
-    (use-package ivy
-      :ensure t
-      :diminish
-      :init
-      (ivy-mode 1)
-      :config
-      (setq ivy-use-virtual-buffers t)
-      (setq ivy-count-format "(%d/%d) ")
-      (setq ivy-initial-inputs-alist ()))
+  (use-package ivy
+    :ensure t
+    :diminish
+    :init
+    (ivy-mode)
+    :bind
+    (("C-c C-r" . ivy-resume))
+    :config
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) ")
+    (setq enable-recursive-minibuffers t)
+    (setq ivy-initial-inputs-alist ()))
 
-    (use-package counsel
-      :ensure t
-      :diminish
-      :bind (("M-x" . counsel-M-x)
-             ("C-x C-f" . counsel-find-file)
-             ("C-x b" . counsel-switch-buffer))
-      :config
-      (counsel-mode 1))
+  (use-package counsel
+    :ensure t
+    :diminish
+    :after ivy
+    :bind
+    (("M-x" . counsel-M-x)
+     ("C-M-s" . counsel-grep)
+     ("C-M-r" . counsel-grep-backward)
+     ("C-x C-f" . counsel-find-file)
+     ("C-x b" . counsel-switch-buffer)
+     ("C-c g" . counsel-git)
+     ("C-c j" . counsel-git-grep))
+    :config
+    (counsel-mode 1))
 
-    (use-package swiper
-      :diminish
-      :after counsel
-      :bind  ("C-s" . counsel-grep-or-swiper)
-             ("C-r" . counsel-grep-or-swiper-backwards)
-             ("C-c C-r" . ivy-resume)
-             ("C-M-s" . counsel-grep)
-             ("C-M-r" . counsel-grep-backward))
+  (use-package swiper
+    :diminish
+    :after ivy
+    :bind  ("C-s" . swiper)
+    ("C-r" . swiper-backwards))
 
-  ;  (use-package ivy-rich
-  ;    :ensure t
-  ;    :after ivy
-  ;    :config
-  ;    (ivy-rich-mode))
+
+  (use-package ivy-rich
+    :ensure t
+    :after ivy
+    :config
+    (ivy-rich-mode))
 #+end_src
-
-* Helm
-  #+begin_src emacs-lisp :tangle no
-    (use-package helm
-      :ensure t
-      :init
-      (helm-mode 1)
-      :bind
-      ("M-x" . helm-M-x)
-      ("C-x C-f" . helm-find-files)
-      ("C-s" . helm-occur)
-      ("C-x b" . helm-buffers-list)
-      ("M-y" . helm-show-kill-ring)
-      :config
-      (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-            helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-            helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-            helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-            helm-ff-file-name-history-use-recentf t
-            helm-echo-input-in-header-line t)
-
-      (setq helm-autoresize-max-height 0)
-      (setq helm-autoresize-min-height 20)
-      (helm-autoresize-mode 1))
-  #+end_src
-
 * Avy
   #+begin_src emacs-lisp
     (use-package avy
@@ -559,13 +490,6 @@ Ivy-rich: Addion of better description of commands while using Counsel
       (:map projectile-mode-map ("C-c p" . projectile-command-map)))
   #+end_src
 
-* VTerm
-  #+begin_src emacs-lisp :tangle no
-    (use-package vterm)
-
-    (use-package multi-vterm)
-  #+end_src
-  
 * Commenting Lines
   #+begin_src emacs-lisp
     (use-package evil-nerd-commenter
@@ -574,7 +498,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
   #+end_src
 
 * Spell Cheking
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package flyspell)
   #+end_src
 
@@ -615,89 +539,35 @@ Ivy-rich: Addion of better description of commands while using Counsel
     (company-idle-delay 0))
 #+end_src
 
-* Corfu
-  #+begin_src emacs-lisp :tangle no
-    (use-package corfu
-      :ensure t
-      :init
-      (setq corfu-auto t)
-      ;; Optional customizations
-      :custom
-      (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-      (corfu-auto t)                 ;; Enable auto completion
-      ;; (corfu-separator ?\s)          ;; Orderless field separator
-      ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-      ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-      ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
-      ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-      ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
-      ;; (corfu-scroll-margin 5)        ;; Use scroll margin
-
-      ;; You may want to enable Corfu only for certain modes.
-      ;; :hook ((prog-mode . corfu-mode)
-      ;;        (shell-mode . corfu-mode)
-      ;;        (eshell-mode . corfu-mode))
-
-      ;; Recommended: Enable Corfu globally.
-      ;; This is recommended since dabbrev can be used globally (M-/).
-      :bind
-      ("C-;" . completion-at-point)
-      :init
-      (corfu-global-mode))
-  #+end_src
-
-  #+begin_src emacs-lisp :tangle no
-    (use-package kind-icon
-      :ensure t
-      :after corfu
-      :custom
-      (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
-      :config
-      (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-  #+end_src
-  
-* Corfu-doc
-  #+begin_src emacs-lisp :tangle no
-    (use-package corfu-doc
-      :after corfu
-      :bind
-      (("M-d" . corfu-doc-toggle)
-       :map corfu-map
-       ("M-n" . corfu-doc-scroll-down)
-       ("M-p" . corfu-doc-scroll-up))
-      :hook
-      (corfu-mode . corfu-doc-mode))
-  #+end_src
-
 * Language Servers
 
 ** eglot
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package eglot
       :ensure t)
   #+end_src
 
 ** lsp-mode
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package lsp-mode
     :ensure t
     :init
     (setq lsp-keymap-prefix "C-c l")
     :config
     (lsp-enable-which-key-integration t)
-    :hook
-    (haskell-mode . lsp-defered)
-    (haskell-literate-mode . lsp-deferred)
-    (python-mode . lsp-deferred)
-    (java-mode . lsp-deferred)
-    (rust-mode . lsp-deferred)
-    (js-mode . lsp-deferred)
+    ;; :hook
+    ;; (haskell-mode . lsp-defered)
+    ;; (haskell-literate-mode . lsp-deferred)
+    ;; (python-mode . lsp-deferred)
+    ;; (java-mode . lsp-deferred)
+    ;; (rust-mode . lsp-deferred)
+    ;; (js-mode . lsp-deferred)
     :commands
     (lsp lsp-deferred))
 #+end_src
 
 ** lsp-ui
-   #+begin_src emacs-lisp :tangle no
+   #+begin_src emacs-lisp
      (use-package lsp-ui
        :ensure t)
    #+end_src
@@ -712,66 +582,19 @@ Ivy-rich: Addion of better description of commands while using Counsel
    #+end_src
    
 * JavaScript
-  
-  #+begin_src emacs-lisp
-    (use-package js2-mode
-      :ensure t
-      :mode
-      (("\\.js\\'" . js2-mode)))
-  #+end_src
+
+#+begin_src emacs-lisp
+  (use-package js2-mode
+    :ensure t
+    :mode
+    (("\\.js\\'" . js2-mode)))
+#+end_src
 
 * Haskell
   #+begin_src emacs-lisp
     (use-package haskell-mode
       :ensure t)
   #+end_src
-
-  To intall haskell language server:
-  install haskell-language-server package
-
-  #+begin_src emacs-lisp :tangle no
-    (use-package lsp-haskell
-      :ensure t
-      :after lsp-mode
-      :config
-      (setq lsp-haskell-hlint-on nil))
-  #+end_src
-
-* Python
-  #+begin_src emacs-lisp :tangle no
-    (use-package python-mode
-      :ensure t
-      :custom
-      (python-shell-interpreter "python3"))
-  #+end_src
-
-   To install the language server on the machine:
-   pip install --user python-language-server[all]
-   Use pyls to verify if it is working(should do nothing)
-   Ensure that ~/.local/bin is on PATH
-
-**  Pyright
-   #+begin_src emacs-lisp :tangle no
-     (use-package lsp-pyright
-       :ensure t
-       :after lsp-mode
-       :custom
-       (lsp-pyright-auto-import-completions nil)
-       (lsp-pyright-typechecking-mode "off"))
-   #+end_src
-
-** EIN - Emacs IPython Notebook
-   #+begin_src emacs-lisp
-     (use-package ein
-       :ensure t)
-   #+end_src
-
-* Java
-  #+begin_src emacs-lisp
-    (use-package lsp-java
-      :ensure t)
-  #+end_src
-  
 * Rust
 
   #+begin_src emacs-lisp
@@ -817,7 +640,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
 
 * org roam
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package org-roam
     :ensure t
     :init
