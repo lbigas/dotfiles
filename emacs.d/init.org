@@ -555,15 +555,15 @@ Ivy-rich: Addion of better description of commands while using Counsel
     (setq lsp-keymap-prefix "C-c l")
     :config
     (lsp-enable-which-key-integration t)
-    ;; :hook
+    :hook
     ;; (haskell-mode . lsp-defered)
     ;; (haskell-literate-mode . lsp-deferred)
     ;; (python-mode . lsp-deferred)
     ;; (java-mode . lsp-deferred)
     ;; (rust-mode . lsp-deferred)
-    ;; (js-mode . lsp-deferred)
+    (js-mode . lsp-deferred)
     :commands
-    (lsp lsp-deferred))
+    lsp lsp-deferred)
 #+end_src
 
 ** lsp-ui
