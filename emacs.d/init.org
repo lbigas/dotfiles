@@ -1,3 +1,4 @@
+
 #+title: Emacs Configuration
 #+STARTUP: overview
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
@@ -141,9 +142,9 @@ Should add more detailed information, (too see later)
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-13")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-13")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-13")
+  (set-face-attribute 'default nil :font "Inconsolata-16")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
 #+end_src
 
 * Diminish
@@ -209,10 +210,20 @@ Should add more detailed information, (too see later)
   ;;   :config
   ;;   (load-theme 'solarized-light t))
 
-  (use-package zenburn-theme
+  ;; (use-package zenburn-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'zenburn t))
+
+
+  (use-package dracula-theme
     :ensure t
     :config
-    (load-theme 'zenburn t))
+    (load-theme 'dracula t))
+
+  ;; (use-package dracula-theme
+  ;;   :ensure t
+  ;;   (load-theme 'dracula t))
 
   ;; (use-package gruvbox-theme
   ;;   :ensure t
@@ -297,7 +308,7 @@ Counsel: Collection of replacements for basic default Emacs commands
 Swiper: Powerfull search/finding tool
 Ivy-rich: Addion of better description of commands while using Counsel
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package ivy
     :ensure t
     :diminish
@@ -338,6 +349,27 @@ Ivy-rich: Addion of better description of commands while using Counsel
     :after ivy
     :config
     (ivy-rich-mode))
+#+end_src
+* Helm
+#+begin_src emacs-lisp
+  (use-package helm
+    :ensure t
+    :bind
+    ("M-x" . #'helm-M-x)
+    ("C-x r b" . #'helm-filtered-bookmarks)
+    ("C-x C-f" . #'helm-find-files)
+    ("C-s" . helm-occur)
+    ("C-x b" . helm-mini)
+    :init
+    (helm-mode 1)
+    :config
+    (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+          helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+          helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+          helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+          helm-ff-file-name-history-use-recentf t
+          helm-echo-input-in-header-line t))
+
 #+end_src
 * Avy
   #+begin_src emacs-lisp
