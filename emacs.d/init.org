@@ -400,7 +400,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
    #+end_src
 
 ** diff-hl
-  #+begin_src emacs-lisp
+  #+begin_src emacs-lisp :tangle no
     (use-package diff-hl
       :ensure t
       :config
@@ -586,6 +586,7 @@ Ivy-rich: Addion of better description of commands while using Counsel
     :init
     (setq lsp-keymap-prefix "C-c l")
     :config
+    (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
     (lsp-enable-which-key-integration t)
     :hook
     ;; (haskell-mode . lsp-defered)
@@ -595,7 +596,10 @@ Ivy-rich: Addion of better description of commands while using Counsel
     ;; (rust-mode . lsp-deferred)
     (js-mode . lsp-deferred)
     :commands
-    lsp lsp-deferred)
+    (lsp lsp-deferred)
+    :custom
+    (lsp-eslint-run "onSave")
+    (lsp-eslint-auto-fix-on save t))
 #+end_src
 
 ** lsp-ui
@@ -618,6 +622,9 @@ Ivy-rich: Addion of better description of commands while using Counsel
 #+begin_src emacs-lisp
   (use-package js2-mode
     :ensure t
+    :config
+    (setq js2-basic-offset 2)
+    (setq js2-strict-missing-semi-warning nil)
     :mode
     (("\\.js\\'" . js2-mode)))
 #+end_src
