@@ -117,6 +117,12 @@ Consigure basic Emacs UI
     (setq which-key-idle-delay 1.0))
 #+end_src
 
+* Ibuffer
+#+begin_src emacs-lisp
+  (use-package ibuffer
+    :bind ("C-x C-b" . ibuffer))
+#+end_src
+
 * Ace Window
 #+begin_src emacs-lisp
   (use-package ace-window
