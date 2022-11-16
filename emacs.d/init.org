@@ -64,6 +64,9 @@ Consigure basic Emacs UI
   ;; Override some modes which derive from the above
   (dolist (mode '(org-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+  (blink-cursor-mode 0)
+  (global-hl-line-mode 1)
 #+end_src
 
 * MacOs
@@ -85,9 +88,9 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-12")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-12")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-12")
+  (set-face-attribute 'default nil :font "Inconsolata-16")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
 #+end_src
 
 * Color Theme
@@ -104,6 +107,7 @@ Consigure basic Emacs UI
   ;;   :ensure t
   ;;   :config
   ;;   (load-theme 'nord t))
+    ;; (load-theme 'modus-vivendi t)
 #+end_src
 
 * Which Key
