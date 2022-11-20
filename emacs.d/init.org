@@ -31,8 +31,8 @@ Setup package sources and use-package setup
 #+end_src
 
 * Auto Revert
-#+begin_src emacs-lisp :tangle no
-  (setq auto-revert-mode 1)
+#+begin_src emacs-lisp
+  (setq auto-revert-mode t)
 #+end_src
 
 * UI Configuration
@@ -64,9 +64,6 @@ Consigure basic Emacs UI
   ;; Override some modes which derive from the above
   (dolist (mode '(org-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-  (blink-cursor-mode 0)
-  (global-hl-line-mode 1)
 #+end_src
 
 * MacOs
@@ -88,9 +85,9 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-16")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'default nil :font "Inconsolata-12")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-12")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-12")
 #+end_src
 
 * Color Theme
@@ -107,7 +104,26 @@ Consigure basic Emacs UI
   ;;   :ensure t
   ;;   :config
   ;;   (load-theme 'nord t))
-    ;; (load-theme 'modus-vivendi t)
+#+end_src
+
+* All the icons
+#+begin_src emacs-lisp
+  (use-package all-the-icons
+    :if (display-graphic-p)
+    :ensure t)
+#+end_src
+
+* Doom-modeline
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1))
+#+end_src
+
+* treemacs
+#+begin_src emacs-lisp
+  (use-package treemacs
+    :ensure t)
 #+end_src
 
 * Which Key
@@ -181,6 +197,12 @@ Consigure basic Emacs UI
     :ensure t
     :bind ("C-x g" . magit-status))
 #+end_src
+* Magit-delta
+#+begin_src emacs-lisp
+  (use-package magit-delta
+    :ensure t
+    :hook (magit-mode . magit-delta-mode))
+#+end_src
 * SMerge
 #+begin_src emacs-lisp
   (use-package smerge-mode
@@ -224,17 +246,36 @@ Consigure basic Emacs UI
                                      (when smerge-mode
                                        (unpackaged/smerge-hydra/body)))))
 #+end_src
+* Helm
+#+begin_src emacs-lisp
+  (use-package helm
+    :ensure t
+    :bind
+    ("M-x" . #'helm-M-x)
+    ("C-x r b" . #'helm-filtered-bookmarks)
+    ("C-x C-f" . #'helm-find-files)
+    ("C-s" . helm-occur)
+    ("C-x b" . helm-mini)
+    :init
+    (helm-mode 1)
+    :config
+    (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+          helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+          helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+          helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+          helm-ff-file-name-history-use-recentf t
+          helm-echo-input-in-header-line t))
+
+#+end_src
 * Ivy, Counsel, Swiper
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package ivy
     :ensure t
     :config
     (ivy-mode 1)
     (setq ivy-initial-inputs-alist nil))
-#+end_src
 
-#+begin_src emacs-lisp
   (use-package counsel
     :ensure t
     :after ivy
@@ -248,17 +289,13 @@ Consigure basic Emacs UI
      ("C-c j" . counsel-git-grep))
     :config
     (counsel-mode))
-#+end_src
 
-#+begin_src emacs-lisp
   (use-package swiper
     :ensure t
     :bind
     ("C-s" . swiper)
     ("C-r" . swiper-backward))
-#+end_src
 
-#+begin_src emacs-lisp
   (use-package ivy-rich
     :ensure t
     :after ivy
