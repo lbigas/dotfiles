@@ -64,6 +64,8 @@ Consigure basic Emacs UI
   ;; Override some modes which derive from the above
   (dolist (mode '(org-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+  (global-hl-line-mode t)
 #+end_src
 
 * MacOs
@@ -107,19 +109,11 @@ Consigure basic Emacs UI
 #+end_src
 
 * All the icons
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package all-the-icons
     :if (display-graphic-p)
     :ensure t)
 #+end_src
-
-* Doom-modeline
-#+begin_src emacs-lisp
-  (use-package doom-modeline
-    :ensure t
-    :init (doom-modeline-mode 1))
-#+end_src
-
 * treemacs
 #+begin_src emacs-lisp
   (use-package treemacs
@@ -198,7 +192,7 @@ Consigure basic Emacs UI
     :bind ("C-x g" . magit-status))
 #+end_src
 * Magit-delta
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package magit-delta
     :ensure t
     :hook (magit-mode . magit-delta-mode))
@@ -251,13 +245,13 @@ Consigure basic Emacs UI
   (use-package helm
     :ensure t
     :bind
-    ("M-x" . #'helm-M-x)
-    ("C-x r b" . #'helm-filtered-bookmarks)
-    ("C-x C-f" . #'helm-find-files)
-    ("C-s" . helm-occur)
-    ("C-x b" . helm-mini)
+    ;; ("M-x" . #'helm-M-x)
+    ;; ("C-x r b" . #'helm-filtered-bookmarks)
+    ;; ("C-x C-f" . #'helm-find-files)
+    ;; ("C-s" . helm-occur)
+    ;; ("C-x b" . helm-mini)
     :init
-    (helm-mode 1)
+    ;; (helm-mode 1)
     :config
     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
           helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
@@ -269,7 +263,7 @@ Consigure basic Emacs UI
 #+end_src
 * Ivy, Counsel, Swiper
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package ivy
     :ensure t
     :config
@@ -335,6 +329,18 @@ Consigure basic Emacs UI
     (:map projectile-mode-map ("C-c p" . projectile-command-map)))
 #+end_src
 
+* Perspective
+#+begin_src emacs-lisp :tangle no
+  (use-package perspective
+    :ensure t
+    :bind
+    ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
+    :custom
+    (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
+    :init
+    (persp-mode))
+#+end_src
+
 * Company Mode
 #+begin_src emacs-lisp
   (use-package company
@@ -346,7 +352,7 @@ Consigure basic Emacs UI
     :custom
     (completion-ignore-case t)
     (company-minimum-prefix-length 1)
-    (company-idle-delay 0))
+    (company-idle-delay nil))
 #+end_src
 
 #+begin_src emacs-lisp
