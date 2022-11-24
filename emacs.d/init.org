@@ -95,10 +95,14 @@ Consigure basic Emacs UI
 
 * Color Theme
 #+begin_src emacs-lisp
-  (use-package zenburn-theme
+  ;; (use-package zenburn-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'zenburn t))
+  (use-package inkpot-theme
     :ensure t
     :config
-    (load-theme 'zenburn t))
+    (load-theme 'inkpot t))
   ;; (use-package dracula-theme
   ;;   :ensure t
   ;;   :config
