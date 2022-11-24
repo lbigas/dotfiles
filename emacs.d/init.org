@@ -66,6 +66,7 @@ Consigure basic Emacs UI
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
   (global-hl-line-mode t)
+  (global-visual-line-mode t)
 #+end_src
 
 * MacOs
@@ -87,9 +88,9 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-12")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-12")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-12")
+  (set-face-attribute 'default nil :font "Inconsolata-16")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
 #+end_src
 
 * Color Theme
@@ -245,13 +246,13 @@ Consigure basic Emacs UI
   (use-package helm
     :ensure t
     :bind
-    ;; ("M-x" . #'helm-M-x)
-    ;; ("C-x r b" . #'helm-filtered-bookmarks)
-    ;; ("C-x C-f" . #'helm-find-files)
-    ;; ("C-s" . helm-occur)
-    ;; ("C-x b" . helm-mini)
+    ("M-x" . #'helm-M-x)
+    ("C-x r b" . #'helm-filtered-bookmarks)
+    ("C-x C-f" . #'helm-find-files)
+    ("C-s" . helm-occur)
+    ("C-x b" . helm-mini)
     :init
-    ;; (helm-mode 1)
+    (helm-mode 1)
     :config
     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
           helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
@@ -260,10 +261,12 @@ Consigure basic Emacs UI
           helm-ff-file-name-history-use-recentf t
           helm-echo-input-in-header-line t))
 
+  (use-package helm-themes
+    :ensure t)
 #+end_src
 * Ivy, Counsel, Swiper
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package ivy
     :ensure t
     :config
@@ -353,9 +356,7 @@ Consigure basic Emacs UI
     (completion-ignore-case t)
     (company-minimum-prefix-length 1)
     (company-idle-delay nil))
-#+end_src
 
-#+begin_src emacs-lisp
   (use-package company-box
     :ensure t
     :hook (company-mode . company-box-mode))
@@ -394,7 +395,7 @@ Consigure basic Emacs UI
   :ensure t
   :init (global-flycheck-mode))
 #+end_src
-* Dump Jump
+* Dumb Jump
 #+begin_src emacs-lisp
   (use-package dumb-jump
     :ensure t
