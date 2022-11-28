@@ -65,17 +65,35 @@ Consigure basic Emacs UI
   (dolist (mode '(org-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-  (global-hl-line-mode t)
-  (global-visual-line-mode t)
+  ;; (global-hl-line-mode t)
+  ;; (global-visual-line-mode t)
 #+end_src
 
+* General
+#+begin_src emacs-lisp
+  (use-package emacs
+    :init
+    ;; Add all your customizations prior to loading the themes
+    (setq modus-themes-italic-constructs t
+          modus-themes-bold-constructs nil
+          modus-themes-region '(bg-only no-extend))
+    :config
+    ;; Load the theme of your choice:
+    (load-theme 'modus-vivendi t) ;; OR (load-theme 'modus-vivendi)
+    :bind ("<f5>" . modus-themes-toggle))
+#+end_src
+
+* Diminish
+#+begin_src emacs-lisp
+  (use-package diminish
+    :ensure t)
+#+end_src
 * MacOs
 #+begin_src emacs-lisp
   (if (eq system-type 'darwin)
       (setq mac-command-modifier 'meta)
     (setq create-lockfiles nil))
 #+end_src
-
 * Indentation
 #+begin_src emacs-lisp
   (setq-default indent-tabs-mode nil)
@@ -88,9 +106,9 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-16")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-16")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-16")
+  (set-face-attribute 'default nil :font "Inconsolata-11")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
 #+end_src
 
 * Color Theme
@@ -99,10 +117,10 @@ Consigure basic Emacs UI
   ;;   :ensure t
   ;;   :config
   ;;   (load-theme 'zenburn t))
-  (use-package inkpot-theme
-    :ensure t
-    :config
-    (load-theme 'inkpot t))
+  ;; (use-package inkpot-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'inkpot t))
   ;; (use-package dracula-theme
   ;;   :ensure t
   ;;   :config
@@ -119,6 +137,7 @@ Consigure basic Emacs UI
     :if (display-graphic-p)
     :ensure t)
 #+end_src
+
 * treemacs
 #+begin_src emacs-lisp
   (use-package treemacs
@@ -129,8 +148,8 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   (use-package which-key
     :ensure t
+    :diminish
     :init (which-key-mode 1)
-    :diminish which-key-mode
     :config
     (setq which-key-setup-side-window-bottom 1)
     (setq which-key-idle-delay 1.0))
@@ -149,6 +168,7 @@ Consigure basic Emacs UI
     :bind
     (("M-o" . ace-window)))
 #+end_src
+
 * Electric Pair Mode
 #+begin_src emacs-lisp
   (use-package electric-pair-mode
@@ -171,37 +191,27 @@ Consigure basic Emacs UI
     :ensure t)
 #+end_src
 
-* Evil
-#+begin_src emacs-lisp :tangle no
-  (use-package evil
-    :ensure t
-    :init
-    (evil-mode 1))
-#+end_src
-
 * Evil Nerd Commenter
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package evil-nerd-commenter
     :ensure t
     :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 #+end_src
-* Goto-chg
-#+begin_src emacs-lisp
-  (use-package goto-chg
-    :ensure t)
-#+end_src
+
 * Magit
 #+begin_src emacs-lisp
   (use-package magit
     :ensure t
     :bind ("C-x g" . magit-status))
 #+end_src
+
 * Magit-delta
 #+begin_src emacs-lisp :tangle no
   (use-package magit-delta
     :ensure t
     :hook (magit-mode . magit-delta-mode))
 #+end_src
+
 * SMerge
 #+begin_src emacs-lisp
   (use-package smerge-mode
@@ -245,10 +255,12 @@ Consigure basic Emacs UI
                                      (when smerge-mode
                                        (unpackaged/smerge-hydra/body)))))
 #+end_src
+
 * Helm
 #+begin_src emacs-lisp
   (use-package helm
     :ensure t
+    :diminish
     :bind
     ("M-x" . #'helm-M-x)
     ("C-x r b" . #'helm-filtered-bookmarks)
@@ -268,6 +280,7 @@ Consigure basic Emacs UI
   (use-package helm-themes
     :ensure t)
 #+end_src
+
 * Ivy, Counsel, Swiper
 
 #+begin_src emacs-lisp :tangle no
@@ -330,6 +343,7 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   (use-package projectile
     :ensure t
+    :diminish
     :init
     (projectile-mode 1)
     :bind
@@ -399,12 +413,14 @@ Consigure basic Emacs UI
   :ensure t
   :init (global-flycheck-mode))
 #+end_src
+
 * Dumb Jump
 #+begin_src emacs-lisp
   (use-package dumb-jump
     :ensure t
     :after hydra
     :config
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
     (defhydra my/dumb-jump-hydra (:color blue :columns 3)
       "Dumb Jump"
       ("j" dumb-jump-go "Go")
@@ -416,6 +432,7 @@ Consigure basic Emacs UI
       ("b" dumb-jump-back "Back"))
     :bind ("C-c d" . my/dumb-jump-hydra/body))
 #+end_src
+
 * Exec Path from Shell
 #+begin_src emacs-lisp
   (use-package exec-path-from-shell
@@ -423,6 +440,7 @@ Consigure basic Emacs UI
     :init
       (exec-path-from-shell-initialize))
 #+end_src
+
 * lsp-mode
 #+begin_src emacs-lisp
   (use-package lsp-mode
@@ -439,8 +457,14 @@ Consigure basic Emacs UI
     :custom
     (lsp-eslint-run "onSave"))
 #+end_src
+
 * JavaScript
 #+begin_src emacs-lisp
+  (use-package js
+    :config
+    (setq js-indent-level 2))
+#+end_src
+#+begin_src emacs-lisp :tangle no
   (use-package js2-mode
     :ensure t
     :config
