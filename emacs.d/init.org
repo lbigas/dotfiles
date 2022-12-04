@@ -64,9 +64,6 @@ Consigure basic Emacs UI
   ;; Override some modes which derive from the above
   (dolist (mode '(org-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-  ;; (global-hl-line-mode t)
-  ;; (global-visual-line-mode t)
 #+end_src
 
 * General
@@ -77,9 +74,11 @@ Consigure basic Emacs UI
     (setq modus-themes-italic-constructs t
           modus-themes-bold-constructs nil
           modus-themes-region '(bg-only no-extend))
+    (setq enable-recursive-minibuffers t)
     :config
     ;; Load the theme of your choice:
-    (load-theme 'modus-vivendi t) ;; OR (load-theme 'modus-vivendi)
+    (load-theme 'modus-operandi t) ;; OR (load-theme 'modus-vivendi)
+    (global-hl-line-mode)
     :bind ("<f5>" . modus-themes-toggle))
 #+end_src
 
@@ -203,10 +202,7 @@ Consigure basic Emacs UI
   (use-package magit
     :ensure t
     :bind ("C-x g" . magit-status))
-#+end_src
 
-* Magit-delta
-#+begin_src emacs-lisp :tangle no
   (use-package magit-delta
     :ensure t
     :hook (magit-mode . magit-delta-mode))
@@ -256,8 +252,81 @@ Consigure basic Emacs UI
                                        (unpackaged/smerge-hydra/body)))))
 #+end_src
 
-* Helm
+* Completion
 #+begin_src emacs-lisp
+  (use-package vertico
+    :ensure t
+    :init
+    (vertico-mode)
+
+    ;; Different scroll margin
+    ;; (setq vertico-scroll-margin 0)
+
+    ;; Show more candidates
+    ;; (setq vertico-count 20)
+
+    ;; Grow and shrink the Vertico minibuffer
+    (setq vertico-resize nil)
+
+    ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+    (setq vertico-cycle t)
+    )
+
+  (use-package orderless
+    :ensure t
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
+
+  (use-package marginalia
+    :ensure t
+    :bind(
+    :map minibuffer-local-map
+    ("M-A" . marginalia-cycle))
+    :init
+    (marginalia-mode))
+
+
+  (use-package consult
+    :ensure t
+    :bind
+    ("C-s" . consult-line)
+    ("M-y" . consult-yank-from-kill-ring)
+    ("C-x b" . consult-buffer))
+    ;; :general
+    ;; ("M-y" 'consult-yank-from-kill-ring
+  ;;  "C-x b" 'consult-buffer))
+
+  (use-package embark
+    :ensure t
+    :bind
+    (("C-." . embark-act)         ;; pick some comfortable binding
+     ;; ("C-;" . embark-dwim)        ;; good alternative: M-.
+     ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+    :init
+
+    ;; Optionally replace the key help with a completing-read interface
+    (setq prefix-help-command #'embark-prefix-help-command)
+
+    :config
+
+    ;; Hide the mode line of the Embark live/completions buffers
+    (add-to-list 'display-buffer-alist
+                 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                   nil
+                   (window-parameters (mode-line-format . none)))))
+
+  ;; Consult users will also want the embark-consult package.
+  (use-package embark-consult
+    :ensure t ; only need to install it, embark loads it after consult if found
+    :after (embark consult)
+    :hook
+    (embark-collect-mode . consult-preview-at-point-mode))
+#+end_src
+
+* Helm
+#+begin_src emacs-lisp :tangle no
   (use-package helm
     :ensure t
     :diminish
@@ -350,18 +419,6 @@ Consigure basic Emacs UI
     (:map projectile-mode-map ("C-c p" . projectile-command-map)))
 #+end_src
 
-* Perspective
-#+begin_src emacs-lisp :tangle no
-  (use-package perspective
-    :ensure t
-    :bind
-    ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
-    :custom
-    (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
-    :init
-    (persp-mode))
-#+end_src
-
 * Company Mode
 #+begin_src emacs-lisp
   (use-package company
@@ -373,11 +430,11 @@ Consigure basic Emacs UI
     :custom
     (completion-ignore-case t)
     (company-minimum-prefix-length 1)
-    (company-idle-delay nil))
+    (company-idle-delay 0))
 
-  (use-package company-box
-    :ensure t
-    :hook (company-mode . company-box-mode))
+  ;; (use-package company-box
+  ;;   :ensure t
+  ;;   :hook (company-mode . company-box-mode))
 #+end_src
 
 * Org Mode
@@ -464,7 +521,7 @@ Consigure basic Emacs UI
     :config
     (setq js-indent-level 2))
 #+end_src
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package js2-mode
     :ensure t
     :config
