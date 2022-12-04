@@ -420,7 +420,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Company Mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package company
     :ensure t
     :hook
@@ -435,6 +435,41 @@ Consigure basic Emacs UI
   ;; (use-package company-box
   ;;   :ensure t
   ;;   :hook (company-mode . company-box-mode))
+#+end_src
+
+* Corfu
+#+begin_src emacs-lisp
+  (use-package corfu
+    :ensure t
+    ;; Optional customizations
+    :custom
+    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+    (corfu-auto t)                 ;; Enable auto completion
+    (corfu-separator ?\s)          ;; Orderless field separator
+    (corfu-auto-delay 0)
+    (corfu-auto-prefix 0)
+    ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+    ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+    ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+    ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+    ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+
+    ;; Enable Corfu only for certain modes.
+    ;; :hook ((prog-mode . corfu-mode)
+    ;; (shell-mode . corfu-mode)
+    ;; (eshell-mode . corfu-mode))
+
+    ;; Recommended: Enable Corfu globally.
+    ;; This is recommended since Dabbrev can be used globally (M-/).
+    ;; See also `corfu-excluded-modes'.
+    :init
+    (global-corfu-mode))
+
+  (use-package corfu-popupinfo
+    :after corfu
+    :hook
+    (corfu-mode . corfu-popupinfo-mode))
 #+end_src
 
 * Org Mode
