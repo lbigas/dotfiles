@@ -70,21 +70,18 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   (use-package emacs
     :init
-    ;; Add all your customizations prior to loading the themes
-    (setq modus-themes-italic-constructs t
-          modus-themes-bold-constructs nil
-          modus-themes-region '(bg-only no-extend))
     (setq enable-recursive-minibuffers t)
     (setq message-log-max 5000)
     :config
     ;; Load the theme of your choice:
-    (load-theme 'modus-operandi t) ;; OR (load-theme 'modus-vivendi)
+    ;; (load-theme 'modus-operandi t) ;; OR (load-theme 'modus-vivendi)
     (global-hl-line-mode)
     (prefer-coding-system 'utf-8)
     (set-default-coding-systems 'utf-8)
     (set-language-environment "UTF-8")
     (global-auto-revert-mode t)
-    :bind ("<f5>" . modus-themes-toggle))
+    ;; :bind ("<f5>" . modus-themes-toggle)
+    )
 #+end_src
 
 * Keep Folders Clean
@@ -145,6 +142,11 @@ Consigure basic Emacs UI
   ;;   :ensure t
   ;;   :config
   ;;   (load-theme 'nord t))
+
+  (use-package ef-themes
+    :ensure t
+    :config
+    (load-theme 'ef-day t))
 #+end_src
 
 * All the icons
@@ -289,7 +291,8 @@ Consigure basic Emacs UI
     :ensure t
     :custom
     (completion-styles '(orderless basic))
-    (completion-category-overrides '((file (styles basic partial-completion)))))
+    (completion-category-overrides '((file (styles basic partial-completion))))
+    (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
   (use-package marginalia
     :ensure t
@@ -433,7 +436,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Company Mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package company
     :ensure t
     :hook
@@ -452,7 +455,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Corfu
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package corfu
     :ensure t
     ;; Optional customizations
@@ -480,20 +483,49 @@ Consigure basic Emacs UI
     :init
     (global-corfu-mode)
     :bind
-    ("C-;" . complete-symbol))
+    ("C-;" . complete-symbol)
+    (:map corfu-map
+          ("C-n" . corfu-next)
+          ("C-p" . corfu-previous)
+          ("<escape>" . corfu-quit)
+          ("<return>" . corfu-insert)
+          ("M-d" . corfu-show-documentation)
+          ("M-l" . corfu-show-location)))
 
   (use-package corfu-popupinfo
     :after corfu
     :hook
     (corfu-mode . corfu-popupinfo-mode))
 
-  ;; (use-package kind-icon
+  ;; (use-package corfu-doc
+  ;;   ;; NOTE 2022-02-05: At the time of writing, `corfu-doc' is not yet on melpa
   ;;   :ensure t
   ;;   :after corfu
+  ;;   :hook (corfu-mode . corfu-doc-mode)
+  ;;   :bind
+  ;;   (:map corfu-map
+  ;;         ;; This is a manual toggle for the documentation popup.
+  ;;         ([remap corfu-show-documentation] . corfu-doc-toggle) ; Remap the default doc command
+  ;;         ;; Scroll in the documentation window
+  ;;         ("M-n" . corfu-doc-scroll-up)
+  ;;         ("M-p" . corfu-doc-scroll-down))
   ;;   :custom
-  ;;   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
-  ;;   :config
-  ;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+  ;;   (corfu-doc-delay 0.5)
+  ;;   (corfu-doc-max-width 70)
+  ;;   (corfu-doc-max-height 20)
+
+  ;;   ;; NOTE 2022-02-05: I've also set this in the `corfu' use-package to be
+  ;;   ;; extra-safe that this is set when corfu-doc is loaded. I do not want
+  ;;   ;; documentation shown in both the echo area and in the `corfu-doc' popup.
+  ;;   (corfu-echo-documentation nil))
+
+  ;; ;; (use-package kind-icon
+  ;; ;;   :ensure t
+  ;; ;;   :after corfu
+  ;; ;;   :custom
+  ;; ;;   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+  ;; ;;   :config
+  ;; ;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 #+end_src
 
 * Dabbrev
@@ -605,33 +637,41 @@ Consigure basic Emacs UI
 * Exec Path from Shell
 #+begin_src emacs-lisp
   (use-package exec-path-from-shell
-    :if (eq system-type 'darwin)
+    ;; :if (eq system-type 'darwin)
     :ensure t
     :init
       (exec-path-from-shell-initialize))
 #+end_src
 
 * lsp-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package lsp-mode
     :ensure t
     :custom
     (lsp-eslint-run "onSave")
-    (lsp-completion-provider :none) ;; we use Corfu!)
+    ;; (lsp-completion-provider :none) ;; we use Corfu!)
     :init
     (setq lsp-keymap-prefix "C-c l")
     :config
     (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
-    (defun my/lsp-mode-setup-completion ()
-      (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-            '(flex))) ;; Configure flex
+    ;; (defun my/lsp-mode-setup-completion ()
+      ;; (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+            ;; '(flex))) ;; Configure flex
     :hook
     (js-mode . lsp)
     (lsp-mode . lsp-enable-which-key-integration)
-    (lsp-completion-mode . my/lsp-mode-setup-completion)
+    ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
     :commands
     (lsp))
 
+#+end_src
+
+* Eglot
+#+begin_src emacs-lisp
+  (use-package eglot
+    :ensure t
+    :hook
+    (js-mode . eglot-ensure))
 #+end_src
 
 * JavaScript
