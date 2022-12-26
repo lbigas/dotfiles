@@ -72,6 +72,7 @@ Consigure basic Emacs UI
     :init
     (setq enable-recursive-minibuffers t)
     (setq message-log-max 5000)
+    (save-place-mode 1) 
     :config
     ;; Load the theme of your choice:
     ;; (load-theme 'modus-operandi t) ;; OR (load-theme 'modus-vivendi)
@@ -122,6 +123,28 @@ Consigure basic Emacs UI
   (set-face-attribute 'default nil :font "Inconsolata-11")
   (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
   (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
+#+end_src
+
+* Doom modeline
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1)
+    :config
+    (setq doom-modeline-bar-width 0))
+#+end_src
+
+* God Mode
+#+begin_src emacs-lisp
+  (use-package god-mode
+    :ensure t
+    :bind (("<escape>" . god-mode-all))
+    :config
+    (setq god-exempt-major-modes nil)
+    (setq god-exempt-predicates nil)
+    (setq god-mode-enable-function-key-translation nil)
+    (god-mode)
+    )
 #+end_src
 
 * Color Theme
@@ -268,7 +291,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Completion
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package vertico
     :ensure t
     :init
@@ -342,7 +365,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Helm
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package helm
     :ensure t
     :diminish
