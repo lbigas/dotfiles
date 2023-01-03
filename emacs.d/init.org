@@ -74,14 +74,11 @@ Consigure basic Emacs UI
     (setq message-log-max 5000)
     (save-place-mode 1) 
     :config
-    ;; Load the theme of your choice:
-    ;; (load-theme 'modus-operandi t) ;; OR (load-theme 'modus-vivendi)
     (global-hl-line-mode)
     (prefer-coding-system 'utf-8)
     (set-default-coding-systems 'utf-8)
     (set-language-environment "UTF-8")
     (global-auto-revert-mode t)
-    ;; :bind ("<f5>" . modus-themes-toggle)
     )
 #+end_src
 
@@ -120,9 +117,9 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-11")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
+  (set-face-attribute 'default nil :font "Inconsolata-12")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-12")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-12")
 #+end_src
 
 * Doom modeline
@@ -149,25 +146,14 @@ Consigure basic Emacs UI
 
 * Color Theme
 #+begin_src emacs-lisp
-  ;; (use-package zenburn-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'zenburn t))
-  ;; (use-package inkpot-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'inkpot t))
-  ;; (use-package dracula-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'dracula t))
-  ;; (use-package nord-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'nord t))
-
   (use-package ef-themes
     :ensure t
+    ;; :custom
+    ;; (ef-themes-to-toggle '(ef-day ef-autumn))
+    ;; :
+    ;; bind
+    ;; ("<f5>" . ef-themes-toggle)
+    ;; :
     :config
     (load-theme 'ef-day t))
 #+end_src
@@ -314,8 +300,8 @@ Consigure basic Emacs UI
     :ensure t
     :custom
     (completion-styles '(orderless basic))
-    (completion-category-overrides '((file (styles basic partial-completion))))
-    (completion-category-overrides '((eglot (styles . (orderless flex))))))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
+    ;; (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
   (use-package marginalia
     :ensure t
@@ -365,7 +351,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Helm
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package helm
     :ensure t
     :diminish
@@ -391,12 +377,14 @@ Consigure basic Emacs UI
 
 * Ivy, Counsel, Swiper
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package ivy
     :ensure t
     :config
     (ivy-mode 1)
-    (setq ivy-initial-inputs-alist nil))
+    (setq ivy-initial-inputs-alist nil)
+    (setq ivy-re-builders-alist
+          '((t . ivy--regex-ignore-order))))
 
   (use-package counsel
     :ensure t
@@ -459,7 +447,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Company Mode
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package company
     :ensure t
     :hook
@@ -478,7 +466,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Corfu
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package corfu
     :ensure t
     ;; Optional customizations
@@ -667,30 +655,42 @@ Consigure basic Emacs UI
 #+end_src
 
 * lsp-mode
-#+begin_src emacs-lisp :tangle no
-  (use-package lsp-mode
-    :ensure t
-    :custom
-    (lsp-eslint-run "onSave")
-    ;; (lsp-completion-provider :none) ;; we use Corfu!)
-    :init
-    (setq lsp-keymap-prefix "C-c l")
-    :config
-    (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
-    ;; (defun my/lsp-mode-setup-completion ()
-      ;; (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-            ;; '(flex))) ;; Configure flex
-    :hook
-    (js-mode . lsp)
-    (lsp-mode . lsp-enable-which-key-integration)
-    ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
-    :commands
-    (lsp))
+#+begin_src emacs-lisp
+    (use-package lsp-mode
+      :ensure t
+      :custom
+      (lsp-eslint-run "onSave")
+      ;; (lsp-completion-provider :none) ;; we use Corfu!)
+      :init
+      (setq lsp-keymap-prefix "C-c l")
+      :config
+      (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
+      ;; (defun my/lsp-mode-setup-completion ()
+        ;; (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+              ;; '(flex))) ;; Configure flex
+      :hook
+      (js-mode . lsp-deferred)
+      (lsp-mode . lsp-enable-which-key-integration)
+      ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
+      :commands
+      (lsp lsp-deferred))
 
+  ;; (use-package
+  ;;   lsp-ui
+  ;;   :ensure t
+  ;;   :config
+  ;;   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  ;;   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
+
+  ;; (use-packa
+   ;; (use-package lsp-ivy
+   ;;  :ensure t
+   ;;  :after ivy lsp-mode
+   ;;  :commands lsp-ivy-workspace-symbol)
 #+end_src
 
 * Eglot
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package eglot
     :ensure t
     :hook
