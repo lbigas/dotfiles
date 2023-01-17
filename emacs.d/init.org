@@ -68,18 +68,46 @@ Consigure basic Emacs UI
 
 * General
 #+begin_src emacs-lisp
-  (use-package emacs
-    :init
-    (setq enable-recursive-minibuffers t)
-    (setq message-log-max 5000)
-    (save-place-mode 1) 
-    :config
-    (global-hl-line-mode)
-    (prefer-coding-system 'utf-8)
-    (set-default-coding-systems 'utf-8)
-    (set-language-environment "UTF-8")
-    (global-auto-revert-mode t)
-    )
+  ;; (use-package emacs
+  ;;   :straight (:type built-in)
+  ;;   :init
+  ;;   (setq enable-recursive-minibuffers t)
+  ;;   (setq message-log-max 5000)
+  ;;   (save-place-mode 1) 
+  ;;   :config
+  ;;   (global-hl-line-mode)
+  ;;   (prefer-coding-system 'utf-8)
+  ;;   (set-default-coding-systems 'utf-8)
+  ;;   (set-language-environment "UTF-8")
+  ;;   (global-auto-revert-mode t)
+  ;;   )
+
+
+  (setq enable-recursive-minibuffers t)
+  (setq message-log-max 5000)
+  (save-place-mode 1)
+  (global-hl-line-mode)
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-language-environment "UTF-8")
+  (global-auto-revert-mode t)
+  ;; Silence compiler warnings as they can be disruptive
+  (setq comp-async-report-warnings-errors nil)
+
+  ;; increase garbage collection threshold
+  ;; (setq gc-cons-threshold (* 50 1000 1000))
+
+  (setq gc-cons-threshold (* 2 1000 1000))
+
+  ;; Profile emacs startup
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (message "*** Emacs loaded in %s with %d garbage collections."
+                       (format "%.2f seconds"
+                               (float-time
+                                (time-subtract after-init-time before-init-time)))
+                       gcs-done)))
+
 #+end_src
 
 * Keep Folders Clean
@@ -117,9 +145,9 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-12")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-12")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-12")
+  (set-face-attribute 'default nil :font "Inconsolata-11")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
 #+end_src
 
 * Doom modeline
@@ -148,6 +176,7 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   (use-package ef-themes
     :ensure t
+    :disabled t
     ;; :custom
     ;; (ef-themes-to-toggle '(ef-day ef-autumn))
     ;; :
@@ -156,6 +185,17 @@ Consigure basic Emacs UI
     ;; :
     :config
     (load-theme 'ef-day t))
+
+  (use-package gruvbox-theme
+    :ensure t
+    :disabled t
+    :config
+    (load-theme 'gruvbox-light-medium t))
+
+  (use-package parchment-theme
+    :ensure t
+    :config
+    (load-theme 'parchment t))
 #+end_src
 
 * All the icons
@@ -168,6 +208,12 @@ Consigure basic Emacs UI
 * treemacs
 #+begin_src emacs-lisp
   (use-package treemacs
+    :ensure t)
+#+end_src
+
+* Multiple Cursors
+#+begin_src emacs-lisp :tangle no
+  (use-package multiple-cursors
     :ensure t)
 #+end_src
 
@@ -197,7 +243,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Electric Pair Mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package electric-pair-mode
     :ensure nil
     :hook
@@ -276,15 +322,15 @@ Consigure basic Emacs UI
                                        (unpackaged/smerge-hydra/body)))))
 #+end_src
 
-* Completion
-#+begin_src emacs-lisp :tangle no
+* Vertico, Consult, Marginalia, Orderless
+#+begin_src emacs-lisp
   (use-package vertico
     :ensure t
     :init
     (vertico-mode)
 
     ;; Different scroll margin
-    ;; (setq vertico-scroll-margin 0)
+    (setq vertico-scroll-margin 0)
 
     ;; Show more candidates
     ;; (setq vertico-count 20)
@@ -294,13 +340,16 @@ Consigure basic Emacs UI
 
     ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
     (setq vertico-cycle t)
+
+    :bind (:map vertico-map
+                ("C-l" . vertico-directory-up))
     )
 
   (use-package orderless
     :ensure t
     :custom
     (completion-styles '(orderless basic))
-    (completion-category-overrides '((file (styles basic partial-completion)))))
+    (completion-category-overrides '((file (styles basic partial-completion orderless)))))
     ;; (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
   (use-package marginalia
@@ -377,7 +426,7 @@ Consigure basic Emacs UI
 
 * Ivy, Counsel, Swiper
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package ivy
     :ensure t
     :config
@@ -554,13 +603,14 @@ Consigure basic Emacs UI
 
 #+begin_src emacs-lisp
   (use-package org
-    :ensure t
+    :ensure nil
     :config
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((python . t))))
 
   (use-package org-tempo
+    :ensure nil
     :after org
     :config
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -603,7 +653,7 @@ Consigure basic Emacs UI
     :bind-keymap
     ("C-c n d" . org-roam-dailies-map)
     :config
-    (require 'org-roam-dailies) ;; Ensure the keymap is available
+    (require 'org-roam-dailies) ;; straight t keymap is available
     (org-roam-db-autosync-mode))
 
 
@@ -694,11 +744,11 @@ Consigure basic Emacs UI
   (use-package eglot
     :ensure t
     :hook
-    (js-mode . eglot-ensure))
+    (js-mode . eglo-ensure))
 #+end_src
 
 * JavaScript
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package js
     :config
     (setq js-indent-level 2))
