@@ -188,12 +188,12 @@ Consigure basic Emacs UI
 
   (use-package gruvbox-theme
     :ensure t
-    :disabled t
     :config
-    (load-theme 'gruvbox-light-medium t))
+    (load-theme 'gruvbox-dark-medium t))
 
   (use-package parchment-theme
     :ensure t
+    :disabled 5
     :config
     (load-theme 'parchment t))
 #+end_src
@@ -243,7 +243,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Electric Pair Mode
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package electric-pair-mode
     :ensure nil
     :hook
