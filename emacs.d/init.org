@@ -213,14 +213,20 @@ Consigure basic Emacs UI
 
   (use-package gruvbox-theme
     :ensure t
+    :disabled t
     :config
     (load-theme 'gruvbox-dark-medium t))
 
   (use-package parchment-theme
     :ensure t
-    :disabled 5
+    :disabled t
     :config
     (load-theme 'parchment t))
+
+  (use-package modus-themes
+    :ensure t
+    :config
+    (load-theme 'modus-operandi-tinted t))
 #+end_src
 
 * All the icons
@@ -521,7 +527,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Company Mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package company
     :ensure t
     :hook
@@ -540,7 +546,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Corfu
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package corfu
     :ensure t
     ;; Optional customizations
