@@ -180,9 +180,9 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-11")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
+  (set-face-attribute 'default nil :font "Inconsolata-14")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-14")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-14")
 #+end_src
 
 * Doom modeline
@@ -235,8 +235,14 @@ Consigure basic Emacs UI
 
   (use-package modus-themes
     :ensure t
+    :disabled t
     :config
     (load-theme 'modus-operandi-tinted t))
+
+  (use-package zenburn-theme
+    :ensure t
+    :config
+    (load-theme 'zenburn t))
 #+end_src
 
 * All the icons
@@ -797,15 +803,15 @@ Consigure basic Emacs UI
 #+end_src
 
 * JavaScript
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package js
     :config
+    :mode "\\.json\\'"
     (setq js-indent-level 2))
 #+end_src
 #+begin_src emacs-lisp
   (use-package js2-mode
     :ensure t
-    :mode "\\.ts\\'"
     :config
     (setq js2-basic-offset 2)
     (setq js2-strict-missing-semi-warning nil)
@@ -815,7 +821,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Typescript
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package typescript-mode
     :ensure t
     :mode "\\.ts\\'"
