@@ -325,6 +325,14 @@ Consigure basic Emacs UI
     :bind ("C-x g" . magit-status))
 #+end_src
 
+* Magit Delta
+#+begin_src emacs-lisp :tangle no
+  (use-package magit-delta
+    :ensure t
+    :after magit
+    :hook (magit-mode . magit-delta-mode))
+#+end_src
+
 * SMerge
 #+begin_src emacs-lisp
   (use-package smerge-mode
@@ -368,7 +376,6 @@ Consigure basic Emacs UI
                                      (when smerge-mode
                                        (unpackaged/smerge-hydra/body)))))
 #+end_src
-
 * Embark
 #+begin_src emacs-lisp
   (use-package embark
@@ -460,6 +467,7 @@ Consigure basic Emacs UI
     ("C-x C-f" . helm-find-files)
     ("C-s" . helm-occur)
     ("C-x b" . helm-mini)
+    ("M-y" . helm-show-kill-ring)
     :init
     (helm-mode 1)
     :config
