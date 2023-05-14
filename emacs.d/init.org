@@ -32,26 +32,81 @@ Setup package sources and use-package setup
   ;; (require 'use-package-ensure)
   ;; (setq use-package-always-ensure t)
 
+
+  ;; straight
+
+  ;; (setq package-enable-at-startup nil)
+
+  ;; (defvar bootstrap-version)
+  ;; (let ((bootstrap-file
+  ;;        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+  ;;       (bootstrap-version 6))
+  ;;   (unless (file-exists-p bootstrap-file)
+  ;;     (with-current-buffer
+  ;;         (url-retrieve-synchronously
+  ;;          "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+  ;;          'silent 'inhibit-cookies)
+  ;;       (goto-char (point-max))
+  ;;       (eval-print-last-sexp)))
+  ;;   (load bootstrap-file nil 'nomessage))
+
+  ;; (straight-use-package 'use-package)
+
+  ;; (setq straight-use-package-by-default t)
+
+
+  ;; elpaca
+
   (setq package-enable-at-startup nil)
 
-  (defvar bootstrap-version)
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-        (bootstrap-version 6))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
+  (defvar elpaca-installer-version 0.4)
+  (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+  (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
+  (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
+  (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
+                                :ref nil
+                                :files (:defaults (:exclude "extensions"))
+                                :build (:not elpaca--activate-package)))
+  (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
+         (build (expand-file-name "elpaca/" elpaca-builds-directory))
+         (order (cdr elpaca-order))
+         (default-directory repo))
+    (add-to-list 'load-path (if (file-exists-p build) build repo))
+    (unless (file-exists-p repo)
+      (make-directory repo t)
+      (when (< emacs-major-version 28) (require 'subr-x))
+      (condition-case-unless-debug err
+          (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+                   ((zerop (call-process "git" nil buffer t "clone"
+                                         (plist-get order :repo) repo)))
+                   ((zerop (call-process "git" nil buffer t "checkout"
+                                         (or (plist-get order :ref) "--"))))
+                   (emacs (concat invocation-directory invocation-name))
+                   ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+                                         "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+                   ((require 'elpaca))
+                   ((elpaca-generate-autoloads "elpaca" repo)))
+              (kill-buffer buffer)
+            (error "%s" (with-current-buffer buffer (buffer-string))))
+        ((error) (warn "%s" err) (delete-directory repo 'recursive))))
+    (unless (require 'elpaca-autoloads nil t)
+      (require 'elpaca)
+      (elpaca-generate-autoloads "elpaca" repo)
+      (load "./elpaca-autoloads")))
+  (add-hook 'after-init-hook #'elpaca-process-queues)
+  (elpaca `(,@elpaca-order))
 
-  (straight-use-package 'use-package)
+  ;; Install use-package support
+  (elpaca elpaca-use-package
+    ;; Enable :elpaca use-package keyword.
+    (elpaca-use-package-mode)
+    ;; Assume :elpaca t unless otherwise specified.
+    (setq elpaca-use-package-by-default t))
 
-  (setq straight-use-package-by-default t)
+  ;; Block until current queue processed.
+  (elpaca-wait)
 #+end_src
-
+0
 * Auto Revert
 #+begin_src emacs-lisp
   (setq auto-revert-mode t)
@@ -91,7 +146,7 @@ Consigure basic Emacs UI
 * General
 #+begin_src emacs-lisp
   ;; (use-package emacs
-  ;;   :straight (:type built-in)
+  ;;   :elpaca (:type built-in)
   ;;   :init
   ;;   (setq enable-recursive-minibuffers t)
   ;;   (setq message-log-max 5000)
@@ -139,7 +194,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Warning level
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (setq warning-minimum-level :emergency)
 #+end_src
 
@@ -291,6 +346,7 @@ Consigure basic Emacs UI
 * Ibuffer
 #+begin_src emacs-lisp
   (use-package ibuffer
+    :elpaca nil
     :bind ("C-x C-b" . ibuffer))
 #+end_src
 
@@ -304,7 +360,7 @@ Consigure basic Emacs UI
 * Electric Pair Mode
 #+begin_src emacs-lisp
   (use-package electric-pair-mode
-    :straight nil
+    :elpaca nil
     :hook
     (prog-mode . electric-pair-local-mode))
 #+end_src
@@ -343,6 +399,7 @@ Consigure basic Emacs UI
 * SMerge
 #+begin_src emacs-lisp
   (use-package smerge-mode
+    :elpaca nil
     :after hydra
     :config
     (defhydra my/smerge-hydra
@@ -458,8 +515,11 @@ Consigure basic Emacs UI
 
 * Helm
 #+begin_src emacs-lisp
+  (use-package helm-core)
+
   (use-package helm
     :diminish
+    :after helm-core
     :bind
     ("M-x" . helm-M-x)
     ("C-x r b" . helm-filtered-bookmarks)
@@ -471,11 +531,11 @@ Consigure basic Emacs UI
     (helm-mode 1)
     :config
     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-	  helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-	  helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-	  helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-	  helm-ff-file-name-history-use-recentf t
-	  helm-echo-input-in-header-line t))
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t
+      helm-echo-input-in-header-line t))
 
   (use-package helm-themes
     :after helm)
@@ -641,6 +701,7 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   (use-package dabbrev
     ;; Swap M-/ and C-M-/
+    :elpaca nil
     :bind (("M-/" . dabbrev-completion)
            ("C-M-/" . dabbrev-expand))
     ;; Other useful Dabbrev configurations.
@@ -658,7 +719,7 @@ Consigure basic Emacs UI
      '((python . t))))
 
   (use-package org-tempo
-    :straight nil
+    :elpaca nil
     :after org
     :config
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
