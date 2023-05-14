@@ -11,23 +11,45 @@ To prevent a block of code to be tangled, use: #+begin_src emacs-lisp :tangle no
 Setup package sources and use-package setup
 
 #+begin_src emacs-lisp
-  ;; Initialize package sources
-  (require 'package)
-  ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+  ;; ;; Initialize package sources
+  ;; (require 'package)
+  ;; ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
-  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-               ("org" . "https://orgmode.org/elpa/")
-               ("elpa" . "https://elpa.gnu.org/packages/")))
+  ;; (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+  ;;              ("org" . "https://orgmode.org/elpa/")
+  ;;              ("elpa" . "https://elpa.gnu.org/packages/")))
 
-  (package-initialize)
-  (unless package-archive-contents
-    (package-refresh-contents))
+  ;; (package-initialize)
+  ;; (unless package-archive-contents
+  ;;   (package-refresh-contents))
 
-  ;; Initialize use-package on non-Linux platforms
-  (unless (package-installed-p 'use-package)
-    (package-install 'use-package))
+  ;; ;; Initialize use-package on non-Linux platforms
+  ;; (unless (package-installed-p 'use-package)
+  ;;   (package-install 'use-package))
 
-  (require 'use-package)
+  ;; (require 'use-package)
+
+  ;; (require 'use-package-ensure)
+  ;; (setq use-package-always-ensure t)
+
+  (setq package-enable-at-startup nil)
+
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+
+  (straight-use-package 'use-package)
+
+  (setq straight-use-package-by-default t)
 #+end_src
 
 * Auto Revert
@@ -117,7 +139,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Warning level
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (setq warning-minimum-level :emergency)
 #+end_src
 
@@ -128,14 +150,12 @@ Consigure basic Emacs UI
 
 * Keep Folders Clean
 #+begin_src emacs-lisp
-  (use-package no-littering
-    :ensure t)
+  (use-package no-littering)
 #+end_src
 
 * Diminish
 #+begin_src emacs-lisp
-  (use-package diminish
-    :ensure t)
+  (use-package diminish)
 #+end_src
 
 * MacOs
@@ -161,7 +181,6 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp :tangle no
   (use-package origami
     :after hydra
-    :ensure t
     :config
     (defhydra hydra-origami (:color red)
     "
@@ -188,7 +207,6 @@ Consigure basic Emacs UI
 * Doom modeline
 #+begin_src emacs-lisp :tangle no
   (use-package doom-modeline
-    :ensure t
     :init (doom-modeline-mode 1)
     :config
     (setq doom-modeline-bar-width 0))
@@ -197,7 +215,6 @@ Consigure basic Emacs UI
 * God Mode
 #+begin_src emacs-lisp :tangle no
   (use-package god-mode
-    :ensure t
     :bind (("<escape>" . god-mode-all))
     :config
     (setq god-exempt-major-modes nil)
@@ -207,10 +224,14 @@ Consigure basic Emacs UI
     )
 #+end_src
 
+* Restart emacs
+#+begin_src emacs-lisp
+  (use-package restart-emacs)
+#+end_src
+
 * Color Theme
 #+begin_src emacs-lisp
   (use-package ef-themes
-    :ensure t
     ;; :custom
     ;; (ef-themes-to-toggle '(ef-day ef-autumn))
     ;; :
@@ -221,25 +242,21 @@ Consigure basic Emacs UI
     (load-theme 'ef-light t))
 
   (use-package gruvbox-theme
-    :ensure t
     :disabled t
     :config
     (load-theme 'gruvbox-dark-medium t))
 
   (use-package parchment-theme
-    :ensure t
     :disabled t
     :config
     (load-theme 'parchment t))
 
   (use-package modus-themes
-    :ensure t
     :disabled t
     :config
     (load-theme 'modus-operandi-tinted t))
 
   (use-package zenburn-theme
-    :ensure t
     :disabled t
     :config
     (load-theme 'zenburn t))
@@ -248,26 +265,22 @@ Consigure basic Emacs UI
 * All the icons
 #+begin_src emacs-lisp :tangle no
   (use-package all-the-icons
-    :if (display-graphic-p)
-    :ensure t)
+    :if (display-graphic-p))
 #+end_src
 
 * treemacs
 #+begin_src emacs-lisp
-  (use-package treemacs
-    :ensure t)
+  (use-package treemacs)
 #+end_src
 
 * Multiple Cursors
 #+begin_src emacs-lisp :tangle no
-  (use-package multiple-cursors
-    :ensure t)
+  (use-package multiple-cursors)
 #+end_src
 
 * Which Key
 #+begin_src emacs-lisp
   (use-package which-key
-    :ensure t
     :diminish
     :init (which-key-mode 1)
     :config
@@ -284,7 +297,6 @@ Consigure basic Emacs UI
 * Ace Window
 #+begin_src emacs-lisp
   (use-package ace-window
-    :ensure t
     :bind
     (("M-o" . ace-window)))
 #+end_src
@@ -292,7 +304,7 @@ Consigure basic Emacs UI
 * Electric Pair Mode
 #+begin_src emacs-lisp
   (use-package electric-pair-mode
-    :ensure nil
+    :straight nil
     :hook
     (prog-mode . electric-pair-local-mode))
 #+end_src
@@ -300,35 +312,30 @@ Consigure basic Emacs UI
 * Expand Region
 #+begin_src emacs-lisp
   (use-package expand-region
-    :ensure t
     :bind (("C-=" . er/expand-region)
            ("M-=" . er/contract-region)))
 #+end_src
 
 * Hydra
 #+begin_src emacs-lisp
-  (use-package hydra
-    :ensure t)
+  (use-package hydra)
 #+end_src
 
 * Evil Nerd Commenter
 #+begin_src emacs-lisp :tangle no
   (use-package evil-nerd-commenter
-    :ensure t
     :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 #+end_src
 
 * Magit
 #+begin_src emacs-lisp
   (use-package magit
-    :ensure t
     :bind ("C-x g" . magit-status))
 #+end_src
 
 * Magit Delta
 #+begin_src emacs-lisp :tangle no
   (use-package magit-delta
-    :ensure t
     :after magit
     :hook (magit-mode . magit-delta-mode))
 #+end_src
@@ -336,7 +343,6 @@ Consigure basic Emacs UI
 * SMerge
 #+begin_src emacs-lisp
   (use-package smerge-mode
-    :ensure t
     :after hydra
     :config
     (defhydra my/smerge-hydra
@@ -379,7 +385,6 @@ Consigure basic Emacs UI
 * Embark
 #+begin_src emacs-lisp
   (use-package embark
-    :ensure t
     :bind
     (("C-." . embark-act)         ;; pick some comfortable binding
      ;; ("C-;" . embark-dwim)        ;; good alternative: M-.
@@ -402,7 +407,6 @@ Consigure basic Emacs UI
 * Vertico, Consult, Marginalia, Orderless
 #+begin_src emacs-lisp :tangle no
   (use-package vertico
-    :ensure t
     :init
     (vertico-mode)
 
@@ -423,14 +427,12 @@ Consigure basic Emacs UI
     )
 
   (use-package orderless
-    :ensure t
     :custom
     (completion-styles '(orderless basic))
     (completion-category-overrides '((file (styles basic partial-completion orderless)))))
     ;; (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
   (use-package marginalia
-    :ensure t
     :bind(
     :map minibuffer-local-map
     ("M-A" . marginalia-cycle))
@@ -439,7 +441,6 @@ Consigure basic Emacs UI
 
 
   (use-package consult
-    :ensure t
     :bind
     ("C-s" . consult-line)
     ("M-y" . consult-yank-from-kill-ring)
@@ -450,7 +451,6 @@ Consigure basic Emacs UI
 
   ;; Consult users will also want the embark-consult package.
   (use-package embark-consult
-    :ensure t ; only need to install it, embark loads it after consult if found
     :after (embark consult)
     :hook
     (embark-collect-mode . consult-preview-at-point-mode))
@@ -459,7 +459,6 @@ Consigure basic Emacs UI
 * Helm
 #+begin_src emacs-lisp
   (use-package helm
-    :ensure t
     :diminish
     :bind
     ("M-x" . helm-M-x)
@@ -472,26 +471,24 @@ Consigure basic Emacs UI
     (helm-mode 1)
     :config
     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-          helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-          helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-          helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-          helm-ff-file-name-history-use-recentf t
-          helm-echo-input-in-header-line t))
+	  helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+	  helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+	  helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+	  helm-ff-file-name-history-use-recentf t
+	  helm-echo-input-in-header-line t))
 
   (use-package helm-themes
-    :ensure t)
+    :after helm)
 
   (use-package helm-exwm
     :disabled t
-    :after helm
-    :ensure t)
+    :after helm)
 #+end_src
 
 * Ivy, Counsel, Swiper
 
 #+begin_src emacs-lisp :tangle no
   (use-package ivy
-    :ensure t
     :config
     (ivy-mode 1)
     (setq ivy-initial-inputs-alist nil)
@@ -499,7 +496,6 @@ Consigure basic Emacs UI
           '((t . ivy--regex-ignore-order))))
 
   (use-package counsel
-    :ensure t
     :after ivy
     :bind
     (("M-x" . counsel-M-x)
@@ -513,13 +509,11 @@ Consigure basic Emacs UI
     (counsel-mode))
 
   (use-package swiper
-    :ensure t
     :bind
     ("C-s" . swiper)
     ("C-r" . swiper-backward))
 
   (use-package ivy-rich
-    :ensure t
     :after ivy
     :config
     (ivy-rich-mode))
@@ -528,7 +522,6 @@ Consigure basic Emacs UI
 * Avy
 #+begin_src emacs-lisp
   (use-package avy
-    :ensure t
     :diminish
     :bind (("C-:" . avy-goto-word-1)))
 #+end_src
@@ -536,7 +529,6 @@ Consigure basic Emacs UI
 * Undo Tree
 #+begin_src emacs-lisp
   (use-package undo-tree
-    :ensure t
     :diminish
     :hook (after-init . global-undo-tree-mode)
     :bind (("C-x u" . undo-tree-visualize)
@@ -550,7 +542,6 @@ Consigure basic Emacs UI
 * Projectile
 #+begin_src emacs-lisp
   (use-package projectile
-    :ensure t
     :diminish
     :init
     (projectile-mode 1)
@@ -561,7 +552,6 @@ Consigure basic Emacs UI
 * Company Mode
 #+begin_src emacs-lisp
   (use-package company
-    :ensure t
     :hook
     (prog-mode . company-mode)
     :bind
@@ -572,7 +562,6 @@ Consigure basic Emacs UI
     (company-idle-delay 0.0))
 
   (use-package company-box
-    :ensure t
     :after company
     :hook (company-mode . company-box-mode))
 #+end_src
@@ -580,7 +569,6 @@ Consigure basic Emacs UI
 * Corfu
 #+begin_src emacs-lisp :tangle no
   (use-package corfu
-    :ensure t
     ;; Optional customizations
     :custom
     (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
@@ -622,7 +610,6 @@ Consigure basic Emacs UI
 
   ;; (use-package corfu-doc
   ;;   ;; NOTE 2022-02-05: At the time of writing, `corfu-doc' is not yet on melpa
-  ;;   :ensure t
   ;;   :after corfu
   ;;   :hook (corfu-mode . corfu-doc-mode)
   ;;   :bind
@@ -643,7 +630,6 @@ Consigure basic Emacs UI
   ;;   (corfu-echo-documentation nil))
 
   ;; ;; (use-package kind-icon
-  ;; ;;   :ensure t
   ;; ;;   :after corfu
   ;; ;;   :custom
   ;; ;;   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
@@ -666,14 +652,13 @@ Consigure basic Emacs UI
 
 #+begin_src emacs-lisp
   (use-package org
-    :ensure nil
     :config
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((python . t))))
 
   (use-package org-tempo
-    :ensure nil
+    :straight nil
     :after org
     :config
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -687,7 +672,6 @@ Consigure basic Emacs UI
 
 #+begin_src emacs-lisp
   (use-package org-bullets
-    :ensure t
     :after org
     :hook (org-mode . org-bullets-mode))
 #+end_src
@@ -695,7 +679,6 @@ Consigure basic Emacs UI
 * Org Roam
 #+begin_src emacs-lisp :tangle no
   (use-package org-roam
-    :ensure t
     :after org
     :init
     (setq org-roam-v2-ack t)
@@ -735,14 +718,12 @@ Consigure basic Emacs UI
 * Flycheck
 #+begin_src emacs-lisp
 (use-package flycheck
-  :ensure t
   :init (global-flycheck-mode))
 #+end_src
 
 * Dumb Jump
 #+begin_src emacs-lisp
   (use-package dumb-jump
-    :ensure t
     :after hydra
     :config
     (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
@@ -762,7 +743,6 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   (use-package exec-path-from-shell
     ;; :if (eq system-type 'darwin)
-    :ensure t
     :init
       (exec-path-from-shell-initialize))
 #+end_src
@@ -770,8 +750,7 @@ Consigure basic Emacs UI
 * lsp-mode
 #+begin_src emacs-lisp
     (use-package lsp-mode
-      :ensure t
-      :custom
+      ;; :custom
       ;; (lsp-eslint-run "onSave")
       ;; (lsp-completion-provider :none) ;; we use Corfu!)
       :init
@@ -794,14 +773,12 @@ Consigure basic Emacs UI
       :commands lsp-deferred)
 
   (use-package lsp-ui
-    :ensure t
     :config
     (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
     (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
 
   ;; (use-packa
    ;; (use-package lsp-ivy
-   ;;  :ensure t
    ;;  :after ivy lsp-mode
    ;;  :commands lsp-ivy-workspace-symbol)
 #+end_src
@@ -809,7 +786,6 @@ Consigure basic Emacs UI
 * Eglot
 #+begin_src emacs-lisp :tangle no
   (use-package eglot
-    :ensure t
     :config
   ;;   (add-hook 'js-mode-hook 'eglot-ensure))
   ;; (
@@ -819,7 +795,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * JavaScript
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package js
     :config
     :mode "\\.json\\'"
@@ -827,7 +803,6 @@ Consigure basic Emacs UI
 #+end_src
 #+begin_src emacs-lisp
   (use-package js2-mode
-    :ensure t
     :config
     (setq js2-basic-offset 2)
     (setq js2-strict-missing-semi-warning nil)
@@ -839,7 +814,6 @@ Consigure basic Emacs UI
 * Typescript
 #+begin_src emacs-lisp
   (use-package typescript-mode
-    :ensure t
     :mode "\\.ts\\'"
     :custom
     (typescript-indent-level 2))
@@ -848,7 +822,6 @@ Consigure basic Emacs UI
 * Web-mode
 #+begin_src emacs-lisp :tangle no
   (use-package web-mode
-    :ensure t
     :config
     (setq web-mode-markup-indent-offset 2)
     (setq web-mode-code-indent-offset 2)
@@ -864,7 +837,6 @@ Consigure basic Emacs UI
 * Dap-mode
 #+begin_src emacs-lisp
   (use-package dap-mode
-    :ensure t
     :config
     (require 'dap-firefox)
     (require 'dap-chrome)
@@ -875,120 +847,8 @@ Consigure basic Emacs UI
 * Speling
 #+begin_src emacs-lisp
   (use-package flyspell-correct
-    :ensure t
     :after flyspell
     :bind (:map flyspell-mode-map ("M-;" . flyspell-correct-wrapper)))
-#+end_src
-
-* exwm
-#+begin_src emacs-lisp :tangle no
-  (defun efs/exwm-update-class ()
-    (exwm-workspace-rename-buffer exwm-class-name))
-
-  (use-package exwm
-    :ensure t
-    :config
-    ;; Set the default number of workspaces
-    (setq exwm-workspace-number 5)
-
-    ;; When window "class" updates, use it to set the buffer name
-    ;; (add-hook 'exwm-update-class-hook #'efs/exwm-update-class)
-
-    ;; These keys should always pass through to Emacs
-    (setq exwm-input-prefix-keys
-      '(?\C-x
-        ?\C-u
-        ?\C-h
-        ?\M-x
-        ?\M-`
-        ?\M-&
-        ?\M-:
-        ?\C-\M-j  ;; Buffer list
-        ?\C-\ ))  ;; Ctrl+Space
-
-    ;; Ctrl+Q will enable the next key to be sent directly
-    (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-
-    ;; Set up global key bindings.  These always work, no matter the input state!
-    ;; Keep in mind that changing this list after EXWM initializes has no effect.
-    (setq exwm-input-global-keys
-          `(
-            ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
-            ([?\s-r] . exwm-reset)
-
-            ;; Move between windows
-            ([s-left] . windmove-left)
-            ([s-right] . windmove-right)
-            ([s-up] . windmove-up)
-            ([s-down] . windmove-down)
-
-            ;; Launch applications via shell command
-            ([?\s-&] . (lambda (command)
-                         (interactive (list (read-shell-command "$ ")))
-                         (start-process-shell-command command nil command)))
-
-            ;; Switch workspace
-            ([?\s-w] . exwm-workspace-switch)
-
-            ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
-            ,@(mapcar (lambda (i)
-                        `(,(kbd (format "s-%d" i)) .
-                          (lambda ()
-                            (interactive)
-                            (exwm-workspace-switch-create ,i))))
-                      (number-sequence 0 9))))
-
-    (exwm-enable))
-
-
-  ;; Load the system tray before exwm-init
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
-#+end_src
-
-* PulseAudio
-#+begin_src emacs-lisp :tangle no
-  (use-package pulseaudio-control
-    :ensure t
-    :after hydra exwm
-    :bind (("<XF86AudioRaiseVolume>" . pulseaudio-control-increase-volume)
-           ("<XF86AudioLowerVolume>" . pulseaudio-control-decrease-volume)
-           ("<XF86AudioMute>" . pulseaudio-control-toggle-current-sink-mute)
-           ("C-c v" . hydra-pulseaudio-control/body)
-           ;; :map exwm-mode-map
-           ;; ("<XF86AudioRaiseVolume>" . pulseaudio-control-increase-volume)
-           ;; ("<XF86AudioLowerVolume>" . pulseaudio-control-decrease-volume)
-           ;; ("<XF86AudioMute>" . pulseaudio-control-toggle-current-sink-mute)
-           )
-    ;;:bind-keymap ("C-c v" . pulseaudio-control-map)
-    :config
-    ;; XXX: Maybe -set-volume (1-9 keys sets 10%, 20% etc)?
-    ;;      Maybe show selected sink and volume
-    (require 'hydra)
-    (defhydra hydra-pulseaudio-control (:hint nil)
-      "Pulseaudio Control"
-      ("+" pulseaudio-control-increase-volume "Increase Volume")
-      ("i" pulseaudio-control-increase-volume "Increase Volume")
-      ("-" pulseaudio-control-decrease-volume "Decrease Volume")
-      ("d" pulseaudio-control-decrease-volume "Decrease Volume")
-      ("m" pulseaudio-control-toggle-current-sink-mute "Toggle Mute")
-      ("s" pulseaudio-control-select-sink-by-name "Select Sink")
-      ("S" pulseaudio-control-select-source-by-name "Select Source")
-      ("q" nil "quit"))
-    (setq pulseaudio-control-volume-step "5%"))
-#+end_src
-
-* Xbacklight
-#+begin_src emacs-lisp :tangle no
-  (use-package xbacklight
-    :ensure t
-    :after exwm
-    :bind (("<XF86MonBrightnessUp>" . xbacklight-increase)
-           ("<XF86MonBrightnessDown>" . xbacklight-decrease)
-           ;; :map exwm-mode-map
-           ;; ("<XF86MonBrightnessUp>" . xbacklight-increase)
-           ;; ("<XF86MonBrightnessDown>" . xbacklight-decrease)
-           ))
 #+end_src
 
 * Emacs application framework
@@ -1013,7 +873,6 @@ Consigure basic Emacs UI
 #+end_src
 
 * vTerm
-#+begin_src emacs-lisp
-  (use-package vterm
-    :ensure t)
+#+begin_src emacs-lisp :tangle no
+  (use-package vterm)
 #+end_src
