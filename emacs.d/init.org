@@ -12,44 +12,44 @@ Setup package sources and use-package setup
 
 #+begin_src emacs-lisp
   ;; ;; Initialize package sources
-  ;; (require 'package)
+  (require 'package)
   ;; ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
-  ;; (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-  ;;              ("org" . "https://orgmode.org/elpa/")
-  ;;              ("elpa" . "https://elpa.gnu.org/packages/")))
+  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+	       ("org" . "https://orgmode.org/elpa/")
+	       ("elpa" . "https://elpa.gnu.org/packages/")))
 
-  ;; (package-initialize)
-  ;; (unless package-archive-contents
-  ;;   (package-refresh-contents))
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
 
-  ;; ;; Initialize use-package on non-Linux platforms
-  ;; (unless (package-installed-p 'use-package)
-  ;;   (package-install 'use-package))
+  ;; Initialize use-package on non-Linux platforms
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
 
-  ;; (require 'use-package)
+  (require 'use-package)
 
-  ;; (require 'use-package-ensure)
-  ;; (setq use-package-always-ensure t)
+  (require 'use-package-ensure)
+  (setq use-package-always-ensure t)
 
-  (setq package-enable-at-startup nil)
+  ;; (setq package-enable-at-startup nil)
 
-  (defvar bootstrap-version)
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-        (bootstrap-version 6))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
+  ;; (defvar bootstrap-version)
+  ;; (let ((bootstrap-file
+  ;;        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+  ;;       (bootstrap-version 6))
+  ;;   (unless (file-exists-p bootstrap-file)
+  ;;     (with-current-buffer
+  ;;         (url-retrieve-synchronously
+  ;;          "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+  ;;          'silent 'inhibit-cookies)
+  ;;       (goto-char (point-max))
+  ;;       (eval-print-last-sexp)))
+  ;;   (load bootstrap-file nil 'nomessage))
 
-  (straight-use-package 'use-package)
+  ;; (straight-use-package 'use-package)
 
-  (setq straight-use-package-by-default t)
+  ;; (setq straight-use-package-by-default t)
 #+end_src
 
 * Auto Revert
@@ -91,7 +91,7 @@ Consigure basic Emacs UI
 * General
 #+begin_src emacs-lisp
   ;; (use-package emacs
-  ;;   :straight (:type built-in)
+  ;;   :ensure (:type built-in)
   ;;   :init
   ;;   (setq enable-recursive-minibuffers t)
   ;;   (setq message-log-max 5000)
@@ -238,11 +238,16 @@ Consigure basic Emacs UI
     ;; bind
     ;; ("<f5>" . ef-themes-toggle)
     ;; :
+    :disabled t
     :config
     (load-theme 'ef-light t))
 
-  (use-package gruvbox-theme
+  (use-package zenburn-theme
     :disabled t
+    :config
+    (load-theme 'zenburn t))
+
+  (use-package gruvbox-theme
     :config
     (load-theme 'gruvbox-dark-medium t))
 
@@ -304,7 +309,7 @@ Consigure basic Emacs UI
 * Electric Pair Mode
 #+begin_src emacs-lisp
   (use-package electric-pair-mode
-    :straight nil
+    :ensure nil
     :hook
     (prog-mode . electric-pair-local-mode))
 #+end_src
@@ -458,7 +463,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Helm
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package helm
     :diminish
     :bind
@@ -488,14 +493,25 @@ Consigure basic Emacs UI
 
 * Ivy, Counsel, Swiper
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package ivy
     :config
     (ivy-mode 1)
-    (setq ivy-initial-inputs-alist nil)
-    (setq ivy-re-builders-alist
-          '((t . ivy--regex-ignore-order))))
-
+    ;; (setq ivy-use-virtual-buffers t)
+    ;; (setq ivy-height 20)
+    ;; (setq ivy-count-format "(%d/%d) ")
+    ;; (setq ivy-initial-inputs-alist nil)
+    ;; (setq ivy-re-builders-alist
+    ;;       '((t . ivy--regex-ignore-order)))
+    :custom
+    (ivy-use-virtual-buffers t)
+    (ivy-height 20)
+    (ivy-count-format "(%d/%d) ")
+    (ivy-initial-inputs-alist nil)
+    (ivy-wrap t)
+    (ivy-re-builders-alist
+     '((t . ivy--regex-ignore-order)))
+    )
   (use-package counsel
     :after ivy
     :bind
@@ -659,7 +675,7 @@ Consigure basic Emacs UI
      '((python . t))))
 
   (use-package org-tempo
-    :straight nil
+    :ensure nil
     :after org
     :config
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -874,6 +890,6 @@ Consigure basic Emacs UI
 #+end_src
 
 * vTerm
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package vterm)
 #+end_src
