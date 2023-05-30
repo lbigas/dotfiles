@@ -16,8 +16,9 @@ Setup package sources and use-package setup
   ;; ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
   (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-	       ("org" . "https://orgmode.org/elpa/")
-	       ("elpa" . "https://elpa.gnu.org/packages/")))
+           ("org" . "https://orgmode.org/elpa/")
+           ("elpa" . "https://elpa.gnu.org/packages/")
+           ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
   (package-initialize)
   (unless package-archive-contents
@@ -199,9 +200,13 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-11")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
+  ;; (set-face-attribute 'default nil :font "Inconsolata-11")
+  ;; (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
+  ;; (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
+
+  (set-face-attribute 'default nil :font "JetBrainsMono-10")
+  (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono-10")
+  (set-face-attribute 'variable-pitch nil :font "JetBrainsMono-10")
 #+end_src
 
 * Doom modeline
@@ -890,6 +895,11 @@ Consigure basic Emacs UI
 #+end_src
 
 * vTerm
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package vterm)
+#+end_src
+
+* Eat
+#+begin_src emacs-lisp
+  (use-package eat)
 #+end_src
