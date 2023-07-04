@@ -10,10 +10,9 @@ To prevent a block of code to be tangled, use: #+begin_src emacs-lisp :tangle no
 
 Setup package sources and use-package setup
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   ;; ;; Initialize package sources
   (require 'package)
-  ;; ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
   (setq package-archives '(("melpa" . "https://melpa.org/packages/")
            ("org" . "https://orgmode.org/elpa/")
@@ -32,77 +31,6 @@ Setup package sources and use-package setup
 
   (require 'use-package-ensure)
   (setq use-package-always-ensure t)
-
-  ;; (setq package-enable-at-startup nil)
-
-  ;; (defvar bootstrap-version)
-  ;; (let ((bootstrap-file
-  ;;        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-  ;;       (bootstrap-version 6))
-  ;;   (unless (file-exists-p bootstrap-file)
-  ;;     (with-current-buffer
-  ;;         (url-retrieve-synchronously
-  ;;          "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-  ;;          'silent 'inhibit-cookies)
-  ;;       (goto-char (point-max))
-  ;;       (eval-print-last-sexp)))
-  ;;   (load bootstrap-file nil 'nomessage))
-
-  ;; (straight-use-package 'use-package)
-
-  ;; (setq straight-use-package-by-default t)
-#+end_src
-
-* Elpaca
-#+begin_src emacs-lisp
-  (setq package-enable-at-startup nil)
-
-  (defvar elpaca-installer-version 0.4)
-  (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
-  (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
-  (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
-  (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                                :ref nil
-                                :files (:defaults (:exclude "extensions"))
-                                :build (:not elpaca--activate-package)))
-  (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
-         (build (expand-file-name "elpaca/" elpaca-builds-directory))
-         (order (cdr elpaca-order))
-         (default-directory repo))
-    (add-to-list 'load-path (if (file-exists-p build) build repo))
-    (unless (file-exists-p repo)
-      (make-directory repo t)
-      (when (< emacs-major-version 28) (require 'subr-x))
-      (condition-case-unless-debug err
-          (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
-                   ((zerop (call-process "git" nil buffer t "clone"
-                                         (plist-get order :repo) repo)))
-                   ((zerop (call-process "git" nil buffer t "checkout"
-                                         (or (plist-get order :ref) "--"))))
-                   (emacs (concat invocation-directory invocation-name))
-                   ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
-                                         "--eval" "(byte-recompile-directory \".\" 0 'force)")))
-                   ((require 'elpaca))
-                   ((elpaca-generate-autoloads "elpaca" repo)))
-              (kill-buffer buffer)
-            (error "%s" (with-current-buffer buffer (buffer-string))))
-        ((error) (warn "%s" err) (delete-directory repo 'recursive))))
-    (unless (require 'elpaca-autoloads nil t)
-      (require 'elpaca)
-      (elpaca-generate-autoloads "elpaca" repo)
-      (load "./elpaca-autoloads")))
-  (add-hook 'after-init-hook #'elpaca-process-queues)
-  (elpaca `(,@elpaca-order))
-
-  ;; Install use-package support
-  (elpaca elpaca-use-package
-    ;; Enable :elpaca use-package keyword.
-    (elpaca-use-package-mode)
-    ;; Assume :elpaca t unless otherwise specified.
-    (setq elpaca-use-package-by-default t))
-
-  ;; Block until current queue processed.
-  (elpaca-wait)
 #+end_src
 
 * Auto Revert
@@ -357,7 +285,7 @@ Consigure basic Emacs UI
 * Ibuffer
 #+begin_src emacs-lisp
   (use-package ibuffer
-    :elpaca nil
+    :ensure nil
     :bind ("C-x C-b" . ibuffer))
 #+end_src
 
@@ -371,7 +299,7 @@ Consigure basic Emacs UI
 * Electric Pair Mode
 #+begin_src emacs-lisp
   (use-package electric-pair-mode
-    :elpaca nil
+    :ensure nil
     :hook
     (prog-mode . electric-pair-local-mode))
 #+end_src
@@ -474,7 +402,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Vertico, Consult, Marginalia, Orderless
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package vertico
     :init
     (vertico-mode)
@@ -556,7 +484,7 @@ Consigure basic Emacs UI
 
 * Ivy, Counsel, Swiper
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package ivy
     :config
     (ivy-mode 1)
@@ -608,13 +536,13 @@ Consigure basic Emacs UI
 #+begin_src emacs-lisp
   (use-package undo-tree
     :diminish
-    :hook (after-init . global-undo-tree-mode)
+    ;; :hook (after-init . global-undo-tree-mode)
     :bind (("C-x u" . undo-tree-visualize)
            ("C-_" . undo-tree-undo)
            ("M-_" . undo-tree-redo))
     :config
+    (global-undo-tree-mode)
     (setq undo-tree-auto-save-history nil))
-
 #+end_src
 
 * Projectile
@@ -634,6 +562,7 @@ Consigure basic Emacs UI
     (prog-mode . company-mode)
     :bind
     ("C-;" . company-complete)
+    ("M-;" . company-files)
     :custom
     (completion-ignore-case t)
     (company-minimum-prefix-length 1)
@@ -645,6 +574,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Corfu
+
 #+begin_src emacs-lisp :tangle no
   (use-package corfu
     ;; Optional customizations
@@ -652,25 +582,61 @@ Consigure basic Emacs UI
     (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
     (corfu-auto t)                 ;; Enable auto completion
     (corfu-separator ?\s)          ;; Orderless field separator
-    (corfu-auto-delay 0)
-    (corfu-auto-prefix 0)
     (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
     (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-    ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-    ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
-    ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+    (corfu-preview-current nil)    ;; Disable current candidate preview
+    (corfu-preselect 'prompt)      ;; Preselect the prompt
+    (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+    (corfu-scroll-margin 5)        ;; Use scroll margin
 
     ;; Enable Corfu only for certain modes.
-    :hook ((prog-mode . corfu-mode))
-    ;; (shell-mode . corfu-mode)
-    ;; (eshell-mode . corfu-mode))
+    :hook ((prog-mode . corfu-mode)
+           (shell-mode . corfu-mode)
+           (eshell-mode . corfu-mode))
 
     ;; Recommended: Enable Corfu globally.
     ;; This is recommended since Dabbrev can be used globally (M-/).
-    ;; See also `corfu-excluded-modes'.
-    ;; :init
-    ;; (global-corfu-mode)
+    ;; See also `corfu-exclude-modes'.
+    :bind
+    ("C-;" . complete-symbol)
+    (:map corfu-map
+          ("C-n" . corfu-next)
+          ("C-p" . corfu-previous)
+          ("<escape>" . corfu-quit)
+          ("<return>" . corfu-insert)
+          ("M-d" . corfu-show-documentation)
+          ("M-l" . corfu-show-location))
+    :init
+    (global-corfu-mode))
+
+  ;; A few more useful configurations...
+  (use-package emacs
+    :init
+    ;; TAB cycle if there are only few candidates
+    (setq completion-cycle-threshold 3)
+    ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
+    ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
+    ;; (setq read-extended-command-predicate
+    ;;       #'command-completion-default-include-p)
+
+    ;; Enable indentation+completion using the TAB key.
+    ;; `completion-at-point' is often bound to M-TAB.
+    (setq tab-always-indent 'complete))
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+  (use-package corfu
+    :after orderless
+    :custom
+    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+      (corfu-auto t)                 ;; Enable auto completion
+      (corfu-separator ?\s)          ;; Orderless field separator
+      (corfu-auto-delay 0)
+      (corfu-auto-prefix 0)
+      (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+      (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+    :init
+    (corfu-global-mode)
     :bind
     ("C-;" . complete-symbol)
     (:map corfu-map
@@ -680,45 +646,85 @@ Consigure basic Emacs UI
           ("<return>" . corfu-insert)
           ("M-d" . corfu-show-documentation)
           ("M-l" . corfu-show-location)))
+#+end_src
 
-  (use-package corfu-popupinfo
-    :after corfu
-    :hook
-    (corfu-mode . corfu-popupinfo-mode))
+#+begin_src emacs-lisp :tangle no
 
-  ;; (use-package corfu-doc
-  ;;   ;; NOTE 2022-02-05: At the time of writing, `corfu-doc' is not yet on melpa
-  ;;   :after corfu
-  ;;   :hook (corfu-mode . corfu-doc-mode)
-  ;;   :bind
-  ;;   (:map corfu-map
-  ;;         ;; This is a manual toggle for the documentation popup.
-  ;;         ([remap corfu-show-documentation] . corfu-doc-toggle) ; Remap the default doc command
-  ;;         ;; Scroll in the documentation window
-  ;;         ("M-n" . corfu-doc-scroll-up)
-  ;;         ("M-p" . corfu-doc-scroll-down))
-  ;;   :custom
-  ;;   (corfu-doc-delay 0.5)
-  ;;   (corfu-doc-max-width 70)
-  ;;   (corfu-doc-max-height 20)
+  ,#+begin_src emacs-lisp :tangle no
+    (use-package corfu
+      ;; Optional customizations
+      :custom
+      (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+      (corfu-auto t)                 ;; Enable auto completion
+      (corfu-separator ?\s)          ;; Orderless field separator
+      (corfu-auto-delay 0)
+      (corfu-auto-prefix 0)
+      (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+      (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+      ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+      ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+      ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+      ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
-  ;;   ;; NOTE 2022-02-05: I've also set this in the `corfu' use-package to be
-  ;;   ;; extra-safe that this is set when corfu-doc is loaded. I do not want
-  ;;   ;; documentation shown in both the echo area and in the `corfu-doc' popup.
-  ;;   (corfu-echo-documentation nil))
+      ;; Enable Corfu only for certain modes.
+      :hook ((prog-mode . corfu-mode))
+      ;; (shell-mode . corfu-mode)
+      ;; (eshell-mode . corfu-mode))
 
-  ;; ;; (use-package kind-icon
-  ;; ;;   :after corfu
-  ;; ;;   :custom
-  ;; ;;   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
-  ;; ;;   :config
-  ;; ;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+      ;; Recommended: Enable Corfu globally.
+      ;; This is recommended since Dabbrev can be used globally (M-/).
+      ;; See also `corfu-excluded-modes'.
+      ;; :init
+      ;; (global-corfu-mode)
+      :bind
+      ("C-;" . complete-symbol)
+      (:map corfu-map
+            ("C-n" . corfu-next)
+            ("C-p" . corfu-previous)
+            ("<escape>" . corfu-quit)
+            ("<return>" . corfu-insert)
+            ("M-d" . corfu-show-documentation)
+            ("M-l" . corfu-show-location)))
+
+    ;; (use-package corfu-popupinfo
+    ;;   :after corfu
+    ;;   :elpaca nil
+    ;;   :hook
+    ;;   (corfu-mode . corfu-popupinfo-mode))
+
+    ;; (use-package corfu-doc
+    ;;   ;; NOTE 2022-02-05: At the time of writing, `corfu-doc' is not yet on melpa
+    ;;   :after corfu
+    ;;   :hook (corfu-mode . corfu-doc-mode)
+    ;;   :bind
+    ;;   (:map corfu-map
+    ;;         ;; This is a manual toggle for the documentation popup.
+    ;;         ([remap corfu-show-documentation] . corfu-doc-toggle) ; Remap the default doc command
+    ;;         ;; Scroll in the documentation window
+    ;;         ("M-n" . corfu-doc-scroll-up)
+    ;;         ("M-p" . corfu-doc-scroll-down))
+    ;;   :custom
+    ;;   (corfu-doc-delay 0.5)
+    ;;   (corfu-doc-max-width 70)
+    ;;   (corfu-doc-max-height 20)
+
+    ;;   ;; NOTE 2022-02-05: I've also set this in the `corfu' use-package to be
+    ;;   ;; extra-safe that this is set when corfu-doc is loaded. I do not want
+    ;;   ;; documentation shown in both the echo area and in the `corfu-doc' popup.
+    ;;   (corfu-echo-documentation nil))
+
+    ;; ;; (use-package kind-icon
+    ;; ;;   :after corfu
+    ;; ;;   :custom
+    ;; ;;   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+    ;; ;;   :config
+    ;; ;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 #+end_src
 
 * Dabbrev
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package dabbrev
-    :elpaca nil
+    :ensure nil
     ;; Swap M-/ and C-M-/
     :bind (("M-/" . dabbrev-completion)
            ("C-M-/" . dabbrev-expand))
@@ -737,7 +743,7 @@ Consigure basic Emacs UI
      '((python . t))))
 
   (use-package org-tempo
-    :elpace nil
+    :ensure nil
     :after org
     :config
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -828,28 +834,43 @@ Consigure basic Emacs UI
 
 * lsp-mode
 #+begin_src emacs-lisp
-    (use-package lsp-mode
-      ;; :custom
-      ;; (lsp-eslint-run "onSave")
-      ;; (lsp-completion-provider :none) ;; we use Corfu!)
-      :init
-      (setq lsp-keymap-prefix "C-c l")
-      ;; :config
-      ;; (defun corfu-lsp-setup ()
-        ;; (setq-local completion-styles '(orderless)
-                    ;; completion-category-defaults nil))
-      ;; (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
-      ;; (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
-      ;; (defun my/lsp-mode-setup-completion ()
-        ;; (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-              ;; '(flex))) ;; Configure flex
-      :hook
-      ;; (web-mode . lsp-deferred)
-      (js-mode . lsp-deferred)
-      (typescript-mode . lsp-deferred)
-      (lsp-mode . lsp-enable-which-key-integration)
-      ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
-      :commands lsp-deferred)
+  (use-package lsp-mode
+    ;; :custom
+    ;; (lsp-completion-provider :none) ;; we use Corfu!
+    ;; :custom
+    ;; (lsp-eslint-run "onSave")
+    ;; (lsp-completion-provider :none) ;; we use Corfu!)
+    :init
+    ;; (defun my/lsp-mode-setup-completion ()
+      ;; (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+            ;; '(flex))) ;; Configure flex
+    (setq lsp-keymap-prefix "C-c l")
+    :bind (:map company-active-map
+                ("C-e" . company-other-backend))
+    ;; :config
+    ;; (setq lsp-completion-provider :none)
+    ;; (defun corfu-lsp-setup ()
+    ;;   (setq-local completion-styles '(orderless)
+    ;;               completion-category-defaults nil))
+    ;; (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
+
+    ;; (defun corfu-lsp-setup ()
+    ;;   (setq-local completion-styles '(orderless)
+    ;;               completion-category-defaults nil))
+    ;; (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
+    ;; (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
+    ;; (defun my/lsp-mode-setup-completion ()
+    ;;   (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+    ;;         '(flex))) ;; Configure flex
+    :hook
+    ;; (web-mode . lsp-deferred)
+    (js-mode . lsp-deferred)
+    (typescript-mode . lsp-deferred)
+    (lsp-mode . lsp-enable-which-key-integration)
+    ;; :hook
+    ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
+    ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
+    :commands lsp-deferred)
 
   (use-package lsp-ui
     :config
@@ -857,9 +878,9 @@ Consigure basic Emacs UI
     (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
 
   ;; (use-packa
-   ;; (use-package lsp-ivy
-   ;;  :after ivy lsp-mode
-   ;;  :commands lsp-ivy-workspace-symbol)
+  ;; (use-package lsp-ivy
+  ;;  :after ivy lsp-mode
+  ;;  :commands lsp-ivy-workspace-symbol)
 #+end_src
 
 * Eglot
