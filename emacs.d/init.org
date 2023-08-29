@@ -237,8 +237,9 @@ Consigure basic Emacs UI
     (load-theme 'zenburn t))
 
   (use-package gruvbox-theme
+    :disabled t
     :config
-    (load-theme 'gruvbox-light-medium t))
+    (load-theme 'gruvbox-dark-medium t))
 
   (use-package parchment-theme
     :disabled t
@@ -254,6 +255,10 @@ Consigure basic Emacs UI
     :disabled t
     :config
     (load-theme 'zenburn t))
+
+  (use-package leuven-theme
+    :config
+    (load-theme 'leuven-dark t))
 #+end_src
 
 * All the icons
@@ -552,6 +557,8 @@ Consigure basic Emacs UI
     :init
     (projectile-mode 1)
     :bind
+    ("C-c f" . projectile-find-file)
+    ("C-c b" . projectile-switch-to-buffer)
     (:map projectile-mode-map ("C-c p" . projectile-command-map)))
 #+end_src
 
