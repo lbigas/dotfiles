@@ -232,7 +232,6 @@ Consigure basic Emacs UI
     (load-theme 'ef-light t))
 
   (use-package zenburn-theme
-    :disabled t
     :config
     (load-theme 'zenburn t))
 
@@ -257,6 +256,7 @@ Consigure basic Emacs UI
     (load-theme 'zenburn t))
 
   (use-package leuven-theme
+    :disabled t
     :config
     (load-theme 'leuven-dark t))
 #+end_src
