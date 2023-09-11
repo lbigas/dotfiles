@@ -11,13 +11,13 @@ To prevent a block of code to be tangled, use: #+begin_src emacs-lisp :tangle no
 Setup package sources and use-package setup
 
 #+begin_src emacs-lisp
-  ;; Initialize package sources
+  ;; ;; Initialize package sources
   (require 'package)
-  ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
   (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-               ("org" . "https://orgmode.org/elpa/")
-               ("elpa" . "https://elpa.gnu.org/packages/")))
+           ("org" . "https://orgmode.org/elpa/")
+           ("elpa" . "https://elpa.gnu.org/packages/")
+           ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
   (package-initialize)
   (unless package-archive-contents
@@ -28,6 +28,9 @@ Setup package sources and use-package setup
     (package-install 'use-package))
 
   (require 'use-package)
+
+  (require 'use-package-ensure)
+  (setq use-package-always-ensure t)
 #+end_src
 
 * Auto Revert
@@ -64,15 +67,87 @@ Consigure basic Emacs UI
   ;; Override some modes which derive from the above
   (dolist (mode '(org-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
 
-  (global-hl-line-mode t)
+* General
+#+begin_src emacs-lisp
+  ;; (use-package emacs
+  ;;   :ensure (:type built-in)
+  ;;   :init
+  ;;   (setq enable-recursive-minibuffers t)
+  ;;   (setq message-log-max 5000)
+  ;;   (save-place-mode 1) 
+  ;;   :config
+  ;;   (global-hl-line-mode)
+  ;;   (prefer-coding-system 'utf-8)
+  ;;   (set-default-coding-systems 'utf-8)
+  ;;   (set-language-environment "UTF-8")
+  ;;   (global-auto-revert-mode t)
+  ;;   )
+
+
+  (setq enable-recursive-minibuffers t)
+  (setq message-log-max 5000)
+  (save-place-mode 1)
+  ;; (global-hl-line-mode)
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-language-environment "UTF-8")
+  (global-auto-revert-mode t)
+  ;; Silence compiler warnings as they can be disruptive
+  (setq comp-async-report-warnings-errors nil)
+
+  ;; increase garbage collection threshold
+  ;; (setq gc-cons-threshold (* 50 1000 1000))
+
+  (setq gc-cons-threshold (* 100 1024 1024))
+  (setq read-process-output-max (* 1024 1024))
+
+  ;; Profile emacs startup
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (message "*** Emacs loaded in %s with %d garbage collections."
+                       (format "%.2f seconds"
+                               (float-time
+                                (time-subtract after-init-time before-init-time)))
+                       gcs-done)))
+
+#+end_src
+
+* Mark Ring
+#+begin_src emacs-lisp
+  (setq-default set-mark-command-repeat-pop t)
+#+end_src
+
+* Warning level
+#+begin_src emacs-lisp
+  (setq warning-minimum-level :emergency)
+#+end_src
+
+* Use y-or-n-p instead of yes-or-no-p
+#+begin_src emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+* Keep Folders Clean
+#+begin_src emacs-lisp
+  (use-package no-littering)
+#+end_src
+
+* Diminish
+#+begin_src emacs-lisp
+  (use-package diminish)
 #+end_src
 
 * MacOs
 #+begin_src emacs-lisp
-  (if (eq system-type 'darwin)
-      (setq mac-command-modifier 'meta)
-    (setq create-lockfiles nil))
+  ;; (if (eq system-type 'darwin)
+  ;;     (setq mac-command-modifier 'meta)
+  (setq create-lockfiles nil)
+
+  (setq mac-option-modifier 'super)
+  (setq mac-command-modifier 'meta)
+
 #+end_src
 
 * Indentation
@@ -83,73 +158,130 @@ Consigure basic Emacs UI
   (defvaralias 'cperl-indent-level 'tab-width)
 #+end_src
 
+* Origami
+#+begin_src emacs-lisp :tangle no
+  (use-package origami
+    :after hydra
+    :config
+    (defhydra hydra-origami (:color red)
+    "
+    _o_pen node    _n_ext fold       toggle _f_orward
+    _c_lose node   _p_revious fold   toggle _a_ll
+    "
+    ("o" origami-open-node)
+    ("c" origami-close-node)
+    ("n" origami-next-fold)
+    ("p" origami-previous-fold)
+    ("f" origami-forward-toggle-node)
+    ("a" origami-toggle-all-nodes)))
+#+end_src
+
 * Font Config
 #+begin_src emacs-lisp
   ;; (set-frame-font "Inconsolata 11" nil t)
   ;; (set-frame-font "Hack 10" nil t)
-  (set-face-attribute 'default nil :font "Inconsolata-12")
-  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-12")
-  (set-face-attribute 'variable-pitch nil :font "Inconsolata-12")
+  (set-face-attribute 'default nil :font "Inconsolata-11")
+  (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
+  (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
+
+  ;; (set-face-attribute 'default nil :font "JetBrainsMono-10")
+  ;; (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono-10")
+  ;; (set-face-attribute 'variable-pitch nil :font "JetBrainsMono-10")
+
+  ;; (set-face-attribute 'default nil :font "AnonymousPro-12")
+  ;; (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono-10")
+  ;; (set-face-attribute 'variable-pitch nil :font "JetBrainsMono-10")
+#+end_src
+
+* Doom modeline
+#+begin_src emacs-lisp :tangle no
+  (use-package doom-modeline
+    :init (doom-modeline-mode 1)
+    :config
+    (setq doom-modeline-bar-width 0))
+#+end_src
+
+* God Mode
+#+begin_src emacs-lisp :tangle no
+  (use-package god-mode
+    :bind (("<escape>" . god-mode-all))
+    :config
+    (setq god-exempt-major-modes nil)
+    (setq god-exempt-predicates nil)
+    (setq god-mode-enable-function-key-translation nil)
+    (god-mode)
+    )
+#+end_src
+
+* Restart emacs
+#+begin_src emacs-lisp
+  (use-package restart-emacs)
 #+end_src
 
 * Color Theme
 #+begin_src emacs-lisp
+  (use-package ef-themes
+    ;; :custom
+    ;; (ef-themes-to-toggle '(ef-day ef-autumn))
+    ;; :
+    ;; bind
+    ;; ("<f5>" . ef-themes-toggle)
+    ;; :
+    :disabled t
+    :config
+    (load-theme 'ef-light t))
+
   (use-package zenburn-theme
-    :ensure t
     :config
     (load-theme 'zenburn t))
-  ;; (use-package dracula-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'dracula t))
-  ;; (use-package nord-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'nord t))
+
+  (use-package gruvbox-theme
+    :disabled t
+    :config
+    (load-theme 'gruvbox-dark-medium t))
+
+  (use-package parchment-theme
+    :disabled t
+    :config
+    (load-theme 'parchment t))
+
+  (use-package modus-themes
+    :disabled t
+    :config
+    (load-theme 'modus-operandi-tinted t))
+
+  (use-package zenburn-theme
+    :disabled t
+    :config
+    (load-theme 'zenburn t))
+
+  (use-package leuven-theme
+    :disabled t
+    :config
+    (load-theme 'leuven-dark t))
 #+end_src
 
 * All the icons
 #+begin_src emacs-lisp :tangle no
   (use-package all-the-icons
-    :if (display-graphic-p)
-    :ensure t)
-#+end_src
-
-* Doom-modeline
-#+begin_src emacs-lisp :tangle no
-  (use-package doom-modeline
-    :ensure t
-    :init (doom-modeline-mode 1))
-#+end_src
-
-* Telephone line
-#+begin_src emacs-lisp :tangle no
-  (use-package telephone-line
-    :ensure t
-    :config
-    (telephone-line-mode 1))
-#+end_src
-
-* Powerline
-#+begin_src emacs-lisp :tangle no
-  (use-package powerline
-    :ensure t
-    :config
-    (powerline-default-theme))
+    :if (display-graphic-p))
 #+end_src
 
 * treemacs
 #+begin_src emacs-lisp
-  (use-package treemacs
-    :ensure t)
+  (use-package treemacs)
+#+end_src
+
+* Multiple Cursors
+#+begin_src emacs-lisp :tangle no
+  (use-package multiple-cursors)
 #+end_src
 
 * Which Key
 #+begin_src emacs-lisp
   (use-package which-key
-    :ensure t
+    :diminish
     :init (which-key-mode 1)
-    :diminish which-key-mode
     :config
     (setq which-key-setup-side-window-bottom 1)
     (setq which-key-idle-delay 1.0))
@@ -158,16 +290,17 @@ Consigure basic Emacs UI
 * Ibuffer
 #+begin_src emacs-lisp
   (use-package ibuffer
+    :ensure nil
     :bind ("C-x C-b" . ibuffer))
 #+end_src
 
 * Ace Window
 #+begin_src emacs-lisp
   (use-package ace-window
-    :ensure t
     :bind
     (("M-o" . ace-window)))
 #+end_src
+
 * Electric Pair Mode
 #+begin_src emacs-lisp
   (use-package electric-pair-mode
@@ -179,52 +312,38 @@ Consigure basic Emacs UI
 * Expand Region
 #+begin_src emacs-lisp
   (use-package expand-region
-    :ensure t
     :bind (("C-=" . er/expand-region)
            ("M-=" . er/contract-region)))
 #+end_src
 
 * Hydra
 #+begin_src emacs-lisp
-  (use-package hydra
-    :ensure t)
-#+end_src
-
-* Evil
-#+begin_src emacs-lisp :tangle no
-  (use-package evil
-    :ensure t
-    :init
-    (evil-mode 1))
+  (use-package hydra)
 #+end_src
 
 * Evil Nerd Commenter
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package evil-nerd-commenter
-    :ensure t
     :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 #+end_src
-* Goto-chg
-#+begin_src emacs-lisp
-  (use-package goto-chg
-    :ensure t)
-#+end_src
+
 * Magit
 #+begin_src emacs-lisp
   (use-package magit
-    :ensure t
     :bind ("C-x g" . magit-status))
 #+end_src
-* Magit-delta
+
+* Magit Delta
 #+begin_src emacs-lisp :tangle no
   (use-package magit-delta
-    :ensure t
+    :after magit
     :hook (magit-mode . magit-delta-mode))
 #+end_src
+
 * SMerge
 #+begin_src emacs-lisp
   (use-package smerge-mode
-    :ensure t
+    :elapaca nil
     :after hydra
     :config
     (defhydra my/smerge-hydra
@@ -264,38 +383,132 @@ Consigure basic Emacs UI
                                      (when smerge-mode
                                        (unpackaged/smerge-hydra/body)))))
 #+end_src
-* Helm
+
+* Embark
 #+begin_src emacs-lisp
-  (use-package helm
-    :ensure t
+  (use-package embark
     :bind
-    ;; ("M-x" . #'helm-M-x)
-    ;; ("C-x r b" . #'helm-filtered-bookmarks)
-    ;; ("C-x C-f" . #'helm-find-files)
-    ;; ("C-s" . helm-occur)
-    ;; ("C-x b" . helm-mini)
+    (("C-." . embark-act)         ;; pick some comfortable binding
+     ;; ("C-;" . embark-dwim)        ;; good alternative: M-.
+     ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
     :init
-    ;; (helm-mode 1)
+
+    ;; Optionally replace the key help with a completing-read interface
+    (setq prefix-help-command #'embark-prefix-help-command)
+
+    :config
+
+    ;; Hide the mode line of the Embark live/completions buffers
+    (add-to-list 'display-buffer-alist
+                 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                   nil
+                   (window-parameters (mode-line-format . none)))))
+#+end_src
+
+* Vertico, Consult, Marginalia, Orderless
+#+begin_src emacs-lisp :tangle no
+  (use-package vertico
+    :init
+    (vertico-mode)
+
+    ;; Different scroll margin
+    (setq vertico-scroll-margin 0)
+
+    ;; Show more candidates
+    (setq vertico-count 20)
+
+    ;; Grow and shrink the Vertico minibuffer
+    (setq vertico-resize nil)
+
+    ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+    (setq vertico-cycle t)
+
+    :bind (:map vertico-map
+                ("C-l" . vertico-directory-up))
+    )
+
+  (use-package orderless
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion orderless)))))
+    ;; (completion-category-overrides '((eglot (styles . (orderless flex))))))
+
+  (use-package marginalia
+    :bind(
+    :map minibuffer-local-map
+    ("M-A" . marginalia-cycle))
+    :init
+    (marginalia-mode))
+
+
+  (use-package consult
+    :bind
+    ("C-s" . consult-line)
+    ("M-y" . consult-yank-from-kill-ring)
+    ("C-x b" . consult-buffer))
+    ;; :general
+    ;; ("M-y" 'consult-yank-from-kill-ring
+  ;;  "C-x b" 'consult-buffer))
+
+  ;; Consult users will also want the embark-consult package.
+  (use-package embark-consult
+    :after (embark consult)
+    :hook
+    (embark-collect-mode . consult-preview-at-point-mode))
+#+end_src
+
+* Helm
+#+begin_src emacs-lisp :tangle no
+  (use-package helm
+    :diminish
+    :bind
+    ("M-x" . helm-M-x)
+    ("C-x r b" . helm-filtered-bookmarks)
+    ("C-x C-f" . helm-find-files)
+    ("C-s" .helm-occur)
+    ("C-x b" . helm-mini)
+    ("M-y" . helm-show-kill-ring)
+    :init
+    (helm-mode 1)
     :config
     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-          helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-          helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-          helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-          helm-ff-file-name-history-use-recentf t
-          helm-echo-input-in-header-line t))
+	  helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+	  helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+	  helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+	  helm-ff-file-name-history-use-recentf t
+	  helm-echo-input-in-header-line t))
 
+  (use-package helm-themes
+    :after helm)
+
+  (use-package helm-exwm
+    :disabled t
+    :after helm)
 #+end_src
+
 * Ivy, Counsel, Swiper
 
 #+begin_src emacs-lisp
   (use-package ivy
-    :ensure t
     :config
     (ivy-mode 1)
-    (setq ivy-initial-inputs-alist nil))
-
+    ;; (setq ivy-use-virtual-buffers t)
+    ;; (setq ivy-height 20)
+    ;; (setq ivy-count-format "(%d/%d) ")
+    ;; (setq ivy-initial-inputs-alist nil)
+    ;; (setq ivy-re-builders-alist
+    ;;       '((t . ivy--regex-ignore-order)))
+    :custom
+    (ivy-use-virtual-buffers t)
+    (ivy-height 20)
+    (ivy-count-format "(%d/%d) ")
+    (ivy-initial-inputs-alist nil)
+    (ivy-wrap t)
+    (ivy-re-builders-alist
+     '((t . ivy--regex-ignore-order)))
+    )
   (use-package counsel
-    :ensure t
     :after ivy
     :bind
     (("M-x" . counsel-M-x)
@@ -309,22 +522,17 @@ Consigure basic Emacs UI
     (counsel-mode))
 
   (use-package swiper
-    :ensure t
     :bind
     ("C-s" . swiper)
     ("C-r" . swiper-backward))
 
   (use-package ivy-rich
-    :ensure t
-    :after ivy
-    :config
-    (ivy-rich-mode))
+    :init (ivy-rich-mode 1))
 #+end_src
 
 * Avy
 #+begin_src emacs-lisp
   (use-package avy
-    :ensure t
     :diminish
     :bind (("C-:" . avy-goto-word-1)))
 #+end_src
@@ -332,58 +540,217 @@ Consigure basic Emacs UI
 * Undo Tree
 #+begin_src emacs-lisp
   (use-package undo-tree
-    :ensure t
     :diminish
-    :hook (after-init . global-undo-tree-mode)
+    ;; :hook (after-init . global-undo-tree-mode)
     :bind (("C-x u" . undo-tree-visualize)
            ("C-_" . undo-tree-undo)
            ("M-_" . undo-tree-redo))
     :config
+    (global-undo-tree-mode)
     (setq undo-tree-auto-save-history nil))
-
 #+end_src
 
 * Projectile
 #+begin_src emacs-lisp
   (use-package projectile
-    :ensure t
+    :diminish
     :init
     (projectile-mode 1)
     :bind
+    ("C-c f" . projectile-find-file)
+    ("C-c b" . projectile-switch-to-buffer)
     (:map projectile-mode-map ("C-c p" . projectile-command-map)))
 #+end_src
 
 * Company Mode
 #+begin_src emacs-lisp
   (use-package company
-    :ensure t
     :hook
     (prog-mode . company-mode)
     :bind
     ("C-;" . company-complete)
+    ("M-;" . company-files)
     :custom
     (completion-ignore-case t)
     (company-minimum-prefix-length 1)
-    (company-idle-delay 0))
+    (company-idle-delay 0.0))
+
+  (use-package company-box
+    :after company
+    :hook (company-mode . company-box-mode))
 #+end_src
 
-#+begin_src emacs-lisp
-  (use-package company-box
-    :ensure t
-    :hook (company-mode . company-box-mode))
+* Corfu
+
+#+begin_src emacs-lisp :tangle no
+  (use-package corfu
+    ;; Optional customizations
+    :custom
+    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+    (corfu-auto t)                 ;; Enable auto completion
+    (corfu-separator ?\s)          ;; Orderless field separator
+    (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+    (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+    (corfu-preview-current nil)    ;; Disable current candidate preview
+    (corfu-preselect 'prompt)      ;; Preselect the prompt
+    (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+    (corfu-scroll-margin 5)        ;; Use scroll margin
+
+    ;; Enable Corfu only for certain modes.
+    :hook ((prog-mode . corfu-mode)
+           (shell-mode . corfu-mode)
+           (eshell-mode . corfu-mode))
+
+    ;; Recommended: Enable Corfu globally.
+    ;; This is recommended since Dabbrev can be used globally (M-/).
+    ;; See also `corfu-exclude-modes'.
+    :bind
+    ("C-;" . complete-symbol)
+    (:map corfu-map
+          ("C-n" . corfu-next)
+          ("C-p" . corfu-previous)
+          ("<escape>" . corfu-quit)
+          ("<return>" . corfu-insert)
+          ("M-d" . corfu-show-documentation)
+          ("M-l" . corfu-show-location))
+    :init
+    (global-corfu-mode))
+
+  ;; A few more useful configurations...
+  (use-package emacs
+    :init
+    ;; TAB cycle if there are only few candidates
+    (setq completion-cycle-threshold 3)
+    ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
+    ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
+    ;; (setq read-extended-command-predicate
+    ;;       #'command-completion-default-include-p)
+
+    ;; Enable indentation+completion using the TAB key.
+    ;; `completion-at-point' is often bound to M-TAB.
+    (setq tab-always-indent 'complete))
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+  (use-package corfu
+    :after orderless
+    :custom
+    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+      (corfu-auto t)                 ;; Enable auto completion
+      (corfu-separator ?\s)          ;; Orderless field separator
+      (corfu-auto-delay 0)
+      (corfu-auto-prefix 0)
+      (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+      (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+    :init
+    (corfu-global-mode)
+    :bind
+    ("C-;" . complete-symbol)
+    (:map corfu-map
+          ("C-n" . corfu-next)
+          ("C-p" . corfu-previous)
+          ("<escape>" . corfu-quit)
+          ("<return>" . corfu-insert)
+          ("M-d" . corfu-show-documentation)
+          ("M-l" . corfu-show-location)))
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+
+  ,#+begin_src emacs-lisp :tangle no
+    (use-package corfu
+      ;; Optional customizations
+      :custom
+      (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+      (corfu-auto t)                 ;; Enable auto completion
+      (corfu-separator ?\s)          ;; Orderless field separator
+      (corfu-auto-delay 0)
+      (corfu-auto-prefix 0)
+      (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+      (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+      ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+      ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+      ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+      ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+
+      ;; Enable Corfu only for certain modes.
+      :hook ((prog-mode . corfu-mode))
+      ;; (shell-mode . corfu-mode)
+      ;; (eshell-mode . corfu-mode))
+
+      ;; Recommended: Enable Corfu globally.
+      ;; This is recommended since Dabbrev can be used globally (M-/).
+      ;; See also `corfu-excluded-modes'.
+      ;; :init
+      ;; (global-corfu-mode)
+      :bind
+      ("C-;" . complete-symbol)
+      (:map corfu-map
+            ("C-n" . corfu-next)
+            ("C-p" . corfu-previous)
+            ("<escape>" . corfu-quit)
+            ("<return>" . corfu-insert)
+            ("M-d" . corfu-show-documentation)
+            ("M-l" . corfu-show-location)))
+
+    ;; (use-package corfu-popupinfo
+    ;;   :after corfu
+    ;;   :elpaca nil
+    ;;   :hook
+    ;;   (corfu-mode . corfu-popupinfo-mode))
+
+    ;; (use-package corfu-doc
+    ;;   ;; NOTE 2022-02-05: At the time of writing, `corfu-doc' is not yet on melpa
+    ;;   :after corfu
+    ;;   :hook (corfu-mode . corfu-doc-mode)
+    ;;   :bind
+    ;;   (:map corfu-map
+    ;;         ;; This is a manual toggle for the documentation popup.
+    ;;         ([remap corfu-show-documentation] . corfu-doc-toggle) ; Remap the default doc command
+    ;;         ;; Scroll in the documentation window
+    ;;         ("M-n" . corfu-doc-scroll-up)
+    ;;         ("M-p" . corfu-doc-scroll-down))
+    ;;   :custom
+    ;;   (corfu-doc-delay 0.5)
+    ;;   (corfu-doc-max-width 70)
+    ;;   (corfu-doc-max-height 20)
+
+    ;;   ;; NOTE 2022-02-05: I've also set this in the `corfu' use-package to be
+    ;;   ;; extra-safe that this is set when corfu-doc is loaded. I do not want
+    ;;   ;; documentation shown in both the echo area and in the `corfu-doc' popup.
+    ;;   (corfu-echo-documentation nil))
+
+    ;; ;; (use-package kind-icon
+    ;; ;;   :after corfu
+    ;; ;;   :custom
+    ;; ;;   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+    ;; ;;   :config
+    ;; ;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+#+end_src
+
+* Dabbrev
+#+begin_src emacs-lisp :tangle no
+  (use-package dabbrev
+    :ensure nil
+    ;; Swap M-/ and C-M-/
+    :bind (("M-/" . dabbrev-completion)
+           ("C-M-/" . dabbrev-expand))
+    ;; Other useful Dabbrev configurations.
+    :custom
+    (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 #+end_src
 
 * Org Mode
 
 #+begin_src emacs-lisp
   (use-package org
-    :ensure t
     :config
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((python . t))))
 
   (use-package org-tempo
+    :ensure nil
     :after org
     :config
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -397,21 +764,61 @@ Consigure basic Emacs UI
 
 #+begin_src emacs-lisp
   (use-package org-bullets
-    :ensure t
+    :after org
     :hook (org-mode . org-bullets-mode))
 #+end_src
+
+* Org Roam
+#+begin_src emacs-lisp :tangle no
+  (use-package org-roam
+    :after org
+    :init
+    (setq org-roam-v2-ack t)
+    :custom
+    (org-roam-directory "~/RoamNotes")
+    (org-roam-completion-everywhere t)
+    (org-roam-dailies-capture-templates
+      '(("d" "default" entry "* %<%I:%M %p>: %?"
+         :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+    :bind (("C-c n l" . org-roam-buffer-toggle)
+           ("C-c n f" . org-roam-node-find)
+           ("C-c n i" . org-roam-node-insert)
+           :map org-mode-map
+           ("C-M-i" . completion-at-point)
+           :map org-roam-dailies-map
+           ("Y" . org-roam-dailies-capture-yesterday)
+           ("T" . org-roam-dailies-capture-tomorrow))
+    :bind-keymap
+    ("C-c n d" . org-roam-dailies-map)
+    :config
+    (require 'org-roam-dailies) ;; straight t keymap is available
+    (org-roam-db-autosync-mode))
+
+
+  ;; (setq org-roam-capture-templates
+  ;;       '(("d" "default" plain
+  ;;          (function org-roam-capture--get-point)
+  ;;          "%?"
+  ;;          :file-name "${slug}"     ;  <---------- see?
+  ;;          :head "#+title: ${title}\n#+created: %u\n#+last_modified: %U\n#+roam_tags:${tag}\n\n"
+  ;;          :unnarrowed t
+  ;;          :immediate-finish t
+  ;;          ))
+
+#+end_src
+
 * Flycheck
 #+begin_src emacs-lisp
 (use-package flycheck
-  :ensure t
   :init (global-flycheck-mode))
 #+end_src
-* Dump Jump
+
+* Dumb Jump
 #+begin_src emacs-lisp
   (use-package dumb-jump
-    :ensure t
     :after hydra
     :config
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
     (defhydra my/dumb-jump-hydra (:color blue :columns 3)
       "Dumb Jump"
       ("j" dumb-jump-go "Go")
@@ -423,36 +830,172 @@ Consigure basic Emacs UI
       ("b" dumb-jump-back "Back"))
     :bind ("C-c d" . my/dumb-jump-hydra/body))
 #+end_src
+
 * Exec Path from Shell
 #+begin_src emacs-lisp
   (use-package exec-path-from-shell
-    :ensure t
+    ;; :if (eq system-type 'darwin)
     :init
       (exec-path-from-shell-initialize))
 #+end_src
+
 * lsp-mode
 #+begin_src emacs-lisp
   (use-package lsp-mode
-    :ensure t
+    ;; :custom
+    ;; (lsp-completion-provider :none) ;; we use Corfu!
+    ;; :custom
+    ;; (lsp-eslint-run "onSave")
+    ;; (lsp-completion-provider :none) ;; we use Corfu!)
     :init
+    ;; (defun my/lsp-mode-setup-completion ()
+      ;; (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+            ;; '(flex))) ;; Configure flex
     (setq lsp-keymap-prefix "C-c l")
-    :config
-    (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
+    :bind (:map company-active-map
+                ("C-e" . company-other-backend))
+    ;; :config
+    ;; (setq lsp-completion-provider :none)
+    ;; (defun corfu-lsp-setup ()
+    ;;   (setq-local completion-styles '(orderless)
+    ;;               completion-category-defaults nil))
+    ;; (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
+
+    ;; (defun corfu-lsp-setup ()
+    ;;   (setq-local completion-styles '(orderless)
+    ;;               completion-category-defaults nil))
+    ;; (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
+    ;; (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
+    ;; (defun my/lsp-mode-setup-completion ()
+    ;;   (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+    ;;         '(flex))) ;; Configure flex
     :hook
-    (js-mode . lsp)
+    ;; (web-mode . lsp-deferred)
+    (js-mode . lsp-deferred)
+    (typescript-mode . lsp-deferred)
     (lsp-mode . lsp-enable-which-key-integration)
-    :commands
-    (lsp)
-    :custom
-    (lsp-eslint-run "onSave"))
+    ;; :hook
+    ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
+    ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
+    :commands lsp-deferred)
+
+  (use-package lsp-ui
+    :config
+    (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+    (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
+
+  ;; (use-packa
+  ;; (use-package lsp-ivy
+  ;;  :after ivy lsp-mode
+  ;;  :commands lsp-ivy-workspace-symbol)
 #+end_src
+
+* Eglot
+#+begin_src emacs-lisp :tangle no
+  (use-package eglot
+    :config
+  ;;   (add-hook 'js-mode-hook 'eglot-ensure))
+  ;; (
+    (add-hook 'web-mode-hook 'eglot-ensure))
+    ;; :hook
+    ;; (js-mode . eglot-ensure))
+#+end_src
+
 * JavaScript
+#+begin_src emacs-lisp :tangle no
+  (use-package js
+    :config
+    :mode "\\.json\\'"
+    (setq js-indent-level 2))
+#+end_src
 #+begin_src emacs-lisp
   (use-package js2-mode
-    :ensure t
     :config
     (setq js2-basic-offset 2)
     (setq js2-strict-missing-semi-warning nil)
     :mode
     (("\\.js\\'" . js2-mode)))
+     ;; ("\\.ts\\'" . js2-mode)))
+#+end_src
+
+* Typescript
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :mode "\\.ts\\'"
+    :custom
+    (typescript-indent-level 2))
+#+end_src
+
+* Web-mode
+#+begin_src emacs-lisp :tangle no
+  (use-package web-mode
+    :config
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    :mode (("\\.js\\'" . web-mode)
+           ("\\.jsx\\'" . web-mode)
+           ("\\.ts\\'" . web-mode)
+           ("\\.tsx\\'" . web-mode)
+           ("\\.html\\'" . web-mode))
+    :commands web-mode)
+#+end_src
+
+* Dap-mode
+#+begin_src emacs-lisp
+  (use-package dap-mode
+    :config
+    (require 'dap-firefox)
+    (require 'dap-chrome)
+    (add-hook 'dap-stopped-hook
+            (lambda (arg) (call-interactively #'dap-hydra))))
+#+end_src
+
+* Speling
+#+begin_src emacs-lisp
+  (use-package flyspell-correct
+    :after flyspell
+    :bind (:map flyspell-mode-map ("M-;" . flyspell-correct-wrapper)))
+#+end_src
+
+* Emacs application framework
+#+begin_src emacs-lisp :tangle no
+  (use-package eaf
+    :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
+    :custom
+    ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+    (eaf-browser-continue-where-left-off t)
+    (eaf-browser-enable-adblocker t)
+    (browse-url-browser-function 'eaf-open-browser)
+    :config
+    (defalias 'browse-web #'eaf-open-browser)
+    (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+    (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+    (eaf-bind-key take_photo "p" eaf-camera-keybinding)
+    (eaf-bind-key nil "M-q" eaf-browser-keybinding)
+    (require 'eaf-browser)
+    (require 'eaf-browser)
+    (require 'eaf-pdf-viewer)
+    ) ;; unbind, see more in the Wiki
+#+end_src
+
+* vTerm
+#+begin_src emacs-lisp
+  (use-package vterm)
+#+end_src
+
+* Eat
+#+begin_src emacs-lisp :tangle no
+  (use-package eat)
+#+end_src
+
+* Elfeed
+#+begin_src emacs-lisp :tangle no
+  (use-package elfeed)
+
+  (use-package elfeed-org
+    :after elfeed
+    :config
+    (elfeed-org)
+    (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org")))
 #+end_src
