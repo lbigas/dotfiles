@@ -407,7 +407,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Vertico, Consult, Marginalia, Orderless
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package vertico
     :init
     (vertico-mode)
@@ -459,25 +459,45 @@ Consigure basic Emacs UI
 #+end_src
 
 * Helm
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
+  ;; (use-package helm
+  ;;   :bind
+  ;;   (("M-x" . helm-M-x)
+  ;;   ("C-x r b" . helm-filtered-bookmarks)
+  ;;   ("C-x C-f" . helm-find-files)
+  ;;   ("C-s" .helm-occur)
+  ;;   ("C-x b" . helm-mini)
+  ;;   ("M-y" . helm-show-kill-ring))
+  ;;   :init
+  ;;   (helm-mode 1)
+  ;;   :config
+  ;;   (setq helm-split-window-in-side-p       t ; open helm buffer inside current window, not occupy whole other window
+  ;;     helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+  ;;     helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+  ;;     helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+  ;;     helm-ff-file-name-history-use-recentf t
+  ;;     helm-echo-input-in-header-line t))
+
   (use-package helm
-    :diminish
     :bind
-    ("M-x" . helm-M-x)
-    ("C-x r b" . helm-filtered-bookmarks)
-    ("C-x C-f" . helm-find-files)
-    ("C-s" . helm-occur)
-    ("C-x b" . helm-mini)
-    ("M-y" . helm-show-kill-ring)
-    :init
-    (helm-mode 1)
+    (("M-x" . helm-M-x)
+     ("C-x r b" . helm-filtered-bookmarks)
+     ("C-x C-f" . helm-find-files)
+     ("C-s" . helm-occur)
+     ("C-x b" . helm-mini)
+     ("M-y" . helm-show-kill-ring)
+     :map helm-map
+     ("<escape>" . helm-keyboard-quit))
+     :init
+     (helm-mode 1)
     :config
-    (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-	  helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-	  helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-	  helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-	  helm-ff-file-name-history-use-recentf t
-	  helm-echo-input-in-header-line t))
+    (setq helm-split-window-inside-p t
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t
+          helm-echo-input-in-header-line t)
+    (helm-mode 1))
 
   (use-package helm-themes
     :after helm)
@@ -488,7 +508,6 @@ Consigure basic Emacs UI
 #+end_src
 
 * Ivy, Counsel, Swiper
-
 #+begin_src emacs-lisp :tangle no
   (use-package ivy
     :config
