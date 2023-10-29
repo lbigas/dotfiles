@@ -234,6 +234,7 @@ Consigure basic Emacs UI
     (load-theme 'ef-light t))
 
   (use-package zenburn-theme
+    :disabled t
     :config
     (load-theme 'zenburn t))
 
@@ -248,9 +249,8 @@ Consigure basic Emacs UI
     (load-theme 'parchment t))
 
   (use-package modus-themes
-    :disabled t
     :config
-    (load-theme 'modus-operandi-tinted t))
+    (load-theme 'modus-vivendi t))
 
   (use-package zenburn-theme
     :disabled t
@@ -261,6 +261,14 @@ Consigure basic Emacs UI
     :disabled t
     :config
     (load-theme 'leuven-dark t))
+
+  (use-package color-theme-sanityinc-tomorrow
+    :disabled t
+    :config
+    (load-theme 'sanityinc-tomorrow-bright t))
+
+  (use-package doom-themes
+    :disabled t)
 #+end_src
 
 * All the icons
