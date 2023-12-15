@@ -193,9 +193,9 @@ Consigure basic Emacs UI
   ;; (set-face-attribute 'fixed-pitch nil :font "Inconsolata-11")
   ;; (set-face-attribute 'variable-pitch nil :font "Inconsolata-11")
 
-  (set-face-attribute 'default nil :font "JetBrains Mono-10")
-  (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-10")
-  (set-face-attribute 'variable-pitch nil :font "Jetbrains Mono-10")
+  (set-face-attribute 'default nil :font "JetBrains Mono-9")
+  (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-9")
+  (set-face-attribute 'variable-pitch nil :font "Jetbrains Mono-9")
 
   ;; (set-face-attribute 'default nil :font "JetBrainsMono-10")
   ;; (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono-10")
@@ -204,26 +204,6 @@ Consigure basic Emacs UI
   ;; (set-face-attribute 'default nil :font "AnonymousPro-12")
   ;; (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono-10")
   ;; (set-face-attribute 'variable-pitch nil :font "JetBrainsMono-10")
-#+end_src
-
-* Doom modeline
-#+begin_src emacs-lisp :tangle no
-  (use-package doom-modeline
-    :init (doom-modeline-mode 1)
-    :config
-    (setq doom-modeline-bar-width 0))
-#+end_src
-
-* God Mode
-#+begin_src emacs-lisp :tangle no
-  (use-package god-mode
-    :bind (("<escape>" . god-mode-all))
-    :config
-    (setq god-exempt-major-modes nil)
-    (setq god-exempt-predicates nil)
-    (setq god-mode-enable-function-key-translation nil)
-    (god-mode)
-    )
 #+end_src
 
 * Restart emacs
@@ -916,16 +896,16 @@ Consigure basic Emacs UI
     ;;   (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
     ;;         '(flex))) ;; Configure flex
     :hook
-    ;; (web-mode . lsp-deferred)
-    (js-mode . lsp)
-    (typescript-mode . lsp)
-    (jtsx-jsx-mode . lsp)
-    (jtsx-tsx-mode . lsp)
+    (web-mode . lsp-deferred)
+    (js-mode . lsp-deferred)
+    (typescript-mode . lsp-deferred)
+    (jtsx-jsx-mode . lsp-deferred)
+    (jtsx-tsx-mode . lsp-deferred)
     (lsp-mode . lsp-enable-which-key-integration)
     ;; :hook
     ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
     ;; (lsp-completion-mode . my/lsp-mode-setup-completion)
-    :commands lsp)
+    :commands lsp lsp-deferred)
 
   (use-package lsp-ui
     :config
@@ -938,17 +918,6 @@ Consigure basic Emacs UI
   ;;  :commands lsp-ivy-workspace-symbol)
 #+end_src
 
-* Eglot
-#+begin_src emacs-lisp :tangle no
-  (use-package eglot
-    :config
-  ;;   (add-hook 'js-mode-hook 'eglot-ensure))
-  ;; (
-    (add-hook 'web-mode-hook 'eglot-ensure))
-    ;; :hook
-    ;; (js-mode . eglot-ensure))
-#+end_src
-
 * JavaScript
 #+begin_src emacs-lisp :tangle no
   (use-package js
@@ -956,7 +925,7 @@ Consigure basic Emacs UI
     :mode "\\.json\\'"
     (setq js-indent-level 2))
 #+end_src
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package js2-mode
     :config
     (setq js2-basic-offset 2)
@@ -967,7 +936,7 @@ Consigure basic Emacs UI
 #+end_src
 
 * Typescript
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (use-package typescript-mode
     :mode "\\.ts\\'"
     :custom
@@ -975,15 +944,6 @@ Consigure basic Emacs UI
 #+end_src
 
 #+begin_src emacs-lisp :tangle no
-    (use-package tree-sitter
-      :ensure t
-      :config
-      ;; activate tree-sitter on any buffer containing code for which it has a parser available
-      (global-tree-sitter-mode)
-      ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
-      ;; by switching on and off
-      (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
   (use-package typescript-mode
     :ensure t
     :after tree-sitter
@@ -1001,57 +961,18 @@ Consigure basic Emacs UI
 
 #+end_src
 
-* JTSX
-#+begin_src emacs-lisp
-  (use-package jtsx
-    :ensure t
-    :mode (("\\.jsx?\\'" . jtsx-jsx-mode)
-           ("\\.tsx?\\'" . jtsx-tsx-mode))
-    :commands jtsx-install-treesit-language
-    :hook ((jtsx-jsx-mode . hs-minor-mode)
-           (jtsx-tsx-mode . hs-minor-mode))
-    :custom
-    (js-indent-level 2)
-    (typescript-ts-mode-indent-offset 2)
-    (jtsx-switch-indent-offset 0)
-    (jtsx-indent-statement-block-regarding-standalone-parent nil)
-    (jtsx-jsx-element-move-allow-step-out t)
-    (jtsx-enable-jsx-electric-closing-element t)
-    (jtsx-enable-all-syntax-highlighting-features t)
-    :config
-    (defun jtsx-bind-keys-to-mode-map (mode-map)
-      "Bind keys to MODE-MAP."
-      (define-key mode-map (kbd "C-c C-j") 'jtsx-jump-jsx-element-tag-dwim)
-      (define-key mode-map (kbd "C-c j o") 'jtsx-jump-jsx-opening-tag)
-      (define-key mode-map (kbd "C-c j c") 'jtsx-jump-jsx-closing-tag)
-      (define-key mode-map (kbd "C-c j r") 'jtsx-rename-jsx-element)
-      (define-key mode-map (kbd "C-c <down>") 'jtsx-move-jsx-element-tag-forward)
-      (define-key mode-map (kbd "C-c <up>") 'jtsx-move-jsx-element-tag-backward)
-      (define-key mode-map (kbd "C-c C-<down>") 'jtsx-move-jsx-element-forward)
-      (define-key mode-map (kbd "C-c C-<up>") 'jtsx-move-jsx-element-backward)
-      (define-key mode-map (kbd "C-c C-S-<down>") 'jtsx-move-jsx-element-step-in-forward)
-      (define-key mode-map (kbd "C-c C-S-<up>") 'jtsx-move-jsx-element-step-in-backward)
-      (define-key mode-map (kbd "C-c j w") 'jtsx-wrap-in-jsx-element))
-    
-    (defun jtsx-bind-keys-to-jtsx-jsx-mode-map ()
-        (jtsx-bind-keys-to-mode-map jtsx-jsx-mode-map))
-
-    (defun jtsx-bind-keys-to-jtsx-tsx-mode-map ()
-        (jtsx-bind-keys-to-mode-map jtsx-tsx-mode-map))
-
-    (add-hook 'jtsx-jsx-mode-hook 'jtsx-bind-keys-to-jtsx-jsx-mode-map)
-    (add-hook 'jtsx-tsx-mode-hook 'jtsx-bind-keys-to-jtsx-tsx-mode-map))
-#+end_src
-
-* Tree-sitter
+* treesit-auto
 #+begin_src emacs-lisp :tangle no
-  (use-package tree-sitter-langs
-    :init
-    (global-tree-sitter-mode))
+  (use-package treesit-auto
+    :custom
+    (treesit-auto-install 'prompt)
+    :config
+    (treesit-auto-add-to-auto-mode-alist 'all)
+    (global-treesit-auto-mode))
 #+end_src
 
 * Web-mode
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (use-package web-mode
     :config
     (setq web-mode-markup-indent-offset 2)
@@ -1063,16 +984,6 @@ Consigure basic Emacs UI
            ("\\.tsx\\'" . web-mode)
            ("\\.html\\'" . web-mode))
     :commands web-mode)
-#+end_src
-
-* Dap-mode
-#+begin_src emacs-lisp
-  (use-package dap-mode
-    :config
-    (require 'dap-firefox)
-    (require 'dap-chrome)
-    (add-hook 'dap-stopped-hook
-            (lambda (arg) (call-interactively #'dap-hydra))))
 #+end_src
 
 * Speling
