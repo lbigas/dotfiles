@@ -76,17 +76,24 @@
 
 ;;; MacOs keys
 (if (eq system-type 'darwin)
-    (setq create-lockfiles nil)
+    (progn
+      (setq create-lockfiles nil)
 
-  (setq mac-option-modifier 'super)
-  (setq mac-command-modifier 'meta)
-  )
+      (setq mac-option-modifier 'super)
+      (setq mac-command-modifier 'meta)
+      ))
 
 ;;; Font Configuration
 (set-face-attribute 'default nil :font "JetBrains Mono-9")
 (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-9")
 (set-face-attribute 'variable-pitch nil :font "Jetbrains Mono-9")
 
+(if (eq system-type 'darwin)
+    (progn
+      (set-face-attribute 'default nil :font "JetBrains Mono-11")
+      (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-11")
+      (set-face-attribute 'variable-pitch nil :font "Jetbrains Mono-11")
+      ))
 
 ;; easier prompt confirmation
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -111,8 +118,9 @@
 
 ;;; Color Theme
 (use-package catppuccin-theme
+  :disabled t
   :config
-  (load-theme 'catppuccin :no-confirm)
+  (load-themey 'catppuccin :no-confirm)
   (setq catppuccin-flavor 'mocha)
   (catppuccin-reload))
 
@@ -158,72 +166,105 @@
 ;;; No literring
 (use-package no-littering)
 
-;;; Completion system
-(use-package vertico
-  :init
-  (vertico-mode)
+;; ;;; Completion system
+;; (use-package vertico
+;;   :init
+;;   (vertico-mode)
 
-  ;; Different scroll margin
-  (setq vertico-scroll-margin 0)
+;;   ;; Different scroll margin
+;;   (setq vertico-scroll-margin 0)
 
-  ;; Show more candidates
-  (setq vertico-count 20)
+;;   ;; Show more candidates
+;;   (setq vertico-count 20)
 
-  ;; Grow and shrink the Vertico minibuffer
-  (setq vertico-resize nil)
+;;   ;; Grow and shrink the Vertico minibuffer
+;;   (setq vertico-resize nil)
 
-  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-  (setq vertico-cycle t)
+;;   ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+;;   (setq vertico-cycle t)
 
-  :bind (:map vertico-map
-              ("C-l" . vertico-directory-up))
-  )
+;;   :bind (:map vertico-map
+;;               ("C-l" . vertico-directory-up))
+;;   )
 
-(use-package orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion orderless)))))
-;; (completion-category-overrides '((eglot (styles . (orderless flex))))))
+;; (use-package orderless
+;;   :custom
+;;   (completion-styles '(orderless basic))
+;;   (completion-category-overrides '((file (styles basic partial-completion orderless)))))
+;; ;; (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
-(use-package marginalia
-  :bind(
-	:map minibuffer-local-map
-	("M-A" . marginalia-cycle))
-  :init
-  (marginalia-mode))
+;; (use-package marginalia
+;;   :bind(
+;; 	:map minibuffer-local-map
+;; 	("M-A" . marginalia-cycle))
+;;   :init
+;;   (marginalia-mode))
 
 
-(use-package consult
+;; (use-package consult
+;;   :bind
+;;   ("C-s" . consult-line)
+;;   ("M-y" . consult-yank-from-kill-ring)
+;;   ("C-x b" . consult-buffer))
+
+;; ;; (use-package swiper
+;; ;;   :bind
+;; ;;   ("C-s" . swiper)
+;; ;;   ("C-r" . swiper-backward))
+
+
+;; ;;; Embark
+;; (use-package embark
+;;   :bind
+;;   (("C-." . embark-act)         ;; pick some comfortable binding
+;;    ;; ("C-;" . embark-dwim)        ;; good alternative: M-.
+;;    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+;;   :init
+
+;;   ;; Optionally replace the key help with a completing-read interface
+;;   (setq prefix-help-command #'embark-prefix-help-command)
+
+;;   :config
+
+;;   ;; Hide the mode line of the Embark live/completions buffers
+;;   (add-to-list 'display-buffer-alist
+;;                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+;;                  nil
+;;                  (window-parameters (mode-line-format . none)))))
+
+;; (use-package embark-consult
+;;   :after (embark consult)
+;;   :hook
+;;   (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package helm
   :bind
-  ("C-s" . consult-line)
-  ("M-y" . consult-yank-from-kill-ring)
-  ("C-x b" . consult-buffer))
-
-
-;;; Embark
-(use-package embark
-  :bind
-  (("C-." . embark-act)         ;; pick some comfortable binding
-   ;; ("C-;" . embark-dwim)        ;; good alternative: M-.
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-
+  (("M-x" . helm-M-x)
+   ("C-x r b" . helm-filtered-bookmarks)
+   ("C-x C-f" . helm-find-files)
+   ("C-s" . helm-occur)
+   ("C-x b" . helm-mini)
+   ("M-y" . helm-show-kill-ring)
+   :map helm-map
+   ("<escape>" . helm-keyboard-quit))
   :init
-
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
-
+  (helm-mode 1)
   :config
+  (setq helm-split-window-inside-p t
+        helm-move-to-line-cycle-in-source     nil ; move to end or beginning of source when reaching top or bottom of source.
+        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+        helm-ff-file-name-history-use-recentf t
+        helm-echo-input-in-header-line t)
+  (helm-mode 1))
 
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
+(use-package helm-themes
+  :after helm)
 
-(use-package embark-consult
-  :after (embark consult)
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
+(use-package ef-themes
+  :config
+  (load-theme 'ef-dark t))
 
 ;;; Undo tree
 (use-package undo-tree
@@ -234,6 +275,10 @@
   :config
   (global-undo-tree-mode)
   (setq undo-tree-auto-save-history nil))
+
+(use-package avy
+  :diminish
+  :bind (("C-:" . avy-goto-word-1)))
 
 ;;; Magit
 (use-package magit
@@ -313,17 +358,21 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook
   (js-mode . lsp-deferred)
-  (typescript-mode . lsp-deferred)
+  ;; (typescript-mode . lsp-deferred)
   (tsx-ts-mode . lsp-deferred)
-  (js-ts-mode . lsp-deferred)
+  ;; (js-ts-mode . lsp-deferred)
   (php-mode . lsp-deferred)
   (lsp-mode . lsp-enable-which-key-integration)
   :config
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-enable-indentation nil)
+  (add-hook 'tsx-ts-mode-hook
+          (lambda ()
+             (add-hook 'before-save-hook (lambda() (lsp-eslint-apply-all-fixes)))))
+  ;; (setq lsp-eslint-auto-fix-on-save t) ;; not implemented
   :commands lsp lsp-deferred)
 
-  (use-package lsp-ui
+(use-package lsp-ui
   :config
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
@@ -349,6 +398,10 @@
 
 ;;; Eat
 (use-package eat)
+
+(when (eq system-type 'darwin)
+  (define-key eat-semi-char-mode-map (kbd "C-h")  #'eat-self-input)
+  (define-key eat-semi-char-mode-map (kbd "<backspace>") (kbd "C-h")))
 
 ;;; Org
 (use-package org
