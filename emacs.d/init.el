@@ -326,6 +326,11 @@
                                    (when smerge-mode
                                      (unpackaged/smerge-hydra/body)))))
 
+;;; git-gutter
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode t))
+
 ;;; Projectile
 (use-package projectile
   :diminish
