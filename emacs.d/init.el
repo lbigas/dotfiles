@@ -38,7 +38,7 @@
 
 (column-number-mode) ; Show column number on bar
 
-; (global-hl-line-mode)
+(global-hl-line-mode)
 
 ;; (setq display-line-numbers-type 'relative)
 ;; Enable line numbers for some modes
@@ -74,6 +74,8 @@
       kept-old-versions 2
       version-control t)
 
+(setq custom-file (concat user-emacs-directory "/custom.el"))
+
 ;;; MacOs keys
 (if (eq system-type 'darwin)
     (progn
@@ -97,7 +99,6 @@
 
 ;; easier prompt confirmation
 (defalias 'yes-or-no-p 'y-or-n-p)
-
 
 ;; Warnin levels, do not fire configuration warnings
 ; (setq warning-minimum-level :emergency)
@@ -124,6 +125,11 @@
   (setq catppuccin-flavor 'mocha)
   (catppuccin-reload))
 
+(use-package ef-themes
+  :config
+  (load-theme 'ef-maris-dark t))
+
+;;; Nerd Icons
 (use-package nerd-icons)
 
 ;;; Doom Modeline
@@ -167,104 +173,100 @@
 (use-package no-littering)
 
 ;; ;;; Completion system
-;; (use-package vertico
-;;   :init
-;;   (vertico-mode)
-
-;;   ;; Different scroll margin
-;;   (setq vertico-scroll-margin 0)
-
-;;   ;; Show more candidates
-;;   (setq vertico-count 20)
-
-;;   ;; Grow and shrink the Vertico minibuffer
-;;   (setq vertico-resize nil)
-
-;;   ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-;;   (setq vertico-cycle t)
-
-;;   :bind (:map vertico-map
-;;               ("C-l" . vertico-directory-up))
-;;   )
-
-;; (use-package orderless
-;;   :custom
-;;   (completion-styles '(orderless basic))
-;;   (completion-category-overrides '((file (styles basic partial-completion orderless)))))
-;; ;; (completion-category-overrides '((eglot (styles . (orderless flex))))))
-
-;; (use-package marginalia
-;;   :bind(
-;; 	:map minibuffer-local-map
-;; 	("M-A" . marginalia-cycle))
-;;   :init
-;;   (marginalia-mode))
-
-
-;; (use-package consult
-;;   :bind
-;;   ("C-s" . consult-line)
-;;   ("M-y" . consult-yank-from-kill-ring)
-;;   ("C-x b" . consult-buffer))
-
-;; ;; (use-package swiper
-;; ;;   :bind
-;; ;;   ("C-s" . swiper)
-;; ;;   ("C-r" . swiper-backward))
-
-
-;; ;;; Embark
-;; (use-package embark
-;;   :bind
-;;   (("C-." . embark-act)         ;; pick some comfortable binding
-;;    ;; ("C-;" . embark-dwim)        ;; good alternative: M-.
-;;    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-
-;;   :init
-
-;;   ;; Optionally replace the key help with a completing-read interface
-;;   (setq prefix-help-command #'embark-prefix-help-command)
-
-;;   :config
-
-;;   ;; Hide the mode line of the Embark live/completions buffers
-;;   (add-to-list 'display-buffer-alist
-;;                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-;;                  nil
-;;                  (window-parameters (mode-line-format . none)))))
-
-;; (use-package embark-consult
-;;   :after (embark consult)
-;;   :hook
-;;   (embark-collect-mode . consult-preview-at-point-mode))
-
-(use-package helm
-  :bind
-  (("M-x" . helm-M-x)
-   ("C-x r b" . helm-filtered-bookmarks)
-   ("C-x C-f" . helm-find-files)
-   ("C-s" . helm-occur)
-   ("C-x b" . helm-mini)
-   ("M-y" . helm-show-kill-ring)
-   :map helm-map
-   ("<escape>" . helm-keyboard-quit))
+(use-package vertico
   :init
-  (helm-mode 1)
-  :config
-  (setq helm-split-window-inside-p t
-        helm-move-to-line-cycle-in-source     nil ; move to end or beginning of source when reaching top or bottom of source.
-        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-        helm-ff-file-name-history-use-recentf t
-        helm-echo-input-in-header-line t)
-  (helm-mode 1))
+  (vertico-mode)
 
-(use-package helm-themes
-  :after helm)
+  ;; Different scroll margin
+  (setq vertico-scroll-margin 0)
 
-(use-package ef-themes
+  ;; Show more candidates
+  (setq vertico-count 20)
+
+  ;; Grow and shrink the Vertico minibuffer
+  (setq vertico-resize nil)
+
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  (setq vertico-cycle t)
+
+  :bind (:map vertico-map
+              ("C-l" . vertico-directory-up))
+  )
+
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion orderless)))))
+;; (completion-category-overrides '((eglot (styles . (orderless flex))))))
+
+(use-package marginalia
+  :bind(
+	:map minibuffer-local-map
+	("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
+
+
+(use-package consult
+  :bind
+  ("C-s" . consult-line)
+  ("M-y" . consult-yank-from-kill-ring)
+  ("C-x b" . consult-buffer))
+
+;; (use-package swiper
+;;   :bind
+;;   ("C-s" . swiper)
+;;   ("C-r" . swiper-backward))
+
+
+;;; Embark
+(use-package embark
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ;; ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
   :config
-  (load-theme 'ef-dark t))
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+(use-package embark-consult
+  :after (embark consult)
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+;; (use-package helm
+;;   :bind
+;;   (("M-x" . helm-M-x)
+;;    ("C-x r b" . helm-filtered-bookmarks)
+;;    ("C-x C-f" . helm-find-files)
+;;    ("C-s" . helm-occur)
+;;    ("C-x b" . helm-mini)
+;;    ("M-y" . helm-show-kill-ring)
+;;    :map helm-map
+;;    ("<escape>" . helm-keyboard-quit))
+;;   :init
+;;   (helm-mode 1)
+;;   :config
+;;   (setq helm-split-window-inside-p t
+;;         helm-move-to-line-cycle-in-source     nil ; move to end or beginning of source when reaching top or bottom of source.
+;;         helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+;;         helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+;;         helm-ff-file-name-history-use-recentf t
+;;         helm-echo-input-in-header-line t)
+;;   (helm-mode 1))
+
+;; (use-package helm-themes
+;;   :after helm)
 
 ;;; Undo tree
 (use-package undo-tree
@@ -434,5 +436,3 @@
 (use-package exec-path-from-shell
   :init
   (exec-path-from-shell-initialize))
-
-(setq custom-file (concat user-emacs-directory "/custom.el"))
