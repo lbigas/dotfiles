@@ -86,16 +86,37 @@
       ))
 
 ;;; Font Configuration
-(set-face-attribute 'default nil :font "JetBrains Mono-9")
-(set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-9")
-(set-face-attribute 'variable-pitch nil :font "Jetbrains Mono-9")
+;; (set-face-attribute 'default nil :font "JetBrains Mono-9")
+;; (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-9")
+;; (set-face-attribute 'variable-pitch nil :font "Jetbrains Mono-9")
+
+;; (defvar my-font-name "Jetbrains Mono"
+;;   "Text font to use.")
+;; (defvar my-font-size 9
+;;   "Font size in points")
+;; (defvar my-font (format "%s-%f" my-font-name my-font-size))
+
+;; (defun font-exists-p (font)
+;;   "Check if the FONT exists." (and (display-graphic-p) (not (null (x-list-fonts font)))))
 
 (if (eq system-type 'darwin)
-    (progn
-      (set-face-attribute 'default nil :font "JetBrains Mono-11")
-      (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-11")
-      (set-face-attribute 'variable-pitch nil :font "Jetbrains Mono-11")
-      ))
+    (set-frame-font "JetBrains Mono 11" nil t)
+  (set-frame-font "JetBrains Mono 9" nil t)
+    )
+
+;; (set-frame-font my-font nil t)
+;; (if (font-exists-p my-font)
+;;     (set-frame-font my-font nil t))
+
+;; (set-frame-font "JetBrains Mono 9" nil t)
+
+;; (if (eq system-type 'darwin)
+;;     (set-frame-font "JetBrains Mono 9" nil t))
+    ;; (progn
+    ;;   (set-face-attribute 'default nil :font "JetBrains Mono-11")
+    ;;   (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-11")
+    ;;   (set-face-attribute 'variable-pitch nil :font "Jetbrains Mono-11")
+    ;;   ))
 
 ;; easier prompt confirmation
 (defalias 'yes-or-no-p 'y-or-n-p)
