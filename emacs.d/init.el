@@ -235,6 +235,7 @@
 (use-package consult
   :bind
   ("C-s" . consult-line)
+  ("M-s" . (lambda () (interactive) (consult-line (thing-at-point 'symbol))))
   ("M-y" . consult-yank-from-kill-ring)
   ("C-x b" . consult-buffer))
 
