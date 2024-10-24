@@ -1,28 +1,54 @@
 ;;; -*- lexical-binding: t -*-
 
 ;;; Package System Setup
-(require 'package)
+;; (require 'package)
+(setq package-enable-at-startup nil)
 
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")
-			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+;; (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+;;			 ("org" . "https://orgmode.org/elpa/")
+;;			 ("elpa" . "https://elpa.gnu.org/packages/")
+;;			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
+;; (package-initialize)
+;; (unless package-archive-contents
+;;   (package-refresh-contents))
 
-;; Initialize use-package on non-Linux platforms
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(require 'use-package)
+;; use use-package
+(straight-use-package 'use-package)
+;; automatically ensure every package exists (like :ensure or :straight)
+(setq straight-use-package-by-default t)
 
-(require 'use-package-ensure)
-(setq use-package-always-ensure t)
+;; ;; Initialize use-package on non-Linux platforms
+;; (unless (package-installed-p 'use-package)
+;;   (package-install 'use-package))
+
+;; (require 'use-package)
+
+;; (require 'use-package-ensure)
+;; (setq use-package-always-ensure t)
 
 
 ;;; UI Configuration
+
+(setq frame-resize-pixelwise t)
+
+(toggle-frame-maximized)
 
 (setq inhibit-startup-message t)
 
@@ -85,22 +111,8 @@
       (setq mac-command-modifier 'meta)
       ))
 
-;;; Font Configuration
-;; (set-face-attribute 'default nil :font "JetBrains Mono-9")
-;; (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-9")
-;; (set-face-attribute 'variable-pitch nil :font "Jetbrains Mono-9")
-
-;; (defvar my-font-name "Jetbrains Mono"
-;;   "Text font to use.")
-;; (defvar my-font-size 9
-;;   "Font size in points")
-;; (defvar my-font (format "%s-%f" my-font-name my-font-size))
-
-;; (defun font-exists-p (font)
-;;   "Check if the FONT exists." (and (display-graphic-p) (not (null (x-list-fonts font)))))
-
 (if (eq system-type 'darwin)
-    (set-frame-font "JetBrains Mono 11" nil t)
+    (set-frame-font "Monaco 12" nil t)
   (set-frame-font "JetBrains Mono 9" nil t)
     )
 
@@ -138,21 +150,9 @@
   (setq which-key-setup-side-window-bottom 1)
   (setq which-key-idle-delay 1.0))
 
-;;; Color Theme
-;; (use-package catppuccin-theme
-;;   :disabled t
-;;   :config
-;;   (load-themey 'catppuccin :no-confirm)
-;;   (setq catppuccin-flavor 'mocha)
-;;   (catppuccin-reload))
-
-;; (use-package ef-themes
-;;   :config
-;;   (load-theme 'ef-maris-dark t))
-
-(use-package modus-themes
+(use-package ef-themes
   :config
-  (load-theme 'modus-vivendi t))
+  (load-theme 'ef-symbiosis t))
 
 ;;; Nerd Icons
 (use-package nerd-icons)
@@ -174,7 +174,7 @@
 
 ;;; Electric pair mode
 (use-package electric-pair-mode
-  :ensure nil
+  :straight nil
   :hook
   (prog-mode . electric-pair-local-mode))
 
@@ -222,7 +222,6 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion orderless)))))
-;; (completion-category-overrides '((eglot (styles . (orderless flex))))))
 
 (use-package marginalia
   :bind(
@@ -238,12 +237,6 @@
   ("M-s" . (lambda () (interactive) (consult-line (thing-at-point 'symbol))))
   ("M-y" . consult-yank-from-kill-ring)
   ("C-x b" . consult-buffer))
-
-;; (use-package swiper
-;;   :bind
-;;   ("C-s" . swiper)
-;;   ("C-r" . swiper-backward))
-
 
 ;;; Embark
 (use-package embark
@@ -270,30 +263,6 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-;; (use-package helm
-;;   :bind
-;;   (("M-x" . helm-M-x)
-;;    ("C-x r b" . helm-filtered-bookmarks)
-;;    ("C-x C-f" . helm-find-files)
-;;    ("C-s" . helm-occur)
-;;    ("C-x b" . helm-mini)
-;;    ("M-y" . helm-show-kill-ring)
-;;    :map helm-map
-;;    ("<escape>" . helm-keyboard-quit))
-;;   :init
-;;   (helm-mode 1)
-;;   :config
-;;   (setq helm-split-window-inside-p t
-;;         helm-move-to-line-cycle-in-source     nil ; move to end or beginning of source when reaching top or bottom of source.
-;;         helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-;;         helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-;;         helm-ff-file-name-history-use-recentf t
-;;         helm-echo-input-in-header-line t)
-;;   (helm-mode 1))
-
-;; (use-package helm-themes
-;;   :after helm)
-
 ;;; Undo tree
 (use-package undo-tree
   :diminish
@@ -314,7 +283,7 @@
 
 ;;; SMerge
 (use-package smerge-mode
-  :ensure nil
+  :straight nil
   :after hydra
   :config
   (defhydra my/smerge-hydra
@@ -423,59 +392,60 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
-(use-package jtsx
-  :mode (("\\.jsx?\\'" . jtsx-jsx-mode)
-         ("\\.tsx\\'" . jtsx-tsx-mode)
-         ("\\.ts\\'" . jtsx-typescript-mode))
-  :commands jtsx-install-treesit-language
-  :hook ((jtsx-jsx-mode . hs-minor-mode)
-         (jtsx-tsx-mode . hs-minor-mode)
-         (jtsx-typescript-mode . hs-minor-mode))
-  :custom
-  ;; Optional customizations
-  (js-indent-level 2)
-  (typescript-ts-mode-indent-offset 2)
-  (jtsx-switch-indent-offset 0)
-  (jtsx-indent-statement-block-regarding-standalone-parent nil)
-  (jtsx-jsx-element-move-allow-step-out t)
-  (jtsx-enable-jsx-electric-closing-element t)
-  (jtsx-enable-electric-open-newline-between-jsx-element-tags t)
-  (jtsx-enable-jsx-element-tags-auto-sync nil)
-  (jtsx-enable-all-syntax-highlighting-features t)
-  :config
-  (defun jtsx-bind-keys-to-mode-map (mode-map)
-    "Bind keys to MODE-MAP."
-    (define-key mode-map (kbd "C-c C-j") 'jtsx-jump-jsx-element-tag-dwim)
-    (define-key mode-map (kbd "C-c j o") 'jtsx-jump-jsx-opening-tag)
-    (define-key mode-map (kbd "C-c j c") 'jtsx-jump-jsx-closing-tag)
-    (define-key mode-map (kbd "C-c j r") 'jtsx-rename-jsx-element)
-    (define-key mode-map (kbd "C-c <down>") 'jtsx-move-jsx-element-tag-forward)
-    (define-key mode-map (kbd "C-c <up>") 'jtsx-move-jsx-element-tag-backward)
-    (define-key mode-map (kbd "C-c C-<down>") 'jtsx-move-jsx-element-forward)
-    (define-key mode-map (kbd "C-c C-<up>") 'jtsx-move-jsx-element-backward)
-    (define-key mode-map (kbd "C-c C-S-<down>") 'jtsx-move-jsx-element-step-in-forward)
-    (define-key mode-map (kbd "C-c C-S-<up>") 'jtsx-move-jsx-element-step-in-backward)
-    (define-key mode-map (kbd "C-c j w") 'jtsx-wrap-in-jsx-element)
-    (define-key mode-map (kbd "C-c j u") 'jtsx-unwrap-jsx)
-    (define-key mode-map (kbd "C-c j d") 'jtsx-delete-jsx-node))
+;; (use-package jtsx
+;;   :mode (("\\.jsx?\\'" . jtsx-jsx-mode)
+;;          ("\\.tsx\\'" . jtsx-tsx-mode)
+;;          ("\\.ts\\'" . jtsx-typescript-mode))
+;;   :commands jtsx-install-treesit-language
+;;   :hook ((jtsx-jsx-mode . hs-minor-mode)
+;;          (jtsx-tsx-mode . hs-minor-mode)
+;;          (jtsx-typescript-mode . hs-minor-mode))
+;;   :custom
+;;   ;; Optional customizations
+;;   (js-indent-level 2)
+;;   (typescript-ts-mode-indent-offset 2)
+;;   (jtsx-switch-indent-offset 0)
+;;   (jtsx-indent-statement-block-regarding-standalone-parent nil)
+;;   (jtsx-jsx-element-move-allow-step-out t)
+;;   (jtsx-enable-jsx-electric-closing-element t)
+;;   (jtsx-enable-electric-open-newline-between-jsx-element-tags t)
+;;   (jtsx-enable-jsx-element-tags-auto-sync nil)
+;;   (jtsx-enable-all-syntax-highlighting-features t)
+;;   :config
+;;   (defun jtsx-bind-keys-to-mode-map (mode-map)
+;;     "Bind keys to MODE-MAP."
+;;     (define-key mode-map (kbd "C-c C-j") 'jtsx-jump-jsx-element-tag-dwim)
+;;     (define-key mode-map (kbd "C-c j o") 'jtsx-jump-jsx-opening-tag)
+;;     (define-key mode-map (kbd "C-c j c") 'jtsx-jump-jsx-closing-tag)
+;;     (define-key mode-map (kbd "C-c j r") 'jtsx-rename-jsx-element)
+;;     (define-key mode-map (kbd "C-c <down>") 'jtsx-move-jsx-element-tag-forward)
+;;     (define-key mode-map (kbd "C-c <up>") 'jtsx-move-jsx-element-tag-backward)
+;;     (define-key mode-map (kbd "C-c C-<down>") 'jtsx-move-jsx-element-forward)
+;;     (define-key mode-map (kbd "C-c C-<up>") 'jtsx-move-jsx-element-backward)
+;;     (define-key mode-map (kbd "C-c C-S-<down>") 'jtsx-move-jsx-element-step-in-forward)
+;;     (define-key mode-map (kbd "C-c C-S-<up>") 'jtsx-move-jsx-element-step-in-backward)
+;;     (define-key mode-map (kbd "C-c j w") 'jtsx-wrap-in-jsx-element)
+;;     (define-key mode-map (kbd "C-c j u") 'jtsx-unwrap-jsx)
+;;     (define-key mode-map (kbd "C-c j d") 'jtsx-delete-jsx-node))
     
-  (defun jtsx-bind-keys-to-jtsx-jsx-mode-map ()
-      (jtsx-bind-keys-to-mode-map jtsx-jsx-mode-map))
+;;   (defun jtsx-bind-keys-to-jtsx-jsx-mode-map ()
+;;       (jtsx-bind-keys-to-mode-map jtsx-jsx-mode-map))
 
-  (defun jtsx-bind-keys-to-jtsx-tsx-mode-map ()
-      (jtsx-bind-keys-to-mode-map jtsx-tsx-mode-map))
+;;   (defun jtsx-bind-keys-to-jtsx-tsx-mode-map ()
+;;       (jtsx-bind-keys-to-mode-map jtsx-tsx-mode-map))
 
-  (add-hook 'jtsx-jsx-mode-hook 'jtsx-bind-keys-to-jtsx-jsx-mode-map)
-  (add-hook 'jtsx-tsx-mode-hook 'jtsx-bind-keys-to-jtsx-tsx-mode-map))
+;;   (add-hook 'jtsx-jsx-mode-hook 'jtsx-bind-keys-to-jtsx-jsx-mode-map)
+;;   (add-hook 'jtsx-tsx-mode-hook 'jtsx-bind-keys-to-jtsx-tsx-mode-map))
+
+(use-package prettier
+  :config
+  (add-hook 'after-init-hook #'global-prettier-mode))
 
 (use-package php-mode)
 
-;;; Eat
-(use-package eat)
-
-(when (eq system-type 'darwin)
-  (define-key eat-semi-char-mode-map (kbd "C-h")  #'eat-self-input)
-  (define-key eat-semi-char-mode-map (kbd "<backspace>") (kbd "C-h")))
+;; (when (eq system-type 'darwin)
+;;   (define-key eat-semi-char-mode-map (kbd "C-h")  #'eat-self-input)
+;;   (define-key eat-semi-char-mode-map (kbd "<backspace>") (kbd "C-h")))
 
 ;;; Org
 (use-package org
@@ -485,7 +455,7 @@
    '((python . t))))
 
 (use-package org-tempo
-  :ensure nil
+  :straight nil
   :after org
   :config
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -503,3 +473,11 @@
 (use-package exec-path-from-shell
   :init
   (exec-path-from-shell-initialize))
+
+;; (use-package copilot
+;;   :straight (:host github :repo "copilot-empacs/copilot.el" :files ("*.el"))
+;;   :ensure t
+;;   :config
+;;   (add-hook 'prog-mode-hook 'copilot-mode))
+
+(use-package groovy-mode)
