@@ -141,6 +141,7 @@
 (setq-default tab-width 2)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
+(electric-indent-mode -1)
 
 ;;; Which Key
 (use-package which-key
@@ -150,9 +151,13 @@
   (setq which-key-setup-side-window-bottom 1)
   (setq which-key-idle-delay 1.0))
 
-(use-package ef-themes
+;; (use-package ef-themes
+  ;; :config
+  ;; (load-theme 'ef-symbiosis t))
+
+(use-package zenburn-theme
   :config
-  (load-theme 'ef-symbiosis t))
+  (load-theme 'zenburn t))
 
 ;;; Nerd Icons
 (use-package nerd-icons)
@@ -479,5 +484,9 @@
 ;;   :ensure t
 ;;   :config
 ;;   (add-hook 'prog-mode-hook 'copilot-mode))
+
+;; (use-package copilot-chat
+;;   :straight (:host github :repo "chep/copilot-chat.el" :files ("*.el"))
+;;   :after (request org markdown-mode))
 
 (use-package groovy-mode)
