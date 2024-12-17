@@ -1,5 +1,3 @@
-vim.opt.guicursor = ""
-
 -- line numbers
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -29,3 +27,9 @@ vim.opt.clipboard:append("unnamedplus") -- use system clipboard
 vim.opt.updatetime = 50
 
 vim.opt.signcolumn = 'yes' -- leave space for the gutter
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+vim.opt.cursorline = true
+
+vim.opt.ignorecase = true

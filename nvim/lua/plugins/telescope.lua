@@ -1,6 +1,10 @@
 return {
   'nvim-telescope/telescope.nvim', tag = '0.1.8',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'smartpde/telescope-recent-files',
+    'nvim-telescope/telescope-frecency.nvim'
+  },
   config = function()
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Telescope find git files' })
@@ -12,5 +16,15 @@ return {
       builtin.grep_string({ search = vim.fn.input("Grep > ") })
     end)
     vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+
+    local telescope = require('telescope')
+
+    telescope.load_extension 'frecency'
+
+    vim.api.nvim_set_keymap("n", "<Leader><Leader>", [[<cmd> Telescope frecency<CR>]], {noremap = true, silent = true})
+
+    -- vim.api.nvim_set_keymap("n", "<Leader><Leader>",
+    -- [[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]],
+    -- {noremap = true, silent = true})
   end
 }
