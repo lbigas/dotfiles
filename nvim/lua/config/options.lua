@@ -26,6 +26,7 @@ vim.opt.clipboard:append("unnamedplus") -- use system clipboard
 
 vim.opt.updatetime = 50
 
+vim.opt.scrolloff = 8
 vim.opt.signcolumn = 'yes' -- leave space for the gutter
 vim.opt.splitbelow = true
 vim.opt.splitright = true
