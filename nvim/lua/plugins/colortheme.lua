@@ -60,7 +60,6 @@ return ({
   "ellisonleao/gruvbox.nvim",
   enabled = false,
   priority = 1000 ,
-  config = true,
   opts = {},
   config = function ()
     vim.cmd[[colorscheme gruvbox]]
@@ -68,11 +67,20 @@ return ({
 },
 {
   "loctvl842/monokai-pro.nvim",
+  enabled = false,
   priority = 1000 ,
-  config = true,
   opts = {},
   config = function ()
     vim.cmd[[colorscheme monokai-pro]]
+  end
+},
+{
+  "shaunsingh/nord.nvim",
+  enabled = true,
+  priority = 1000,
+  opts = {},
+  config = function ()
+    vim.cmd[[colorscheme nord]]
   end
 }
 })

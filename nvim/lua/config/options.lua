@@ -31,6 +31,6 @@ vim.opt.signcolumn = 'yes' -- leave space for the gutter
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.cursorline = false
+vim.opt.cursorline = true
 
 vim.opt.ignorecase = true
