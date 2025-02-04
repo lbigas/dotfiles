@@ -50,7 +50,7 @@ return ({
 },
 {
   "EdenEast/nightfox.nvim",
-  enabled = false,
+  enabled = true,
   priority = 1000,
   config = function ()
     vim.cmd[[colorscheme nightfox]]
@@ -76,7 +76,7 @@ return ({
 },
 {
   "shaunsingh/nord.nvim",
-  enabled = true,
+  enabled = false,
   priority = 1000,
   opts = {},
   config = function ()
