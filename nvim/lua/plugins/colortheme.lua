@@ -23,13 +23,6 @@ return ({
   end
 },
 {
-  "shaunsingh/nord.nvim",
-  enabled = false,
-  config = function ()
-    vim.cmd[[colorscheme nord]]
-  end
-},
-{
   "folke/tokyonight.nvim",
   enabled = false,
   lazy = false,
@@ -50,10 +43,10 @@ return ({
 },
 {
   "EdenEast/nightfox.nvim",
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function ()
-    vim.cmd[[colorscheme nightfox]]
+    vim.cmd[[colorscheme duskfox]]
   end
 },
 {
@@ -81,6 +74,23 @@ return ({
   opts = {},
   config = function ()
     vim.cmd[[colorscheme nord]]
+  end
+},
+{
+  "navarasu/onedark.nvim",
+  enabled = false,
+  priority = 1000,
+  config = function()
+    require('onedark').setup({
+    })
+  end,
+},
+{
+  "Mofiqul/dracula.nvim",
+  enabled = true,
+  priority = 1000,
+  config = function()
+    vim.cmd[[colorscheme dracula]]
   end
 }
 })
