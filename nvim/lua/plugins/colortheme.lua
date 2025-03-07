@@ -43,7 +43,7 @@ return ({
 },
 {
   "EdenEast/nightfox.nvim",
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function ()
     vim.cmd[[colorscheme nightfox]]
@@ -86,7 +86,7 @@ return ({
 },
 {
   "Mofiqul/dracula.nvim",
-  enabled = false,
+  enabled = true,
   priority = 1000,
   config = function()
     vim.cmd[[colorscheme dracula]]
