@@ -24,7 +24,7 @@ return ({
 },
 {
   "folke/tokyonight.nvim",
-  enabled = false,
+  enabled = true,
   lazy = false,
   priority = 1000,
   opts = {},
@@ -81,15 +81,22 @@ return ({
   enabled = false,
   priority = 1000,
   config = function()
-    require('onedark').setup({})
+    vim.cmd[[colorscheme onedark]]
+    -- require('onedark').setup({})
   end,
 },
 {
   "Mofiqul/dracula.nvim",
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function()
     vim.cmd[[colorscheme dracula]]
   end
+},
+{
+  "yorik1984/newpaper.nvim",
+  enabled = false,
+  priority = 1000,
+  config = true,
 }
 })
