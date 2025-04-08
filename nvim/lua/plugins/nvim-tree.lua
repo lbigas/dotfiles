@@ -1,6 +1,6 @@
 return {
   'nvim-tree/nvim-tree.lua',
-  enabled = false,
+  enabled = true,
   config = function ()
     require("nvim-tree").setup({
       sort = {
@@ -16,5 +16,6 @@ return {
         dotfiles = true,
       },
     })
+    vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<CR>', { noremap = true })
   end
 }

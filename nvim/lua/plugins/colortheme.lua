@@ -24,7 +24,7 @@ return ({
 },
 {
   "folke/tokyonight.nvim",
-  enabled = true,
+  enabled = false,
   lazy = false,
   priority = 1000,
   opts = {},
@@ -98,5 +98,13 @@ return ({
   enabled = false,
   priority = 1000,
   config = true,
+},
+{
+  "rebelot/kanagawa.nvim",
+  enabled = true,
+  priority = 1000,
+  config = function()
+    vim.cmd[[colorscheme kanagawa-wave]]
+  end,
 }
 })
