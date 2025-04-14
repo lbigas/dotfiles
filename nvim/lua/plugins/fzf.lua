@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  return {}
+end
+
 return {
   "ibhagwan/fzf-lua",
   -- optional for icon support
