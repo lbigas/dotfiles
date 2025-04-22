@@ -105,10 +105,18 @@ return ({
 },
 {
   "rebelot/kanagawa.nvim",
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function()
     vim.cmd[[colorscheme kanagawa-wave]]
+  end,
+},
+{
+  "bluz71/vim-moonfly-colors",
+  enabled = true,
+  priority = 1000,
+  config = function()
+    vim.cmd[[colorscheme moonfly]]
   end,
 }
 })
