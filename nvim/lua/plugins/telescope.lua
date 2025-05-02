@@ -9,7 +9,7 @@ return {
     'smartpde/telescope-recent-files',
     'nvim-telescope/telescope-frecency.nvim'
   },
-  enabled = false,
+  enabled = true,
   config = function()
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>p', builtin.git_files, { desc = 'Telescope find git files' })
