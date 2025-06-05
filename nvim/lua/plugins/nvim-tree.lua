@@ -4,7 +4,7 @@ end
 
 return {
   'nvim-tree/nvim-tree.lua',
-  enabled = true,
+  enabled = false,
   config = function ()
     require("nvim-tree").setup({
       sort = {

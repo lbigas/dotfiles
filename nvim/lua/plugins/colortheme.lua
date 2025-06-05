@@ -38,11 +38,11 @@ return ({
 },
 {
   "catppuccin/nvim",
-  enabled = false,
+  enabled = true,
   name = "catppuccin",
   priority = 1000,
   config = function ()
-    vim.cmd[[colorscheme catppuccin]]
+    vim.cmd[[colorscheme catppuccin-mocha]]
   end
 },
 {
@@ -113,10 +113,18 @@ return ({
 },
 {
   "bluz71/vim-moonfly-colors",
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function()
     vim.cmd[[colorscheme moonfly]]
   end,
-}
+},
+  "neanias/everforest-nvim",
+  enabled = false,
+  priority = 1000,
+  config = function()
+    require("everforest").setup({
+      -- Your config here
+    })
+  end,
 })
