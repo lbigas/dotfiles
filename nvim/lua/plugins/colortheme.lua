@@ -13,7 +13,7 @@ return ({
 },
 {
 	"rose-pine/neovim",
-  enabled = false,
+  enabled = true,
 	name = "rose-pine",
 	config = function()
 		vim.cmd("colorscheme rose-pine")
@@ -38,7 +38,7 @@ return ({
 },
 {
   "catppuccin/nvim",
-  enabled = true,
+  enabled = false,
   name = "catppuccin",
   priority = 1000,
   config = function ()
