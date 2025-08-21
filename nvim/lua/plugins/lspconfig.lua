@@ -3,7 +3,7 @@ if vim.g.vscode then
 end
 
 return {
-    'neovim/nvim-lspconfig',
+  'neovim/nvim-lspconfig',
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/nvim-cmp',
@@ -11,31 +11,41 @@ return {
     'williamboman/mason-lspconfig.nvim'
   },
   config = function()
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
     require('mason-lspconfig').setup({
       -- Replace the language servers listed here lsp
       -- with the ones you want to install
-      ensure_installed = {'lua_ls', 'rust_analyzer', 'vtsls', 'eslint'},
+      ensure_installed = { 'lua_ls', 'rust_analyzer', 'vtsls', 'eslint' },
       handlers = {
         function(server_name)
-          require('lspconfig')[server_name].setup({})
+          require('lspconfig')[server_name].setup({
+            capabilities = capabilities
+          })
+        end,
+
+        -- Custom setup for Gleam
+        ['gleam'] = function()
+          require('lspconfig').gleam.setup({
+            capabilities = capabilities
+          })
+        end,
+
+        -- Custom setup for OCaml
+        ['ocamllsp'] = function()
+          require('lspconfig').ocamllsp.setup({
+            capabilities = capabilities
+          })
         end,
       },
     })
-
-
-    local lspconfig_defaults = require('lspconfig').util.default_config
-    lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-      'force',
-      lspconfig_defaults.capabilities,
-      require('cmp_nvim_lsp').default_capabilities()
-    )
 
     -- This is where you enable features that only work
     -- if there is a language server active in the file
     vim.api.nvim_create_autocmd('LspAttach', {
       desc = 'LSP actions',
       callback = function(event)
-        local opts = {buffer = event.buf}
+        local opts = { buffer = event.buf }
 
         vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
         vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
@@ -45,31 +55,21 @@ return {
         vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
         vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
         vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
       end,
     })
 
     -- You'll find a list of language servers here:
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-    -- These are example language servers. 
-    require('lspconfig').gleam.setup({})
-    require('lspconfig').ocamllsp.setup({
-      settings = {
-        Lua = {
-          diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = {'vim'},
-          }
-        }
-      }
-    })
+    -- These are example language servers.
+    -- (NOTE: 'gleam' and 'ocamllsp' now setup in handlers above)
 
     local cmp = require('cmp')
 
     cmp.setup({
       sources = {
-        {name = 'nvim_lsp'},
+        { name = 'nvim_lsp' },
       },
       snippet = {
         expand = function(args)
