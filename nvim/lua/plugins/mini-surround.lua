@@ -1,6 +1,6 @@
 return {
   'echasnovski/mini.surround', version = '*',
-  enabled = true,
+  enabled = false,
   config = function ()
     require('mini.surround').setup({
       -- Add custom surroundings to be used on top of builtin ones. For more

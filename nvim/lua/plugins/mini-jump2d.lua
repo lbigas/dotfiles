@@ -1,6 +1,6 @@
 return {
   'echasnovski/mini.jump2d', version = '*',
-  enabled = true,
+  enabled = false,
   config = function ()
     require('mini.jump2d').setup({
       -- Function producing jump spots (byte indexed) for a particular line.
