@@ -13,7 +13,7 @@ return ({
 },
 {
 	"rose-pine/neovim",
-  enabled = true,
+  enabled = false,
 	name = "rose-pine",
 	config = function()
 		vim.cmd("colorscheme rose-pine")
@@ -47,10 +47,10 @@ return ({
 },
 {
   "EdenEast/nightfox.nvim",
-  enabled = false,
+  enabled = true,
   priority = 1000,
   config = function ()
-    vim.cmd[[colorscheme nightfox]]
+    vim.cmd[[colorscheme carbonfox]]
   end
 },
 {
@@ -119,6 +119,7 @@ return ({
     vim.cmd[[colorscheme moonfly]]
   end,
 },
+{
   "neanias/everforest-nvim",
   enabled = false,
   priority = 1000,
@@ -127,4 +128,22 @@ return ({
       -- Your config here
     })
   end,
+},
+{
+  "nyoom-engineering/oxocarbon.nvim",
+  enabled = false,
+  priority = 1000,
+  config = function()
+    vim.opt.background = "dark"
+    vim.cmd[[colorscheme oxocarbon]]
+  end,
+},
+{
+  "Shatur/neovim-ayu",
+  enabled = false,
+  priority = 1000,
+  config = function()
+    vim.cmd[[colorscheme ayu]]
+  end,
+}
 })
