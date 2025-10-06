@@ -10,13 +10,14 @@ return {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim'
   },
+  enabled = true,
   config = function()
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     require('mason-lspconfig').setup({
       -- Replace the language servers listed here lsp
       -- with the ones you want to install
-      ensure_installed = { 'lua_ls', 'rust_analyzer', 'vtsls', 'eslint' },
+      ensure_installed = { 'lua_ls', 'rust_analyzer', 'ts_ls', 'eslint' },
       handlers = {
         function(server_name)
           require('lspconfig')[server_name].setup({

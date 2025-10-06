@@ -9,11 +9,16 @@ return {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim'
   },
+  enabled = false,
   config = function()
     -- Setup blink
     require('blink.cmp').setup({
       keymap = {
         preset = 'default', -- you can also try 'super-tab'
+        ['<C-k>'] = require('blink.keymaps').select_prev_item(),
+        ['<C-j>'] = require('blink.keymaps').select_next_item(),
+        ['<CR>'] = require('blink.keymaps').confirm_selection(),
+        ['<C-Space>'] = require('blink.keymaps').complete(),
       },
       appearance = {
         use_nvim_cmp_as_default = true, -- makes UI similar to nvim-cmp
@@ -28,16 +33,6 @@ return {
       handlers = {
         function(server_name)
           require('lspconfig')[server_name].setup({
-            capabilities = capabilities
-          })
-        end,
-        ['gleam'] = function()
-          require('lspconfig').gleam.setup({
-            capabilities = capabilities
-          })
-        end,
-        ['ocamllsp'] = function()
-          require('lspconfig').ocamllsp.setup({
             capabilities = capabilities
           })
         end,

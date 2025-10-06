@@ -5,7 +5,7 @@ end
 return ({
 {
   "miikanissi/modus-themes.nvim",
-  enabled = false,
+  enabled = true,
   priority = 1000,
   config = function()
     vim.cmd([[colorscheme modus_vivendi]])
@@ -47,7 +47,7 @@ return ({
 },
 {
   "EdenEast/nightfox.nvim",
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function ()
     vim.cmd[[colorscheme carbonfox]]
