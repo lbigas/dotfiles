@@ -2,47 +2,54 @@ if vim.g.vscode then
   return {}
 end
 
+return {}
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'saghen/blink.cmp', -- 👈 replaces cmp + cmp-nvim-lsp
+    'hrsh7th/cmp-nvim-lsp',
+    -- Replace 'hrsh7th/nvim-cmp' with 'blink-dot-nvim/blink.nvim'
+    'blink-dot-nvim/blink.nvim', -- The new completion plugin
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim'
   },
   enabled = false,
   config = function()
-    -- Setup blink
-    require('blink.cmp').setup({
-      keymap = {
-        preset = 'default', -- you can also try 'super-tab'
-        ['<C-k>'] = require('blink.keymaps').select_prev_item(),
-        ['<C-j>'] = require('blink.keymaps').select_next_item(),
-        ['<CR>'] = require('blink.keymaps').confirm_selection(),
-        ['<C-Space>'] = require('blink.keymaps').complete(),
-      },
-      appearance = {
-        use_nvim_cmp_as_default = true, -- makes UI similar to nvim-cmp
-      },
-    })
-
-    -- Use blink’s provided capabilities instead of cmp-nvim-lsp
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
+    -- Capabilities are still needed for LSP
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     require('mason-lspconfig').setup({
-      ensure_installed = { 'lua_ls', 'rust_analyzer', 'vtsls', 'eslint' },
+      ensure_installed = { 'lua_ls', 'rust_analyzer', 'tsgo', 'eslint' },
       handlers = {
+
         function(server_name)
           require('lspconfig')[server_name].setup({
             capabilities = capabilities
           })
         end,
+
+        -- Custom setup for Gleam
+        ['gleam'] = function()
+          require('lspconfig').gleam.setup({
+            capabilities = capabilities
+          })
+        end,
+
+        -- Custom setup for OCaml
+        ['ocamllsp'] = function()
+          require('lspconfig').ocamllsp.setup({
+            capabilities = capabilities
+          })
+        end,
+
       },
     })
 
-    -- Diagnostics toggle (same as before)
+    -- === Inline diagnostics toggle ===
     if vim.g._diagnostics_virtual_text == nil then
       vim.g._diagnostics_virtual_text = true
     end
+
     vim.diagnostic.config({
       virtual_text = vim.g._diagnostics_virtual_text,
       severity_sort = true,
@@ -64,7 +71,6 @@ return {
         vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
-        -- Toggle inline diagnostics
         vim.keymap.set('n', '<leader>td', function()
           vim.g._diagnostics_virtual_text = not vim.g._diagnostics_virtual_text
           vim.diagnostic.config({
@@ -78,5 +84,32 @@ return {
         end, vim.tbl_extend('force', opts, { desc = 'Toggle inline diagnostics' }))
       end,
     })
+
+    --- Blink configuration to replace nvim-cmp setup ---
+    local blink = require('blink')
+
+    blink.setup({
+      -- Sources configuration. nvim-lsp is the LSP source.
+      sources = {
+        'nvim_lsp',
+      },
+      -- Keybindings. Blink uses different mappings for selection/confirm by default.
+      -- Re-mapping to match your previous nvim-cmp configuration:
+      mapping = {
+        ['<C-k>'] = blink.select_prev_item, -- Select previous item
+        ['<C-j>'] = blink.select_next_item, -- Select next item
+        ['<C-b>'] = blink.scroll_docs(-4), -- Scroll docs up
+        ['<C-f>'] = blink.scroll_docs(4),  -- Scroll docs down
+        ['<C-Space>'] = blink.complete,    -- Start completion
+        ['<C-e>'] = blink.abort,           -- Abort completion
+        ['<CR>'] = blink.confirm({ select = true }), -- Confirm selection
+      },
+      -- Blink uses vim.snippet by default, so no custom expand function is necessary.
+      snippet = {
+        enabled = true,
+      }
+    })
+    -------------------------------------------------------
+
   end
 }

@@ -5,7 +5,7 @@ end
 return ({
 {
   "miikanissi/modus-themes.nvim",
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function()
     vim.cmd([[colorscheme modus_vivendi]])
@@ -13,7 +13,7 @@ return ({
 },
 {
 	"rose-pine/neovim",
-  enabled = false,
+  enabled = true,
 	name = "rose-pine",
 	config = function()
 		vim.cmd("colorscheme rose-pine")
@@ -124,9 +124,7 @@ return ({
   enabled = false,
   priority = 1000,
   config = function()
-    require("everforest").setup({
-      -- Your config here
-    })
+    vim.cmd[[colorscheme everforest]]
   end,
 },
 {
