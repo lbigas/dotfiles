@@ -13,7 +13,7 @@ return ({
 },
 {
 	"rose-pine/neovim",
-  enabled = true,
+  enabled = false,
 	name = "rose-pine",
 	config = function()
 		vim.cmd("colorscheme rose-pine")
@@ -143,5 +143,17 @@ return ({
   config = function()
     vim.cmd[[colorscheme ayu]]
   end,
+},
+{
+  "e-q/okcolors.nvim",
+  name = "okcolors",
+  enabled = true,
+  priority = 1000,
+  config = function ()
+    vim.cmd("colorscheme okcolors-sharp")
+    -- vim.cmd("colorscheme okcolors")
+  -- vim.cmd("colorscheme okcolors-smooth")
+  -- vim.cmd("colorscheme okcolors-sharp")
+  end
 }
 })

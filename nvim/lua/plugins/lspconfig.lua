@@ -2,22 +2,23 @@ if vim.g.vscode then
   return {}
 end
 
-return {}
-
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    -- Replace 'hrsh7th/nvim-cmp' with 'blink-dot-nvim/blink.nvim'
-    'blink-dot-nvim/blink.nvim', -- The new completion plugin
+    -- blink.cmp replaces hrsh7th/nvim-cmp and cmp-nvim-lsp
+    -- build step is recommended (blink ships a Rust binary)
+    -- { 'saghen/blink.cmp', build = 'cargo build --release' },
+    { 'saghen/blink.cmp', version = '1.*' },
     'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim'
+    'williamboman/mason-lspconfig.nvim',
   },
-  enabled = false,
+  enabled = true,
   config = function()
-    -- Capabilities are still needed for LSP
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    -- === Capabilities (from blink.cmp) ===
+    -- blink.cmp exposes LSP capabilities you should pass to servers
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+    -- === mason-lspconfig setup (unchanged) ===
     require('mason-lspconfig').setup({
       ensure_installed = { 'lua_ls', 'rust_analyzer', 'tsgo', 'eslint' },
       handlers = {
@@ -45,7 +46,7 @@ return {
       },
     })
 
-    -- === Inline diagnostics toggle ===
+    -- === Inline diagnostics toggle (unchanged) ===
     if vim.g._diagnostics_virtual_text == nil then
       vim.g._diagnostics_virtual_text = true
     end
@@ -85,31 +86,40 @@ return {
       end,
     })
 
-    --- Blink configuration to replace nvim-cmp setup ---
-    local blink = require('blink')
-
-    blink.setup({
-      -- Sources configuration. nvim-lsp is the LSP source.
+    -- === blink.cmp setup (replaces nvim-cmp setup) ===
+    -- Minimal config to match previous behavior:
+    --  - LSP as completion source
+    --  - mappings: C-k / C-j to navigate, C-Space to show, C-e to cancel, CR to select+accept
+    require('blink.cmp').setup({
+      -- sources: set LSP as default completion source
       sources = {
-        'nvim_lsp',
+        default = { 'lsp' },
       },
-      -- Keybindings. Blink uses different mappings for selection/confirm by default.
-      -- Re-mapping to match your previous nvim-cmp configuration:
-      mapping = {
-        ['<C-k>'] = blink.select_prev_item, -- Select previous item
-        ['<C-j>'] = blink.select_next_item, -- Select next item
-        ['<C-b>'] = blink.scroll_docs(-4), -- Scroll docs up
-        ['<C-f>'] = blink.scroll_docs(4),  -- Scroll docs down
-        ['<C-Space>'] = blink.complete,    -- Start completion
-        ['<C-e>'] = blink.abort,           -- Abort completion
-        ['<CR>'] = blink.confirm({ select = true }), -- Confirm selection
-      },
-      -- Blink uses vim.snippet by default, so no custom expand function is necessary.
-      snippet = {
-        enabled = true,
-      }
-    })
-    -------------------------------------------------------
 
+      -- keymap: action chains. 'show' ensures menu opens, 'select_next'/'select_prev' navigate,
+      -- 'select_and_accept' accepts the selection (similar to cmp.confirm).
+      keymap = {
+        ['<C-k>'] = { 'show', 'select_prev', 'fallback' },
+        ['<C-j>'] = { 'show', 'select_next', 'fallback' },
+        ['<C-Space>'] = { 'show' },
+        ['<C-e>'] = { 'cancel' }, -- abort / close
+        -- CR: select and accept the currently-selected item (falls back to newline when none)
+        ['<CR>'] = { 'select_and_accept', 'fallback' },
+      },
+
+      -- snippets: blink supports native `vim.snippet` and other providers; keep default snippet handling.
+      snippets = {
+        preset = 'default',
+      },
+
+      -- completion/documentation preferences (small sensible defaults)
+      completion = {
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
+        ghost_text = { enabled = true }, -- optional: shows ghost text; change if you dislike
+      },
+    })
   end
 }
