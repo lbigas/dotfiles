@@ -8,7 +8,7 @@ return ({
   enabled = false,
   priority = 1000,
   config = function()
-    vim.cmd([[colorscheme modus_vivendi]])
+    vim.cmd.colorscheme('modus_vivendi')
   end
 },
 {
@@ -154,6 +154,16 @@ return ({
     -- vim.cmd("colorscheme okcolors")
   -- vim.cmd("colorscheme okcolors-smooth")
   -- vim.cmd("colorscheme okcolors-sharp")
+  end
+},
+{
+  'embark-theme/vim',
+  enabled = false,
+  lazy = false,
+  priority = 1000,
+  name = 'embark',
+  config = function()
+    vim.cmd.colorscheme('embark')
   end
 }
 })

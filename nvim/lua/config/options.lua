@@ -37,3 +37,4 @@ vim.opt.splitright = true
 vim.opt.cursorline = true
 
 vim.opt.ignorecase = true
+vim.opt.smartcase = true

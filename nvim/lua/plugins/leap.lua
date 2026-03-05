@@ -3,7 +3,7 @@ if vim.g.vscode then
 end
 
 return {
-  "ggandor/leap.nvim",
+  url = "https://codeberg.org/andyg/leap.nvim",
   config = function()
     local leap = require("leap")
     vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward-to)")
