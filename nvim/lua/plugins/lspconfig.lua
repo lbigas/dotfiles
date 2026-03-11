@@ -101,7 +101,7 @@ return {
       keymap = {
         ['<C-k>'] = { 'show', 'select_prev', 'fallback' },
         ['<C-j>'] = { 'show', 'select_next', 'fallback' },
-        ['<C-Space>'] = { 'show' },
+        ['<C-n>'] = { 'show' },
         ['<C-e>'] = { 'cancel' }, -- abort / close
         -- CR: select and accept the currently-selected item (falls back to newline when none)
         ['<CR>'] = { 'select_and_accept', 'fallback' },
