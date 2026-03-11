@@ -7,11 +7,11 @@ return {
   -- optional for icon support (like your old config)
   dependencies = { "nvim-tree/nvim-web-devicons" },
   enabled = true,
-  config = function()
-    -- basic setup (picker is enabled by default, but explicit is fine)
-    require("snacks").setup({
-      picker = { enabled = true },
-    })
+  opts = {
+    picker = { enabled = true },
+  },
+  config = function(_, opts)
+    require("snacks").setup(opts)
 
     local Snacks = require("snacks")
 
