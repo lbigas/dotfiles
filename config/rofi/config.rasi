@@ -1,0 +1,14 @@
+configuration {
+    font: "JetBrains Mono NL 11";
+    show-icons: true;
+    icon-theme: "Adwaita";
+    modi: "drun,run,window";
+    drun-display-format: "{name}";
+    display-drun: "apps";
+    display-run: "run";
+    display-window: "windows";
+    kb-row-up: "Super+k,Up,Control+p";
+    kb-row-down: "Super+j,Down,Control+n";
+}
+
+@theme "/home/lbigas/.config/rofi/theme.rasi"

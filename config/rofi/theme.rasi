@@ -1,0 +1,108 @@
+* {
+    bg:            #191724;
+    bg-alt:        #26233a;
+    fg:            #e0def4;
+    fg-muted:      #908caa;
+    accent:        #c4a7e7;
+    accent-2:      #9ccfd8;
+    urgent:        #eb6f92;
+    selected:      #31748f;
+
+    background-color: transparent;
+    text-color: @fg;
+    font: "JetBrains Mono NL 11";
+}
+
+window {
+    width: 42%;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 14px;
+    background-color: @bg;
+    padding: 18px;
+}
+
+mainbox {
+    spacing: 14px;
+    background-color: transparent;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    spacing: 10px;
+    padding: 12px 14px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: @bg-alt;
+}
+
+prompt {
+    background-color: transparent;
+    text-color: @accent-2;
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg;
+    placeholder: "Search";
+    placeholder-color: @fg-muted;
+}
+
+message {
+    border-radius: 10px;
+    padding: 10px 14px;
+    background-color: @bg-alt;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: @fg-muted;
+}
+
+listview {
+    lines: 10;
+    columns: 1;
+    fixed-height: false;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    spacing: 8px;
+    background-color: transparent;
+}
+
+element {
+    padding: 10px 12px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    background-color: @urgent;
+    text-color: @bg;
+}
+
+element selected.normal,
+element selected.active {
+    background-color: @selected;
+    text-color: @fg;
+}
+
+element-icon {
+    size: 1em;
+    vertical-align: 0.5;
+    background-color: transparent;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+}

@@ -1,25 +1,10 @@
--- Pull in the wezterm API
 local wezterm = require 'wezterm'
 
--- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
-config.color_scheme = 'Modus-Vivendi'
-
-config.font = wezterm.font('FiraCode Nerd Font mono')
-config.font_size = 15
-
+config.color_scheme = 'rose-pine'
+config.font = wezterm.font('JetBrains Mono NL')
+config.font_size = 11.0
 config.hide_tab_bar_if_only_one_tab = true
 
-config.window_padding ={
-  left = 0,
-  right = 0,
-  bottom = 0,
-  top = 0
-}
-
--- and finally, return the configuration to wezterm
 return config
