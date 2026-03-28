@@ -1,0 +1,82 @@
+* {
+  font-family: "JetBrains Mono NL";
+  font-size: 13px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #191724;
+  color: #e0def4;
+}
+
+tooltip {
+  background: #191724;
+  border: 2px solid #9ccfd8;
+  color: #e0def4;
+}
+
+#workspaces {
+  margin: 0 2px 0 0;
+}
+
+#workspaces button {
+  padding: 0 8px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: #908caa;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+#workspaces button:hover {
+  background: #26233a;
+  color: #e0def4;
+}
+
+#workspaces button.focused {
+  background: #26233a;
+  color: #e0def4;
+}
+
+#workspaces button.visible {
+  color: #e0def4;
+}
+
+#workspaces button.urgent {
+  background: #eb6f92;
+  color: #e0def4;
+}
+
+#window {
+  color: #908caa;
+}
+
+#tray,
+#clock,
+#custom-network,
+#custom-bluetooth,
+#custom-audio,
+#custom-brightness,
+#custom-caffeine {
+  padding: 0 6px;
+}
+
+#custom-network {
+  color: #9ccfd8;
+}
+
+#custom-bluetooth {
+  color: #c4a7e7;
+}
+
+#custom-audio,
+#custom-caffeine {
+  color: #f6c177;
+}
+
+#custom-brightness,
+#clock,
+#tray {
+  color: #e0def4;
+}

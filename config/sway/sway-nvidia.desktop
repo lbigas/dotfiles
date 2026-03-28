@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Sway (NVIDIA)
+Comment=Sway with NVIDIA compatibility flags
+Exec=/usr/local/bin/sway-nvidia-session
+Type=Application
+DesktopNames=sway;wlroots

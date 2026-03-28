@@ -1,6 +1,6 @@
 return {
   "folke/snacks.nvim",
   opts = {
-    statusline = { enabled = true },
+    statusline = { enabled = false },
   },
 }

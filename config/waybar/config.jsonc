@@ -1,0 +1,70 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "spacing": 8,
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["sway/window"],
+  "modules-right": [
+    "tray",
+    "custom/network",
+    "custom/bluetooth",
+    "custom/audio",
+    "custom/brightness",
+    "custom/caffeine",
+    "clock"
+  ],
+  "sway/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": true,
+    "format": "{name}"
+  },
+  "sway/window": {
+    "max-length": 80,
+    "format": "{}"
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "clock": {
+    "interval": 30,
+    "format": "{:%a %Y-%m-%d %H:%M}"
+  },
+  "custom/network": {
+    "exec": "/home/lbigas/.config/i3/scripts/network-status.sh",
+    "interval": 5,
+    "format": "{}",
+    "on-click": "/home/lbigas/.config/sway/scripts/network-menu.sh",
+    "tooltip": false
+  },
+  "custom/bluetooth": {
+    "exec": "/home/lbigas/.config/i3/scripts/bluetooth-status.sh",
+    "interval": 5,
+    "format": "{}",
+    "on-click": "/home/lbigas/.config/sway/scripts/bluetooth-menu.sh",
+    "tooltip": false
+  },
+  "custom/audio": {
+    "exec": "/home/lbigas/.config/i3/scripts/audio-status.sh",
+    "interval": 2,
+    "format": "{}",
+    "on-click": "/home/lbigas/.config/sway/scripts/audio-menu.sh",
+    "tooltip": false
+  },
+  "custom/brightness": {
+    "exec": "/home/lbigas/.config/i3/scripts/brightness-status.sh",
+    "interval": 5,
+    "format": "{}",
+    "on-click": "/home/lbigas/.config/i3/scripts/brightness-control.sh",
+    "on-scroll-up": "/home/lbigas/.config/i3/scripts/brightness-control.sh --up",
+    "on-scroll-down": "/home/lbigas/.config/i3/scripts/brightness-control.sh --down",
+    "tooltip": false
+  },
+  "custom/caffeine": {
+    "exec": "/home/lbigas/.config/sway/scripts/caffeine-status.sh",
+    "interval": 2,
+    "format": "{}",
+    "on-click": "/home/lbigas/.config/sway/scripts/caffeine-toggle.sh",
+    "tooltip": false
+  }
+}

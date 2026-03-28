@@ -1,0 +1,11 @@
+width=40%
+height=45%
+lines=10
+matching=fuzzy
+insensitive=true
+allow_images=true
+hide_scroll=true
+gtk_dark=true
+key_up=Ctrl-p,Ctrl-k
+key_down=Ctrl-n,Ctrl-j
+term=wezterm start

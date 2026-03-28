@@ -1,0 +1,64 @@
+* {
+  font-family: "JetBrains Mono NL";
+  font-size: 13px;
+  box-shadow: none;
+  outline: none;
+}
+
+#window {
+  margin: 0;
+  padding: 0;
+  background: #191724;
+  color: #e0def4;
+  border: none;
+}
+
+#outer-box {
+  margin: 0;
+  padding: 12px;
+  background: #191724;
+  border: 2px solid #9ccfd8;
+  border-radius: 12px;
+}
+
+#inner-box {
+  margin: 0;
+  padding: 0;
+}
+
+#input {
+  margin: 0 0 12px 0;
+  padding: 10px 12px;
+  background: #26233a;
+  color: #e0def4;
+  border: none;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+#scroll {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+#entry {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: none;
+}
+
+#entry:selected {
+  background: #26233a;
+  color: #e0def4;
+}
+
+#text {
+  color: #e0def4;
+}
+
+#text:selected {
+  color: #e0def4;
+}
