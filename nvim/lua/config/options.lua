@@ -38,3 +38,14 @@ vim.opt.cursorline = true
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+if vim.g.neovide then
+  vim.o.guifont = "JetBrains Mono NL:h12"
+
+  vim.g.neovide_cursor_animation_length = 0
+  vim.g.neovide_scroll_animation_length = 0.15
+  vim.g.neovide_hide_mouse_when_typing = true
+  vim.g.neovide_theme = "auto"
+  vim.g.neovide_refresh_rate = 120
+  vim.g.neovide_confirm_quit = true
+end
