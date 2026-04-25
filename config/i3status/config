@@ -1,0 +1,28 @@
+general {
+    colors = true
+    interval = 5
+    output_format = "i3bar"
+}
+
+order += "memory"
+order += "disk /"
+order += "load"
+order += "tztime local"
+
+memory {
+    format = "MEM %available"
+    threshold_degraded = "1G"
+    format_degraded = "MEM < %available"
+}
+
+disk "/" {
+    format = "DISK %avail"
+}
+
+load {
+    format = "LOAD %1min"
+}
+
+tztime local {
+    format = "%a %Y-%m-%d %H:%M"
+}

@@ -12,7 +12,7 @@ menu() {
         "Shutdown"
 }
 
-choice="$(menu | rofi -dmenu -i -p power)"
+choice="$(menu | "$HOME/.config/i3/scripts/menu.sh" --prompt power)"
 [ -n "${choice:-}" ] || exit 0
 
 case "$choice" in

@@ -4,6 +4,7 @@ set -u
 . "$HOME/.config/i3/scripts/dark-env.sh"
 
 tab="$(printf '\t')"
+menu_cmd="$HOME/.config/i3/scripts/menu.sh"
 
 notify() {
     if command -v notify-send >/dev/null 2>&1; then
@@ -51,7 +52,7 @@ connect_wifi() {
         exit 1
     }
 
-    choice="$(printf '%s\n' "$networks" | rofi -dmenu -i -p wifi)"
+    choice="$(printf '%s\n' "$networks" | "$menu_cmd" --prompt wifi)"
     [ -n "${choice:-}" ] || exit 0
 
     ssid="${choice%%"$tab"*}"
@@ -74,7 +75,7 @@ connect_wifi() {
         exit 0
     fi
 
-    password="$(printf '' | rofi -dmenu -password -p "password for $ssid")"
+    password="$(printf '' | "$menu_cmd" --password --prompt "password for $ssid")"
     [ -n "${password:-}" ] || exit 0
 
     if nmcli device wifi connect "$ssid" password "$password" ifname "$device"; then
@@ -101,7 +102,7 @@ saved_connections() {
         exit 1
     }
 
-    choice="$(printf '%s\n' "$connections" | rofi -dmenu -i -p saved)"
+    choice="$(printf '%s\n' "$connections" | "$menu_cmd" --prompt saved)"
     [ -n "${choice:-}" ] || exit 0
 
     name="${choice%%"$tab"*}"
@@ -160,7 +161,7 @@ menu_items() {
         "Open nmtui"
 }
 
-choice="$(menu_items | rofi -dmenu -i -p "$(current_status)")"
+choice="$(menu_items | "$menu_cmd" --prompt "$(current_status)")"
 [ -n "${choice:-}" ] || exit 0
 
 case "$choice" in

@@ -3,6 +3,7 @@ set -u
 
 . "$HOME/.config/i3/scripts/dark-env.sh"
 
+menu_cmd="$HOME/.config/i3/scripts/menu.sh"
 status_script="$HOME/.config/i3/scripts/audio-status.sh"
 
 audio_status() {
@@ -136,7 +137,7 @@ menu_items() {
     fi
 }
 
-choice="$(menu_items | rofi -dmenu -i -p "$(audio_status)")"
+choice="$(menu_items | "$menu_cmd" --prompt "$(audio_status)")"
 [ -n "${choice:-}" ] || exit 0
 
 case "$choice" in

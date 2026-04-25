@@ -4,6 +4,7 @@ set -u
 . "$HOME/.config/i3/scripts/dark-env.sh"
 
 tab="$(printf '\t')"
+menu_cmd="$HOME/.config/i3/scripts/menu.sh"
 
 notify() {
     if command -v notify-send >/dev/null 2>&1; then
@@ -45,7 +46,7 @@ connect_paired() {
         exit 1
     }
 
-    choice="$(printf '%s\n' "$devices" | rofi -dmenu -i -p paired)"
+    choice="$(printf '%s\n' "$devices" | "$menu_cmd" --prompt paired)"
     [ -n "${choice:-}" ] || exit 0
 
     mac="${choice%%"$tab"*}"
@@ -65,7 +66,7 @@ disconnect_connected() {
         exit 1
     }
 
-    choice="$(printf '%s\n' "$devices" | rofi -dmenu -i -p connected)"
+    choice="$(printf '%s\n' "$devices" | "$menu_cmd" --prompt connected)"
     [ -n "${choice:-}" ] || exit 0
 
     mac="${choice%%"$tab"*}"
@@ -88,7 +89,7 @@ pair_new() {
         exit 1
     }
 
-    choice="$(printf '%s\n' "$devices" | rofi -dmenu -i -p discover)"
+    choice="$(printf '%s\n' "$devices" | "$menu_cmd" --prompt discover)"
     [ -n "${choice:-}" ] || exit 0
 
     mac="${choice%%"$tab"*}"
@@ -108,7 +109,7 @@ remove_paired() {
         exit 1
     }
 
-    choice="$(printf '%s\n' "$devices" | rofi -dmenu -i -p remove)"
+    choice="$(printf '%s\n' "$devices" | "$menu_cmd" --prompt remove)"
     [ -n "${choice:-}" ] || exit 0
 
     mac="${choice%%"$tab"*}"
@@ -139,7 +140,7 @@ menu_items() {
         "Open blueman-manager"
 }
 
-choice="$(menu_items | rofi -dmenu -i -p "$(current_status)")"
+choice="$(menu_items | "$menu_cmd" --prompt "$(current_status)")"
 [ -n "${choice:-}" ] || exit 0
 
 case "$choice" in

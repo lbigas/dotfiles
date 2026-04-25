@@ -1,18 +1,14 @@
-# i3 config for an HHKB / 60% keyboard workflow.
-# If your HHKB diamond/meta key does not map to Super on Linux,
-# change the next line to: set $mod Mod1
+# i3 config aligned with the current Sway workflow.
 set $mod Mod4
 
-font pango:monospace 8
+font pango:JetBrains Mono NL 10
 
-# Session-local dark theme wrapper for apps launched from i3.
 set $dark_exec /home/lbigas/.config/i3/scripts/run-with-dark-env.sh
 
 focus_follows_mouse no
 mouse_warping none
 workspace_auto_back_and_forth no
 floating_modifier $mod
-tiling_drag modifier titlebar
 
 default_border pixel 2
 default_floating_border pixel 2
@@ -26,15 +22,17 @@ client.unfocused        #26233a #191724 #908caa #26233a #26233a
 client.urgent           #eb6f92 #191724 #e0def4 #eb6f92 #eb6f92
 
 set $term $dark_exec ghostty
-set $launcher $dark_exec rofi -show drun -matching fuzzy -kb-cancel Escape
+set $launcher $dark_exec /home/lbigas/.config/i3/scripts/menu.sh --drun --prompt app
 set $lock ~/.config/i3/scripts/lock.sh
 set $power ~/.config/i3/scripts/power-menu.sh
 set $network ~/.config/i3/scripts/network-menu.sh
 set $bluetooth ~/.config/i3/scripts/bluetooth-menu.sh
 set $audio ~/.config/i3/scripts/audio-menu.sh
 set $brightness ~/.config/i3/scripts/brightness-control.sh
+set $screenshot ~/.config/i3/scripts/screenshot.sh
 
 exec_always --no-startup-id /home/lbigas/.config/polybar/launch.sh
+exec_always --no-startup-id feh --bg-fill /home/lbigas/Pictures/Wallpaper/wallhaven-e7kpl8_3840x2160.png
 exec_always --no-startup-id ~/.config/i3/scripts/startup.sh
 
 set $up k
@@ -78,9 +76,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id $audio --down
 bindsym XF86AudioRaiseVolume exec --no-startup-id $audio --up
 bindsym XF86AudioMute exec --no-startup-id $audio --mute
 bindsym XF86AudioMicMute exec --no-startup-id $audio --mic-mute
-bindsym --release Print exec --no-startup-id flameshot gui -p /home/lbigas/Pictures/Screenshots
-bindsym --release Shift+Print exec --no-startup-id flameshot gui -c
-bindsym --release Ctrl+Print exec --no-startup-id flameshot full -p /home/lbigas/Pictures/Screenshots
+bindsym --release Print exec --no-startup-id $screenshot --area-save
+bindsym --release Shift+Print exec --no-startup-id $screenshot --area-copy
+bindsym --release Ctrl+Print exec --no-startup-id $screenshot --full-save
 
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
