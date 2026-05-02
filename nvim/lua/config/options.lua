@@ -23,6 +23,15 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
+vim.cmd("syntax enable")
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
+  group = vim.api.nvim_create_augroup("FallbackSyntax", { clear = true }),
+  callback = function()
+    if vim.bo.filetype ~= "" and vim.bo.syntax == "" then
+      vim.bo.syntax = vim.bo.filetype
+    end
+  end,
+})
 
 -- clipboard
 vim.opt.clipboard:append("unnamedplus") -- use system clipboard

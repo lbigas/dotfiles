@@ -4,6 +4,7 @@ end
 
 return {
   'nvim-treesitter/nvim-treesitter',
+  enabled = false,
   dependencies = {
     "nvim-tree/nvim-web-devicons"
   },

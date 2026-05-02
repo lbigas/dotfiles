@@ -5,7 +5,7 @@ end
 return ({
 {
   "miikanissi/modus-themes.nvim",
-  enabled = false,
+  enabled = true,
   priority = 1000,
   config = function()
     vim.cmd.colorscheme('modus_vivendi')
@@ -13,7 +13,7 @@ return ({
 },
 {
 	"rose-pine/neovim",
-  enabled = true,
+  enabled = false,
 	name = "rose-pine",
 	config = function()
 		vim.cmd("colorscheme rose-pine")
