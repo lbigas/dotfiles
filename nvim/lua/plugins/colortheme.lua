@@ -8,7 +8,7 @@ return ({
   enabled = true,
   priority = 1000,
   config = function()
-    vim.cmd.colorscheme('modus_vivendi')
+    vim.cmd("colorscheme modus_vivendi")
   end
 },
 {
