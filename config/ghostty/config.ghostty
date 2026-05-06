@@ -1,0 +1,17 @@
+# Match the WezTerm profile launched by super+enter in i3.
+font-family = "JetBrains Mono NL"
+font-size = 12
+
+# Use a standalone dark theme file with good contrast.
+theme = iTerm2 Tango Dark
+cursor-style = block
+cursor-style-blink = false
+
+window-padding-x = 0
+window-padding-y = 0
+window-decoration = server
+window-theme = ghostty
+gtk-titlebar = false
+
+# Keep a block cursor at the prompt like WezTerm.
+shell-integration-features = no-cursor
