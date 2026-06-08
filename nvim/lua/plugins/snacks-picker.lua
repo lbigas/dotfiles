@@ -6,7 +6,7 @@ return {
   "folke/snacks.nvim",
   -- optional for icon support (like your old config)
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  enabled = true,
+  enabled = false,
   opts = {
     picker = { enabled = true },
   },

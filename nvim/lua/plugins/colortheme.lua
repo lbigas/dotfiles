@@ -5,7 +5,7 @@ end
 return ({
 {
   "miikanissi/modus-themes.nvim",
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function()
     vim.cmd("colorscheme modus_vivendi")
@@ -38,7 +38,7 @@ return ({
 },
 {
   "catppuccin/nvim",
-  enabled = false,
+  enabled = true,
   name = "catppuccin",
   priority = 1000,
   config = function ()
