@@ -48,7 +48,7 @@ return {
 
     -- === Inline diagnostics toggle (unchanged) ===
     if vim.g._diagnostics_virtual_text == nil then
-      vim.g._diagnostics_virtual_text = true
+      vim.g._diagnostics_virtual_text = false
     end
 
     vim.diagnostic.config({
