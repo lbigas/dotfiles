@@ -14,36 +14,40 @@ return {
   },
   enabled = true,
   config = function()
-    -- === Capabilities (from blink.cmp) ===
-    -- blink.cmp exposes LSP capabilities you should pass to servers
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
+    require('blink.cmp').setup({
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
 
-    -- === mason-lspconfig setup (unchanged) ===
+      keymap = {
+        ['<C-k>'] = { 'show', 'select_prev', 'fallback' },
+        ['<C-j>'] = { 'show', 'select_next', 'fallback' },
+        ['<C-n>'] = { 'show' },
+        ['<C-e>'] = { 'cancel' },
+        ['<CR>'] = { 'select_and_accept', 'fallback' },
+      },
+
+      snippets = {
+        preset = 'default',
+      },
+
+      completion = {
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
+        ghost_text = { enabled = true },
+      },
+    })
+
+    -- Apply Blink's completion capabilities to every LSP config before Mason enables servers.
+    vim.lsp.config('*', {
+      capabilities = require('blink.cmp').get_lsp_capabilities(),
+    })
+
     require('mason-lspconfig').setup({
       ensure_installed = { 'lua_ls', 'rust_analyzer', 'tsgo', 'eslint' },
-      handlers = {
-
-        function(server_name)
-          require('lspconfig')[server_name].setup({
-            capabilities = capabilities
-          })
-        end,
-
-        -- Custom setup for Gleam
-        ['gleam'] = function()
-          require('lspconfig').gleam.setup({
-            capabilities = capabilities
-          })
-        end,
-
-        -- Custom setup for OCaml
-        ['ocamllsp'] = function()
-          require('lspconfig').ocamllsp.setup({
-            capabilities = capabilities
-          })
-        end,
-
-      },
+      automatic_enable = { 'lua_ls', 'rust_analyzer', 'tsgo', 'eslint' },
     })
 
     -- === Inline diagnostics toggle (unchanged) ===
@@ -86,40 +90,5 @@ return {
       end,
     })
 
-    -- === blink.cmp setup (replaces nvim-cmp setup) ===
-    -- Minimal config to match previous behavior:
-    --  - LSP as completion source
-    --  - mappings: C-k / C-j to navigate, C-Space to show, C-e to cancel, CR to select+accept
-    require('blink.cmp').setup({
-      -- sources: set LSP as default completion source
-      sources = {
-        default = { 'lsp' },
-      },
-
-      -- keymap: action chains. 'show' ensures menu opens, 'select_next'/'select_prev' navigate,
-      -- 'select_and_accept' accepts the selection (similar to cmp.confirm).
-      keymap = {
-        ['<C-k>'] = { 'show', 'select_prev', 'fallback' },
-        ['<C-j>'] = { 'show', 'select_next', 'fallback' },
-        ['<C-n>'] = { 'show' },
-        ['<C-e>'] = { 'cancel' }, -- abort / close
-        -- CR: select and accept the currently-selected item (falls back to newline when none)
-        ['<CR>'] = { 'select_and_accept', 'fallback' },
-      },
-
-      -- snippets: blink supports native `vim.snippet` and other providers; keep default snippet handling.
-      snippets = {
-        preset = 'default',
-      },
-
-      -- completion/documentation preferences (small sensible defaults)
-      completion = {
-        documentation = {
-          auto_show = true,
-          auto_show_delay_ms = 200,
-        },
-        ghost_text = { enabled = true }, -- optional: shows ghost text; change if you dislike
-      },
-    })
   end
 }

@@ -5,7 +5,7 @@ end
 return {
   'echasnovski/mini.pick',
   version = '*',
-  enabled = true,
+  enabled = false,
   config = function ()
     require('mini.pick').setup({
       -- Delays (in ms; should be at least 1)
