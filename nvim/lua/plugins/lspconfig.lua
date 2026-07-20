@@ -46,8 +46,8 @@ return {
     })
 
     require('mason-lspconfig').setup({
-      ensure_installed = { 'lua_ls', 'rust_analyzer', 'tsgo', 'eslint' },
-      automatic_enable = { 'lua_ls', 'rust_analyzer', 'tsgo', 'eslint' },
+      ensure_installed = { 'lua_ls', 'rust_analyzer', 'tsgo', 'eslint', 'kotlin_language_server' },
+      automatic_enable = { 'lua_ls', 'rust_analyzer', 'tsgo', 'eslint', 'kotlin_language_server' },
     })
 
     -- === Inline diagnostics toggle (unchanged) ===

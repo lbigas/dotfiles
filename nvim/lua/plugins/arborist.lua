@@ -10,6 +10,7 @@ return {
         "c",
         "html",
         "css",
+        "kotlin",
         "lua",
         "markdown",
         "markdown_inline",

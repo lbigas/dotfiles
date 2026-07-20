@@ -27,7 +27,7 @@ vim.opt.termguicolors = true
 -- clipboard
 vim.opt.clipboard:append("unnamedplus") -- use system clipboard
 
-vim.opt.updatetime = 50
+vim.opt.updatetime = 200
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = 'yes' -- leave space for the gutter
