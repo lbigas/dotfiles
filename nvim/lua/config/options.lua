@@ -49,3 +49,8 @@ if vim.g.neovide then
   vim.g.neovide_refresh_rate = 120
   vim.g.neovide_confirm_quit = true
 end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  command = "setlocal spell spelllang=en",
+})
