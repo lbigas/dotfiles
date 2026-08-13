@@ -14,6 +14,13 @@ return {
   },
   enabled = true,
   config = function()
+    local log_path = vim.lsp.log.get_filename()
+    local log_stat = vim.uv.fs_stat(log_path)
+    if log_stat and log_stat.size > 10 * 1024 * 1024 then
+      os.remove(log_path)
+    end
+    vim.lsp.log.set_level('OFF')
+
     require('blink.cmp').setup({
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
