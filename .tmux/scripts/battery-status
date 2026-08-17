@@ -1,0 +1,31 @@
+#!/bin/sh
+
+print_battery() {
+  if [ -n "$1" ]; then
+    printf '#[fg=#11111b,bg=#89b4fa,bold] BAT %s ' "$1"
+  fi
+}
+
+case "$(uname -s 2>/dev/null)" in
+  Darwin)
+    if command -v pmset >/dev/null 2>&1; then
+      percent=$(pmset -g batt 2>/dev/null | awk '/InternalBattery/ {gsub(/;/, "", $3); print $3; exit}')
+      print_battery "$percent"
+    fi
+    ;;
+  Linux)
+    for battery in /sys/class/power_supply/BAT*; do
+      [ -r "$battery/capacity" ] || continue
+      percent=$(cat "$battery/capacity" 2>/dev/null)
+      case "$percent" in
+        ''|*[!0-9]*) ;;
+        *) print_battery "${percent}%"; exit 0 ;;
+      esac
+    done
+
+    if command -v acpi >/dev/null 2>&1; then
+      percent=$(acpi -b 2>/dev/null | awk -F'[, %]+' 'NR == 1 {print $4 "%"; exit}')
+      print_battery "$percent"
+    fi
+    ;;
+esac
